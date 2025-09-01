@@ -1,0 +1,788 @@
+
+
+  <!DOCTYPE html>
+  <html lang="zh-CN" data-default-color-scheme=auto>
+
+  
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/huishao.png">
+  <link rel="icon" href="/blog/img/huishao.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="huishao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在 Arch Linux 上安装 Stable Diffusion WebUI（AUTOMATIC1111 的 sd-webui） 可以通过以下几步完成。这个教程假设你有基本的 Arch 使用经验  第一步：先决条件确保你的系统中已经安装了以下依赖项： 1sudo pacman -S git ffmpeg wget unzip  如果你使用 NVIDIA 显卡，还需要安装相关驱动和 CUDA： 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux安装Stable-Diffusion-WebUI更新版">
+<meta property="og:url" content="http://huishao.com/2025/08/03/ArchLinux%E5%AE%89%E8%A3%85Stable-Diffusion-WebUI%E6%9B%B4%E6%96%B0%E7%89%88/index.html">
+<meta property="og:site_name" content="辉少笔记">
+<meta property="og:description" content="在 Arch Linux 上安装 Stable Diffusion WebUI（AUTOMATIC1111 的 sd-webui） 可以通过以下几步完成。这个教程假设你有基本的 Arch 使用经验  第一步：先决条件确保你的系统中已经安装了以下依赖项： 1sudo pacman -S git ffmpeg wget unzip  如果你使用 NVIDIA 显卡，还需要安装相关驱动和 CUDA： 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huishao.com/blog/img/a8.png">
+<meta property="article:published_time" content="2025-08-03T10:30:00.000Z">
+<meta property="article:modified_time" content="2025-09-01T07:23:52.964Z">
+<meta property="article:author" content="huishao">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://huishao.com/blog/img/a8.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Arch Linux安装Stable-Diffusion-WebUI更新版 - 辉少笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"huishao.com","root":"/blog/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    <body>
+      
+
+        <header>
+          
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+
+    <a class="navbar-brand" href="/blog/">
+      
+        <img src="/blog/img/huishao64.png" srcset="/blog/img/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35px" height="35px"/>
+      
+      <strong>&nbsp;&nbsp;辉少笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/random/b8.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Arch Linux安装Stable-Diffusion-WebUI更新版"></span>
+          
+        </div>
+
+        
+          <!-- 文章封面图正中标题下方居中显示：作者、发布时间、字数、阅读时间、阅读数  -->
+
+  <div class="post-meta-typewriter-wrapper">
+    <div class="post-meta-typewriter" id="post-meta-typewriter">
+      <div class="post-meta-center">
+        
+          <span class="post-meta-item">
+            <i class="iconfont icon-author" aria-hidden="true"></i>
+            huishao
+          </span>
+          
+
+            
+              <span class="post-meta-item">
+                <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                <time datetime="2025-08-03 18:30" pubdate>
+                  2025年8月3日 晚上
+                </time>
+              </span>
+              
+
+                
+                  <span class="post-meta-item">
+                    <i class="iconfont icon-chart"></i>
+                    1k 字
+                  </span>
+                  
+
+                    
+                      <span class="post-meta-item">
+                        <i class="iconfont icon-clock-fill"></i>
+                        2 分钟
+                      </span>
+                      
+
+      </div>
+    </div>
+  </div>
+  
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+        </header>
+
+
+        <main>
+          
+            
+
+  <div class="container-fluid nopadding-x">
+    <div class="row nomargin-x">
+      <div class="side-col d-none d-lg-block col-lg-2">
+        
+
+      </div>
+
+      <div class="col-lg-8 nopadding-x-md">
+        <div class="container nopadding-x-md" id="board-ctn">
+          <div id="board">
+            <article class="post-content mx-auto">
+              <h1 id="seo-header">
+                Arch Linux安装Stable-Diffusion-WebUI更新版
+              </h1>
+              
+                  
+                              <div class="markdown-body">
+                                
+                                  <p>在 Arch Linux 上安装 <strong>Stable Diffusion WebUI（AUTOMATIC1111 的 sd-webui）</strong> 可以通过以下几步完成。这个教程假设你有基本的 Arch 使用经验</p>
+<hr>
+<h3 id="第一步：先决条件"><a href="#第一步：先决条件" class="headerlink" title="第一步：先决条件"></a>第一步：先决条件</h3><p>确保你的系统中已经安装了以下依赖项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S git ffmpeg wget unzip<br></code></pre></td></tr></table></figure>
+
+<p>如果你使用 NVIDIA 显卡，还需要安装相关驱动和 CUDA：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S nvidia nvidia-utils cuda cudnn<br></code></pre></td></tr></table></figure>
+
+<p>AMD 用户可跳过 CUDA，只保证有 mesa 和 rocm 相关包</p>
+<blockquote>
+<p>[!WARNING]</p>
+<h4 id="CUDA-和-cuDNN-的区别："><a href="#CUDA-和-cuDNN-的区别：" class="headerlink" title="CUDA 和 cuDNN 的区别："></a>CUDA 和 cuDNN 的区别：</h4></blockquote>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>全称</th>
+<th>作用</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CUDA</strong></td>
+<td>Compute Unified Device Architecture</td>
+<td>NVIDIA 推出的 <strong>通用 GPU 加速平台</strong>，让程序能用显卡运算</td>
+<td>PyTorch 用 CUDA 来加速</td>
+</tr>
+<tr>
+<td><strong>cuDNN</strong></td>
+<td>CUDA Deep Neural Network library</td>
+<td>基于 CUDA 的 <strong>深度学习加速库</strong>，专门优化神经网络的计算（更快）</td>
+<td>Stable Diffusion 用 cuDNN 提升速度</td>
+</tr>
+</tbody></table>
+<p> 通俗类比：</p>
+<ul>
+<li><strong>CUDA &#x3D; 显卡的驱动+操作系统接口</strong>，就像是电脑的“显卡系统”</li>
+<li><strong>cuDNN &#x3D; 深度学习专用的外挂插件</strong>，加速神经网络中的矩阵运算（比如卷积、反向传播）</li>
+</ul>
+<p>你可以理解为：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">Stable <span class="hljs-keyword">Diffusion </span>→ 用 PyTorch → PyTorch 用 CUDA → CUDA 用 cuDNN → 显卡疯狂加速跑图<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>nvidia → 显卡驱动</li>
+<li>nvidia-utils → 基础工具（比如 nvidia-smi）</li>
+<li>cuda → CUDA 工具包（带 nvcc 编译器）</li>
+<li>cudnn → cuDNN 库（专门给 AI 加速用）</li>
+</ul>
+<h3 id="第二步：Python-选择"><a href="#第二步：Python-选择" class="headerlink" title="第二步：Python 选择"></a>第二步：Python 选择</h3><p>确保使用的是 Python 3.11。WebUI 不兼容 3.12</p>
+<ol>
+<li><p>如果不是需要手动安装：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mkdir</span> -p ~/src &amp;&amp; cd ~/src<br><span class="hljs-attribute">wget</span> https://www.python.org/ftp/python/<span class="hljs-number">3</span>.<span class="hljs-number">11</span>.<span class="hljs-number">0</span>/Python-<span class="hljs-number">3</span>.<span class="hljs-number">11</span>.<span class="hljs-number">0</span>.tgz<br><span class="hljs-attribute">tar</span> -xzf Python-<span class="hljs-number">3</span>.<span class="hljs-number">11</span>.<span class="hljs-number">0</span>.tgz<br><span class="hljs-attribute">cd</span> Python-<span class="hljs-number">3</span>.<span class="hljs-number">11</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>配置安装路径（不会覆盖系统的 python）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">./configure --prefix=<span class="hljs-variable">$HOME</span>/src/python311 --enable-optimizations<br>make -j$(<span class="hljs-built_in">nproc</span>)<br>make install<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>安装路径在~&#x2F;src&#x2F;python311&#x2F;bin&#x2F;python3.11</p>
+<p>make -j &lt;你 CPU 的核心数量&gt;</p>
+<ul>
+<li><p>make是用于根据 Makefile 编译源码的命令（大多数 C&#x2F;C++ 项目用它来构建）</p>
+</li>
+<li><p>-j表示「并行编译」，加快速度。</p>
+</li>
+<li><p>$(nproc)是一个 Shell 命令，返回当前 CPU 的核心数。比如：8</p>
+</li>
+<li><p>可以将新安装的Python加入PATH变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"> vim ~/.bashrc<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/src/python311/bin:<span class="hljs-variable">$PATH</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h3 id="第三步：克隆-sd-webui-项目"><a href="#第三步：克隆-sd-webui-项目" class="headerlink" title="第三步：克隆 sd-webui 项目"></a>第三步：克隆 sd-webui 项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/AUTOMATIC1111/stable-diffusion-webui.git<br><span class="hljs-built_in">cd</span> stable-diffusion-webui<br></code></pre></td></tr></table></figure>
+
+<h3 id="第四步：下载模型文件（必须）"><a href="#第四步：下载模型文件（必须）" class="headerlink" title="第四步：下载模型文件（必须）"></a>第四步：下载模型文件（必须）</h3><p>Stable Diffusion 的核心模型需要手动下载，比如：</p>
+<ol>
+<li>下载 v1.5 模型</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">cd models/Stable-diffusion<br>wget https:<span class="hljs-regexp">//</span>huggingface.co<span class="hljs-regexp">/runwayml/</span>stable-diffusion-v1-<span class="hljs-number">5</span><span class="hljs-regexp">/resolve/m</span>ain/v1-<span class="hljs-number">5</span>-pruned-emaonly.safetensors<br></code></pre></td></tr></table></figure>
+
+<p>也可以换其他 <code>.ckpt</code> 或 <code>.safetensors</code> 模型。</p>
+<h3 id="第五步：使用这个3-11-0版本创建虚拟环境"><a href="#第五步：使用这个3-11-0版本创建虚拟环境" class="headerlink" title="第五步：使用这个3.11.0版本创建虚拟环境"></a>第五步：使用这个3.11.0版本创建虚拟环境</h3><p>进入 stable-diffusion-webui 目录后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3.11 -m venv venv<br><span class="hljs-built_in">source</span> venv/bin/activate<br></code></pre></td></tr></table></figure>
+
+<h3 id="第六步：补全依赖"><a href="#第六步：补全依赖" class="headerlink" title="第六步：补全依赖"></a>第六步：补全依赖</h3><ol>
+<li><p>先安装 CUDA 12.1 版本的 torch&#x2F;torchvision</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pip3</span>.<span class="hljs-number">11</span> install torch==<span class="hljs-number">2</span>.<span class="hljs-number">1</span>.<span class="hljs-number">2</span>+cu121 torchvision==<span class="hljs-number">0</span>.<span class="hljs-number">16</span>.<span class="hljs-number">2</span>+cu121 --extra-index-url https://download.pytorch.org/whl/cu121<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改requirements.txt</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">GitPython</span>&gt;=<span class="hljs-number">3</span>.<span class="hljs-number">1</span>.<span class="hljs-number">30</span><br><span class="hljs-attribute">Pillow</span>&gt;=<span class="hljs-number">9</span>.<span class="hljs-number">4</span>.<span class="hljs-number">0</span>,&lt;<span class="hljs-number">11</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">accelerate</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">18</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">blendmodes</span>&gt;=<span class="hljs-number">2022</span>.<span class="hljs-number">9</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">clean</span>-fid&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">1</span>.<span class="hljs-number">35</span><br><span class="hljs-attribute">diskcache</span>&gt;=<span class="hljs-number">5</span>.<span class="hljs-number">6</span>.<span class="hljs-number">1</span><br><span class="hljs-attribute">einops</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">6</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">facexlib</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">2</span>.<span class="hljs-number">5</span><br><span class="hljs-attribute">fastapi</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">90</span>.<span class="hljs-number">1</span><br><span class="hljs-attribute">gradio</span>==<span class="hljs-number">3</span>.<span class="hljs-number">41</span>.<span class="hljs-number">2</span><br><span class="hljs-attribute">inflection</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">5</span>.<span class="hljs-number">1</span><br><span class="hljs-attribute">jsonmerge</span>&gt;=<span class="hljs-number">1</span>.<span class="hljs-number">8</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">kornia</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">6</span>.<span class="hljs-number">8</span><br><span class="hljs-attribute">lark</span>&gt;=<span class="hljs-number">1</span>.<span class="hljs-number">1</span>.<span class="hljs-number">5</span><br><span class="hljs-attribute">numpy</span>&gt;=<span class="hljs-number">1</span>.<span class="hljs-number">23</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">omegaconf</span>&gt;=<span class="hljs-number">2</span>.<span class="hljs-number">2</span>.<span class="hljs-number">3</span><br><span class="hljs-attribute">open</span>-clip-torch&gt;=<span class="hljs-number">2</span>.<span class="hljs-number">0</span>.<span class="hljs-number">2</span><br><span class="hljs-attribute">piexif</span>&gt;=<span class="hljs-number">1</span>.<span class="hljs-number">1</span>.<span class="hljs-number">3</span><br><span class="hljs-attribute">protobuf</span>==<span class="hljs-number">3</span>.<span class="hljs-number">20</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">psutil</span>&gt;=<span class="hljs-number">5</span>.<span class="hljs-number">9</span>.<span class="hljs-number">4</span><br><span class="hljs-attribute">pytorch_lightning</span>&gt;=<span class="hljs-number">2</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">requests</span>&gt;=<span class="hljs-number">2</span>.<span class="hljs-number">28</span>.<span class="hljs-number">2</span><br><span class="hljs-attribute">resize</span>-right&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">2</span><br><span class="hljs-attribute">safetensors</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">2</span>.<span class="hljs-number">7</span><br><span class="hljs-attribute">scikit</span>-image&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">19</span><br><span class="hljs-attribute">tomesd</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">1</span>.<span class="hljs-number">2</span><br><span class="hljs-attribute">torchdiffeq</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">2</span>.<span class="hljs-number">3</span><br><span class="hljs-attribute">torchsde</span>&gt;=<span class="hljs-number">0</span>.<span class="hljs-number">2</span>.<span class="hljs-number">5</span><br><span class="hljs-attribute">transformers</span>==<span class="hljs-number">4</span>.<span class="hljs-number">30</span>.<span class="hljs-number">2</span><br><span class="hljs-attribute">pillow</span>-avif-plugin==<span class="hljs-number">1</span>.<span class="hljs-number">4</span>.<span class="hljs-number">3</span><br><span class="hljs-attribute">xformers</span>==<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">23</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>安装依赖</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pip3</span>.<span class="hljs-number">11</span> install -r requirements.txt<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>socksio 如果你有shell代理就需要安装（可跳过）</p>
+<p>bc 没有的话shell脚本里的浮点运算也会出错（不同系统安装也不一样，按需安装）</p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pip3</span>.<span class="hljs-number">11</span> install socksio<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S bc<br><span class="hljs-built_in">sudo</span> apt install bc<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="第七步：启动webui"><a href="#第七步：启动webui" class="headerlink" title="第七步：启动webui"></a>第七步：启动webui</h3><p>第一次运行主脚本需要下载很多依赖文件，这里需要科学上网才行</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">./webui.sh</span> <span class="hljs-params">--xformers</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!CAUTION]</p>
+<p><strong>proxychains</strong> 是我的终端代理程序，这个需要另外设置</p>
+<p><strong>–xformers</strong> 是启动 Stable Diffusion WebUI 的加速参数，让 WebUI 使用 xformers 这个库来提升生成速度、减少显存占用（尤其是在高分辨率&#x2F;多图场景下）</p>
+</blockquote>
+<p>如果使用 NVIDIA 显卡，默认会启用 CUDA。AMD 用户可加上参数：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">./webui.sh</span> <span class="hljs-params">--skip-torch-cuda-test</span> <span class="hljs-params">--precision</span> full <span class="hljs-params">--no-half</span><br></code></pre></td></tr></table></figure>
+
+<p>所有依赖都下载完成之后，需要再次运行.&#x2F;webui.sh，但这里就不需要proxychains代理程序了</p>
+<h3 id="第八步：访问-WebUI"><a href="#第八步：访问-WebUI" class="headerlink" title="第八步：访问 WebUI"></a>第八步：访问 WebUI</h3><p>默认监听地址是：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">http:</span><span class="hljs-comment">//127.0.0.1:7860</span><br></code></pre></td></tr></table></figure>
+
+<p>你可以通过浏览器访问它</p>
+<h3 id="第九步：退出"><a href="#第九步：退出" class="headerlink" title="第九步：退出"></a>第九步：退出</h3><ul>
+<li>按键盘：<strong>CTRL+C</strong></li>
+<li>输入：<strong>deactivate</strong>，即可退出venv命令</li>
+<li>最后：<strong>cd</strong>退出整个目录</li>
+</ul>
+
+                                    
+                              </div>
+                              
+                                <hr />
+                                <div>
+                                  <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/blog/categories/Arch-Linux/" class="category-chain-item">Arch Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+                                    
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Arch Linux安装Stable-Diffusion-WebUI更新版</div>
+      <div>http://huishao.com/2025/08/03/ArchLinux安装Stable-Diffusion-WebUI更新版/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>huishao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+                                      
+                                        <div class="post-prevnext my-3">
+                                          <article class="post-prev col-6">
+                                            
+                                              
+                                                <a href="/blog/2025/08/04/%E5%8E%BB%E6%B0%B4%E5%8D%B0/" title="基于Python去水印">
+                                                  <i class="iconfont icon-arrowleft"></i>
+                                                  <span class="hidden-mobile">
+                                                    基于Python去水印
+                                                  </span>
+                                                  <span class="visible-mobile">上一篇</span>
+                                                </a>
+                                                
+                                          </article>
+                                          <article class="post-next col-6">
+                                            
+                                              
+                                                <a href="/blog/2025/07/04/arch%E5%AE%89%E8%A3%85KVM%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="Arch Linux安装KVM">
+                                                  <span class="hidden-mobile">
+                                                    Arch Linux安装KVM
+                                                  </span>
+                                                  <span class="visible-mobile">下一篇</span>
+                                                  <i class="iconfont icon-arrowright"></i>
+                                                </a>
+                                                
+                                          </article>
+                                        </div>
+                                        
+                                </div>
+
+                                
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-col d-none d-lg-block col-lg-2">
+        
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+    
+              
+
+                  
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                    
+
+                      
+                        <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                          
+
+                            
+        </main>
+
+        <footer>
+          <div class="footer-inner">
+  
+  
+  
+</div>
+
+
+        </footer>
+
+        <!-- Scripts -->
+        
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+
+
+          
+
+            <noscript>
+              <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+            </noscript>
+
+    </body>
+
+  </html>

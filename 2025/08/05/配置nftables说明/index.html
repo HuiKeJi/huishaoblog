@@ -1,0 +1,702 @@
+
+
+  <!DOCTYPE html>
+  <html lang="zh-CN" data-default-color-scheme=auto>
+
+  
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/huishao.png">
+  <link rel="icon" href="/blog/img/huishao.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="huishao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="安装nftablessudo pacman -S nftables 正常已经内置无需安装sudo pacman -Q nftables 查看是否存在 打开服务sudo systemctl enable --now nftables.servicesudo systemctl status nftables.service 查看服务是否开启 所有的放行和禁止端口都在&#x2F;etc&#x2F;nf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nftables防火墙">
+<meta property="og:url" content="http://huishao.com/2025/08/05/%E9%85%8D%E7%BD%AEnftables%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="辉少笔记">
+<meta property="og:description" content="安装nftablessudo pacman -S nftables 正常已经内置无需安装sudo pacman -Q nftables 查看是否存在 打开服务sudo systemctl enable --now nftables.servicesudo systemctl status nftables.service 查看服务是否开启 所有的放行和禁止端口都在&#x2F;etc&#x2F;nf">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huishao.com/blog/img/qw1111.png">
+<meta property="article:published_time" content="2025-08-05T10:30:00.000Z">
+<meta property="article:modified_time" content="2025-09-01T07:25:37.540Z">
+<meta property="article:author" content="huishao">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://huishao.com/blog/img/qw1111.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Nftables防火墙 - 辉少笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"huishao.com","root":"/blog/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    <body>
+      
+
+        <header>
+          
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+
+    <a class="navbar-brand" href="/blog/">
+      
+        <img src="/blog/img/huishao64.png" srcset="/blog/img/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35px" height="35px"/>
+      
+      <strong>&nbsp;&nbsp;辉少笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/random/131.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Nftables防火墙"></span>
+          
+        </div>
+
+        
+          <!-- 文章封面图正中标题下方居中显示：作者、发布时间、字数、阅读时间、阅读数  -->
+
+  <div class="post-meta-typewriter-wrapper">
+    <div class="post-meta-typewriter" id="post-meta-typewriter">
+      <div class="post-meta-center">
+        
+          <span class="post-meta-item">
+            <i class="iconfont icon-author" aria-hidden="true"></i>
+            huishao
+          </span>
+          
+
+            
+              <span class="post-meta-item">
+                <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                <time datetime="2025-08-05 18:30" pubdate>
+                  2025年8月5日 晚上
+                </time>
+              </span>
+              
+
+                
+                  <span class="post-meta-item">
+                    <i class="iconfont icon-chart"></i>
+                    493 字
+                  </span>
+                  
+
+                    
+                      <span class="post-meta-item">
+                        <i class="iconfont icon-clock-fill"></i>
+                        1 分钟
+                      </span>
+                      
+
+      </div>
+    </div>
+  </div>
+  
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+        </header>
+
+
+        <main>
+          
+            
+
+  <div class="container-fluid nopadding-x">
+    <div class="row nomargin-x">
+      <div class="side-col d-none d-lg-block col-lg-2">
+        
+
+      </div>
+
+      <div class="col-lg-8 nopadding-x-md">
+        <div class="container nopadding-x-md" id="board-ctn">
+          <div id="board">
+            <article class="post-content mx-auto">
+              <h1 id="seo-header">
+                Nftables防火墙
+              </h1>
+              
+                  
+                              <div class="markdown-body">
+                                
+                                  <h1 id="安装nftables"><a href="#安装nftables" class="headerlink" title="安装nftables"></a>安装nftables</h1><p><code>sudo pacman -S nftables 正常已经内置无需安装</code><br><code>sudo pacman -Q nftables 查看是否存在</code></p>
+<h1 id="打开服务"><a href="#打开服务" class="headerlink" title="打开服务"></a>打开服务</h1><p><code>sudo systemctl enable --now nftables.service</code><br><code>sudo systemctl status nftables.service 查看服务是否开启</code></p>
+<h1 id="所有的放行和禁止端口都在-etc-nftables-conf下设置"><a href="#所有的放行和禁止端口都在-etc-nftables-conf下设置" class="headerlink" title="所有的放行和禁止端口都在&#x2F;etc&#x2F;nftables.conf下设置"></a>所有的放行和禁止端口都在&#x2F;etc&#x2F;nftables.conf下设置</h1><h3 id="修改后的配置（在你的基础上扩展端口规则）"><a href="#修改后的配置（在你的基础上扩展端口规则）" class="headerlink" title="修改后的配置（在你的基础上扩展端口规则）"></a>修改后的配置（在你的基础上扩展端口规则）</h3><h1 id="—————————————————"><a href="#—————————————————" class="headerlink" title="—————————————————-"></a>—————————————————-</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs conf">destroy table inet filter<br>table inet filter &#123;<br>  chain input &#123;<br>    type filter hook input priority filter<br>    policy drop<br><br>ct state invalid drop comment &quot;early drop of invalid connections&quot;<br>ct state &#123;established, related&#125; accept comment &quot;allow tracked connections&quot;<br>iif lo accept comment &quot;allow from loopback&quot;<br>ip protocol icmp accept comment &quot;allow icmp&quot;<br>meta l4proto ipv6-icmp accept comment &quot;allow icmp v6&quot;<br><br># 开放 SSH<br><br>tcp dport ssh accept comment &quot;allow sshd&quot;<br><br># 开放你需要的端口（TCP 和 UDP）（&#123;&#125;这是一个集合）<br>tcp dport &#123; 443, 80, 8080, 8090, 1090, 1080, 33612, 23361, 5000, 2017, 10170, 1314 &#125; accept comment &quot;allow specified tcp ports&quot;<br>udp dport &#123; 443, 80, 8080, 8090, 1090, 1080, 33612, 23361, 5000, 2017, 10170, 1314 &#125; accept comment &quot;allow specified udp ports&quot;<br><br># kdeconnect<br>tcp dport 1716-1764 accept comment &quot;allow kdeconnect tcp ports&quot;<br>udp dport 1716-1764 accept comment &quot;allow kdeconnect udp ports&quot;<br><br># 限制扫描类数据包<br>pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited<br><br># 统计默认拒绝包<br><br>counter<br><br>  &#125;<br><br>  chain forward &#123;<br>    type filter hook forward priority filter<br>    policy drop<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="—————————————————-1"><a href="#—————————————————-1" class="headerlink" title="—————————————————-"></a>—————————————————-</h1><blockquote>
+<h4 id="将此内容保存为-etc-nftables-conf"><a href="#将此内容保存为-etc-nftables-conf" class="headerlink" title="将此内容保存为&#x2F;etc&#x2F;nftables.conf"></a>将此内容保存为&#x2F;etc&#x2F;nftables.conf</h4></blockquote>
+<h4 id="重载防火墙规则："><a href="#重载防火墙规则：" class="headerlink" title="重载防火墙规则："></a>重载防火墙规则：</h4><p><code>sudo systemctl restart nftables.service</code></p>
+<h1 id="为什么不放行端口也能访问？"><a href="#为什么不放行端口也能访问？" class="headerlink" title="为什么不放行端口也能访问？"></a>为什么不放行端口也能访问？</h1><h4 id="访问分为「出站」连接，「入站」连接"><a href="#访问分为「出站」连接，「入站」连接" class="headerlink" title="访问分为「出站」连接，「入站」连接"></a>访问分为「出站」连接，「入站」连接</h4><blockquote>
+<p>Linux 防火墙默认是作用在「入站（input）」流量上的，浏览器访问网页属于「出站（output）」流量。</p>
+</blockquote>
+<h2 id="情况对比"><a href="#情况对比" class="headerlink" title="情况对比"></a>情况对比</h2><h6 id="使用方式属于什么方向是否被-input-链限制"><a href="#使用方式属于什么方向是否被-input-链限制" class="headerlink" title="使用方式	属于什么方向	是否被 input 链限制"></a>使用方式	属于什么方向	是否被 input 链限制</h6><ul>
+<li>浏览器访问网页（代理转发）	出站（output）	❌ 不受限制</li>
+<li>服务监听本地端口供外部访问	入站（input）	✅ 会被限制</li>
+<li>v2ray 被客户端访问（例如手机连）	入站（input）	✅ 会被限制</li>
+</ul>
+<ol>
+<li><p>情况 A：你访问外网网页</p>
+</li>
+<li><p>curl -x 127.0.0.1:2017 <a target="_blank" rel="noopener" href="https://example.com/">https://example.com</a></p>
+</li>
+<li><p>请求从本地发出，走的是 output 链</p>
+</li>
+<li><p>即使你没开放 2017 端口，也能用</p>
+</li>
+<li><p>因为 你在本机发请求，本机响应自己，或是本机作为客户端连接远端服务器</p>
+</li>
+<li><p>情况 B：别人连接你的 2017 端口</p>
+</li>
+<li><p>比如你手机设置代理指向：</p>
+</li>
+<li><p>你的电脑IP:2017</p>
+</li>
+<li><p>这时手机的连接请求会命中 input 链，而你：</p>
+</li>
+<li><p>如果没有 tcp dport 2017 accept，防火墙就会拦住这次连接</p>
+</li>
+<li><p>❌ 所以不能访问</p>
+</li>
+</ol>
+
+                                    
+                              </div>
+                              
+                                <hr />
+                                <div>
+                                  <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/blog/categories/Arch-Linux/" class="category-chain-item">Arch Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+                                    
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Nftables防火墙</div>
+      <div>http://huishao.com/2025/08/05/配置nftables说明/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>huishao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+                                      
+                                        <div class="post-prevnext my-3">
+                                          <article class="post-prev col-6">
+                                            
+                                              
+                                                <a href="/blog/2025/08/05/Wayland%E6%9B%B4%E5%A4%9A%E8%AE%BE%E7%BD%AE/" title="Wayland更多设置">
+                                                  <i class="iconfont icon-arrowleft"></i>
+                                                  <span class="hidden-mobile">
+                                                    Wayland更多设置
+                                                  </span>
+                                                  <span class="visible-mobile">上一篇</span>
+                                                </a>
+                                                
+                                          </article>
+                                          <article class="post-next col-6">
+                                            
+                                              
+                                                <a href="/blog/2025/08/04/%E5%8E%BB%E6%B0%B4%E5%8D%B0/" title="基于Python去水印">
+                                                  <span class="hidden-mobile">
+                                                    基于Python去水印
+                                                  </span>
+                                                  <span class="visible-mobile">下一篇</span>
+                                                  <i class="iconfont icon-arrowright"></i>
+                                                </a>
+                                                
+                                          </article>
+                                        </div>
+                                        
+                                </div>
+
+                                
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-col d-none d-lg-block col-lg-2">
+        
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+    
+              
+
+                  
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                    
+
+                      
+                        <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                          
+
+                            
+        </main>
+
+        <footer>
+          <div class="footer-inner">
+  
+  
+  
+</div>
+
+
+        </footer>
+
+        <!-- Scripts -->
+        
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+
+
+          
+
+            <noscript>
+              <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+            </noscript>
+
+    </body>
+
+  </html>
