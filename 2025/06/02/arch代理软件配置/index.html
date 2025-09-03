@@ -1,0 +1,868 @@
+
+
+  <!DOCTYPE html>
+  <html lang="zh-CN" data-default-color-scheme=auto>
+
+  
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
+  <link rel="icon" href="/img/icons/huishao.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="huishao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="适用于大多数 Linux 系统，Arch、Debian、Ubuntu 都可以参考，这里只做简单配置，不设置静态代理、系统代理、shell代理等等 V2ray1. 下载 v2ray 最新版本去官网下载 v2ray-core 的压缩包，比如最新版一般是v2ray-linux-64.zip，也可以用命令直接下载 获取最新版下载链接： 1wget https:&#x2F;&#x2F;github.com&#x2F;v2fly&#x2F;v2ra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代理软件配置">
+<meta property="og:url" content="http://huishao.net/2025/06/02/arch%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="辉少笔记">
+<meta property="og:description" content="适用于大多数 Linux 系统，Arch、Debian、Ubuntu 都可以参考，这里只做简单配置，不设置静态代理、系统代理、shell代理等等 V2ray1. 下载 v2ray 最新版本去官网下载 v2ray-core 的压缩包，比如最新版一般是v2ray-linux-64.zip，也可以用命令直接下载 获取最新版下载链接： 1wget https:&#x2F;&#x2F;github.com&#x2F;v2fly&#x2F;v2ra">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huishao.net/img/articleslist/128726400_p1.png">
+<meta property="article:published_time" content="2025-06-02T10:30:00.000Z">
+<meta property="article:modified_time" content="2025-09-02T13:41:52.088Z">
+<meta property="article:author" content="huishao">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://huishao.net/img/articleslist/128726400_p1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>代理软件配置 - 辉少笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"huishao.net","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/gif/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    <body>
+      
+
+        <header>
+          
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+
+    <a class="navbar-brand" href="/">
+      
+        <img src="/img/icons/huishao64.png" srcset="/img/gif/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35px" height="35px"/>
+      
+      <strong>&nbsp;&nbsp;辉少笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/random/wallhaven-mldy7y.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="代理软件配置"></span>
+          
+        </div>
+
+        
+          <!-- 文章封面图正中标题下方居中显示：作者、发布时间、字数、阅读时间、阅读数  -->
+
+  <div class="post-meta-typewriter-wrapper">
+    <div class="post-meta-typewriter" id="post-meta-typewriter">
+      <div class="post-meta-center">
+        
+          <span class="post-meta-item">
+            <i class="iconfont icon-author" aria-hidden="true"></i>
+            huishao
+          </span>
+          
+
+            
+              <span class="post-meta-item">
+                <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                <time datetime="2025-06-02 18:30" pubdate>
+                  2025年6月2日 晚上
+                </time>
+              </span>
+              
+
+                
+                  <span class="post-meta-item">
+                    <i class="iconfont icon-chart"></i>
+                    2.8k 字
+                  </span>
+                  
+
+                    
+                      <span class="post-meta-item">
+                        <i class="iconfont icon-clock-fill"></i>
+                        4 分钟
+                      </span>
+                      
+
+      </div>
+    </div>
+  </div>
+  
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+      <!-- 'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/1234.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/131.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/131612409_p0%20(1).png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/132.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/13396645512884975.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/564564.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/6464.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/a23.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/a4.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/a9.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/b4.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/b7%20(1).png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/b8.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/wallhaven-mldy7y.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/wenzhang.png' -->
+
+      <!-- https://picui.cn/  图床软件
+      'https://youke1.picui.cn/s1/2025/09/02/68b6a9bd3ed1c.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac4bb352.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac617901.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac775779.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac834313.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac8da8ee.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aa42c3f8d.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aa42025fd.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad16e95a.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad2bae98.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad52a3ac.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad53300d.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aada05b6b.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aadc8928b.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aadba1be4.png' -->
+
+        </header>
+
+
+        <main>
+          
+            
+
+  <div class="container-fluid nopadding-x">
+    <div class="row nomargin-x">
+      <div class="side-col d-none d-lg-block col-lg-2">
+        
+
+      </div>
+
+      <div class="col-lg-8 nopadding-x-md">
+        <div class="container nopadding-x-md" id="board-ctn">
+          <div id="board">
+            <article class="post-content mx-auto">
+              <h1 id="seo-header">
+                代理软件配置
+              </h1>
+              
+                  
+                              <div class="markdown-body">
+                                
+                                  <p>适用于大多数 Linux 系统，Arch、Debian、Ubuntu 都可以参考，这里只做简单配置，不设置静态代理、系统代理、shell代理等等</p>
+<h1 id="V2ray"><a href="#V2ray" class="headerlink" title="V2ray"></a>V2ray</h1><h3 id="1-下载-v2ray-最新版本"><a href="#1-下载-v2ray-最新版本" class="headerlink" title="1. 下载 v2ray 最新版本"></a>1. 下载 v2ray 最新版本</h3><p>去官网下载 v2ray-core 的压缩包，比如最新版一般是<strong>v2ray-linux-64.zip</strong>，也可以用命令直接下载</p>
+<p><strong>获取最新版下载链接：</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">wget https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/v2fly/</span>v2ray-core<span class="hljs-regexp">/releases/</span>latest<span class="hljs-regexp">/download/</span>v2ray-linux-<span class="hljs-number">64</span>.zip<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-解压并整理文件"><a href="#2-解压并整理文件" class="headerlink" title="2. 解压并整理文件"></a>2. 解压并整理文件</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">unzip</span> v2ray-linux-<span class="hljs-number">64</span>.zip<br><span class="hljs-attribute">cd</span> v2ray-linux-<span class="hljs-number">64</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>建议移动到一个标准目录，比如 &#x2F;usr&#x2F;local&#x2F;v2ray或者&#x2F;opt&#x2F;</p>
+<p>这里我以&#x2F;opt&#x2F;为主</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> <span class="hljs-variable">$HOME</span>/Downloads/v2ray-linux-64 /opt/v2ray/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> ~/Downloads/v2ray-linux-64 /opt/v2ray/<br></code></pre></td></tr></table></figure>
+
+<p><strong>以上两条命令都可以移动文件并且改名</strong></p>
+<h3 id="3-添加执行权限"><a href="#3-添加执行权限" class="headerlink" title="3. 添加执行权限"></a>3. 添加执行权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /opt/v2ray<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> +x v2ray v2ctl<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>在最新版中可能没有v2ctl文件，这里可以不管</p>
+</blockquote>
+<h3 id="4-设置配置文件"><a href="#4-设置配置文件" class="headerlink" title="4. 设置配置文件"></a>4. 设置配置文件</h3><blockquote>
+<p>[!TIP]</p>
+<p><strong>由于我的我放的地方是opt下导致自带的config.json文件和v2ray同级无法使用，这里需要改一下位置</strong></p>
+<p>以下命令意思是在v2ray文件夹下创建一个config的文件夹，并将官方的config.json文件移动进去</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> /opt/v2ray/config<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> /opt/v2ray/config.json /opt/v2ray/config/<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5. 修改配置文件"></a>5. 修改配置文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim opt/v2ray/config/config.json<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!CAUTION]</p>
+<p>这里我使用trojan的方式进行代理</p>
+<p>如果你跟我一样需要改：<strong>服务器地址、服务器端口、Trojan 密码、设置 SNI（Server Name Indication）、监听的端口</strong>等等</p>
+</blockquote>
+<p>模板一：未注释版（推荐）</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;log&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;loglevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;debug&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;access&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/var/log/v2ray/access.log&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/var/log/v2ray/error.log&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;inbounds&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">9911</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;listen&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;127.0.0.1&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;socks&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;auth&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;noauth&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;udp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;sniffing&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;destOverride&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-string">&quot;http&quot;</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-string">&quot;tls&quot;</span><br>        <span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;outbounds&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;trojan&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;servers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;202.000.33.136&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23245</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;27382&quot;</span><br>          <span class="hljs-punctuation">&#125;</span><br>        <span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;streamSettings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;network&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;tcp&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;security&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;tls&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;tlsSettings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>          <span class="hljs-attr">&quot;serverName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cdnj60279.uu0009.com&quot;</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-attr">&quot;allowInsecure&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>        <span class="hljs-punctuation">&#125;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;freedom&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;tag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;direct&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;dns&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;servers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https+local://dns.google/dns-query&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;domains&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-string">&quot;geosite:geolocation-!cn&quot;</span><br>        <span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https+local://cloudflare-dns.com/dns-query&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;domains&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-string">&quot;geosite:geolocation-!cn&quot;</span><br>        <span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;114.114.114.114&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;domains&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-string">&quot;geosite:cn&quot;</span><br>        <span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;8.8.8.8&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;1.1.1.1&quot;</span><br>    <span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;routing&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;domainStrategy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;UseIP&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;rules&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;field&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;domain&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-string">&quot;geosite:cn&quot;</span><br>        <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;outboundTag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;direct&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;field&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;ip&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-string">&quot;geoip:cn&quot;</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-string">&quot;geoip:private&quot;</span><br>        <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;outboundTag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;direct&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;field&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;ip&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-string">&quot;geoip:!cn&quot;</span><br>        <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;outboundTag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;trojan-out&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;field&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;domain&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-string">&quot;geosite:geolocation-!cn&quot;</span><br>        <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;outboundTag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;trojan-out&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>模板二：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;log&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">//需要日志设置（默认关闭，需要打开）</span><br>    <span class="hljs-comment">//&quot;access&quot;: &quot;/var/log/v2ray/access.log&quot;,    // 访问日志文件路径</span><br>    <span class="hljs-comment">//&quot;error&quot;: &quot;/var/log/v2ray/error.log&quot;,      // 错误日志文件路径</span><br>    <span class="hljs-comment">// 设置日志级别，默认日志记录到 stdout</span><br>    <span class="hljs-comment">// 可选值：debug, info, warning, error, none</span><br>    <span class="hljs-attr">&quot;loglevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;warning&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><br>  <span class="hljs-comment">// 入站配置：V2Ray 接受客户端请求的配置</span><br>  <span class="hljs-attr">&quot;inbounds&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// 监听的端口，客户端通过这个端口与 V2Ray 通信</span><br>    <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">9911</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-comment">// 监听的 IP 地址，127.0.0.1 表示仅本机可以访问，改为 &quot;0.0.0.0&quot; 可以让所有网络接口都能连接</span><br>    <span class="hljs-attr">&quot;listen&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;127.0.0.1&quot;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-comment">// 此连接的标签，用于路由匹配</span><br>    <span class="hljs-attr">&quot;tag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;socks-inbound&quot;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-comment">// 协议，指定客户端使用的协议类型</span><br>    <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;socks&quot;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-comment">// 配置 SOCKS 代理的具体设置</span><br>    <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-comment">// auth：设置认证方式，noauth 表示无需认证</span><br>      <span class="hljs-attr">&quot;auth&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;noauth&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-comment">// udp：是否启用 UDP 代理，false 表示禁用</span><br>      <span class="hljs-attr">&quot;udp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>      <span class="hljs-comment">// 监听的 IP 地址，设置为 &quot;127.0.0.1&quot; 仅接受本地请求</span><br>      <span class="hljs-attr">&quot;ip&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;127.0.0.1&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-comment">// 启用 sniffing 功能，检测传输协议</span><br>    <span class="hljs-attr">&quot;sniffing&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;enabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>      <span class="hljs-comment">// sniffing 会根据传输协议来判断目标域名</span><br>      <span class="hljs-attr">&quot;destOverride&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;http&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tls&quot;</span><span class="hljs-punctuation">]</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br><br>  <span class="hljs-comment">// 出站配置：V2Ray 发送请求到外部的配置</span><br>  <span class="hljs-attr">&quot;outbounds&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// 使用 Trojan 协议作为外部连接的协议</span><br>    <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;trojan&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-comment">// 服务器列表，配置 Trojan 节点的相关信息</span><br>      <span class="hljs-attr">&quot;servers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>          <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;202.000.33.136&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 服务器地址</span><br>          <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23245</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 服务器端口</span><br>          <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;27382&quot;</span>  <span class="hljs-comment">// Trojan 密码</span><br>        <span class="hljs-punctuation">&#125;</span><br>      <span class="hljs-punctuation">]</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-comment">// 配置传输层协议，使用 TCP 协议，开启 TLS 加密</span><br>    <span class="hljs-attr">&quot;streamSettings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;network&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;tcp&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;security&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;tls&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 使用 TLS 加密</span><br>      <span class="hljs-attr">&quot;tlsSettings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;serverName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cdnj60279.uu0009.com&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 设置 SNI（Server Name Indication）</span><br>        <span class="hljs-attr">&quot;allowInsecure&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>  <span class="hljs-comment">// 允许不安全的证书</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;tag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;trojan-outbound&quot;</span>  <span class="hljs-comment">// 设置标签，用于路由匹配</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// 默认的自由出口，不通过代理</span><br>    <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;freedom&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;tag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;direct&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// 用于屏蔽无效的连接或不需要的流量</span><br>    <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;blackhole&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;tag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;blocked&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br><br>  <span class="hljs-comment">// 路由设置：如何选择哪个出站代理</span><br>  <span class="hljs-attr">&quot;routing&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// 策略：域名或 IP 策略</span><br>    <span class="hljs-attr">&quot;domainStrategy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;IPOnDemand&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;rules&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-comment">// 阻止访问私有 IP 地址（例如局域网地址）</span><br>        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;field&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;ip&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;geoip:private&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;outboundTag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;blocked&quot;</span>  <span class="hljs-comment">// 使用“blocked”出站标签，丢弃连接</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-comment">// 阻止访问广告域名</span><br>        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;field&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;domain&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;geosite:category-ads&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;outboundTag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;blocked&quot;</span>  <span class="hljs-comment">// 使用“blocked”出站标签，丢弃连接</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><br>  <span class="hljs-comment">// DNS 配置：配置 DNS 解析</span><br>  <span class="hljs-attr">&quot;dns&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// 静态域名映射，可以防止 DNS 污染</span><br>    <span class="hljs-attr">&quot;hosts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;domain:v2ray.com&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;www.vicemc.net&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 强制 v2ray.com 使用替代的 IP</span><br>      <span class="hljs-attr">&quot;domain:github.io&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pages.github.com&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;domain:wikipedia.org&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;www.wikimedia.org&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;domain:shadowsocks.org&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;electronicsrealm.com&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-comment">// DNS 服务器列表，按照顺序查询</span><br>    <span class="hljs-attr">&quot;servers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-string">&quot;1.1.1.1&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// Cloudflare DNS</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;114.114.114.114&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 中国的公共 DNS</span><br>        <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">53</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-comment">// 针对特定域名使用此 DNS 服务器</span><br>        <span class="hljs-attr">&quot;domains&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;geosite:cn&quot;</span><span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;8.8.8.8&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// Google DNS</span><br>      <span class="hljs-string">&quot;localhost&quot;</span>  <span class="hljs-comment">// 本地 DNS</span><br>    <span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><br>  <span class="hljs-comment">// 策略设置：用于控制连接的行为</span><br>  <span class="hljs-attr">&quot;policy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;levels&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;0&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-comment">// 控制每个用户的上传和下载流量</span><br>        <span class="hljs-attr">&quot;uplinkOnly&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;downlinkOnly&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;system&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-comment">// 控制是否记录流量统计</span><br>      <span class="hljs-attr">&quot;statsInboundUplink&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;statsInboundDownlink&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;statsOutboundUplink&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;statsOutboundDownlink&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><br>  <span class="hljs-comment">// 其他配置（可以扩展）</span><br>  <span class="hljs-attr">&quot;other&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>模板三：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;log&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;loglevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;debug&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-comment">//&quot;access&quot;: &quot;/var/log/v2ray/access.log&quot;,    // 访问日志文件路径</span><br>    <span class="hljs-comment">//&quot;error&quot;: &quot;/var/log/v2ray/error.log&quot;,      // 错误日志文件路径</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;inbounds&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">9900</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;listen&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;127.0.0.1&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;socks&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;auth&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;noauth&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;udp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;sniffing&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;destOverride&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;http&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tls&quot;</span><span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;outbounds&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;trojan&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;servers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;202.000.33.136&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23245</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;27382&quot;</span><br>          <span class="hljs-punctuation">&#125;</span><br>        <span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;streamSettings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;network&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;tcp&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;security&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;tls&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;tlsSettings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>          <span class="hljs-attr">&quot;serverName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cdnj60279.uu0009.com&quot;</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-attr">&quot;allowInsecure&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>        <span class="hljs-punctuation">&#125;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="6-手动启动-v2ray测试"><a href="#6-手动启动-v2ray测试" class="headerlink" title="6. 手动启动 v2ray测试"></a>6. 手动启动 v2ray测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /opt/v2ray<br><span class="hljs-built_in">sudo</span> v2ray run -config /config.json<br></code></pre></td></tr></table></figure>
+
+<p>如果能正常启动，说明没问题</p>
+<h3 id="7-（推荐）配置-Systemd-服务，实现开机自启"><a href="#7-（推荐）配置-Systemd-服务，实现开机自启" class="headerlink" title="7. （推荐）配置 Systemd 服务，实现开机自启"></a>7. （推荐）配置 Systemd 服务，实现开机自启</h3><p><strong>最新版已经有service文件，路径为：&#x2F;opt&#x2F;v2ray&#x2F;systemd&#x2F;system&#x2F;v2ray.service&amp;&amp;v2ray@.service这两个文件</strong></p>
+<p>如果没有以上文件是需要自己创建，如果有也是要修改的，所以不管有没有都是要编辑的</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">vim</span> /<span class="hljs-keyword">opt</span>/v2ray/systemd/<span class="hljs-built_in">system</span>/v2ray.service<br></code></pre></td></tr></table></figure>
+
+<p><strong>键入：</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=V2Ray Service<br><span class="hljs-attr">Documentation</span>=https://www.v2fly.org/<br><span class="hljs-attr">After</span>=network.target nss-lookup.target<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">User</span>=nobody<br><span class="hljs-attr">CapabilityBoundingSet</span>=CAP_NET_ADMIN CAP_NET_BIND_SERVICE<br><span class="hljs-attr">AmbientCapabilities</span>=CAP_NET_ADMIN CAP_NET_BIND_SERVICE<br><span class="hljs-attr">NoNewPrivileges</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">ExecStart</span>=/opt/v2ray/v2ray run -config /opt/v2ray/config/config.json<br><span class="hljs-attr">Restart</span>=<span class="hljs-literal">on</span>-failure<br><span class="hljs-attr">RestartPreventExitStatus</span>=<span class="hljs-number">23</span><br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br><br></code></pre></td></tr></table></figure>
+
+<p>保存并退出</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">vim</span> /<span class="hljs-keyword">opt</span>/v2ray/systemd/<span class="hljs-built_in">system</span>/v2ray@.service<br></code></pre></td></tr></table></figure>
+
+<p><strong>键入：</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=V2Ray Service<br><span class="hljs-attr">Documentation</span>=https://www.v2fly.org/<br><span class="hljs-attr">After</span>=network.target nss-lookup.target<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">User</span>=nobody<br><span class="hljs-attr">CapabilityBoundingSet</span>=CAP_NET_ADMIN CAP_NET_BIND_SERVICE<br><span class="hljs-attr">AmbientCapabilities</span>=CAP_NET_ADMIN CAP_NET_BIND_SERVICE<br><span class="hljs-attr">NoNewPrivileges</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">ExecStart</span>=/opt/v2ray/v2ray run -config /opt/v2ray/config/%i.json<br><span class="hljs-attr">Restart</span>=<span class="hljs-literal">on</span>-failure<br><span class="hljs-attr">RestartPreventExitStatus</span>=<span class="hljs-number">23</span><br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br><br></code></pre></td></tr></table></figure>
+
+<p>保存并退出</p>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>将以上两文件拷贝到系统中</p>
+</blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo <span class="hljs-regexp">/opt/</span>v2ray<span class="hljs-regexp">/systemd/</span>system<span class="hljs-regexp">/*.service /u</span>sr<span class="hljs-regexp">/lib/</span>systemd<span class="hljs-regexp">/system/</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>重新加载 systemd 配置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl daemon-reload<br></code></pre></td></tr></table></figure>
+
+<p><strong>启动服务并设置开机自启</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> --now v2ray.service<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-检查状态和日志"><a href="#8-检查状态和日志" class="headerlink" title="8. 检查状态和日志"></a>8. 检查状态和日志</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">sudo<span class="hljs-keyword"> system</span>ctl status v2ray<br>sudo journalctl -u v2ray -f<br></code></pre></td></tr></table></figure>
+
+<h3 id="9-配置客户端代理（本机）"><a href="#9-配置客户端代理（本机）" class="headerlink" title="9. 配置客户端代理（本机）"></a>9. 配置客户端代理（本机）</h3><p><strong>v2ray 默认监听 1080 端口，上面的config.json文件端口设置的是9911，设置浏览器&#x2F;系统的 SOCKS5 代理到 127.0.0.1:端口号，即可</strong></p>
+<h1 id="Trojan"><a href="#Trojan" class="headerlink" title="Trojan"></a>Trojan</h1><blockquote>
+<p>[!NOTE]</p>
+<p><strong>这里我们依旧把下载好的文件放在opt下面</strong></p>
+<p><strong>下载Trojan客户端</strong></p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">wget</span> https://github.com/trojan-gfw/trojan/releases/download/v1.<span class="hljs-number">15</span>.<span class="hljs-number">1</span>/trojan-<span class="hljs-number">1</span>.<span class="hljs-number">15</span>.<span class="hljs-number">1</span>-linux-amd64.tar.xz<br></code></pre></td></tr></table></figure>
+
+<p><strong>解压Trojan文件</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tar</span> xvf trojan-<span class="hljs-number">1</span>.<span class="hljs-number">15</span>.<span class="hljs-number">1</span>-linux-amd64.tar.xz<br><span class="hljs-attribute">cd</span> trojan<br></code></pre></td></tr></table></figure>
+
+<p><strong>编辑配置文件</strong></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo vim config.json<br></code></pre></td></tr></table></figure>
+
+<p><strong>完整的json文件内容</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;run_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;client&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;local_addr&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;127.0.0.1&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;local_port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1080</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;remote_addr&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;219.22.49.201&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;remote_port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">22201</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-string">&quot;123456&quot;</span><br>    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;log_level&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ssl&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;sni&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jpo123.ovod.me&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;verify&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;verify_hostname&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;cert&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/path/to/private.key&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;key_password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;cipher&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;cipher_tls13&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;prefer_server_cipher&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;alpn&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>            <span class="hljs-string">&quot;http/1.1&quot;</span><br>        <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;alpn_port_override&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;h2&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">81</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;reuse_session&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;session_ticket&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;session_timeout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">600</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;plain_http_response&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;curves&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;dhparam&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;tcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;prefer_ipv4&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;no_delay&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;keep_alive&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;reuse_port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;fast_open&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;fast_open_qlen&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">20</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;mysql&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;server_addr&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;127.0.0.1&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;server_port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3306</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;database&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;trojan&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;username&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;trojan&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;cert&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;ca&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>解释内容（可跳过）</strong></p>
+<p>run_type 为运行模式，指定填为 “client”</p>
+<p>local_port 为本地端口，如 1080</p>
+<p>remote_addr 为远程服务器地址，填服务器IP，如 “219.22.49.201”</p>
+<p>remote_port 为远程服务器端口，如 22201</p>
+<p>password 修改为 [“123456”]</p>
+<p><strong>示例如下</strong></p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;run_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;client&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;local_addr&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.0.0.0&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;local_port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1080</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;remote_addr&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;219.22.49.201&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;remote_port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">22201</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;123456&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>ssl中的 sni 为主机SNI名，如 “jpo123.ovod.me”，对应节点内容里的”服务器SNI”</p>
+<p>ssl中的 verify 值修改为 false （如果配置文件中没有，则添加这个配置）</p>
+<p>ssl中的 verify_hostname 值修改为 false （如果配置文件中没有，则添加这个配置）</p>
+<p>ssl中的 cert 修改为 “” （改成空的）</p>
+<p><strong>示例如下</strong></p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;sni&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jpo123.ovod.me&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;verify&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;verify_hostname&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;cert&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+
+<p>保存配置文件</p>
+<h3 id="创建trojan-service文件"><a href="#创建trojan-service文件" class="headerlink" title="创建trojan.service文件"></a>创建trojan.service文件</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo vim <span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/systemd/</span>system/trojan.service<br></code></pre></td></tr></table></figure>
+
+<p><strong>键入</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=trojan<br><span class="hljs-attr">After</span>=network.target<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=simple<br><span class="hljs-attr">PIDFile</span>=/opt/trojan/trojan.pid<br><span class="hljs-attr">ExecStart</span>=/opt/trojan/trojan -c /opt/trojan/config.json -l /opt/trojan/trojan.log<br><span class="hljs-attr">ExecReload</span>=/bin/kill -HUP \<span class="hljs-variable">$MAINPID</span><br><span class="hljs-attr">Restart</span>=<span class="hljs-literal">on</span>-failure<br><span class="hljs-attr">RestartSec</span>=<span class="hljs-number">1</span>s<br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br></code></pre></td></tr></table></figure>
+
+<h3 id="启动Trojan并设置开机自启"><a href="#启动Trojan并设置开机自启" class="headerlink" title="启动Trojan并设置开机自启"></a>启动Trojan并设置开机自启</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> --now trojan.service<br></code></pre></td></tr></table></figure>
+
+<p><strong>检查是否启动成功</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ps</span> aux | <span class="hljs-keyword">grep</span> trojan | <span class="hljs-keyword">grep</span> -v <span class="hljs-keyword">grep</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">cat</span> /<span class="hljs-keyword">opt</span>/trojan/trojan.<span class="hljs-built_in">log</span><br></code></pre></td></tr></table></figure>
+
+
+                                    
+                              </div>
+                              
+                                <hr />
+                                <div>
+                                  <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Arch-Linux/" class="category-chain-item">Arch Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+                                    
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代理软件配置</div>
+      <div>http://huishao.net/2025/06/02/arch代理软件配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>huishao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+                                      
+                                        <div class="post-prevnext my-3">
+                                          <article class="post-prev col-6">
+                                            
+                                              
+                                                <a href="/2025/07/03/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEfcitx5/" title="Arch Linux安装Fcitx5+万象拼音">
+                                                  <i class="iconfont icon-arrowleft"></i>
+                                                  <span class="hidden-mobile">
+                                                    Arch Linux安装Fcitx5+万象拼音
+                                                  </span>
+                                                  <span class="visible-mobile">上一篇</span>
+                                                </a>
+                                                
+                                          </article>
+                                          <article class="post-next col-6">
+                                            
+                                              
+                                                <a href="/2025/06/01/Arch%20Linux%E4%B8%AD%E6%96%87%E7%BB%B4%E5%9F%BA/" title="Arch Linux安装（辉少特制）">
+                                                  <span class="hidden-mobile">
+                                                    Arch Linux安装（辉少特制）
+                                                  </span>
+                                                  <span class="visible-mobile">下一篇</span>
+                                                  <i class="iconfont icon-arrowright"></i>
+                                                </a>
+                                                
+                                          </article>
+                                        </div>
+                                        
+                                </div>
+
+                                
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"HuiKeJi/huishaoblog","repo-id":"R_kgDOPnu6DQ","category":"Announcements","category-id":"DIC_kwDOPnu6Dc4Cu1kC","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-col d-none d-lg-block col-lg-2">
+        
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+    
+              
+
+                  
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                    
+
+                      
+                        <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                          
+
+                            
+        </main>
+
+        <footer>
+          <div class="footer-inner">
+  
+  
+  
+</div>
+
+
+        </footer>
+
+        <!-- Scripts -->
+        
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+
+
+          
+
+            <noscript>
+              <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+            </noscript>
+
+    </body>
+
+  </html>

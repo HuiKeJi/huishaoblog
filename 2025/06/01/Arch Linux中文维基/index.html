@@ -1,0 +1,991 @@
+
+
+  <!DOCTYPE html>
+  <html lang="zh-CN" data-default-color-scheme=auto>
+
+  
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
+  <link rel="icon" href="/img/icons/huishao.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="huishao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ArchLinux Installation1.连接到互联网1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备：1iwctl  1device list   [!IMPORTANT] device list（不管是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux安装（辉少特制）">
+<meta property="og:url" content="http://huishao.net/2025/06/01/Arch%20Linux%E4%B8%AD%E6%96%87%E7%BB%B4%E5%9F%BA/index.html">
+<meta property="og:site_name" content="辉少笔记">
+<meta property="og:description" content="ArchLinux Installation1.连接到互联网1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备：1iwctl  1device list   [!IMPORTANT] device list（不管是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huishao.net/img/articleslist/b9%20(1).png">
+<meta property="article:published_time" content="2025-06-01T10:30:00.000Z">
+<meta property="article:modified_time" content="2025-09-02T13:41:40.234Z">
+<meta property="article:author" content="huishao">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://huishao.net/img/articleslist/b9%20(1).png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Arch Linux安装（辉少特制） - 辉少笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"huishao.net","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/gif/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    <body>
+      
+
+        <header>
+          
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+
+    <a class="navbar-brand" href="/">
+      
+        <img src="/img/icons/huishao64.png" srcset="/img/gif/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35px" height="35px"/>
+      
+      <strong>&nbsp;&nbsp;辉少笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/random/131612409_p0%20(1).png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Arch Linux安装（辉少特制）"></span>
+          
+        </div>
+
+        
+          <!-- 文章封面图正中标题下方居中显示：作者、发布时间、字数、阅读时间、阅读数  -->
+
+  <div class="post-meta-typewriter-wrapper">
+    <div class="post-meta-typewriter" id="post-meta-typewriter">
+      <div class="post-meta-center">
+        
+          <span class="post-meta-item">
+            <i class="iconfont icon-author" aria-hidden="true"></i>
+            huishao
+          </span>
+          
+
+            
+              <span class="post-meta-item">
+                <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                <time datetime="2025-06-01 18:30" pubdate>
+                  2025年6月1日 晚上
+                </time>
+              </span>
+              
+
+                
+                  <span class="post-meta-item">
+                    <i class="iconfont icon-chart"></i>
+                    3.2k 字
+                  </span>
+                  
+
+                    
+                      <span class="post-meta-item">
+                        <i class="iconfont icon-clock-fill"></i>
+                        5 分钟
+                      </span>
+                      
+
+      </div>
+    </div>
+  </div>
+  
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+      <!-- 'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/1234.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/131.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/131612409_p0%20(1).png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/132.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/13396645512884975.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/564564.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/6464.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/a23.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/a4.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/a9.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/b4.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/b7%20(1).png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/b8.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/wallhaven-mldy7y.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/random/wenzhang.png' -->
+
+      <!-- https://picui.cn/  图床软件
+      'https://youke1.picui.cn/s1/2025/09/02/68b6a9bd3ed1c.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac4bb352.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac617901.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac775779.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac834313.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac8da8ee.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aa42c3f8d.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aa42025fd.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad16e95a.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad2bae98.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad52a3ac.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad53300d.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aada05b6b.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aadc8928b.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aadba1be4.png' -->
+
+        </header>
+
+
+        <main>
+          
+            
+
+  <div class="container-fluid nopadding-x">
+    <div class="row nomargin-x">
+      <div class="side-col d-none d-lg-block col-lg-2">
+        
+
+      </div>
+
+      <div class="col-lg-8 nopadding-x-md">
+        <div class="container nopadding-x-md" id="board-ctn">
+          <div id="board">
+            <article class="post-content mx-auto">
+              <h1 id="seo-header">
+                Arch Linux安装（辉少特制）
+              </h1>
+              
+                  
+                              <div class="markdown-body">
+                                
+                                  <h1 id="ArchLinux-Installation"><a href="#ArchLinux-Installation" class="headerlink" title="ArchLinux Installation"></a>ArchLinux Installation</h1><h2 id="1-连接到互联网"><a href="#1-连接到互联网" class="headerlink" title="1.连接到互联网"></a>1.连接到互联网</h2><h4 id="1-1-首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1-0-1-6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认-Wi-Fi-设备未被屏蔽，如果不知道你的网络设备名称，请列出所有-WiFi-设备："><a href="#1-1-首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1-0-1-6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认-Wi-Fi-设备未被屏蔽，如果不知道你的网络设备名称，请列出所有-WiFi-设备：" class="headerlink" title="1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备："></a>1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备：</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">iwctl</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">device list</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>device list（不管是笔记本和台式电脑都要有网卡才能被检测到，是否被屏蔽，没有则跳过1.2步，有则需要开启）</p>
+</blockquote>
+<h4 id="1-2-如果设备或其相应的适配器已关闭，请将其打开（可跳过）"><a href="#1-2-如果设备或其相应的适配器已关闭，请将其打开（可跳过）" class="headerlink" title="1.2 如果设备或其相应的适配器已关闭，请将其打开（可跳过）"></a>1.2 如果设备或其相应的适配器已关闭，请将其打开（可跳过）</h4><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">device</span> <span class="hljs-string">name</span> <span class="hljs-built_in">set-property</span> <span class="hljs-string">Powered</span> <span class="hljs-string">on</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">adapter</span> <span class="hljs-string">adapter</span> <span class="hljs-built_in">set-property</span> <span class="hljs-string">Powered</span> <span class="hljs-string">on</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="1-3-然后，要开始扫描网络（注意：这个命令不会输出任何内容），执行："><a href="#1-3-然后，要开始扫描网络（注意：这个命令不会输出任何内容），执行：" class="headerlink" title="1.3 然后，要开始扫描网络（注意：这个命令不会输出任何内容），执行："></a>1.3 然后，要开始扫描网络（注意：这个命令不会输出任何内容），执行：</h4><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fortran">station <span class="hljs-keyword">name</span> <span class="hljs-built_in">scan</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="1-4-再然后，就可以列出所有可用的网络："><a href="#1-4-再然后，就可以列出所有可用的网络：" class="headerlink" title="1.4 再然后，就可以列出所有可用的网络："></a>1.4 再然后，就可以列出所有可用的网络：</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">station <span class="hljs-type">name</span> <span class="hljs-keyword">get</span>-networks<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-5-最后，要连接到一个网络："><a href="#1-5-最后，要连接到一个网络：" class="headerlink" title="1.5 最后，要连接到一个网络："></a>1.5 最后，要连接到一个网络：</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">station name connect SSID（wifi名字）<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输入WiFi密码回车</p>
+<p>按exit退出iwctl</p>
+</blockquote>
+<h4 id="1-6-测试"><a href="#1-6-测试" class="headerlink" title="1.6 测试"></a>1.6 测试</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-built_in">ping</span> archlinux<span class="hljs-meta">.org</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!WARNING]</p>
+<h5 id="默认情况下，安装映像在启动时已经预先配置好并启用了systemd-networkd、systemd-resolved、iwd和ModemManager。但在已经安装完成了的系统之中并非如此"><a href="#默认情况下，安装映像在启动时已经预先配置好并启用了systemd-networkd、systemd-resolved、iwd和ModemManager。但在已经安装完成了的系统之中并非如此" class="headerlink" title="默认情况下，安装映像在启动时已经预先配置好并启用了systemd-networkd、systemd-resolved、iwd和ModemManager。但在已经安装完成了的系统之中并非如此"></a>默认情况下，安装映像在启动时已经预先配置好并启用了systemd-networkd、systemd-resolved、iwd和ModemManager。但在已经安装完成了的系统之中并非如此</h5></blockquote>
+<h2 id="2-更新系统时间（可跳过）"><a href="#2-更新系统时间（可跳过）" class="headerlink" title="2.更新系统时间（可跳过）"></a>2.更新系统时间（可跳过）</h2><h4 id="在-Live-环境中systemd-timesyncd默认启用，也就是说当系统已经创建互联网连接后，系统时间将自动同步"><a href="#在-Live-环境中systemd-timesyncd默认启用，也就是说当系统已经创建互联网连接后，系统时间将自动同步" class="headerlink" title="在 Live 环境中systemd-timesyncd默认启用，也就是说当系统已经创建互联网连接后，系统时间将自动同步"></a>在 Live 环境中systemd-timesyncd默认启用，也就是说当系统已经创建互联网连接后，系统时间将自动同步</h4><h4 id="使用timedatectl确保系统时间是同步的"><a href="#使用timedatectl确保系统时间是同步的" class="headerlink" title="使用timedatectl确保系统时间是同步的"></a>使用timedatectl确保系统时间是同步的</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">timedatectl</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-创建硬盘分区"><a href="#3-创建硬盘分区" class="headerlink" title="3.创建硬盘分区"></a>3.创建硬盘分区</h2><h4 id="系统如果识别到计算机的内置硬盘、U盘或者移动硬盘等类型磁盘，就会将其分配为一个块设备，如-dev-sda、-dev-nvme0n1或-dev-mmcblk0。可以使用lsblk或者fdisk查看"><a href="#系统如果识别到计算机的内置硬盘、U盘或者移动硬盘等类型磁盘，就会将其分配为一个块设备，如-dev-sda、-dev-nvme0n1或-dev-mmcblk0。可以使用lsblk或者fdisk查看" class="headerlink" title="系统如果识别到计算机的内置硬盘、U盘或者移动硬盘等类型磁盘，就会将其分配为一个块设备，如&#x2F;dev&#x2F;sda、&#x2F;dev&#x2F;nvme0n1或&#x2F;dev&#x2F;mmcblk0。可以使用lsblk或者fdisk查看"></a>系统如果识别到计算机的内置硬盘、U盘或者移动硬盘等类型磁盘，就会将其分配为一个块设备，如&#x2F;dev&#x2F;sda、&#x2F;dev&#x2F;nvme0n1或&#x2F;dev&#x2F;mmcblk0。可以使用lsblk或者fdisk查看</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">fdisk</span> -l（此处为小写字母l）<br></code></pre></td></tr></table></figure>
+
+<h4 id="结果中以rom、loop或者airootfs结尾的设备可以被忽略。结果中以rpbm、boot0或者boot1结尾的mmcblk-设备也可以被忽略"><a href="#结果中以rom、loop或者airootfs结尾的设备可以被忽略。结果中以rpbm、boot0或者boot1结尾的mmcblk-设备也可以被忽略" class="headerlink" title="结果中以rom、loop或者airootfs结尾的设备可以被忽略。结果中以rpbm、boot0或者boot1结尾的mmcblk*设备也可以被忽略"></a>结果中以rom、loop或者airootfs结尾的设备可以被忽略。结果中以rpbm、boot0或者boot1结尾的mmcblk*设备也可以被忽略</h4><h4 id="对于一个选定的设备，以下分区是必须要有的："><a href="#对于一个选定的设备，以下分区是必须要有的：" class="headerlink" title="对于一个选定的设备，以下分区是必须要有的："></a>对于一个选定的设备，以下分区是必须要有的：</h4><table>
+<thead>
+<tr>
+<th>已安装系统上的挂载点</th>
+<th>分区</th>
+<th>分区类型</th>
+<th>建议大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;boot</td>
+<td>&#x2F;dev&#x2F;efi_system_partition</td>
+<td>EFI 系统分区</td>
+<td>1 GiB</td>
+</tr>
+<tr>
+<td>SWAP</td>
+<td>&#x2F;dev&#x2F;swap_partition</td>
+<td>Linux Swap （交换空间）</td>
+<td>至少4GiB</td>
+</tr>
+<tr>
+<td>&#x2F;</td>
+<td>&#x2F;dev&#x2F;root_partition</td>
+<td>Linux x86-64根目录 (&#x2F;)</td>
+<td>设备剩余空间至少23-32GiB</td>
+</tr>
+</tbody></table>
+<h1 id="4-格式化分区"><a href="#4-格式化分区" class="headerlink" title="4.格式化分区"></a>4.格式化分区</h1><h4 id="4-1-创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化"><a href="#4-1-创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化" class="headerlink" title="4.1 创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化"></a>4.1 创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化</h4><h4 id="要在根分区-dev-root-partition上创建一个Ext4文件系统，请运行"><a href="#要在根分区-dev-root-partition上创建一个Ext4文件系统，请运行" class="headerlink" title="要在根分区&#x2F;dev&#x2F;root_partition上创建一个Ext4文件系统，请运行"></a>要在根分区&#x2F;dev&#x2F;root_partition上创建一个Ext4文件系统，请运行</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkfs.ext4 <span class="hljs-regexp">/dev/</span>root_partition（根分区）<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-2-如果你要创建一个EFI-系统分区，使用mkfs-fat将其格式化为Fat32"><a href="#4-2-如果你要创建一个EFI-系统分区，使用mkfs-fat将其格式化为Fat32" class="headerlink" title="4.2 如果你要创建一个EFI 系统分区，使用mkfs.fat将其格式化为Fat32"></a>4.2 如果你要创建一个EFI 系统分区，使用mkfs.fat将其格式化为Fat32</h4><h4 id="警告：只有在分区步骤中创建EFI系统分区时才需要格式化。如果这个磁盘上已经有一个-EFI-系统分区了，将它重新格式化会破坏其他已安装操作系统的引导加载程序"><a href="#警告：只有在分区步骤中创建EFI系统分区时才需要格式化。如果这个磁盘上已经有一个-EFI-系统分区了，将它重新格式化会破坏其他已安装操作系统的引导加载程序" class="headerlink" title="警告：只有在分区步骤中创建EFI系统分区时才需要格式化。如果这个磁盘上已经有一个 EFI 系统分区了，将它重新格式化会破坏其他已安装操作系统的引导加载程序"></a>警告：只有在分区步骤中创建EFI系统分区时才需要格式化。如果这个磁盘上已经有一个 EFI 系统分区了，将它重新格式化会破坏其他已安装操作系统的引导加载程序</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mkfs</span>.fat -F <span class="hljs-number">32</span> /dev/efi_system_partition（EFI 系统分区）<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-3-如果创建了交换分区，请使用mkswap将其初始化"><a href="#4-3-如果创建了交换分区，请使用mkswap将其初始化" class="headerlink" title="4.3 如果创建了交换分区，请使用mkswap将其初始化"></a>4.3 如果创建了交换分区，请使用mkswap将其初始化</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkswap <span class="hljs-regexp">/dev/</span>swap_partition（交换空间分区）<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-挂载分区4-格式化分区"><a href="#5-挂载分区4-格式化分区" class="headerlink" title="5.挂载分区4.格式化分区"></a>5.挂载分区4.格式化分区</h2><h4 id="5-1-将根磁盘卷挂载到-mnt"><a href="#5-1-将根磁盘卷挂载到-mnt" class="headerlink" title="5.1 将根磁盘卷挂载到&#x2F;mnt"></a>5.1 将根磁盘卷挂载到&#x2F;mnt</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount /dev/root_partition（根分区） /mnt<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-2-然后使用mkdir在-mnt下创建任何剩余的挂载点（例如，为-boot而创建-mnt-boot），并按相应的层级顺序挂载相应的磁盘卷"><a href="#5-2-然后使用mkdir在-mnt下创建任何剩余的挂载点（例如，为-boot而创建-mnt-boot），并按相应的层级顺序挂载相应的磁盘卷" class="headerlink" title="5.2 然后使用mkdir在&#x2F;mnt下创建任何剩余的挂载点（例如，为&#x2F;boot而创建&#x2F;mnt&#x2F;boot），并按相应的层级顺序挂载相应的磁盘卷"></a>5.2 然后使用mkdir在&#x2F;mnt下创建任何剩余的挂载点（例如，为&#x2F;boot而创建&#x2F;mnt&#x2F;boot），并按相应的层级顺序挂载相应的磁盘卷</h4><h4 id="提示：使用–mkdir选项运行mount来创建指定的挂载点。或者，先使用mkdir创建挂载点再挂载"><a href="#提示：使用–mkdir选项运行mount来创建指定的挂载点。或者，先使用mkdir创建挂载点再挂载" class="headerlink" title="提示：使用–mkdir选项运行mount来创建指定的挂载点。或者，先使用mkdir创建挂载点再挂载"></a>提示：使用–mkdir选项运行mount来创建指定的挂载点。或者，先使用mkdir创建挂载点再挂载</h4><h4 id="注意：挂载分区一定要遵循顺序，先挂载根（root）分区（到-mnt），再挂载引导（boot）分区（到-mnt-boot或-mnt-efi，如果单独分出来了的话），最后再挂载其他分区。否则您可能遇到安装完成后无法启动系统的问题"><a href="#注意：挂载分区一定要遵循顺序，先挂载根（root）分区（到-mnt），再挂载引导（boot）分区（到-mnt-boot或-mnt-efi，如果单独分出来了的话），最后再挂载其他分区。否则您可能遇到安装完成后无法启动系统的问题" class="headerlink" title="注意：挂载分区一定要遵循顺序，先挂载根（root）分区（到&#x2F;mnt），再挂载引导（boot）分区（到&#x2F;mnt&#x2F;boot或&#x2F;mnt&#x2F;efi，如果单独分出来了的话），最后再挂载其他分区。否则您可能遇到安装完成后无法启动系统的问题"></a>注意：挂载分区一定要遵循顺序，先挂载根（root）分区（到&#x2F;mnt），再挂载引导（boot）分区（到&#x2F;mnt&#x2F;boot或&#x2F;mnt&#x2F;efi，如果单独分出来了的话），最后再挂载其他分区。否则您可能遇到安装完成后无法启动系统的问题</h4><h4 id="对于-UEFI-系统，挂载-EFI-系统分区"><a href="#对于-UEFI-系统，挂载-EFI-系统分区" class="headerlink" title="对于 UEFI 系统，挂载 EFI 系统分区"></a>对于 UEFI 系统，挂载 EFI 系统分区</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount --<span class="hljs-built_in">mkdir</span> /dev/efi_system_partition /mnt/boot<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-3-如果创建了交换空间卷，请使用swapon启用它"><a href="#5-3-如果创建了交换空间卷，请使用swapon启用它" class="headerlink" title="5.3 如果创建了交换空间卷，请使用swapon启用它"></a>5.3 如果创建了交换空间卷，请使用swapon启用它</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">swapon <span class="hljs-regexp">/dev/</span>swap_partition（交换空间分区）<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-安装系统"><a href="#6-安装系统" class="headerlink" title="6.安装系统"></a>6.安装系统</h2><h4 id="6-1-选择镜像源-etc-pacman-d-mirrorlist中定义了软件包会从哪个镜像站下载，在-LiveCD-启动的系统上，且在连接到互联网后，reflector会通过选择-20-个最新同步的-HTTPS-镜像站并按下载速率对其进行排序来更新镜像列表"><a href="#6-1-选择镜像源-etc-pacman-d-mirrorlist中定义了软件包会从哪个镜像站下载，在-LiveCD-启动的系统上，且在连接到互联网后，reflector会通过选择-20-个最新同步的-HTTPS-镜像站并按下载速率对其进行排序来更新镜像列表" class="headerlink" title="6.1 选择镜像源&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist中定义了软件包会从哪个镜像站下载，在 LiveCD 启动的系统上，且在连接到互联网后，reflector会通过选择 20 个最新同步的 HTTPS 镜像站并按下载速率对其进行排序来更新镜像列表"></a>6.1 选择镜像源&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist中定义了软件包会从哪个镜像站下载，在 LiveCD 启动的系统上，且在连接到互联网后，reflector会通过选择 20 个最新同步的 HTTPS 镜像站并按下载速率对其进行排序来更新镜像列表</h4><h4 id="在列表中，越靠前的镜像站在下载软件包时，就会有越高的优先级。请您检查-etc-pacman-d-mirrorlist文件，看看列出的镜像站的顺序是否合适。如果不合适，可以手动编辑文件，将离您所处地理位置最近的镜像挪到文件的头部，同时也应该考虑一些其他的评判标准"><a href="#在列表中，越靠前的镜像站在下载软件包时，就会有越高的优先级。请您检查-etc-pacman-d-mirrorlist文件，看看列出的镜像站的顺序是否合适。如果不合适，可以手动编辑文件，将离您所处地理位置最近的镜像挪到文件的头部，同时也应该考虑一些其他的评判标准" class="headerlink" title="在列表中，越靠前的镜像站在下载软件包时，就会有越高的优先级。请您检查&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist文件，看看列出的镜像站的顺序是否合适。如果不合适，可以手动编辑文件，将离您所处地理位置最近的镜像挪到文件的头部，同时也应该考虑一些其他的评判标准"></a>在列表中，越靠前的镜像站在下载软件包时，就会有越高的优先级。请您检查&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist文件，看看列出的镜像站的顺序是否合适。如果不合适，可以手动编辑文件，将离您所处地理位置最近的镜像挪到文件的头部，同时也应该考虑一些其他的评判标准</h4><h4 id="如果-etc-pacman-d-mirrorlist文件中没有合适的镜像站，可以手动从archlinux-官方网站的镜像站列表下载一份。这需要您所在的网络能够正常访问-archlinux-官方网站。例如，使用curl下载位于中国大陆的-HTTPS-镜像站："><a href="#如果-etc-pacman-d-mirrorlist文件中没有合适的镜像站，可以手动从archlinux-官方网站的镜像站列表下载一份。这需要您所在的网络能够正常访问-archlinux-官方网站。例如，使用curl下载位于中国大陆的-HTTPS-镜像站：" class="headerlink" title="如果&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist文件中没有合适的镜像站，可以手动从archlinux 官方网站的镜像站列表下载一份。这需要您所在的网络能够正常访问 archlinux 官方网站。例如，使用curl下载位于中国大陆的 HTTPS 镜像站："></a>如果&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist文件中没有合适的镜像站，可以手动从archlinux 官方网站的镜像站列表下载一份。这需要您所在的网络能够正常访问 archlinux 官方网站。例如，使用curl下载位于中国大陆的 HTTPS 镜像站：</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">curl -L <span class="hljs-string">&#x27;https://archlinux.org/mirrorlist/?country=CN&amp;protocol=https&#x27;</span> -o <span class="hljs-regexp">/etc/</span>pacman.d/mirrorlist<br></code></pre></td></tr></table></figure>
+
+<h4 id="或者，也可以通过安装pacman-mirrorlis包来获取按国家分列的原始镜像列表。这么做的缺点是pacman仍然会使用当前配置中的镜像站来下载软件包数据库和pacman-mirrorlis包，这可能会很慢。在挑选了能用的镜像之后，可以执行"><a href="#或者，也可以通过安装pacman-mirrorlis包来获取按国家分列的原始镜像列表。这么做的缺点是pacman仍然会使用当前配置中的镜像站来下载软件包数据库和pacman-mirrorlis包，这可能会很慢。在挑选了能用的镜像之后，可以执行" class="headerlink" title="或者，也可以通过安装pacman-mirrorlis包来获取按国家分列的原始镜像列表。这么做的缺点是pacman仍然会使用当前配置中的镜像站来下载软件包数据库和pacman-mirrorlis包，这可能会很慢。在挑选了能用的镜像之后，可以执行"></a>或者，也可以通过安装pacman-mirrorlis包来获取按国家分列的原始镜像列表。这么做的缺点是pacman仍然会使用当前配置中的镜像站来下载软件包数据库和pacman-mirrorlis包，这可能会很慢。在挑选了能用的镜像之后，可以执行</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">pacman -Sy</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">pacman -Sy pacman-mirrorlist</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="再将-etc-pacman-d-mirrorlist-pacnew复制到-etc-pacman-d-mirrorlist并进行编辑或者，如果您记得想要使用的镜像站的URL可以手动编辑-etc-pacman-d-mirrorlist文件并手动输-入-URL"><a href="#再将-etc-pacman-d-mirrorlist-pacnew复制到-etc-pacman-d-mirrorlist并进行编辑或者，如果您记得想要使用的镜像站的URL可以手动编辑-etc-pacman-d-mirrorlist文件并手动输-入-URL" class="headerlink" title="再将&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist.pacnew复制到&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist并进行编辑或者，如果您记得想要使用的镜像站的URL可以手动编辑&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist文件并手动输  入 URL"></a>再将&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist.pacnew复制到&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist并进行编辑或者，如果您记得想要使用的镜像站的URL可以手动编辑&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist文件并手动输  入 URL</h4><h4 id="6-2-使用pacstrap脚本，安装base包软件包和Linux内核以及常规硬件的固件"><a href="#6-2-使用pacstrap脚本，安装base包软件包和Linux内核以及常规硬件的固件" class="headerlink" title="6.2 使用pacstrap脚本，安装base包软件包和Linux内核以及常规硬件的固件"></a>6.2 使用pacstrap脚本，安装base包软件包和Linux内核以及常规硬件的固件</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">pacstrap -K /mnt <span class="hljs-keyword">base</span> linux linux-firmware <span class="hljs-keyword">base</span>-devel networkmanager openssh dhcpcd vim net-tools<br></code></pre></td></tr></table></figure>
+
+<h4 id="这时候可以同时额外安装计算机的-CPU-微码包，使用intel-ucode和amd-ucode包。也可以暂时都不安装，等到进入系统后再安装"><a href="#这时候可以同时额外安装计算机的-CPU-微码包，使用intel-ucode和amd-ucode包。也可以暂时都不安装，等到进入系统后再安装" class="headerlink" title="这时候可以同时额外安装计算机的 CPU 微码包，使用intel-ucode和amd-ucode包。也可以暂时都不安装，等到进入系统后再安装"></a>这时候可以同时额外安装计算机的 CPU 微码包，使用intel-ucode和amd-ucode包。也可以暂时都不安装，等到进入系统后再安装</h4><h4 id="新安装的系统中是没有文本编辑器的，所以请您先安装文本编辑器如nano或者vim"><a href="#新安装的系统中是没有文本编辑器的，所以请您先安装文本编辑器如nano或者vim" class="headerlink" title="新安装的系统中是没有文本编辑器的，所以请您先安装文本编辑器如nano或者vim"></a>新安装的系统中是没有文本编辑器的，所以请您先安装文本编辑器如nano或者vim</h4><h2 id="7-生成fstab文件"><a href="#7-生成fstab文件" class="headerlink" title="7.生成fstab文件"></a>7.生成fstab文件</h2><h4 id="7-1-通过以下命令生成fstab文件（用-U或-L选项设置UUID或卷标）"><a href="#7-1-通过以下命令生成fstab文件（用-U或-L选项设置UUID或卷标）" class="headerlink" title="7.1 通过以下命令生成fstab文件（用-U或-L选项设置UUID或卷标）"></a>7.1 通过以下命令生成fstab文件（用-U或-L选项设置UUID或卷标）</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">genfstab -U <span class="hljs-regexp">/mnt &gt; /m</span>nt<span class="hljs-regexp">/etc/</span>fstab<br></code></pre></td></tr></table></figure>
+
+<h4 id="7-2-强烈建议在执行完以上命令后，检查一下生成的-mnt-etc-fstab文件是否正确"><a href="#7-2-强烈建议在执行完以上命令后，检查一下生成的-mnt-etc-fstab文件是否正确" class="headerlink" title="7.2 强烈建议在执行完以上命令后，检查一下生成的&#x2F;mnt&#x2F;etc&#x2F;fstab文件是否正确"></a>7.2 强烈建议在执行完以上命令后，检查一下生成的&#x2F;mnt&#x2F;etc&#x2F;fstab文件是否正确</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> /mnt/etc/fstab<br></code></pre></td></tr></table></figure>
+
+<h2 id="8-配置新安装的系统"><a href="#8-配置新安装的系统" class="headerlink" title="8.配置新安装的系统"></a>8.配置新安装的系统</h2><h4 id="8-1-通过以下命令chroot到新安装的系统"><a href="#8-1-通过以下命令chroot到新安装的系统" class="headerlink" title="8.1 通过以下命令chroot到新安装的系统"></a>8.1 通过以下命令chroot到新安装的系统</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">arch-chroot /mnt<br></code></pre></td></tr></table></figure>
+
+<h4 id="8-2-设置时区："><a href="#8-2-设置时区：" class="headerlink" title="8.2 设置时区："></a>8.2 设置时区：</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">ln -sf <span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/zoneinfo/</span>Asia<span class="hljs-regexp">/Shanghai /</span>etc/localtime<br></code></pre></td></tr></table></figure>
+
+<h4 id="8-3-运行hwclock以生成-etc-adjtime"><a href="#8-3-运行hwclock以生成-etc-adjtime" class="headerlink" title="8.3 运行hwclock以生成&#x2F;etc&#x2F;adjtime"></a>8.3 运行hwclock以生成&#x2F;etc&#x2F;adjtime</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">hwclock <span class="hljs-comment">--systohc</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="8-4-区域和本地化设置"><a href="#8-4-区域和本地化设置" class="headerlink" title="8.4 区域和本地化设置"></a>8.4 区域和本地化设置</h4><h4 id="程序和库如果需要本地化文本，都依赖区域设置，后者明确规定了地域、货币、时区日期的格式、字符排列方式和其他本地化标准"><a href="#程序和库如果需要本地化文本，都依赖区域设置，后者明确规定了地域、货币、时区日期的格式、字符排列方式和其他本地化标准" class="headerlink" title="程序和库如果需要本地化文本，都依赖区域设置，后者明确规定了地域、货币、时区日期的格式、字符排列方式和其他本地化标准"></a>程序和库如果需要本地化文本，都依赖区域设置，后者明确规定了地域、货币、时区日期的格式、字符排列方式和其他本地化标准</h4><h4 id="需要设置这两个文件locale-gen与locale-conf"><a href="#需要设置这两个文件locale-gen与locale-conf" class="headerlink" title="需要设置这两个文件locale.gen与locale.conf"></a>需要设置这两个文件locale.gen与locale.conf</h4><h4 id="编辑-etc-locale-gen取消掉en-US-UTF-8-UTF-8和其他需要的-UTF-8区域设置前的注释"><a href="#编辑-etc-locale-gen取消掉en-US-UTF-8-UTF-8和其他需要的-UTF-8区域设置前的注释" class="headerlink" title="编辑&#x2F;etc&#x2F;locale.gen取消掉en_US.UTF-8 UTF-8和其他需要的 UTF-8区域设置前的注释#"></a>编辑&#x2F;etc&#x2F;locale.gen取消掉en_US.UTF-8 UTF-8和其他需要的 UTF-8区域设置前的注释#</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/etc/</span>locale.gen<br></code></pre></td></tr></table></figure>
+
+<h4 id="8-5-接着执行locale-gen以生成locale信息"><a href="#8-5-接着执行locale-gen以生成locale信息" class="headerlink" title="8.5 接着执行locale-gen以生成locale信息"></a>8.5 接着执行locale-gen以生成locale信息</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">locale-gen</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="8-6-然后创建locale-conf文件并编辑设定LANG变量"><a href="#8-6-然后创建locale-conf文件并编辑设定LANG变量" class="headerlink" title="8.6 然后创建locale.conf文件并编辑设定LANG变量"></a>8.6 然后创建locale.conf文件并编辑设定LANG变量</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">/etc/locale.conf<br><span class="hljs-attribute">LANG</span><span class="hljs-operator">=</span>en_US.UTF-<span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="8-7-设置主机名（zjh-archnotebook）"><a href="#8-7-设置主机名（zjh-archnotebook）" class="headerlink" title="8.7 设置主机名（zjh@archnotebook）"></a>8.7 设置主机名（zjh@archnotebook）</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">vim</span> /etc/<span class="hljs-built_in">hostname</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="8-8-设置网络（可跳过）"><a href="#8-8-设置网络（可跳过）" class="headerlink" title="8.8 设置网络（可跳过）"></a>8.8 设置网络（可跳过）</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/etc/</span>hosts<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1</span>	localhost<br>::<span class="hljs-number">1</span>	localhost<br><span class="hljs-number">127.0.1.1</span>	主机名.localdomain	主机名<br></code></pre></td></tr></table></figure>
+
+<h4 id="8-9-设置root密码"><a href="#8-9-设置root密码" class="headerlink" title="8.9 设置root密码"></a>8.9 设置root密码</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">passwd root</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="9-安装GRUB引导程序"><a href="#9-安装GRUB引导程序" class="headerlink" title="9.安装GRUB引导程序"></a>9.安装GRUB引导程序</h2><h4 id="9-1-首先安装软件包grub和efibootmgr其中GRUB是启动引导器，efibootmgr被GRUB脚本用来将启动项写入NVRAM，想要让grub-mkconfig探测其他已经安装的系统引导并自动把他们添加到启动菜单中，必须安装os-prober包，要挂在ntfs分区必须用到ntfs-3g包"><a href="#9-1-首先安装软件包grub和efibootmgr其中GRUB是启动引导器，efibootmgr被GRUB脚本用来将启动项写入NVRAM，想要让grub-mkconfig探测其他已经安装的系统引导并自动把他们添加到启动菜单中，必须安装os-prober包，要挂在ntfs分区必须用到ntfs-3g包" class="headerlink" title="9.1 首先安装软件包grub和efibootmgr其中GRUB是启动引导器，efibootmgr被GRUB脚本用来将启动项写入NVRAM，想要让grub-mkconfig探测其他已经安装的系统引导并自动把他们添加到启动菜单中，必须安装os-prober包，要挂在ntfs分区必须用到ntfs-3g包"></a>9.1 首先安装软件包grub和efibootmgr其中GRUB是启动引导器，efibootmgr被GRUB脚本用来将启动项写入NVRAM，想要让grub-mkconfig探测其他已经安装的系统引导并自动把他们添加到启动菜单中，必须安装os-prober包，要挂在ntfs分区必须用到ntfs-3g包</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pacman</span> -S grub efibootmgr os-prober ntfs-<span class="hljs-number">3</span>g<br></code></pre></td></tr></table></figure>
+
+<h4 id="9-2-注意–efi-directory和–bootloader-id是GRUB-UEFI特有的–efi-directory替代了已经废弃的–root-directory您可能注意到在grub-install命令中没有device-path-选项（例如-dev-sda）事实上即使提供了device-path，也会被GRUB-UEFI安装脚本忽略，因为-UEFI-启动加载器不使用MBR启动代码或启动扇区"><a href="#9-2-注意–efi-directory和–bootloader-id是GRUB-UEFI特有的–efi-directory替代了已经废弃的–root-directory您可能注意到在grub-install命令中没有device-path-选项（例如-dev-sda）事实上即使提供了device-path，也会被GRUB-UEFI安装脚本忽略，因为-UEFI-启动加载器不使用MBR启动代码或启动扇区" class="headerlink" title="9.2 注意–efi-directory和–bootloader-id是GRUB UEFI特有的–efi-directory替代了已经废弃的–root-directory您可能注意到在grub-install命令中没有device_path 选项（例如 &#x2F;dev&#x2F;sda）事实上即使提供了device_path，也会被GRUB UEFI安装脚本忽略，因为 UEFI 启动加载器不使用MBR启动代码或启动扇区"></a>9.2 注意–efi-directory和–bootloader-id是GRUB UEFI特有的–efi-directory替代了已经废弃的–root-directory您可能注意到在grub-install命令中没有device_path 选项（例如 &#x2F;dev&#x2F;sda）事实上即使提供了device_path，也会被GRUB UEFI安装脚本忽略，因为 UEFI 启动加载器不使用MBR启动代码或启动扇区</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">grub-install <span class="hljs-attribute">--target</span>=x86_64-efi <span class="hljs-attribute">--efi-directory</span>=esp <span class="hljs-attribute">--bootloader-id</span>=GRUB<br></code></pre></td></tr></table></figure>
+
+<h4 id="9-3-如果你使用了–removable选项，那GRUB-将被安装到esp-EFI-BOOT-BOOTX64-EFI（当使用i386-efi时是esp-EFI-BOOT-BOOTIA32-EFI-），此时即使-EFI-变量被重设或者你把这个驱动器接到其他电脑上，你仍可从这个驱动器上启动。通常来说，你只要像操作BIOS-设备一样在启动时选择这个驱动器就可以了。如果设备是同时安装了Windows的多引导启动，注意-Windows-通常会在这里安装一个-EFI-可执行程序，该程序的目的是仅重建Windows的UEFI启动项。如果你想在Mac上安装GRUB，那你必须要使用该选项。某些台式机主板只会在此位置寻找-EFI-可执行文件，因此该选项是必需的，尤其是微星（MSI）主板。-如果你更新了UEFI，启动项可能会在更新后丢失。因此可以创建一个removable启动项作为后备"><a href="#9-3-如果你使用了–removable选项，那GRUB-将被安装到esp-EFI-BOOT-BOOTX64-EFI（当使用i386-efi时是esp-EFI-BOOT-BOOTIA32-EFI-），此时即使-EFI-变量被重设或者你把这个驱动器接到其他电脑上，你仍可从这个驱动器上启动。通常来说，你只要像操作BIOS-设备一样在启动时选择这个驱动器就可以了。如果设备是同时安装了Windows的多引导启动，注意-Windows-通常会在这里安装一个-EFI-可执行程序，该程序的目的是仅重建Windows的UEFI启动项。如果你想在Mac上安装GRUB，那你必须要使用该选项。某些台式机主板只会在此位置寻找-EFI-可执行文件，因此该选项是必需的，尤其是微星（MSI）主板。-如果你更新了UEFI，启动项可能会在更新后丢失。因此可以创建一个removable启动项作为后备" class="headerlink" title="9.3 如果你使用了–removable选项，那GRUB 将被安装到esp&#x2F;EFI&#x2F;BOOT&#x2F;BOOTX64.EFI（当使用i386-efi时是esp&#x2F;EFI&#x2F;BOOT&#x2F;BOOTIA32.EFI ），此时即使 EFI 变量被重设或者你把这个驱动器接到其他电脑上，你仍可从这个驱动器上启动。通常来说，你只要像操作BIOS 设备一样在启动时选择这个驱动器就可以了。如果设备是同时安装了Windows的多引导启动，注意 Windows 通常会在这里安装一个 EFI 可执行程序，该程序的目的是仅重建Windows的UEFI启动项。如果你想在Mac上安装GRUB，那你必须要使用该选项。某些台式机主板只会在此位置寻找 EFI 可执行文件，因此该选项是必需的，尤其是微星（MSI）主板。 如果你更新了UEFI，启动项可能会在更新后丢失。因此可以创建一个removable启动项作为后备"></a>9.3 如果你使用了–removable选项，那GRUB 将被安装到esp&#x2F;EFI&#x2F;BOOT&#x2F;BOOTX64.EFI（当使用i386-efi时是esp&#x2F;EFI&#x2F;BOOT&#x2F;BOOTIA32.EFI ），此时即使 EFI 变量被重设或者你把这个驱动器接到其他电脑上，你仍可从这个驱动器上启动。通常来说，你只要像操作BIOS 设备一样在启动时选择这个驱动器就可以了。如果设备是同时安装了Windows的多引导启动，注意 Windows 通常会在这里安装一个 EFI 可执行程序，该程序的目的是仅重建Windows的UEFI启动项。如果你想在Mac上安装GRUB，那你必须要使用该选项。某些台式机主板只会在此位置寻找 EFI 可执行文件，因此该选项是必需的，尤其是微星（MSI）主板。 如果你更新了UEFI，启动项可能会在更新后丢失。因此可以创建一个removable启动项作为后备</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">grub-install <span class="hljs-attribute">--target</span>=x86_64-efi <span class="hljs-attribute">--efi-directory</span>=esp --removable<br></code></pre></td></tr></table></figure>
+
+<h4 id="9-4-生成主配置文件"><a href="#9-4-生成主配置文件" class="headerlink" title="9.4 生成主配置文件"></a>9.4 生成主配置文件</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">grub-mkconfig -o <span class="hljs-regexp">/boot/g</span>rub/grub.cfg<br></code></pre></td></tr></table></figure>
+
+<h4 id="9-5-退出arch-chroot"><a href="#9-5-退出arch-chroot" class="headerlink" title="9.5 退出arch-chroot"></a>9.5 退出arch-chroot</h4><h4 id="输入exit或按Ctrl-d退出-chroot-环境"><a href="#输入exit或按Ctrl-d退出-chroot-环境" class="headerlink" title="输入exit或按Ctrl+d退出 chroot 环境"></a>输入exit或按Ctrl+d退出 chroot 环境</h4><h4 id="可选用umount-R-mnt手动卸载被挂载的分区：这有助于发现任何“繁忙”的分区"><a href="#可选用umount-R-mnt手动卸载被挂载的分区：这有助于发现任何“繁忙”的分区" class="headerlink" title="可选用umount -R &#x2F;mnt手动卸载被挂载的分区：这有助于发现任何“繁忙”的分区"></a>可选用umount -R &#x2F;mnt手动卸载被挂载的分区：这有助于发现任何“繁忙”的分区</h4><h4 id="最后，通过执行reboot重启系统，systemd将自动卸载仍然挂载的任何分区。这时候不要忘记移除安装介质，然后使用root账户登录到新系统"><a href="#最后，通过执行reboot重启系统，systemd将自动卸载仍然挂载的任何分区。这时候不要忘记移除安装介质，然后使用root账户登录到新系统" class="headerlink" title="最后，通过执行reboot重启系统，systemd将自动卸载仍然挂载的任何分区。这时候不要忘记移除安装介质，然后使用root账户登录到新系统"></a>最后，通过执行reboot重启系统，systemd将自动卸载仍然挂载的任何分区。这时候不要忘记移除安装介质，然后使用root账户登录到新系统</h4><h4 id="重启之后以root用户登录"><a href="#重启之后以root用户登录" class="headerlink" title="重启之后以root用户登录"></a>重启之后以root用户登录</h4><h2 id="10-开启网络创建用户"><a href="#10-开启网络创建用户" class="headerlink" title="10.开启网络创建用户"></a>10.开启网络创建用户</h2><h4 id="10-1-开启NetworkManager服务"><a href="#10-1-开启NetworkManager服务" class="headerlink" title="10.1 开启NetworkManager服务"></a>10.1 开启NetworkManager服务</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">systemctl <span class="hljs-keyword">enable</span> <span class="hljs-comment">--now NetworkManager</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="10-2-使用NetworkManager附带nmcli连接网络"><a href="#10-2-使用NetworkManager附带nmcli连接网络" class="headerlink" title="10.2 使用NetworkManager附带nmcli连接网络"></a>10.2 使用NetworkManager附带nmcli连接网络</h4><ul>
+<li>显示附近的Wi-Fi网络</li>
+<li>nmcli device wifi list</li>
+<li>连接到Wi-Fi网络</li>
+<li>nmcli device wifi connect SSID_或_BSSID password 密码</li>
+<li>连接到隐藏的Wi-Fi网络</li>
+<li>nmcli device wifi connect SSID_或_BSSID password 密码 hidden yes</li>
+<li>连接到wlan1网络接口上的 Wi-Fi</li>
+<li>nmcli device wifi connect SSID_或_BSSID </li>
+<li>password 密码 ifname wlan1 profile_name</li>
+<li>断开网络接口上的连接：</li>
+<li>nmcli device disconnect ifname eth0</li>
+<li>显示连接列表及其名称、UUID、类型和支持设备</li>
+<li>nmcli connection show</li>
+<li>激活连接（即使用现有配置文件连接到网络）</li>
+<li>nmcli connection up name_或_uuid</li>
+<li>删除连接</li>
+<li>nmcli connection delete name_或_uuid</li>
+<li>显示所有网络设备及其状态</li>
+<li>nmcli device</li>
+<li>关闭 Wi-Fi</li>
+<li>nmcli radio wifi off</li>
+</ul>
+<h4 id="10-3-创建普通用户"><a href="#10-3-创建普通用户" class="headerlink" title="10.3 创建普通用户"></a>10.3 创建普通用户</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">useradd -m -<span class="hljs-selector-tag">G</span> wheel zjh<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">passwd zjh</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="10-4-将新用户加入sudoers中"><a href="#10-4-将新用户加入sudoers中" class="headerlink" title="10.4 将新用户加入sudoers中"></a>10.4 将新用户加入sudoers中</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/etc/</span>sudoers <br></code></pre></td></tr></table></figure>
+
+<p><strong>取消 %wheel ALL&#x3D;(ALL:ALL)  ALL的注释</strong></p>
+<h2 id="11-安装桌面环境"><a href="#11-安装桌面环境" class="headerlink" title="11.安装桌面环境"></a>11.安装桌面环境</h2><p><del>pacman -S plasma kde-applications sddm</del></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">pacman -S plasma-<span class="hljs-keyword">meta</span> sddm bash-completion<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">pacman -S nvidia nvidia-settings nvidia-utils</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>需要x11环境安装<strong>xorg plasma-x11-session（不需要则跳过）</strong></p>
+<p>从 Plasma 6.4 开始，X11会话只能通plasma-x11-session包软件包单独提供</p>
+<ul>
+<li>要从控制台启动Plasma on Wayland会话，请运行&#x2F;usr&#x2F;lib&#x2F;plasma-dbus-run-session-if-needed &#x2F;usr&#x2F;bin&#x2F;startplasma-wayland。</li>
+<li>若要使用”xinit&#x2F;startx”启动 Plasma 桌面，请在 .xinitrc 文件中添加 export DESKTOP_SESSION&#x3D;plasma 和 exec startplasma-x11，或者直接在控制台运行startx &#x2F;usr&#x2F;bin&#x2F;startplasma-x11，若要在登录时开启 Xorg，见登录时启动 X</li>
+</ul>
+</blockquote>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">pacman</span> -S xorg plasma-<span class="hljs-built_in">x11</span>-session<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">systemctl <span class="hljs-built_in">enable</span> sddm<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">reboot</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p><strong>需要安装依赖</strong></p>
+</blockquote>
+<p><strong>这个是appimage程序的依赖</strong></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo pacman -S appmenu-gtk-<span class="hljs-keyword">module</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>这个是qv2ray的依赖</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S libxcrypt-compat<br></code></pre></td></tr></table></figure>
+
+<p><strong>这个是火狐firefox的依赖</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S dbus-glib<br><span class="hljs-built_in">sudo</span> pacman -S speech-dispatcher<br></code></pre></td></tr></table></figure>
+
+<p><strong>这个是网络下载工具</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S wget<br></code></pre></td></tr></table></figure>
+
+<p><strong>修复使用windows11字体</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S noto-fonts-cjk wqy-microhei wqy-zenhei ttf-liberation<br></code></pre></td></tr></table></figure>
+
+<p><strong>sddm主题依赖Qt图形效果QML模块</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S qt5-graphicaleffects qt5-quickcontrols qt5-quickcontrols2<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S qt5-svg qt5-multimedia<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S qt6-declarative qt6-multimedia<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>qt6-virtualkeyboard 虚拟键盘（默认已经安装）</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S qt6-virtualkeyboard <br></code></pre></td></tr></table></figure>
+
+<p><strong>hexo所需的依赖</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S nodejs npm<br></code></pre></td></tr></table></figure>
+
+<p><strong>磁盘管理工具</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S partitionmanager<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="12-源列表-32位源"><a href="#12-源列表-32位源" class="headerlink" title="12.源列表+32位源"></a>12.源列表+32位源</h2><h5 id="Mirrorlist的China源"><a href="#Mirrorlist的China源" class="headerlink" title="Mirrorlist的China源"></a>Mirrorlist的China源</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">## China</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.bfsu.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.cqu.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.hit.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.hust.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.jcut.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.jlu.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.jxust.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.neusoft.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.nju.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rror.nyist.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.qlu.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.shanghaitech.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.sjtug.sjtu.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.wsyu.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br>Server = https:<span class="hljs-regexp">//mi</span>rrors.xjtu.edu.cn<span class="hljs-regexp">/archlinux/</span><span class="hljs-variable">$repo</span><span class="hljs-regexp">/os/</span><span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="12-1-开启pacman-conf中的32位源"><a href="#12-1-开启pacman-conf中的32位源" class="headerlink" title="12.1 开启pacman.conf中的32位源"></a>12.1 开启pacman.conf中的32位源</h4><blockquote>
+<h5 id="去除以下注释"><a href="#去除以下注释" class="headerlink" title="去除以下注释"></a>去除以下注释</h5></blockquote>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[multilib]</span><br><span class="hljs-attr">Include</span> = /etc/pacman.d/mirrorlist<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<h5 id="加入以下源"><a href="#加入以下源" class="headerlink" title="加入以下源"></a>加入以下源</h5></blockquote>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[archlinuxcn]</span><br><span class="hljs-attr">Server</span> = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="12-2-安装archlinuxcn-keyring包前的额外步骤（可跳过，目前2025年测试无报错）"><a href="#12-2-安装archlinuxcn-keyring包前的额外步骤（可跳过，目前2025年测试无报错）" class="headerlink" title="12.2 安装archlinuxcn-keyring包前的额外步骤（可跳过，目前2025年测试无报错）"></a>12.2 安装archlinuxcn-keyring包前的额外步骤（可跳过，目前2025年测试无报错）</h4><blockquote>
+<p>在2023年后，安装archlinuxcn-keyring时可能会出现错误，以下提示</p>
+</blockquote>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">error: </span>archlinuxcn-keyring: Signature from&quot;Jiachen YANG(Arch Linux Packager Signing Key)” is marginal trust<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要在本地信任farseerfc的GPG key</p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lsl">sudo pacman-<span class="hljs-type">key</span> --lsign-<span class="hljs-type">key</span> <span class="hljs-string">&quot;farseerfc@archlinux.org&quot;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S archlinuxcn-keyring<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装yay</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S yay<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="13-安装显卡驱动"><a href="#13-安装显卡驱动" class="headerlink" title="13.安装显卡驱动"></a>13.安装显卡驱动</h2><h4 id="13-1-intel核显驱动（cpu不带F的需要安装）"><a href="#13-1-intel核显驱动（cpu不带F的需要安装）" class="headerlink" title="13.1 intel核显驱动（cpu不带F的需要安装）"></a>13.1 intel核显驱动（cpu不带F的需要安装）</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">sudo pacman -S mesa lib32-mesa vulkan-<span class="hljs-built_in">int</span>el lib32-vulkan-<span class="hljs-built_in">int</span>el<br></code></pre></td></tr></table></figure>
+
+<h4 id="13-2-nvidia显卡驱动（在上面已经安装一部分显卡驱动了）"><a href="#13-2-nvidia显卡驱动（在上面已经安装一部分显卡驱动了）" class="headerlink" title="13.2 nvidia显卡驱动（在上面已经安装一部分显卡驱动了）"></a>13.2 nvidia显卡驱动（在上面已经安装一部分显卡驱动了）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S lib32-nvidia-util<br></code></pre></td></tr></table></figure>
+
+<h4 id="13-3-显卡双切方案（一）"><a href="#13-3-显卡双切方案（一）" class="headerlink" title="13.3 显卡双切方案（一）"></a>13.3 显卡双切方案（一）</h4><h4 id="安装optimus-manager以及其图形前端optimus-manager-qt通过该程序可以在集成显卡和独立显卡间轻松切换，optimus-manager提供三种模式，分别为仅用独显、仅用集显以及hybrid动态切换模式"><a href="#安装optimus-manager以及其图形前端optimus-manager-qt通过该程序可以在集成显卡和独立显卡间轻松切换，optimus-manager提供三种模式，分别为仅用独显、仅用集显以及hybrid动态切换模式" class="headerlink" title="安装optimus-manager以及其图形前端optimus-manager-qt通过该程序可以在集成显卡和独立显卡间轻松切换，optimus-manager提供三种模式，分别为仅用独显、仅用集显以及hybrid动态切换模式"></a>安装optimus-manager以及其图形前端optimus-manager-qt通过该程序可以在集成显卡和独立显卡间轻松切换，optimus-manager提供三种模式，分别为仅用独显、仅用集显以及hybrid动态切换模式</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">yay -S optimus-manager optimus-manager-qt</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> optimus-manager.service<br></code></pre></td></tr></table></figure>
+
+<h4 id="重启即可使用"><a href="#重启即可使用" class="headerlink" title="重启即可使用"></a>重启即可使用</h4><h4 id="13-4-显卡双切方案（二）"><a href="#13-4-显卡双切方案（二）" class="headerlink" title="13.4 显卡双切方案（二）"></a>13.4 显卡双切方案（二）</h4><blockquote>
+<p>安装envycontrol</p>
+</blockquote>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">yay -S envycontrol</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>动态模式</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> envycontrol -s hybrid<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>nvidia独立显卡模式</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> envycontrol -s nvidia<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>integrated核显模式</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">sudo envycontrol -s <span class="hljs-built_in">int</span>egrated<br></code></pre></td></tr></table></figure>
+
+
+                                    
+                              </div>
+                              
+                                <hr />
+                                <div>
+                                  <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Arch-Linux/" class="category-chain-item">Arch Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+                                    
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Arch Linux安装（辉少特制）</div>
+      <div>http://huishao.net/2025/06/01/Arch Linux中文维基/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>huishao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+                                      
+                                        <div class="post-prevnext my-3">
+                                          <article class="post-prev col-6">
+                                            
+                                              
+                                                <a href="/2025/06/02/arch%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" title="代理软件配置">
+                                                  <i class="iconfont icon-arrowleft"></i>
+                                                  <span class="hidden-mobile">
+                                                    代理软件配置
+                                                  </span>
+                                                  <span class="visible-mobile">上一篇</span>
+                                                </a>
+                                                
+                                          </article>
+                                          <article class="post-next col-6">
+                                            
+                                              
+                                          </article>
+                                        </div>
+                                        
+                                </div>
+
+                                
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"HuiKeJi/huishaoblog","repo-id":"R_kgDOPnu6DQ","category":"Announcements","category-id":"DIC_kwDOPnu6Dc4Cu1kC","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-col d-none d-lg-block col-lg-2">
+        
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+    
+              
+
+                  
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                    
+
+                      
+                        <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                          
+
+                            
+        </main>
+
+        <footer>
+          <div class="footer-inner">
+  
+  
+  
+</div>
+
+
+        </footer>
+
+        <!-- Scripts -->
+        
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+
+
+          
+
+            <noscript>
+              <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+            </noscript>
+
+    </body>
+
+  </html>
