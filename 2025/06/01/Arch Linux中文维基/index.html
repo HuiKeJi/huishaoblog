@@ -19,16 +19,16 @@
   <meta name="author" content="huishao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ArchLinux Installation1.连接到互联网1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备：1iwctl  1device list   [!IMPORTANT] device list（不管是">
+    <meta name="description" content="根据Arch wiki改进安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arch Linux安装（辉少特制）">
 <meta property="og:url" content="http://huishao.net/2025/06/01/Arch%20Linux%E4%B8%AD%E6%96%87%E7%BB%B4%E5%9F%BA/index.html">
 <meta property="og:site_name" content="辉少笔记">
-<meta property="og:description" content="ArchLinux Installation1.连接到互联网1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备：1iwctl  1device list   [!IMPORTANT] device list（不管是">
+<meta property="og:description" content="根据Arch wiki改进安装">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://huishao.net/img/articleslist/b9%20(1).png">
 <meta property="article:published_time" content="2025-06-01T10:30:00.000Z">
-<meta property="article:modified_time" content="2025-09-02T13:41:40.234Z">
+<meta property="article:modified_time" content="2025-09-11T14:14:22.362Z">
 <meta property="article:author" content="huishao">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -76,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"huishao.net","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/gif/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"huishao.net","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/gif/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"kt19AZrmvIvdNeQbR6Ze9CMi-gzGzoHsz","app_key":"SFr2nBzqGwf5yONfSLXsgQXE","server_url":"https://kt19azrm.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -86,6 +86,19 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
 
 
   
@@ -202,7 +215,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b7%20(1).png') no-repeat center center; background-size: cover;">
+     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b4.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -380,7 +393,7 @@
 <td>设备剩余空间至少23-32GiB</td>
 </tr>
 </tbody></table>
-<h1 id="4-格式化分区"><a href="#4-格式化分区" class="headerlink" title="4.格式化分区"></a>4.格式化分区</h1><h4 id="4-1-创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化"><a href="#4-1-创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化" class="headerlink" title="4.1 创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化"></a>4.1 创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化</h4><h4 id="要在根分区-dev-root-partition上创建一个Ext4文件系统，请运行"><a href="#要在根分区-dev-root-partition上创建一个Ext4文件系统，请运行" class="headerlink" title="要在根分区&#x2F;dev&#x2F;root_partition上创建一个Ext4文件系统，请运行"></a>要在根分区&#x2F;dev&#x2F;root_partition上创建一个Ext4文件系统，请运行</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkfs.ext4 <span class="hljs-regexp">/dev/</span>root_partition（根分区）<br></code></pre></td></tr></table></figure>
+<h2 id="4-格式化分区"><a href="#4-格式化分区" class="headerlink" title="4.格式化分区"></a>4.格式化分区</h2><h4 id="4-1-创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化"><a href="#4-1-创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化" class="headerlink" title="4.1 创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化"></a>4.1 创建分区后，必须使用合适的文件系统对每个新创建的分区进行格式化</h4><h4 id="要在根分区-dev-root-partition上创建一个Ext4文件系统，请运行"><a href="#要在根分区-dev-root-partition上创建一个Ext4文件系统，请运行" class="headerlink" title="要在根分区&#x2F;dev&#x2F;root_partition上创建一个Ext4文件系统，请运行"></a>要在根分区&#x2F;dev&#x2F;root_partition上创建一个Ext4文件系统，请运行</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkfs.ext4 <span class="hljs-regexp">/dev/</span>root_partition（根分区）<br></code></pre></td></tr></table></figure>
 
 <h4 id="4-2-如果你要创建一个EFI-系统分区，使用mkfs-fat将其格式化为Fat32"><a href="#4-2-如果你要创建一个EFI-系统分区，使用mkfs-fat将其格式化为Fat32" class="headerlink" title="4.2 如果你要创建一个EFI 系统分区，使用mkfs.fat将其格式化为Fat32"></a>4.2 如果你要创建一个EFI 系统分区，使用mkfs.fat将其格式化为Fat32</h4><h4 id="警告：只有在分区步骤中创建EFI系统分区时才需要格式化。如果这个磁盘上已经有一个-EFI-系统分区了，将它重新格式化会破坏其他已安装操作系统的引导加载程序"><a href="#警告：只有在分区步骤中创建EFI系统分区时才需要格式化。如果这个磁盘上已经有一个-EFI-系统分区了，将它重新格式化会破坏其他已安装操作系统的引导加载程序" class="headerlink" title="警告：只有在分区步骤中创建EFI系统分区时才需要格式化。如果这个磁盘上已经有一个 EFI 系统分区了，将它重新格式化会破坏其他已安装操作系统的引导加载程序"></a>警告：只有在分区步骤中创建EFI系统分区时才需要格式化。如果这个磁盘上已经有一个 EFI 系统分区了，将它重新格式化会破坏其他已安装操作系统的引导加载程序</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mkfs</span>.fat -F <span class="hljs-number">32</span> /dev/efi_system_partition（EFI 系统分区）<br></code></pre></td></tr></table></figure>
 
@@ -772,6 +785,7 @@
 
 
     
+
               
 
                   
@@ -814,6 +828,32 @@
        <a href="https://huishao.net" target="_blank" rel="nofollow noopener"><span>辉少笔记</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HuiKeJi" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -958,6 +998,8 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
