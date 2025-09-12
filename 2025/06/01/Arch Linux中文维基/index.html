@@ -8,6 +8,11 @@
 <head>
   <meta charset="UTF-8">
 
+  <!-- 文章分享css文件 -->
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
   <link rel="icon" href="/img/icons/huishao.png">
   
@@ -222,22 +227,6 @@
             </li>
           
         
-           <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
-
-          <!-- 如果菜单项有子菜单 -->
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/wallpapers/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-image"></i>
-                <!-- 菜单文字 -->
-                <span>壁纸</span>
-              </a>
-            </li>
-          
-        
 
         <!-- 搜索按钮 -->
         
@@ -267,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131612409_p0%20(1).png') no-repeat center center; background-size: cover;">
+     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b7%20(1).png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -368,25 +357,36 @@
           
             
 
-  <div class="container-fluid nopadding-x">
-    <div class="row nomargin-x">
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+<!-- 页面主要布局结构 -->
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
 
-      </div>
+    <!-- 左侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-      <div class="col-lg-8 nopadding-x-md">
-        <div class="container nopadding-x-md" id="board-ctn">
-          <div id="board">
-            <article class="post-content mx-auto">
-              <h1 id="seo-header">
-                Arch Linux安装（辉少特制）
-              </h1>
-              
-                  
-                              <div class="markdown-body">
-                                
-                                  <h1 id="ArchLinux-Installation"><a href="#ArchLinux-Installation" class="headerlink" title="ArchLinux Installation"></a>ArchLinux Installation</h1><h2 id="1-连接到互联网"><a href="#1-连接到互联网" class="headerlink" title="1.连接到互联网"></a>1.连接到互联网</h2><h4 id="1-1-首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1-0-1-6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认-Wi-Fi-设备未被屏蔽，如果不知道你的网络设备名称，请列出所有-WiFi-设备："><a href="#1-1-首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1-0-1-6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认-Wi-Fi-设备未被屏蔽，如果不知道你的网络设备名称，请列出所有-WiFi-设备：" class="headerlink" title="1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备："></a>1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备：</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">iwctl</span><br></code></pre></td></tr></table></figure>
+    </div>
+
+    <!-- 主体内容区域 -->
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+
+            <!-- SEO 标题显示 -->
+            <h1 id="seo-header">
+              Arch Linux安装（辉少特制）
+            </h1>
+
+            <!-- 更新时间显示模块 -->
+            
+
+            <!-- 如果文章加密，则加载加密内容 -->
+            
+              <!-- 正常文章内容 -->
+              <div class="markdown-body">
+                
+                <h1 id="ArchLinux-Installation"><a href="#ArchLinux-Installation" class="headerlink" title="ArchLinux Installation"></a>ArchLinux Installation</h1><h2 id="1-连接到互联网"><a href="#1-连接到互联网" class="headerlink" title="1.连接到互联网"></a>1.连接到互联网</h2><h4 id="1-1-首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1-0-1-6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认-Wi-Fi-设备未被屏蔽，如果不知道你的网络设备名称，请列出所有-WiFi-设备："><a href="#1-1-首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1-0-1-6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认-Wi-Fi-设备未被屏蔽，如果不知道你的网络设备名称，请列出所有-WiFi-设备：" class="headerlink" title="1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备："></a>1.1 首先，确定自己电脑有没有网卡，如果电脑没有网卡，以下（1.0-1.6）步骤没有用的，直接连网线即可，安卓USB共享也可以，使用rfkill命令确认 Wi-Fi 设备未被屏蔽，如果不知道你的网络设备名称，请列出所有 WiFi 设备：</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">iwctl</span><br></code></pre></td></tr></table></figure>
 
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">device list</span><br></code></pre></td></tr></table></figure>
 
@@ -647,12 +647,15 @@
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">sudo envycontrol -s <span class="hljs-built_in">int</span>egrated<br></code></pre></td></tr></table></figure>
 
 
-                                    
-                              </div>
-                              
-                                <hr />
-                                <div>
-                                  <div class="post-metas my-3">
+                
+              </div>
+            
+
+            <hr />
+
+            <div>
+              <!-- 元信息与版权注入点 -->
+              <div class="post-metas my-3">
   
     <div class="post-meta mr-3 d-flex align-items-center">
       <i class="iconfont icon-category"></i>
@@ -685,8 +688,7 @@
   
 </div>
 
-
-                                    
+              
   
 
   <div class="license-box my-3">
@@ -731,29 +733,64 @@
 
 
 
-                                      
-                                        <div class="post-prevnext my-3">
-                                          <article class="post-prev col-6">
-                                            
-                                              
-                                                <a href="/2025/06/02/arch%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" title="代理软件配置">
-                                                  <i class="iconfont icon-arrowleft"></i>
-                                                  <span class="hidden-mobile">
-                                                    代理软件配置
-                                                  </span>
-                                                  <span class="visible-mobile">上一篇</span>
-                                                </a>
-                                                
-                                          </article>
-                                          <article class="post-next col-6">
-                                            
-                                              
-                                          </article>
-                                        </div>
-                                        
-                                </div>
+              <!-- 🚀 社交分享按钮（图标版） -->
+              <div class="social-share mt-4">
+                <span>分享到：</span>
 
-                                
+                <!-- 微博分享链接 -->
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F01%2FArch%2520Linux%25E4%25B8%25AD%25E6%2596%2587%25E7%25BB%25B4%25E5%259F%25BA%2F&title=Arch%20Linux%E5%AE%89%E8%A3%85%EF%BC%88%E8%BE%89%E5%B0%91%E7%89%B9%E5%88%B6%EF%BC%89" target="_blank" rel="noopener">
+                  <i class="fab fa-weibo"></i> 微博
+                </a>
+
+                <!-- 微信分享跳转链接（长按识别二维码页） -->
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F01%2FArch%2520Linux%25E4%25B8%25AD%25E6%2596%2587%25E7%25BB%25B4%25E5%259F%25BA%2F&size=300x300" target="_blank" rel="noopener">
+                  <i class="fab fa-weixin"></i> 微信
+                </a>
+
+                <!-- QQ 好友分享链接 -->
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F01%2FArch%2520Linux%25E4%25B8%25AD%25E6%2596%2587%25E7%25BB%25B4%25E5%259F%25BA%2F&title=Arch%20Linux%E5%AE%89%E8%A3%85%EF%BC%88%E8%BE%89%E5%B0%91%E7%89%B9%E5%88%B6%EF%BC%89" target="_blank" rel="noopener">
+                  <i class="fab fa-qq"></i> QQ好友
+                </a>
+
+                <!-- Twitter 分享链接 -->
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F01%2FArch%2520Linux%25E4%25B8%25AD%25E6%2596%2587%25E7%25BB%25B4%25E5%259F%25BA%2F&text=Arch%20Linux%E5%AE%89%E8%A3%85%EF%BC%88%E8%BE%89%E5%B0%91%E7%89%B9%E5%88%B6%EF%BC%89" target="_blank" rel="noopener">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+
+                <!-- Telegram 分享链接 -->
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F01%2FArch%2520Linux%25E4%25B8%25AD%25E6%2596%2587%25E7%25BB%25B4%25E5%259F%25BA%2F&text=Arch%20Linux%E5%AE%89%E8%A3%85%EF%BC%88%E8%BE%89%E5%B0%91%E7%89%B9%E5%88%B6%EF%BC%89" target="_blank" rel="noopener">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+
+                <!-- 复制当前页面链接 -->
+                <a class="share-btn" href="javascript:void(0);" onclick="copyLink()">
+                  <i class="fas fa-link"></i> 复制链接
+                </a>
+              </div>
+
+              <!-- 上一篇/下一篇导航 -->
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/02/arch%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" title="代理软件配置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">代理软件配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            <!-- 评论模块注入点 -->
+            
   
   
     <article id="comments">
@@ -785,13 +822,14 @@
   
 
 
-            </article>
-          </div>
+          </article>
         </div>
       </div>
+    </div>
 
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+    <!-- 右侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
   <p class="toc-header">
@@ -806,9 +844,14 @@
   </aside>
 
 
-      </div>
     </div>
   </div>
+</div>
+
+<!-- markdown 插件注入 -->
+
+
+
 
   
 
@@ -830,13 +873,18 @@
 
 
 
-  
 
 
+<!-- 自定义后注入内容 -->
 
 
-
-    
+<script>
+// 复制当前链接到剪贴板
+function copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => alert("链接已复制！"));
+}
+</script>
 
               
 

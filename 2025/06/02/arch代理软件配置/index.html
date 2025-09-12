@@ -8,6 +8,11 @@
 <head>
   <meta charset="UTF-8">
 
+  <!-- 文章分享css文件 -->
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
   <link rel="icon" href="/img/icons/huishao.png">
   
@@ -222,22 +227,6 @@
             </li>
           
         
-           <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
-
-          <!-- 如果菜单项有子菜单 -->
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/wallpapers/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-image"></i>
-                <!-- 菜单文字 -->
-                <span>壁纸</span>
-              </a>
-            </li>
-          
-        
 
         <!-- 搜索按钮 -->
         
@@ -267,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/a23.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -368,25 +357,36 @@
           
             
 
-  <div class="container-fluid nopadding-x">
-    <div class="row nomargin-x">
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+<!-- 页面主要布局结构 -->
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
 
-      </div>
+    <!-- 左侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-      <div class="col-lg-8 nopadding-x-md">
-        <div class="container nopadding-x-md" id="board-ctn">
-          <div id="board">
-            <article class="post-content mx-auto">
-              <h1 id="seo-header">
-                代理软件配置
-              </h1>
-              
-                  
-                              <div class="markdown-body">
-                                
-                                  <p>适用于大多数 Linux 系统，Arch、Debian、Ubuntu 都可以参考，这里只做简单配置，不设置静态代理、系统代理、shell代理等等</p>
+    </div>
+
+    <!-- 主体内容区域 -->
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+
+            <!-- SEO 标题显示 -->
+            <h1 id="seo-header">
+              代理软件配置
+            </h1>
+
+            <!-- 更新时间显示模块 -->
+            
+
+            <!-- 如果文章加密，则加载加密内容 -->
+            
+              <!-- 正常文章内容 -->
+              <div class="markdown-body">
+                
+                <p>适用于大多数 Linux 系统，Arch、Debian、Ubuntu 都可以参考，这里只做简单配置，不设置静态代理、系统代理、shell代理等等</p>
 <h1 id="V2ray"><a href="#V2ray" class="headerlink" title="V2ray"></a>V2ray</h1><h3 id="1-下载-v2ray-最新版本"><a href="#1-下载-v2ray-最新版本" class="headerlink" title="1. 下载 v2ray 最新版本"></a>1. 下载 v2ray 最新版本</h3><p>去官网下载 v2ray-core 的压缩包，比如最新版一般是<strong>v2ray-linux-64.zip</strong>，也可以用命令直接下载</p>
 <p><strong>获取最新版下载链接：</strong></p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">wget https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/v2fly/</span>v2ray-core<span class="hljs-regexp">/releases/</span>latest<span class="hljs-regexp">/download/</span>v2ray-linux-<span class="hljs-number">64</span>.zip<br></code></pre></td></tr></table></figure>
@@ -516,12 +516,15 @@
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">cat</span> /<span class="hljs-keyword">opt</span>/trojan/trojan.<span class="hljs-built_in">log</span><br></code></pre></td></tr></table></figure>
 
 
-                                    
-                              </div>
-                              
-                                <hr />
-                                <div>
-                                  <div class="post-metas my-3">
+                
+              </div>
+            
+
+            <hr />
+
+            <div>
+              <!-- 元信息与版权注入点 -->
+              <div class="post-metas my-3">
   
     <div class="post-meta mr-3 d-flex align-items-center">
       <i class="iconfont icon-category"></i>
@@ -554,8 +557,7 @@
   
 </div>
 
-
-                                    
+              
   
 
   <div class="license-box my-3">
@@ -600,37 +602,70 @@
 
 
 
-                                      
-                                        <div class="post-prevnext my-3">
-                                          <article class="post-prev col-6">
-                                            
-                                              
-                                                <a href="/2025/07/03/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEfcitx5/" title="Arch Linux安装Fcitx5+万象拼音">
-                                                  <i class="iconfont icon-arrowleft"></i>
-                                                  <span class="hidden-mobile">
-                                                    Arch Linux安装Fcitx5+万象拼音
-                                                  </span>
-                                                  <span class="visible-mobile">上一篇</span>
-                                                </a>
-                                                
-                                          </article>
-                                          <article class="post-next col-6">
-                                            
-                                              
-                                                <a href="/2025/06/01/Arch%20Linux%E4%B8%AD%E6%96%87%E7%BB%B4%E5%9F%BA/" title="Arch Linux安装（辉少特制）">
-                                                  <span class="hidden-mobile">
-                                                    Arch Linux安装（辉少特制）
-                                                  </span>
-                                                  <span class="visible-mobile">下一篇</span>
-                                                  <i class="iconfont icon-arrowright"></i>
-                                                </a>
-                                                
-                                          </article>
-                                        </div>
-                                        
-                                </div>
+              <!-- 🚀 社交分享按钮（图标版） -->
+              <div class="social-share mt-4">
+                <span>分享到：</span>
 
-                                
+                <!-- 微博分享链接 -->
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F02%2Farch%25E4%25BB%25A3%25E7%2590%2586%25E8%25BD%25AF%25E4%25BB%25B6%25E9%2585%258D%25E7%25BD%25AE%2F&title=%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">
+                  <i class="fab fa-weibo"></i> 微博
+                </a>
+
+                <!-- 微信分享跳转链接（长按识别二维码页） -->
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F02%2Farch%25E4%25BB%25A3%25E7%2590%2586%25E8%25BD%25AF%25E4%25BB%25B6%25E9%2585%258D%25E7%25BD%25AE%2F&size=300x300" target="_blank" rel="noopener">
+                  <i class="fab fa-weixin"></i> 微信
+                </a>
+
+                <!-- QQ 好友分享链接 -->
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F02%2Farch%25E4%25BB%25A3%25E7%2590%2586%25E8%25BD%25AF%25E4%25BB%25B6%25E9%2585%258D%25E7%25BD%25AE%2F&title=%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">
+                  <i class="fab fa-qq"></i> QQ好友
+                </a>
+
+                <!-- Twitter 分享链接 -->
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F02%2Farch%25E4%25BB%25A3%25E7%2590%2586%25E8%25BD%25AF%25E4%25BB%25B6%25E9%2585%258D%25E7%25BD%25AE%2F&text=%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+
+                <!-- Telegram 分享链接 -->
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F06%2F02%2Farch%25E4%25BB%25A3%25E7%2590%2586%25E8%25BD%25AF%25E4%25BB%25B6%25E9%2585%258D%25E7%25BD%25AE%2F&text=%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+
+                <!-- 复制当前页面链接 -->
+                <a class="share-btn" href="javascript:void(0);" onclick="copyLink()">
+                  <i class="fas fa-link"></i> 复制链接
+                </a>
+              </div>
+
+              <!-- 上一篇/下一篇导航 -->
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/03/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEfcitx5/" title="Arch Linux安装Fcitx5+万象拼音">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Arch Linux安装Fcitx5+万象拼音</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/01/Arch%20Linux%E4%B8%AD%E6%96%87%E7%BB%B4%E5%9F%BA/" title="Arch Linux安装（辉少特制）">
+                        <span class="hidden-mobile">Arch Linux安装（辉少特制）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            <!-- 评论模块注入点 -->
+            
   
   
     <article id="comments">
@@ -662,13 +697,14 @@
   
 
 
-            </article>
-          </div>
+          </article>
         </div>
       </div>
+    </div>
 
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+    <!-- 右侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
   <p class="toc-header">
@@ -683,9 +719,14 @@
   </aside>
 
 
-      </div>
     </div>
   </div>
+</div>
+
+<!-- markdown 插件注入 -->
+
+
+
 
   
 
@@ -707,13 +748,18 @@
 
 
 
-  
 
 
+<!-- 自定义后注入内容 -->
 
 
-
-    
+<script>
+// 复制当前链接到剪贴板
+function copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => alert("链接已复制！"));
+}
+</script>
 
               
 

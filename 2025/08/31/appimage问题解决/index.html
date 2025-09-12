@@ -8,6 +8,11 @@
 <head>
   <meta charset="UTF-8">
 
+  <!-- 文章分享css文件 -->
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
   <link rel="icon" href="/img/icons/huishao.png">
   
@@ -222,22 +227,6 @@
             </li>
           
         
-           <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
-
-          <!-- 如果菜单项有子菜单 -->
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/wallpapers/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-image"></i>
-                <!-- 菜单文字 -->
-                <span>壁纸</span>
-              </a>
-            </li>
-          
-        
 
         <!-- 搜索按钮 -->
         
@@ -368,25 +357,36 @@
           
             
 
-  <div class="container-fluid nopadding-x">
-    <div class="row nomargin-x">
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+<!-- 页面主要布局结构 -->
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
 
-      </div>
+    <!-- 左侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-      <div class="col-lg-8 nopadding-x-md">
-        <div class="container nopadding-x-md" id="board-ctn">
-          <div id="board">
-            <article class="post-content mx-auto">
-              <h1 id="seo-header">
-                appimage创建desktop问题解决
-              </h1>
-              
-                  
-                              <div class="markdown-body">
-                                
-                                  <h2 id="appimage问题解决"><a href="#appimage问题解决" class="headerlink" title="appimage问题解决"></a>appimage问题解决</h2><h2 id="1-确定软件的-WM-CLASS-值"><a href="#1-确定软件的-WM-CLASS-值" class="headerlink" title="1. 确定软件的 WM_CLASS 值"></a>1. 确定软件的 WM_CLASS 值</h2><p>AppImage 在运行时可能使用了不同的窗口类名称（WM_CLASS），而 .desktop 文件中的 StartupWMClass 需要与其匹配，否则系统会认为它们是两个不同的应用。</p>
+    </div>
+
+    <!-- 主体内容区域 -->
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+
+            <!-- SEO 标题显示 -->
+            <h1 id="seo-header">
+              appimage创建desktop问题解决
+            </h1>
+
+            <!-- 更新时间显示模块 -->
+            
+
+            <!-- 如果文章加密，则加载加密内容 -->
+            
+              <!-- 正常文章内容 -->
+              <div class="markdown-body">
+                
+                <h2 id="appimage问题解决"><a href="#appimage问题解决" class="headerlink" title="appimage问题解决"></a>appimage问题解决</h2><h2 id="1-确定软件的-WM-CLASS-值"><a href="#1-确定软件的-WM-CLASS-值" class="headerlink" title="1. 确定软件的 WM_CLASS 值"></a>1. 确定软件的 WM_CLASS 值</h2><p>AppImage 在运行时可能使用了不同的窗口类名称（WM_CLASS），而 .desktop 文件中的 StartupWMClass 需要与其匹配，否则系统会认为它们是两个不同的应用。</p>
 <h3 id="方法-1：使用-xprop-获取-WM-CLASS"><a href="#方法-1：使用-xprop-获取-WM-CLASS" class="headerlink" title="方法 1：使用 xprop 获取 WM_CLASS"></a>方法 1：使用 xprop 获取 WM_CLASS</h3><ol>
 <li>打开终端</li>
 <li>运行以下命令：<br><code>xprop | grep WM_CLASS</code></li>
@@ -447,12 +447,15 @@
 <hr>
 <p>如你提供 .desktop 文件内容或你使用的桌面环境（KDE&#x2F;GNOME&#x2F;XFCE…），我可以更具体地帮你分类。</p>
 
-                                    
-                              </div>
-                              
-                                <hr />
-                                <div>
-                                  <div class="post-metas my-3">
+                
+              </div>
+            
+
+            <hr />
+
+            <div>
+              <!-- 元信息与版权注入点 -->
+              <div class="post-metas my-3">
   
     <div class="post-meta mr-3 d-flex align-items-center">
       <i class="iconfont icon-category"></i>
@@ -485,8 +488,7 @@
   
 </div>
 
-
-                                    
+              
   
 
   <div class="license-box my-3">
@@ -531,37 +533,70 @@
 
 
 
-                                      
-                                        <div class="post-prevnext my-3">
-                                          <article class="post-prev col-6">
-                                            
-                                              
-                                                <a href="/2025/09/09/Windows%20%E7%A8%8B%E5%BA%8F%E5%8C%85/" title="Windows 程序包列表（每日更新）">
-                                                  <i class="iconfont icon-arrowleft"></i>
-                                                  <span class="hidden-mobile">
-                                                    Windows 程序包列表（每日更新）
-                                                  </span>
-                                                  <span class="visible-mobile">上一篇</span>
-                                                </a>
-                                                
-                                          </article>
-                                          <article class="post-next col-6">
-                                            
-                                              
-                                                <a href="/2025/08/30/Conky%E6%A1%8C%E9%9D%A2%E5%8D%A1%E7%89%87/" title="Conky桌面卡片">
-                                                  <span class="hidden-mobile">
-                                                    Conky桌面卡片
-                                                  </span>
-                                                  <span class="visible-mobile">下一篇</span>
-                                                  <i class="iconfont icon-arrowright"></i>
-                                                </a>
-                                                
-                                          </article>
-                                        </div>
-                                        
-                                </div>
+              <!-- 🚀 社交分享按钮（图标版） -->
+              <div class="social-share mt-4">
+                <span>分享到：</span>
 
-                                
+                <!-- 微博分享链接 -->
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F31%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&title=appimage%E5%88%9B%E5%BB%BAdesktop%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3" target="_blank" rel="noopener">
+                  <i class="fab fa-weibo"></i> 微博
+                </a>
+
+                <!-- 微信分享跳转链接（长按识别二维码页） -->
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F31%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&size=300x300" target="_blank" rel="noopener">
+                  <i class="fab fa-weixin"></i> 微信
+                </a>
+
+                <!-- QQ 好友分享链接 -->
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F31%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&title=appimage%E5%88%9B%E5%BB%BAdesktop%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3" target="_blank" rel="noopener">
+                  <i class="fab fa-qq"></i> QQ好友
+                </a>
+
+                <!-- Twitter 分享链接 -->
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F31%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&text=appimage%E5%88%9B%E5%BB%BAdesktop%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3" target="_blank" rel="noopener">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+
+                <!-- Telegram 分享链接 -->
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F31%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&text=appimage%E5%88%9B%E5%BB%BAdesktop%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3" target="_blank" rel="noopener">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+
+                <!-- 复制当前页面链接 -->
+                <a class="share-btn" href="javascript:void(0);" onclick="copyLink()">
+                  <i class="fas fa-link"></i> 复制链接
+                </a>
+              </div>
+
+              <!-- 上一篇/下一篇导航 -->
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/09/Windows%20%E7%A8%8B%E5%BA%8F%E5%8C%85/" title="Windows 程序包列表（每日更新）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Windows 程序包列表（每日更新）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/30/Conky%E6%A1%8C%E9%9D%A2%E5%8D%A1%E7%89%87/" title="Conky桌面卡片">
+                        <span class="hidden-mobile">Conky桌面卡片</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            <!-- 评论模块注入点 -->
+            
   
   
     <article id="comments">
@@ -593,13 +628,14 @@
   
 
 
-            </article>
-          </div>
+          </article>
         </div>
       </div>
+    </div>
 
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+    <!-- 右侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
   <p class="toc-header">
@@ -614,9 +650,14 @@
   </aside>
 
 
-      </div>
     </div>
   </div>
+</div>
+
+<!-- markdown 插件注入 -->
+
+
+
 
   
 
@@ -638,13 +679,18 @@
 
 
 
-  
 
 
+<!-- 自定义后注入内容 -->
 
 
-
-    
+<script>
+// 复制当前链接到剪贴板
+function copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => alert("链接已复制！"));
+}
+</script>
 
               
 

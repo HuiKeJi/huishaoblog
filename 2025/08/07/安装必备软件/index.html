@@ -8,6 +8,11 @@
 <head>
   <meta charset="UTF-8">
 
+  <!-- 文章分享css文件 -->
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
   <link rel="icon" href="/img/icons/huishao.png">
   
@@ -222,22 +227,6 @@
             </li>
           
         
-           <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
-
-          <!-- 如果菜单项有子菜单 -->
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/wallpapers/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-image"></i>
-                <!-- 菜单文字 -->
-                <span>壁纸</span>
-              </a>
-            </li>
-          
-        
 
         <!-- 搜索按钮 -->
         
@@ -267,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/132.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131612409_p0%20(1).png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -368,25 +357,36 @@
           
             
 
-  <div class="container-fluid nopadding-x">
-    <div class="row nomargin-x">
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+<!-- 页面主要布局结构 -->
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
 
-      </div>
+    <!-- 左侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-      <div class="col-lg-8 nopadding-x-md">
-        <div class="container nopadding-x-md" id="board-ctn">
-          <div id="board">
-            <article class="post-content mx-auto">
-              <h1 id="seo-header">
-                Arch Linux必备软件
-              </h1>
-              
-                  
-                              <div class="markdown-body">
-                                
-                                  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs routeros">asusctl --help<br><br>asusctl aura static -c 27B7A1<br><br><br>asusctl<span class="hljs-built_in"> profile </span>--profile-<span class="hljs-built_in">set</span> Quiet         # 静音模式（通常可以调节亮度）<br>asusctl<span class="hljs-built_in"> profile </span>--profile-<span class="hljs-built_in">set</span> Balanced      # 均衡模式<br>asusctl<span class="hljs-built_in"> profile </span>--profile-<span class="hljs-built_in">set</span> Performance   # 性能模式（可能调不了亮度）<br><br>Starting version 6.1.12<br>Missing arg <span class="hljs-keyword">or</span> command<br><br>Optional arguments:<br>  -h, --help          <span class="hljs-built_in">print</span> help message<br>  -n, --next          toggle <span class="hljs-keyword">to</span> next<span class="hljs-built_in"> profile </span><span class="hljs-keyword">in</span> list<br>  -l, --list          list available profiles<br>  -p, --profile-<span class="hljs-built_in">get</span>   <span class="hljs-built_in">get</span><span class="hljs-built_in"> profile </span>      # 查看当前模式<br>  -P, --profile-<span class="hljs-built_in">set</span>   <span class="hljs-built_in">set</span> the active<span class="hljs-built_in"> profile </span>   # 设置当期模式<br></code></pre></td></tr></table></figure>
+    </div>
+
+    <!-- 主体内容区域 -->
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+
+            <!-- SEO 标题显示 -->
+            <h1 id="seo-header">
+              Arch Linux必备软件
+            </h1>
+
+            <!-- 更新时间显示模块 -->
+            
+
+            <!-- 如果文章加密，则加载加密内容 -->
+            
+              <!-- 正常文章内容 -->
+              <div class="markdown-body">
+                
+                <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs routeros">asusctl --help<br><br>asusctl aura static -c 27B7A1<br><br><br>asusctl<span class="hljs-built_in"> profile </span>--profile-<span class="hljs-built_in">set</span> Quiet         # 静音模式（通常可以调节亮度）<br>asusctl<span class="hljs-built_in"> profile </span>--profile-<span class="hljs-built_in">set</span> Balanced      # 均衡模式<br>asusctl<span class="hljs-built_in"> profile </span>--profile-<span class="hljs-built_in">set</span> Performance   # 性能模式（可能调不了亮度）<br><br>Starting version 6.1.12<br>Missing arg <span class="hljs-keyword">or</span> command<br><br>Optional arguments:<br>  -h, --help          <span class="hljs-built_in">print</span> help message<br>  -n, --next          toggle <span class="hljs-keyword">to</span> next<span class="hljs-built_in"> profile </span><span class="hljs-keyword">in</span> list<br>  -l, --list          list available profiles<br>  -p, --profile-<span class="hljs-built_in">get</span>   <span class="hljs-built_in">get</span><span class="hljs-built_in"> profile </span>      # 查看当前模式<br>  -P, --profile-<span class="hljs-built_in">set</span>   <span class="hljs-built_in">set</span> the active<span class="hljs-built_in"> profile </span>   # 设置当期模式<br></code></pre></td></tr></table></figure>
 
 <h3 id="正版我的世界启动器"><a href="#正版我的世界启动器" class="headerlink" title="正版我的世界启动器"></a>正版我的世界启动器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S minecraft-launcher<br></code></pre></td></tr></table></figure>
 
@@ -418,12 +418,15 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> downgrade exiv2 <br></code></pre></td></tr></table></figure>
 
 
-                                    
-                              </div>
-                              
-                                <hr />
-                                <div>
-                                  <div class="post-metas my-3">
+                
+              </div>
+            
+
+            <hr />
+
+            <div>
+              <!-- 元信息与版权注入点 -->
+              <div class="post-metas my-3">
   
     <div class="post-meta mr-3 d-flex align-items-center">
       <i class="iconfont icon-category"></i>
@@ -456,8 +459,7 @@
   
 </div>
 
-
-                                    
+              
   
 
   <div class="license-box my-3">
@@ -502,37 +504,70 @@
 
 
 
-                                      
-                                        <div class="post-prevnext my-3">
-                                          <article class="post-prev col-6">
-                                            
-                                              
-                                                <a href="/2025/08/08/%E6%97%A9%E5%90%AF%E5%8A%A8/" title="NVIDIA早启动">
-                                                  <i class="iconfont icon-arrowleft"></i>
-                                                  <span class="hidden-mobile">
-                                                    NVIDIA早启动
-                                                  </span>
-                                                  <span class="visible-mobile">上一篇</span>
-                                                </a>
-                                                
-                                          </article>
-                                          <article class="post-next col-6">
-                                            
-                                              
-                                                <a href="/2025/08/06/%E8%AE%BE%E7%BD%AEWindows11%E5%AD%97%E4%BD%93/" title="配置Windows11 Fonts">
-                                                  <span class="hidden-mobile">
-                                                    配置Windows11 Fonts
-                                                  </span>
-                                                  <span class="visible-mobile">下一篇</span>
-                                                  <i class="iconfont icon-arrowright"></i>
-                                                </a>
-                                                
-                                          </article>
-                                        </div>
-                                        
-                                </div>
+              <!-- 🚀 社交分享按钮（图标版） -->
+              <div class="social-share mt-4">
+                <span>分享到：</span>
 
-                                
+                <!-- 微博分享链接 -->
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F07%2F%25E5%25AE%2589%25E8%25A3%2585%25E5%25BF%2585%25E5%25A4%2587%25E8%25BD%25AF%25E4%25BB%25B6%2F&title=Arch%20Linux%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6" target="_blank" rel="noopener">
+                  <i class="fab fa-weibo"></i> 微博
+                </a>
+
+                <!-- 微信分享跳转链接（长按识别二维码页） -->
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F07%2F%25E5%25AE%2589%25E8%25A3%2585%25E5%25BF%2585%25E5%25A4%2587%25E8%25BD%25AF%25E4%25BB%25B6%2F&size=300x300" target="_blank" rel="noopener">
+                  <i class="fab fa-weixin"></i> 微信
+                </a>
+
+                <!-- QQ 好友分享链接 -->
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F07%2F%25E5%25AE%2589%25E8%25A3%2585%25E5%25BF%2585%25E5%25A4%2587%25E8%25BD%25AF%25E4%25BB%25B6%2F&title=Arch%20Linux%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6" target="_blank" rel="noopener">
+                  <i class="fab fa-qq"></i> QQ好友
+                </a>
+
+                <!-- Twitter 分享链接 -->
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F07%2F%25E5%25AE%2589%25E8%25A3%2585%25E5%25BF%2585%25E5%25A4%2587%25E8%25BD%25AF%25E4%25BB%25B6%2F&text=Arch%20Linux%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6" target="_blank" rel="noopener">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+
+                <!-- Telegram 分享链接 -->
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F07%2F%25E5%25AE%2589%25E8%25A3%2585%25E5%25BF%2585%25E5%25A4%2587%25E8%25BD%25AF%25E4%25BB%25B6%2F&text=Arch%20Linux%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6" target="_blank" rel="noopener">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+
+                <!-- 复制当前页面链接 -->
+                <a class="share-btn" href="javascript:void(0);" onclick="copyLink()">
+                  <i class="fas fa-link"></i> 复制链接
+                </a>
+              </div>
+
+              <!-- 上一篇/下一篇导航 -->
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/08/%E6%97%A9%E5%90%AF%E5%8A%A8/" title="NVIDIA早启动">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">NVIDIA早启动</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/06/%E8%AE%BE%E7%BD%AEWindows11%E5%AD%97%E4%BD%93/" title="配置Windows11 Fonts">
+                        <span class="hidden-mobile">配置Windows11 Fonts</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            <!-- 评论模块注入点 -->
+            
   
   
     <article id="comments">
@@ -564,13 +599,14 @@
   
 
 
-            </article>
-          </div>
+          </article>
         </div>
       </div>
+    </div>
 
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+    <!-- 右侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
   <p class="toc-header">
@@ -585,9 +621,14 @@
   </aside>
 
 
-      </div>
     </div>
   </div>
+</div>
+
+<!-- markdown 插件注入 -->
+
+
+
 
   
 
@@ -609,13 +650,18 @@
 
 
 
-  
 
 
+<!-- 自定义后注入内容 -->
 
 
-
-    
+<script>
+// 复制当前链接到剪贴板
+function copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => alert("链接已复制！"));
+}
+</script>
 
               
 

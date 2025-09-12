@@ -8,6 +8,11 @@
 <head>
   <meta charset="UTF-8">
 
+  <!-- 文章分享css文件 -->
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
   <link rel="icon" href="/img/icons/huishao.png">
   
@@ -222,22 +227,6 @@
             </li>
           
         
-           <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
-
-          <!-- 如果菜单项有子菜单 -->
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/wallpapers/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-image"></i>
-                <!-- 菜单文字 -->
-                <span>壁纸</span>
-              </a>
-            </li>
-          
-        
 
         <!-- 搜索按钮 -->
         
@@ -267,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/13396645512884975.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/6464.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -368,25 +357,36 @@
           
             
 
-  <div class="container-fluid nopadding-x">
-    <div class="row nomargin-x">
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+<!-- 页面主要布局结构 -->
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
 
-      </div>
+    <!-- 左侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-      <div class="col-lg-8 nopadding-x-md">
-        <div class="container nopadding-x-md" id="board-ctn">
-          <div id="board">
-            <article class="post-content mx-auto">
-              <h1 id="seo-header">
-                Arch Linux安装Fcitx5+万象拼音
-              </h1>
-              
-                  
-                              <div class="markdown-body">
-                                
-                                  <h1 id="arch安装Fcitx5"><a href="#arch安装Fcitx5" class="headerlink" title="arch安装Fcitx5"></a>arch安装Fcitx5</h1><h4 id="安装fcitx5-im此包组提供fcitx5本体以及fcitx5-qt、fcitx5-gtk、fcitx5-configtool等"><a href="#安装fcitx5-im此包组提供fcitx5本体以及fcitx5-qt、fcitx5-gtk、fcitx5-configtool等" class="headerlink" title="安装fcitx5-im此包组提供fcitx5本体以及fcitx5-qt、fcitx5-gtk、fcitx5-configtool等"></a>安装fcitx5-im此包组提供fcitx5本体以及fcitx5-qt、fcitx5-gtk、fcitx5-configtool等</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S fcitx5-im<br></code></pre></td></tr></table></figure>
+    </div>
+
+    <!-- 主体内容区域 -->
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+
+            <!-- SEO 标题显示 -->
+            <h1 id="seo-header">
+              Arch Linux安装Fcitx5+万象拼音
+            </h1>
+
+            <!-- 更新时间显示模块 -->
+            
+
+            <!-- 如果文章加密，则加载加密内容 -->
+            
+              <!-- 正常文章内容 -->
+              <div class="markdown-body">
+                
+                <h1 id="arch安装Fcitx5"><a href="#arch安装Fcitx5" class="headerlink" title="arch安装Fcitx5"></a>arch安装Fcitx5</h1><h4 id="安装fcitx5-im此包组提供fcitx5本体以及fcitx5-qt、fcitx5-gtk、fcitx5-configtool等"><a href="#安装fcitx5-im此包组提供fcitx5本体以及fcitx5-qt、fcitx5-gtk、fcitx5-configtool等" class="headerlink" title="安装fcitx5-im此包组提供fcitx5本体以及fcitx5-qt、fcitx5-gtk、fcitx5-configtool等"></a>安装fcitx5-im此包组提供fcitx5本体以及fcitx5-qt、fcitx5-gtk、fcitx5-configtool等</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S fcitx5-im<br></code></pre></td></tr></table></figure>
 
 <h4 id="安装词汇fcitx5-pinyin-zhwiki包，是由felixonmars-根据中文维基百科创建的词库。适用于-拼音输入法"><a href="#安装词汇fcitx5-pinyin-zhwiki包，是由felixonmars-根据中文维基百科创建的词库。适用于-拼音输入法" class="headerlink" title="安装词汇fcitx5-pinyin-zhwiki包，是由felixonmars 根据中文维基百科创建的词库。适用于 拼音输入法"></a>安装词汇fcitx5-pinyin-zhwiki包，是由felixonmars 根据中文维基百科创建的词库。适用于 拼音输入法</h4><h4 id="安装主题fcitx5-material-color包，提供了类似微软拼音的外观"><a href="#安装主题fcitx5-material-color包，提供了类似微软拼音的外观" class="headerlink" title="安装主题fcitx5-material-color包，提供了类似微软拼音的外观"></a>安装主题fcitx5-material-color包，提供了类似微软拼音的外观</h4><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">sudo pacman -S fcitx5-<span class="hljs-built_in">chinese</span> fcitx5-pinyin-zhwiki fcitx5-material-<span class="hljs-built_in">color</span><br></code></pre></td></tr></table></figure>
 
@@ -415,12 +415,15 @@
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/home/</span>zjh<span class="hljs-regexp">/.local/</span>share<span class="hljs-regexp">/fcitx5/</span>rime<span class="hljs-regexp">/dicts/</span><br></code></pre></td></tr></table></figure>
 
 
-                                    
-                              </div>
-                              
-                                <hr />
-                                <div>
-                                  <div class="post-metas my-3">
+                
+              </div>
+            
+
+            <hr />
+
+            <div>
+              <!-- 元信息与版权注入点 -->
+              <div class="post-metas my-3">
   
     <div class="post-meta mr-3 d-flex align-items-center">
       <i class="iconfont icon-category"></i>
@@ -453,8 +456,7 @@
   
 </div>
 
-
-                                    
+              
   
 
   <div class="license-box my-3">
@@ -499,37 +501,70 @@
 
 
 
-                                      
-                                        <div class="post-prevnext my-3">
-                                          <article class="post-prev col-6">
-                                            
-                                              
-                                                <a href="/2025/07/04/arch%E5%AE%89%E8%A3%85KVM%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="Arch Linux安装KVM">
-                                                  <i class="iconfont icon-arrowleft"></i>
-                                                  <span class="hidden-mobile">
-                                                    Arch Linux安装KVM
-                                                  </span>
-                                                  <span class="visible-mobile">上一篇</span>
-                                                </a>
-                                                
-                                          </article>
-                                          <article class="post-next col-6">
-                                            
-                                              
-                                                <a href="/2025/06/02/arch%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" title="代理软件配置">
-                                                  <span class="hidden-mobile">
-                                                    代理软件配置
-                                                  </span>
-                                                  <span class="visible-mobile">下一篇</span>
-                                                  <i class="iconfont icon-arrowright"></i>
-                                                </a>
-                                                
-                                          </article>
-                                        </div>
-                                        
-                                </div>
+              <!-- 🚀 社交分享按钮（图标版） -->
+              <div class="social-share mt-4">
+                <span>分享到：</span>
 
-                                
+                <!-- 微博分享链接 -->
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F03%2F%25E5%25AE%2589%25E8%25A3%2585%25E9%2585%258D%25E7%25BD%25AEfcitx5%2F&title=Arch%20Linux%E5%AE%89%E8%A3%85Fcitx5%2B%E4%B8%87%E8%B1%A1%E6%8B%BC%E9%9F%B3" target="_blank" rel="noopener">
+                  <i class="fab fa-weibo"></i> 微博
+                </a>
+
+                <!-- 微信分享跳转链接（长按识别二维码页） -->
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F03%2F%25E5%25AE%2589%25E8%25A3%2585%25E9%2585%258D%25E7%25BD%25AEfcitx5%2F&size=300x300" target="_blank" rel="noopener">
+                  <i class="fab fa-weixin"></i> 微信
+                </a>
+
+                <!-- QQ 好友分享链接 -->
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F03%2F%25E5%25AE%2589%25E8%25A3%2585%25E9%2585%258D%25E7%25BD%25AEfcitx5%2F&title=Arch%20Linux%E5%AE%89%E8%A3%85Fcitx5%2B%E4%B8%87%E8%B1%A1%E6%8B%BC%E9%9F%B3" target="_blank" rel="noopener">
+                  <i class="fab fa-qq"></i> QQ好友
+                </a>
+
+                <!-- Twitter 分享链接 -->
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F03%2F%25E5%25AE%2589%25E8%25A3%2585%25E9%2585%258D%25E7%25BD%25AEfcitx5%2F&text=Arch%20Linux%E5%AE%89%E8%A3%85Fcitx5%2B%E4%B8%87%E8%B1%A1%E6%8B%BC%E9%9F%B3" target="_blank" rel="noopener">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+
+                <!-- Telegram 分享链接 -->
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F03%2F%25E5%25AE%2589%25E8%25A3%2585%25E9%2585%258D%25E7%25BD%25AEfcitx5%2F&text=Arch%20Linux%E5%AE%89%E8%A3%85Fcitx5%2B%E4%B8%87%E8%B1%A1%E6%8B%BC%E9%9F%B3" target="_blank" rel="noopener">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+
+                <!-- 复制当前页面链接 -->
+                <a class="share-btn" href="javascript:void(0);" onclick="copyLink()">
+                  <i class="fas fa-link"></i> 复制链接
+                </a>
+              </div>
+
+              <!-- 上一篇/下一篇导航 -->
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/04/arch%E5%AE%89%E8%A3%85KVM%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="Arch Linux安装KVM">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Arch Linux安装KVM</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/02/arch%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" title="代理软件配置">
+                        <span class="hidden-mobile">代理软件配置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            <!-- 评论模块注入点 -->
+            
   
   
     <article id="comments">
@@ -561,13 +596,14 @@
   
 
 
-            </article>
-          </div>
+          </article>
         </div>
       </div>
+    </div>
 
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+    <!-- 右侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
   <p class="toc-header">
@@ -582,9 +618,14 @@
   </aside>
 
 
-      </div>
     </div>
   </div>
+</div>
+
+<!-- markdown 插件注入 -->
+
+
+
 
   
 
@@ -606,13 +647,18 @@
 
 
 
-  
 
 
+<!-- 自定义后注入内容 -->
 
 
-
-    
+<script>
+// 复制当前链接到剪贴板
+function copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => alert("链接已复制！"));
+}
+</script>
 
               
 

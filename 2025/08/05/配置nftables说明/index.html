@@ -8,6 +8,11 @@
 <head>
   <meta charset="UTF-8">
 
+  <!-- 文章分享css文件 -->
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
   <link rel="icon" href="/img/icons/huishao.png">
   
@@ -222,22 +227,6 @@
             </li>
           
         
-           <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
-
-          <!-- 如果菜单项有子菜单 -->
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/wallpapers/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-image"></i>
-                <!-- 菜单文字 -->
-                <span>壁纸</span>
-              </a>
-            </li>
-          
-        
 
         <!-- 搜索按钮 -->
         
@@ -267,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/wallhaven-mldy7y.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131612409_p0%20(1).png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -368,25 +357,36 @@
           
             
 
-  <div class="container-fluid nopadding-x">
-    <div class="row nomargin-x">
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+<!-- 页面主要布局结构 -->
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
 
-      </div>
+    <!-- 左侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-      <div class="col-lg-8 nopadding-x-md">
-        <div class="container nopadding-x-md" id="board-ctn">
-          <div id="board">
-            <article class="post-content mx-auto">
-              <h1 id="seo-header">
-                Nftables防火墙
-              </h1>
-              
-                  
-                              <div class="markdown-body">
-                                
-                                  <h1 id="安装nftables"><a href="#安装nftables" class="headerlink" title="安装nftables"></a>安装nftables</h1><p><code>sudo pacman -S nftables 正常已经内置无需安装</code><br><code>sudo pacman -Q nftables 查看是否存在</code></p>
+    </div>
+
+    <!-- 主体内容区域 -->
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+
+            <!-- SEO 标题显示 -->
+            <h1 id="seo-header">
+              Nftables防火墙
+            </h1>
+
+            <!-- 更新时间显示模块 -->
+            
+
+            <!-- 如果文章加密，则加载加密内容 -->
+            
+              <!-- 正常文章内容 -->
+              <div class="markdown-body">
+                
+                <h1 id="安装nftables"><a href="#安装nftables" class="headerlink" title="安装nftables"></a>安装nftables</h1><p><code>sudo pacman -S nftables 正常已经内置无需安装</code><br><code>sudo pacman -Q nftables 查看是否存在</code></p>
 <h1 id="打开服务"><a href="#打开服务" class="headerlink" title="打开服务"></a>打开服务</h1><p><code>sudo systemctl enable --now nftables.service</code><br><code>sudo systemctl status nftables.service 查看服务是否开启</code></p>
 <h1 id="所有的放行和禁止端口都在-etc-nftables-conf下设置"><a href="#所有的放行和禁止端口都在-etc-nftables-conf下设置" class="headerlink" title="所有的放行和禁止端口都在&#x2F;etc&#x2F;nftables.conf下设置"></a>所有的放行和禁止端口都在&#x2F;etc&#x2F;nftables.conf下设置</h1><h3 id="修改后的配置（在你的基础上扩展端口规则）"><a href="#修改后的配置（在你的基础上扩展端口规则）" class="headerlink" title="修改后的配置（在你的基础上扩展端口规则）"></a>修改后的配置（在你的基础上扩展端口规则）</h3><h1 id="—————————————————"><a href="#—————————————————" class="headerlink" title="—————————————————-"></a>—————————————————-</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs conf">destroy table inet filter<br>table inet filter &#123;<br>  chain input &#123;<br>    type filter hook input priority filter<br>    policy drop<br><br>ct state invalid drop comment &quot;early drop of invalid connections&quot;<br>ct state &#123;established, related&#125; accept comment &quot;allow tracked connections&quot;<br>iif lo accept comment &quot;allow from loopback&quot;<br>ip protocol icmp accept comment &quot;allow icmp&quot;<br>meta l4proto ipv6-icmp accept comment &quot;allow icmp v6&quot;<br><br># 开放 SSH<br><br>tcp dport ssh accept comment &quot;allow sshd&quot;<br><br># 开放你需要的端口（TCP 和 UDP）（&#123;&#125;这是一个集合）<br>tcp dport &#123; 443, 80, 8080, 8090, 1090, 1080, 33612, 23361, 5000, 2017, 10170, 1314 &#125; accept comment &quot;allow specified tcp ports&quot;<br>udp dport &#123; 443, 80, 8080, 8090, 1090, 1080, 33612, 23361, 5000, 2017, 10170, 1314 &#125; accept comment &quot;allow specified udp ports&quot;<br><br># kdeconnect<br>tcp dport 1716-1764 accept comment &quot;allow kdeconnect tcp ports&quot;<br>udp dport 1716-1764 accept comment &quot;allow kdeconnect udp ports&quot;<br><br># 限制扫描类数据包<br>pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited<br><br># 统计默认拒绝包<br><br>counter<br><br>  &#125;<br><br>  chain forward &#123;<br>    type filter hook forward priority filter<br>    policy drop<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -426,12 +426,15 @@
 </li>
 </ol>
 
-                                    
-                              </div>
-                              
-                                <hr />
-                                <div>
-                                  <div class="post-metas my-3">
+                
+              </div>
+            
+
+            <hr />
+
+            <div>
+              <!-- 元信息与版权注入点 -->
+              <div class="post-metas my-3">
   
     <div class="post-meta mr-3 d-flex align-items-center">
       <i class="iconfont icon-category"></i>
@@ -464,8 +467,7 @@
   
 </div>
 
-
-                                    
+              
   
 
   <div class="license-box my-3">
@@ -510,37 +512,70 @@
 
 
 
-                                      
-                                        <div class="post-prevnext my-3">
-                                          <article class="post-prev col-6">
-                                            
-                                              
-                                                <a href="/2025/08/05/Wayland%E6%9B%B4%E5%A4%9A%E8%AE%BE%E7%BD%AE/" title="Wayland更多设置">
-                                                  <i class="iconfont icon-arrowleft"></i>
-                                                  <span class="hidden-mobile">
-                                                    Wayland更多设置
-                                                  </span>
-                                                  <span class="visible-mobile">上一篇</span>
-                                                </a>
-                                                
-                                          </article>
-                                          <article class="post-next col-6">
-                                            
-                                              
-                                                <a href="/2025/08/04/%E5%8E%BB%E6%B0%B4%E5%8D%B0/" title="基于Python去水印">
-                                                  <span class="hidden-mobile">
-                                                    基于Python去水印
-                                                  </span>
-                                                  <span class="visible-mobile">下一篇</span>
-                                                  <i class="iconfont icon-arrowright"></i>
-                                                </a>
-                                                
-                                          </article>
-                                        </div>
-                                        
-                                </div>
+              <!-- 🚀 社交分享按钮（图标版） -->
+              <div class="social-share mt-4">
+                <span>分享到：</span>
 
-                                
+                <!-- 微博分享链接 -->
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F05%2F%25E9%2585%258D%25E7%25BD%25AEnftables%25E8%25AF%25B4%25E6%2598%258E%2F&title=Nftables%E9%98%B2%E7%81%AB%E5%A2%99" target="_blank" rel="noopener">
+                  <i class="fab fa-weibo"></i> 微博
+                </a>
+
+                <!-- 微信分享跳转链接（长按识别二维码页） -->
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F05%2F%25E9%2585%258D%25E7%25BD%25AEnftables%25E8%25AF%25B4%25E6%2598%258E%2F&size=300x300" target="_blank" rel="noopener">
+                  <i class="fab fa-weixin"></i> 微信
+                </a>
+
+                <!-- QQ 好友分享链接 -->
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F05%2F%25E9%2585%258D%25E7%25BD%25AEnftables%25E8%25AF%25B4%25E6%2598%258E%2F&title=Nftables%E9%98%B2%E7%81%AB%E5%A2%99" target="_blank" rel="noopener">
+                  <i class="fab fa-qq"></i> QQ好友
+                </a>
+
+                <!-- Twitter 分享链接 -->
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F05%2F%25E9%2585%258D%25E7%25BD%25AEnftables%25E8%25AF%25B4%25E6%2598%258E%2F&text=Nftables%E9%98%B2%E7%81%AB%E5%A2%99" target="_blank" rel="noopener">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+
+                <!-- Telegram 分享链接 -->
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F05%2F%25E9%2585%258D%25E7%25BD%25AEnftables%25E8%25AF%25B4%25E6%2598%258E%2F&text=Nftables%E9%98%B2%E7%81%AB%E5%A2%99" target="_blank" rel="noopener">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+
+                <!-- 复制当前页面链接 -->
+                <a class="share-btn" href="javascript:void(0);" onclick="copyLink()">
+                  <i class="fas fa-link"></i> 复制链接
+                </a>
+              </div>
+
+              <!-- 上一篇/下一篇导航 -->
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/05/Wayland%E6%9B%B4%E5%A4%9A%E8%AE%BE%E7%BD%AE/" title="Wayland更多设置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Wayland更多设置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/04/%E5%8E%BB%E6%B0%B4%E5%8D%B0/" title="基于Python去水印">
+                        <span class="hidden-mobile">基于Python去水印</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            <!-- 评论模块注入点 -->
+            
   
   
     <article id="comments">
@@ -572,13 +607,14 @@
   
 
 
-            </article>
-          </div>
+          </article>
         </div>
       </div>
+    </div>
 
-      <div class="side-col d-none d-lg-block col-lg-2">
-        
+    <!-- 右侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
   <p class="toc-header">
@@ -593,9 +629,14 @@
   </aside>
 
 
-      </div>
     </div>
   </div>
+</div>
+
+<!-- markdown 插件注入 -->
+
+
+
 
   
 
@@ -617,13 +658,18 @@
 
 
 
-  
 
 
+<!-- 自定义后注入内容 -->
 
 
-
-    
+<script>
+// 复制当前链接到剪贴板
+function copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => alert("链接已复制！"));
+}
+</script>
 
               
 

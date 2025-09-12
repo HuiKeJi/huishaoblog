@@ -1,0 +1,50 @@
+/* ===============================
+ * 社交分享按钮样式 
+ * themes/myhui/layout/post.ejs
+ * =============================== */
+
+/* 分享按钮整体容器 */
+.social-share {
+  margin-top: 2rem;
+  font-size: 16px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 单个分享按钮的样式 */
+.social-share .share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  text-decoration: none;
+  color: #555;
+  background: #f1f1f1;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 悬停时按钮高亮 */
+.social-share .share-btn:hover {
+  background: #e0e0e0;
+  color: #000;
+  transform: translateY(-1px);
+}
+
+/* 图标字体大小 */
+.social-share i {
+  font-size: 1.1em;
+}
+
+/* ===============================
+ * 响应式调整 Responsive
+ * =============================== */
+@media (max-width: 768px) {
+  .social-share {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
