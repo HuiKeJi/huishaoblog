@@ -19,26 +19,26 @@
   <meta name="author" content="huishao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一些PATH建议及报错解决">
+    <meta name="description" content="主要链接为百度网盘、夸克网盘、蓝奏云网盘">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Arch Linux配置PATH的几种例子">
-<meta property="og:url" content="http://huishao.net/2025/08/10/arch%E7%9A%84PATH%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:title" content="Windows 程序包列表（每日更新）">
+<meta property="og:url" content="http://huishao.net/2025/09/09/Windows%20%E7%A8%8B%E5%BA%8F%E5%8C%85/index.html">
 <meta property="og:site_name" content="辉少笔记">
-<meta property="og:description" content="一些PATH建议及报错解决">
+<meta property="og:description" content="主要链接为百度网盘、夸克网盘、蓝奏云网盘">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://huishao.net/img/articleslist/wallhaven-9o51l8.jpg">
-<meta property="article:published_time" content="2025-08-10T10:30:00.000Z">
-<meta property="article:modified_time" content="2025-09-11T14:09:49.790Z">
+<meta property="og:image" content="http://huishao.net/img/articleslist/wallhaven-gw79w3.jpg">
+<meta property="article:published_time" content="2025-09-09T10:30:00.000Z">
+<meta property="article:modified_time" content="2025-09-12T05:36:42.716Z">
 <meta property="article:author" content="huishao">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://huishao.net/img/articleslist/wallhaven-9o51l8.jpg">
+<meta name="twitter:image" content="http://huishao.net/img/articleslist/wallhaven-gw79w3.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Arch Linux配置PATH的几种例子 - 辉少笔记</title>
+  <title>Windows 程序包列表（每日更新） - 辉少笔记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,13 +215,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/a9.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Arch Linux配置PATH的几种例子"></span>
+            <span id="subtitle" data-typed-text="Windows 程序包列表（每日更新）"></span>
           
         </div>
 
@@ -241,8 +241,8 @@
             
               <span class="post-meta-item">
                 <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                <time datetime="2025-08-10 18:30" pubdate>
-                  2025年8月10日 晚上
+                <time datetime="2025-09-09 18:30" pubdate>
+                  2025年9月9日 晚上
                 </time>
               </span>
               
@@ -250,7 +250,7 @@
                 
                   <span class="post-meta-item">
                     <i class="iconfont icon-chart"></i>
-                    296 字
+                    300 字
                   </span>
                   
 
@@ -328,49 +328,55 @@
           <div id="board">
             <article class="post-content mx-auto">
               <h1 id="seo-header">
-                Arch Linux配置PATH的几种例子
+                Windows 程序包列表（每日更新）
               </h1>
               
                   
                               <div class="markdown-body">
                                 
-                                  <p>首先需要有代理的条件，例如trojan、v2ray、shadowsocks、WireGuard等等</p>
-<p>其次是进行shell代理，其实可以使用shell专用代理工具，例如：proxychains、tsocks、redsocks等等，这里我们就讲述shell方式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.bashrc<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">http_proxy</span>=<span class="hljs-string">&quot;socks5://127.0.0.1:1089&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">https_proxy</span>=<span class="hljs-string">&quot;socks5://127.0.0.1:1089&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">all_proxy</span>=<span class="hljs-string">&quot;socks5://127.0.0.1:1089&quot;</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.bashrc<br></code></pre></td></tr></table></figure>
-
-<p>shell代理就生效了，不管是yay、pacman、apt、yum等都是走127.0.0.1:1089网络数据</p>
-<h3 id="pip报错"><a href="#pip报错" class="headerlink" title="pip报错"></a>pip报错</h3><p>在使用<strong>pip</strong>过程中，会提示以下提示，说明<strong>pip</strong>不支持<strong>~&#x2F;.bashrc</strong>这种代理</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs subunit">$ pip install pipenv <br><span class="hljs-keyword">ERROR: </span>Could not install packages due to an OSError: Missing dependencies for SOCKS support. <br><br>**[**notice**]** A new release of pip available: 22.3 -&gt; 25.1.1 <br>**[**notice**]** To update, run: pip3 install --upgrade pip<br></code></pre></td></tr></table></figure>
-
-<p>需注释上面的代理，并用<strong>pip</strong>安装一个软件包：<strong>PySocks</strong>，先使用<strong>proxychains</strong>等工具的代理方式解决，如下</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">proxychains pip <span class="hljs-keyword">install</span> PySocks<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>PySocks</strong>解决缺少 <strong>SOCKS</strong> 支持的问题</p>
-<p>现在可以恢复<strong>~&#x2F;.bashrc</strong>中设置的代理信息，正常<strong>pip install PySocks</strong>即可</p>
+                                  <h3 id="RePKG：提取Wallpaper-Engine壁纸"><a href="#RePKG：提取Wallpaper-Engine壁纸" class="headerlink" title="RePKG：提取Wallpaper Engine壁纸"></a>RePKG：提取Wallpaper Engine壁纸</h3><blockquote>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/10lOFnoJF8e1F6uyAR-hwGQ">https://pan.baidu.com/s/10lOFnoJF8e1F6uyAR-hwGQ</a> 提取码: 8888</p>
 </blockquote>
-<h3 id="PATH设置"><a href="#PATH设置" class="headerlink" title="PATH设置"></a>PATH设置</h3><p>添加如下命令，即可全局使用<strong>hexo clean、hexo server、hexo generate</strong>等等命令</p>
-<blockquote>
-<p>[!IMPORTANT]</p>
-<p><strong>PATH&#x3D;后面以自己路径为主</strong></p>
+<h3 id="HiBitUninstaller：Windows完美的卸载软件工具"><a href="#HiBitUninstaller：Windows完美的卸载软件工具" class="headerlink" title="HiBitUninstaller：Windows完美的卸载软件工具"></a>HiBitUninstaller：Windows完美的卸载软件工具</h3><blockquote>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1OJOrNsh--Mn-eFi2pztIWg">https://pan.baidu.com/s/1OJOrNsh--Mn-eFi2pztIWg</a> 提取码: 8888</p>
 </blockquote>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$HOME</span>/src/myblog/node_modules/hexo/bin:$PATH<br></code></pre></td></tr></table></figure>
-
-<p>scrcpy安卓控制</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=/opt/hsprogram/broker/scrcpy-linux-x86_64-v3.3.1:$PATH<br></code></pre></td></tr></table></figure>
-
-<p>7z解压缩</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=/opt/hsprogram/binary/7z:$PATH<br></code></pre></td></tr></table></figure>
-
-<p>不同版本的python</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/src/python311/bin:<span class="hljs-variable">$PATH</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/src/python310/bin:<span class="hljs-variable">$PATH</span><br></code></pre></td></tr></table></figure>
-
+<h3 id="Typora：目前为破解版（Markdown编辑器）"><a href="#Typora：目前为破解版（Markdown编辑器）" class="headerlink" title="Typora：目前为破解版（Markdown编辑器）"></a>Typora：目前为破解版（Markdown编辑器）</h3><blockquote>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/15xPZWkSrJPN7SKCyxeRGrw">https://pan.baidu.com/s/15xPZWkSrJPN7SKCyxeRGrw</a> 提取码: 8888</p>
+</blockquote>
+<h3 id="小米管家电脑版：仅限于除小米以外的其它品牌电脑"><a href="#小米管家电脑版：仅限于除小米以外的其它品牌电脑" class="headerlink" title="小米管家电脑版：仅限于除小米以外的其它品牌电脑"></a>小米管家电脑版：仅限于除小米以外的其它品牌电脑</h3><blockquote>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Xy2G9LbxsGGPDSSJQdrAzQ">https://pan.baidu.com/s/1Xy2G9LbxsGGPDSSJQdrAzQ</a> 提取码: 8888</p>
+</blockquote>
+<h3 id="IObitUninstaller：可以理解为HiBitUninstallerPro版"><a href="#IObitUninstaller：可以理解为HiBitUninstallerPro版" class="headerlink" title="IObitUninstaller：可以理解为HiBitUninstallerPro版"></a>IObitUninstaller：可以理解为HiBitUninstallerPro版</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/983b179e5c42?pwd=rrMH">https://pan.quark.cn/s/983b179e5c42?pwd=rrMH</a></p>
+</blockquote>
+<h3 id="AOMEIPartAssist：分区助手5-2-2"><a href="#AOMEIPartAssist：分区助手5-2-2" class="headerlink" title="AOMEIPartAssist：分区助手5.2.2"></a>AOMEIPartAssist：分区助手5.2.2</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/9cd8bdd8494a?pwd=NuFZ">https://pan.quark.cn/s/9cd8bdd8494a?pwd=NuFZ</a></p>
+</blockquote>
+<h3 id="DiskGenius：磁盘工具"><a href="#DiskGenius：磁盘工具" class="headerlink" title="DiskGenius：磁盘工具"></a>DiskGenius：磁盘工具</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/9bfa25603bc6?pwd=qUPK">https://pan.quark.cn/s/9bfa25603bc6?pwd=qUPK</a></p>
+</blockquote>
+<h3 id="LinuxReaderPortable：硬盘访问工具"><a href="#LinuxReaderPortable：硬盘访问工具" class="headerlink" title="LinuxReaderPortable：硬盘访问工具"></a>LinuxReaderPortable：硬盘访问工具</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/90767ad8bc22?pwd=PG2T">https://pan.quark.cn/s/90767ad8bc22?pwd=PG2T</a></p>
+</blockquote>
+<h3 id="图吧工具箱：查看电脑基本信息"><a href="#图吧工具箱：查看电脑基本信息" class="headerlink" title="图吧工具箱：查看电脑基本信息"></a>图吧工具箱：查看电脑基本信息</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/8170a75a0840?pwd=fitR">https://pan.quark.cn/s/8170a75a0840?pwd=fitR</a></p>
+</blockquote>
+<h3 id="Qv2ray：代理"><a href="#Qv2ray：代理" class="headerlink" title="Qv2ray：代理"></a>Qv2ray：代理</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/413a4389a64e?pwd=YP3J">https://pan.quark.cn/s/413a4389a64e?pwd=YP3J</a></p>
+</blockquote>
+<h3 id="Qv2ray补丁：添加后可以代理Trojan、SS、SSR等等节点"><a href="#Qv2ray补丁：添加后可以代理Trojan、SS、SSR等等节点" class="headerlink" title="Qv2ray补丁：添加后可以代理Trojan、SS、SSR等等节点"></a>Qv2ray补丁：添加后可以代理Trojan、SS、SSR等等节点</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/1b9c48f9dcd0?pwd=XE4z">https://pan.quark.cn/s/1b9c48f9dcd0?pwd=XE4z</a></p>
+</blockquote>
+<h3 id="v2rayN：本身就可以代理很多节点"><a href="#v2rayN：本身就可以代理很多节点" class="headerlink" title="v2rayN：本身就可以代理很多节点"></a>v2rayN：本身就可以代理很多节点</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/a202cdf5a4d2?pwd=QZJb">https://pan.quark.cn/s/a202cdf5a4d2?pwd=QZJb</a></p>
+</blockquote>
+<h3 id="DirectX-Repair：修复llb工具"><a href="#DirectX-Repair：修复llb工具" class="headerlink" title="DirectX Repair：修复llb工具"></a>DirectX Repair：修复llb工具</h3><blockquote>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1eKEE1g5QuwWk3J6Co9ruig">https://pan.baidu.com/s/1eKEE1g5QuwWk3J6Co9ruig</a> 提取码: 8888</p>
+</blockquote>
+<h3 id="Synergy：跨平台键鼠共享工具"><a href="#Synergy：跨平台键鼠共享工具" class="headerlink" title="Synergy：跨平台键鼠共享工具"></a>Synergy：跨平台键鼠共享工具</h3><blockquote>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1ux9un87xYNUjTApmbK77Lg">https://pan.baidu.com/s/1ux9un87xYNUjTApmbK77Lg</a> 提取码: 8888</p>
+</blockquote>
+<h3 id="Office：办公工具"><a href="#Office：办公工具" class="headerlink" title="Office：办公工具"></a>Office：办公工具</h3><p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1EQ5-bUJuAcUGIbJOd0fdAQ">https://pan.baidu.com/s/1EQ5-bUJuAcUGIbJOd0fdAQ</a> 提取码: 8888</p>
 
                                     
                               </div>
@@ -389,7 +395,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Arch-Linux/" class="category-chain-item">Arch Linux</a>
+  <a href="/categories/Windows/" class="category-chain-item">Windows</a>
   
   
 
@@ -404,7 +410,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
       
     </div>
   
@@ -416,8 +422,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Arch Linux配置PATH的几种例子</div>
-      <div>http://huishao.net/2025/08/10/arch的PATH设置/</div>
+      <div>Windows 程序包列表（每日更新）</div>
+      <div>http://huishao.net/2025/09/09/Windows 程序包/</div>
     </div>
     <div class="license-meta">
       
@@ -429,7 +435,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年8月10日</div>
+          <div>2025年9月9日</div>
         </div>
       
       
@@ -461,10 +467,10 @@
                                           <article class="post-prev col-6">
                                             
                                               
-                                                <a href="/2025/08/11/arch%E5%BC%95%E5%AF%BC%E8%AE%BE%E7%BD%AE/" title="Arch Linux安装引导">
+                                                <a href="/2025/09/09/Linux%20%E7%A8%8B%E5%BA%8F%E5%8C%85/" title="Linux 程序包列表（每日更新）">
                                                   <i class="iconfont icon-arrowleft"></i>
                                                   <span class="hidden-mobile">
-                                                    Arch Linux安装引导
+                                                    Linux 程序包列表（每日更新）
                                                   </span>
                                                   <span class="visible-mobile">上一篇</span>
                                                 </a>
@@ -473,9 +479,9 @@
                                           <article class="post-next col-6">
                                             
                                               
-                                                <a href="/2025/08/09/%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDNTFS%E7%A1%AC%E7%9B%98/" title="NTFS自动挂载">
+                                                <a href="/2025/08/31/appimage%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" title="appimage创建desktop问题解决">
                                                   <span class="hidden-mobile">
-                                                    NTFS自动挂载
+                                                    appimage创建desktop问题解决
                                                   </span>
                                                   <span class="visible-mobile">下一篇</span>
                                                   <i class="iconfont icon-arrowright"></i>
