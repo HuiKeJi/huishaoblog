@@ -8,6 +8,9 @@
 <head>
   <meta charset="UTF-8">
 
+  <link rel="stylesheet" href="/css/giscus.css">
+
+
   <!-- 文章分享css文件 -->
   <link rel="stylesheet" href="/css/share.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
@@ -68,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"huishao.net","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/gif/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"kt19AZrmvIvdNeQbR6Ze9CMi-gzGzoHsz","app_key":"SFr2nBzqGwf5yONfSLXsgQXE","server_url":"https://kt19azrm.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"huishao.net","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/gif/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"kt19AZrmvIvdNeQbR6Ze9CMi-gzGzoHsz","app_key":"SFr2nBzqGwf5yONfSLXsgQXE","server_url":"https://kt19azrm.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -103,7 +106,9 @@
         <header>
           
 
+<!-- 只有在显示 banner 时，才给 header-inner 设高度；否则不设高度，让导航正常显示 -->
 <div class="header-inner" style="height: 60vh;">
+  <!-- 导航始终渲染 -->
   <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
 
@@ -111,7 +116,7 @@
     <a class="navbar-brand" href="/">
       
         <!-- 博主头像，如果设置了 avatar -->
-        <img src="/img/icons/huishao64.png" srcset="/img/gif/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35px" height="35px"/>
+        <img src="/img/icons/huishao64.png" alt="avatar" class="navbar-avatar" width="35px" height="35px"/>
       
       <!-- 网站标题，若主题配置了 navbar.blog_title 使用它，否则使用 Hexo 配置的 title -->
       <strong>&nbsp;&nbsp;辉少笔记</strong>
@@ -214,6 +219,22 @@
             </li>
           
         
+           <!-- 没有子菜单也没有链接则跳过 -->
+          
+           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
+
+          <!-- 如果菜单项有子菜单 -->
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/guestbook/" target="_self">
+                <!-- 菜单图标 -->
+                <i class="iconfont icon-comment"></i>
+                <!-- 菜单文字 -->
+                <span>留言页</span>
+              </a>
+            </li>
+          
+        
 
         <!-- 搜索按钮 -->
         
@@ -240,7 +261,10 @@
   </div>
 </nav>
 
+
+  <!-- 仅在允许时渲染横幅 -->
   
+    
 
 <div id="banner" class="banner" parallax=true
      style="background: url('/img/homepage/fenlei.png') no-repeat center center; background-size: cover;">
@@ -261,7 +285,10 @@
   </div>
 </div>
 
+  
 </div>
+
+
 
       <!-- '/img/random/131.png',
       '/img/random/132.png',
@@ -488,10 +515,6 @@
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
 
 
 
@@ -519,3 +542,36 @@
     </body>
 
   </html>
+
+
+<!-- 全局黑夜和白昼设置 -->
+<!-- themes/myhui/layout/guestbook.ejs 留言页设置 -->
+<style>
+/* —— 全局默认（浅色） —— */
+html, body {
+  background: #ffffff;            /* 浅色模式两边的底色 */
+}
+
+/* —— 暗色：强制把两边背景变深 —— */
+html[data-user-color-scheme="dark"] body {
+  background: #0f172a !important; /* 自己喜欢的深色，如 #111827 / #0f172a / #1e293b */
+}
+
+/* 某些主题会用 #web_bg / .web_bg / .body-bg 之类的容器铺底，这里一起覆盖 */
+html[data-user-color-scheme="dark"] #web_bg,
+html[data-user-color-scheme="dark"] .web_bg,
+html[data-user-color-scheme="dark"] .body-bg,
+html[data-user-color-scheme="dark"] .site-bg {
+  background: #0f172a !important;
+}
+
+/* 如果主题给这些容器加了半透明蒙层/渐变（:before），也去掉以免发灰 */
+html[data-user-color-scheme="dark"] #web_bg::before,
+html[data-user-color-scheme="dark"] .web_bg::before,
+html[data-user-color-scheme="dark"] .body-bg::before,
+html[data-user-color-scheme="dark"] .site-bg::before {
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+</style>

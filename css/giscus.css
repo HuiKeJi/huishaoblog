@@ -1,0 +1,17 @@
+/* 先引入官方 light，保证变量/类名都在 */
+@import url("https://giscus.app/themes/light.css");
+
+/* 彻底透明：去背景/边框/阴影 */
+html, body,
+.gsc-main, .gsc-header, .gsc-hr, .gsc-timeline,
+.gsc-comment-box, .gsc-comment, .gsc-replies, .gsc-reply-box {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* —— 如果想给输入框或每条评论加细边框，解除下面注释 —— */
+/*
+.gsc-comment-box { border:1px solid rgba(0,0,0,.08) !important; border-radius:12px !important; }
+.gsc-comment     { border:1px solid rgba(0,0,0,.08) !important; border-radius:12px !important; padding:12px !important; margin-bottom:12px !important; }
+*/
