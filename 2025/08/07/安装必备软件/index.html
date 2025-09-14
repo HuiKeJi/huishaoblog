@@ -128,14 +128,14 @@
     <!-- 网站标题 / LOGO -->
     <a class="navbar-brand" href="/">
       
-        <!-- 博主头像，如果设置了 avatar -->
+        <!-- 博主头像（如果配置了 avatar） -->
         <img src="/img/icons/huishao64.png" srcset="/img/gif/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35px" height="35px"/>
       
-      <!-- 网站标题，若主题配置了 navbar.blog_title 使用它，否则使用 Hexo 配置的 title -->
+      <!-- 网站标题：优先用 theme.navbar.blog_title，否则用 Hexo 配置的 title -->
       <strong>&nbsp;&nbsp;辉少笔记</strong>
     </a>
 
-    <!-- 移动端导航折叠按钮 -->
+    <!-- 移动端导航折叠按钮（汉堡按钮） -->
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,18 +150,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto text-center">
 
-        <!-- 循环主题配置的导航菜单 -->
+        <!-- 定义一个渲染图标的函数 -->
+        
+
+        <!-- 循环配置的导航菜单 -->
         
            <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
 
-          <!-- 如果菜单项有子菜单 -->
+          <!-- 处理菜单显示的文本 -->
+          
+           <!-- 如果没有翻译文本，则使用 key -->
+
+          <!-- 如果有子菜单 -->
           
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-home-fill"></i>
+                <!-- 普通菜单图标 -->
+                
+          
+          
+            <!-- 如果是 iconfont 写法，例如 "iconfont icon-home" -->
+            <!-- 给它加上 nav-icon 专用类，避免和其他 .icon 样式冲突 -->
+            <i class="iconfont icon-home-fill nav-icon" aria-hidden="true"></i>
+          
+        
                 <!-- 菜单文字 -->
                 <span>首页</span>
               </a>
@@ -169,15 +181,24 @@
           
         
            <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
 
-          <!-- 如果菜单项有子菜单 -->
+          <!-- 处理菜单显示的文本 -->
+          
+           <!-- 如果没有翻译文本，则使用 key -->
+
+          <!-- 如果有子菜单 -->
           
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-archive-fill"></i>
+                <!-- 普通菜单图标 -->
+                
+          
+          
+            <!-- 如果是 iconfont 写法，例如 "iconfont icon-home" -->
+            <!-- 给它加上 nav-icon 专用类，避免和其他 .icon 样式冲突 -->
+            <i class="iconfont icon-archive-fill nav-icon" aria-hidden="true"></i>
+          
+        
                 <!-- 菜单文字 -->
                 <span>归档</span>
               </a>
@@ -185,15 +206,24 @@
           
         
            <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
 
-          <!-- 如果菜单项有子菜单 -->
+          <!-- 处理菜单显示的文本 -->
+          
+           <!-- 如果没有翻译文本，则使用 key -->
+
+          <!-- 如果有子菜单 -->
           
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-category-fill"></i>
+                <!-- 普通菜单图标 -->
+                
+          
+          
+            <!-- 如果是 iconfont 写法，例如 "iconfont icon-home" -->
+            <!-- 给它加上 nav-icon 专用类，避免和其他 .icon 样式冲突 -->
+            <i class="iconfont icon-category-fill nav-icon" aria-hidden="true"></i>
+          
+        
                 <!-- 菜单文字 -->
                 <span>分类</span>
               </a>
@@ -201,15 +231,24 @@
           
         
            <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
 
-          <!-- 如果菜单项有子菜单 -->
+          <!-- 处理菜单显示的文本 -->
+          
+           <!-- 如果没有翻译文本，则使用 key -->
+
+          <!-- 如果有子菜单 -->
           
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-tags-fill"></i>
+                <!-- 普通菜单图标 -->
+                
+          
+          
+            <!-- 如果是 iconfont 写法，例如 "iconfont icon-home" -->
+            <!-- 给它加上 nav-icon 专用类，避免和其他 .icon 样式冲突 -->
+            <i class="iconfont icon-tags-fill nav-icon" aria-hidden="true"></i>
+          
+        
                 <!-- 菜单文字 -->
                 <span>标签</span>
               </a>
@@ -217,15 +256,24 @@
           
         
            <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
 
-          <!-- 如果菜单项有子菜单 -->
+          <!-- 处理菜单显示的文本 -->
+          
+           <!-- 如果没有翻译文本，则使用 key -->
+
+          <!-- 如果有子菜单 -->
           
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-user-fill"></i>
+                <!-- 普通菜单图标 -->
+                
+          
+          
+            <!-- 如果是 iconfont 写法，例如 "iconfont icon-home" -->
+            <!-- 给它加上 nav-icon 专用类，避免和其他 .icon 样式冲突 -->
+            <i class="iconfont icon-user-fill nav-icon" aria-hidden="true"></i>
+          
+        
                 <!-- 菜单文字 -->
                 <span>关于</span>
               </a>
@@ -233,19 +281,82 @@
           
         
            <!-- 没有子菜单也没有链接则跳过 -->
-          
-           <!-- 如果没有翻译文本，则使用 key 作为显示文本 -->
 
-          <!-- 如果菜单项有子菜单 -->
+          <!-- 处理菜单显示的文本 -->
+          
+           <!-- 如果没有翻译文本，则使用 key -->
+
+          <!-- 如果有子菜单 -->
           
             <li class="nav-item">
               <a class="nav-link" href="/guestbook/" target="_self">
-                <!-- 菜单图标 -->
-                <i class="iconfont icon-comment"></i>
+                <!-- 普通菜单图标 -->
+                
+          
+          
+            <!-- 如果是 iconfont 写法，例如 "iconfont icon-home" -->
+            <!-- 给它加上 nav-icon 专用类，避免和其他 .icon 样式冲突 -->
+            <i class="iconfont icon-comment nav-icon" aria-hidden="true"></i>
+          
+        
                 <!-- 菜单文字 -->
                 <span>留言页</span>
               </a>
             </li>
+          
+        
+           <!-- 没有子菜单也没有链接则跳过 -->
+
+          <!-- 处理菜单显示的文本 -->
+          
+           <!-- 如果没有翻译文本，则使用 key -->
+
+          <!-- 如果有子菜单 -->
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- 顶层菜单图标 -->
+                
+          
+          
+            <!-- 如果是 sprite.svg 写法，例如 "home" -->
+            <!-- 使用 nav-icon 专用类，彻底隔离评论插件的 .gt-svg 样式 -->
+            <svg class="nav-icon" aria-hidden="true" focusable="false">
+              <use xlink:href="/img/svg/sprite.svg#tools2"></use>
+            </svg>
+          
+        
+                <!-- 菜单文字 -->
+                <span>工具</span>
+              </a>
+
+              <!-- 下拉子菜单 -->
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                   <!-- 没有链接则跳过 -->
+                  
+                   <!-- 没有翻译文本则用 key -->
+                  <a class="dropdown-item" href="/md-editor/" target="_self">
+                    <!-- 子菜单图标 -->
+                    
+          
+          
+            <!-- 如果是 sprite.svg 写法，例如 "home" -->
+            <!-- 使用 nav-icon 专用类，彻底隔离评论插件的 .gt-svg 样式 -->
+            <svg class="nav-icon" aria-hidden="true" focusable="false">
+              <use xlink:href="/img/svg/sprite.svg#md"></use>
+            </svg>
+          
+        
+                    <!-- 子菜单文字 -->
+                    <span>Markdown编辑器</span>
+                  </a>
+                
+              </div>
+            </li>
+
+          <!-- 如果是普通菜单（没有子菜单） -->
           
         
 
@@ -253,7 +364,7 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
+              <i class="iconfont icon-search nav-icon"></i>
             </a>
           </li>
           
@@ -263,7 +374,7 @@
         
           <li class="nav-item" id="color-toggle-btn">
             <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+              <i class="iconfont icon-dark nav-icon" id="color-toggle-icon"></i>
             </a>
           </li>
         
@@ -274,6 +385,49 @@
   </div>
 </nav>
 
+
+
+<style>
+/* ==========================
+   导航图标统一样式（专用类 nav-icon）
+   ========================== */
+.navbar .nav-icon {
+  width: 1em;              /* 固定大小 */
+  height: 1em;
+  margin-right: 6px;       /* 图标和文字间距 */
+  vertical-align: middle;  /* 与文字对齐 */
+  fill: currentColor;      /* SVG 图标跟随文字颜色 */
+  line-height: 1;          /* 避免撑开 */
+  flex: 0 0 auto;          /* 避免被拉伸 */
+}
+
+/* 下拉按钮（例如「工具 ▼」） */
+.navbar .nav-item.dropdown .nav-link {
+  display: inline-flex;        /* 图标 + 文字横排 */
+  align-items: center;         /* 垂直居中 */
+  font-weight: normal;         /* 和其他菜单保持一致 */
+  font-size: 0.9rem;           /* 字号与其他菜单一致 */
+  padding: 0.5rem 0.8rem;      /* 内边距 */
+  transition: color 0.2s ease;
+}
+
+/* 悬停时：文字和图标同步高亮 */
+.navbar .nav-item.dropdown .nav-link:hover {
+  color: #30a9de;              /* 自定义主题色 */
+}
+.navbar .nav-item.dropdown .nav-link:hover .nav-icon {
+  fill: #30a9de;
+  color: #30a9de;
+}
+
+/* 下拉菜单项目 */
+.navbar .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;                     /* 图标和文字的间距 */
+}
+
+</style>
 
   <!-- 仅在允许时渲染横幅 -->
   
@@ -692,11 +846,18 @@ function copyLink() {
 
               
 
+                  <!-- 
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                     -->
+
                   
                     <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
                       <i class="iconfont icon-arrowup" aria-hidden="true"></i>
                     </a>
-                    
+                  
+
 
                       
                         <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
