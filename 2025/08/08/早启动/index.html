@@ -344,7 +344,15 @@
                                         
                                           <a class="dropdown-item" href="/imagejpw/">
                                             
-          <span class="nav-text">imagejpw(未写好)</span>
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-imagejpw"></use>
+                  <use class="fill-grad" href="#nav-imagejpw"></use>
+                </svg>
+                
+                  <span class="nav-text">图片转换/压缩</span>
                                           </a>
                                           
                                 </div>
@@ -500,6 +508,12 @@
     <path
       d="M995.436 872.918 786.888 664.302a89.417 89.417 0 0 0-27.254-18.087 410.955 410.955 0 0 0 68.982-227.99C828.616 190.1 643.73 5.24 415.606 5.24 187.504 5.239 2.62 190.123 2.62 418.226c0 228.102 184.885 412.987 412.987 412.987 84.359 0 162.644-25.606 228.058-68.982 4.245 9.822 10.003 19.193 17.996 27.209l208.638 208.593a88.468 88.468 0 0 0 125.138 0 88.423 88.423 0 0 0 0-125.115zM415.606 713.21c-162.937 0-294.984-132.048-294.984-294.962 0-162.937 132.047-294.984 294.984-294.984 162.96 0 294.985 132.047 294.985 294.984 0 162.914-132.025 294.962-294.985 294.962z" />
   </symbol>
+
+  <symbol id="nav-imagejpw" viewBox="0 0 1024 1024">
+    <path
+      d="M0 51.2v921.6h1024V51.2zm921.6 819.2L358.4 409.6l-256 256v-512h819.2z"/>
+  </symbol>
+
 </svg>
 
 <!-- =========================
@@ -563,37 +577,29 @@
 
   /* 下拉菜单整体 */
   .navbar .dropdown-menu {
-    background: rgba(50, 48, 48, 0);
-    /* 半透明深色 */
-    backdrop-filter: blur(6px);
-    /* 毛玻璃效果 */
-    border: none;
-    border-radius: 8px;
-    padding: 0.4rem 0.3rem;
-    /* 紧凑内边距 */
+    background: #f4f4f4;            /* 实心浅灰背景 */
+    border: 1px solid #ddd;         /* 边框更清晰 */
+    border-radius: 8px;             /* 圆角 */
+    padding: 0.4rem 0.3rem;         /* 内边距 */
     min-width: 160px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);  /* 柔和阴影 */
   }
 
   /* 下拉项 */
   .navbar .dropdown-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    /* 图标和文字间距 */
+    gap: 6px;                        /* 图标和文字间距 */
     padding: 0.45rem 0.75rem;
-    color: #eee;
-    /* 默认浅灰 */
+    color: #333;                     /* 默认深灰文字 */
     font-size: 0.9rem;
     transition: all .25s ease;
-    border-radius: 6px;
-    /* 每项圆角 */
+    border-radius: 6px;              /* 每项圆角 */
   }
 
   /* 下拉 hover 效果 */
   .navbar .dropdown-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-    /* 淡亮背景 */
+    background: #e9e9e9;             /* hover 时变成更深一点的灰 */
   }
 
   .navbar .dropdown-item:hover .nav-text {
@@ -609,6 +615,7 @@
   .navbar .dropdown-item:hover .nav-icon .fill-grad {
     opacity: 1;
   }
+
 
   /* 普通菜单项之间保持紧凑 */
   .navbar .navbar-nav .nav-item+.nav-item {
@@ -673,6 +680,10 @@
   #color-toggle-btn .nav-link:hover #color-toggle-icon .fill-grad {
     opacity: 1;
   }
+
+
+
+
 </style>
 
 
@@ -716,7 +727,7 @@
     
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b8.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/1234.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -1138,11 +1149,19 @@ function copyLink() {
                     </a>
                      -->
 
+                  <!-- 
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                   -->
+
+                  <!-- 隐藏导航箭头   source/imagejpw/index.md  source/md-editor/index.md -->
                   
                     <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
                       <i class="iconfont icon-arrowup" aria-hidden="true"></i>
                     </a>
-                  
+                    
+
 
 
                       
@@ -1380,34 +1399,36 @@ function copyLink() {
   </html>
 
 
-<!-- 全局黑夜和白昼设置 -->
-<!-- themes/myhui/layout/guestbook.ejs 留言页设置 -->
-<style>
-/* —— 全局默认（浅色） —— */
-html, body {
-  background: #ffffff;            /* 浅色模式两边的底色 */
-}
+  <!-- 全局黑夜和白昼设置 -->
+  <!-- themes/myhui/layout/guestbook.ejs 留言页设置 -->
+  <style>
+    /* —— 全局默认（浅色） —— */
+    html,
+    body {
+      background: #ffffff;
+      /* 浅色模式两边的底色 */
+    }
 
-/* —— 暗色：强制把两边背景变深 —— */
-html[data-user-color-scheme="dark"] body {
-  background: #0f172a !important; /* 自己喜欢的深色，如 #111827 / #0f172a / #1e293b */
-}
+    /* —— 暗色：强制把两边背景变深 —— */
+    html[data-user-color-scheme="dark"] body {
+      background: #0f172a !important;
+      /* 自己喜欢的深色，如 #111827 / #0f172a / #1e293b */
+    }
 
-/* 某些主题会用 #web_bg / .web_bg / .body-bg 之类的容器铺底，这里一起覆盖 */
-html[data-user-color-scheme="dark"] #web_bg,
-html[data-user-color-scheme="dark"] .web_bg,
-html[data-user-color-scheme="dark"] .body-bg,
-html[data-user-color-scheme="dark"] .site-bg {
-  background: #0f172a !important;
-}
+    /* 某些主题会用 #web_bg / .web_bg / .body-bg 之类的容器铺底，这里一起覆盖 */
+    html[data-user-color-scheme="dark"] #web_bg,
+    html[data-user-color-scheme="dark"] .web_bg,
+    html[data-user-color-scheme="dark"] .body-bg,
+    html[data-user-color-scheme="dark"] .site-bg {
+      background: #0f172a !important;
+    }
 
-/* 如果主题给这些容器加了半透明蒙层/渐变（:before），也去掉以免发灰 */
-html[data-user-color-scheme="dark"] #web_bg::before,
-html[data-user-color-scheme="dark"] .web_bg::before,
-html[data-user-color-scheme="dark"] .body-bg::before,
-html[data-user-color-scheme="dark"] .site-bg::before {
-  background: transparent !important;
-  opacity: 1 !important;
-}
-
-</style>
+    /* 如果主题给这些容器加了半透明蒙层/渐变（:before），也去掉以免发灰 */
+    html[data-user-color-scheme="dark"] #web_bg::before,
+    html[data-user-color-scheme="dark"] .web_bg::before,
+    html[data-user-color-scheme="dark"] .body-bg::before,
+    html[data-user-color-scheme="dark"] .site-bg::before {
+      background: transparent !important;
+      opacity: 1 !important;
+    }
+  </style>

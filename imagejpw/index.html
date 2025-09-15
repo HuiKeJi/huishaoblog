@@ -27,15 +27,15 @@
   <meta name="author" content="huishao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="🖼 在线图片压缩 &#x2F; 转换      输出格式:  JPG  PNG  WebP  压缩质量:0.8  开始压缩 &#x2F; 转换      结果预览         ⬇️ 下载图片      const upload &#x3D; document.getElementById(&#39;upload&#39;); const preview &#x3D; document.getElementById(&#39;preview&#39;); c">
+    <meta name="description" content="批量图片压缩 &#x2F; 转换    支持拖拽 &#x2F; 选择文件 &#x2F; Ctrl+V 粘贴            拖拽图片到这里上传 或 点击选择               输出格式:      JPG    PNG    WebP              启用压缩                压缩质量:          0.8          开始转换   压缩图片   🪟 转换为 ICO">
 <meta property="og:type" content="website">
 <meta property="og:title" content="在线图片压缩&#x2F;转换">
 <meta property="og:url" content="http://huishao.net/imagejpw/index.html">
 <meta property="og:site_name" content="辉少笔记">
-<meta property="og:description" content="🖼 在线图片压缩 &#x2F; 转换      输出格式:  JPG  PNG  WebP  压缩质量:0.8  开始压缩 &#x2F; 转换      结果预览         ⬇️ 下载图片      const upload &#x3D; document.getElementById(&#39;upload&#39;); const preview &#x3D; document.getElementById(&#39;preview&#39;); c">
+<meta property="og:description" content="批量图片压缩 &#x2F; 转换    支持拖拽 &#x2F; 选择文件 &#x2F; Ctrl+V 粘贴            拖拽图片到这里上传 或 点击选择               输出格式:      JPG    PNG    WebP              启用压缩                压缩质量:          0.8          开始转换   压缩图片   🪟 转换为 ICO">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-14T15:22:53.166Z">
+<meta property="article:modified_time" content="2025-09-15T08:09:13.890Z">
 <meta property="article:author" content="huishao">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -335,7 +335,15 @@
                                         
                                           <a class="dropdown-item" href="/imagejpw/">
                                             
-          <span class="nav-text">imagejpw(未写好)</span>
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-imagejpw"></use>
+                  <use class="fill-grad" href="#nav-imagejpw"></use>
+                </svg>
+                
+                  <span class="nav-text">图片转换/压缩</span>
                                           </a>
                                           
                                 </div>
@@ -491,6 +499,12 @@
     <path
       d="M995.436 872.918 786.888 664.302a89.417 89.417 0 0 0-27.254-18.087 410.955 410.955 0 0 0 68.982-227.99C828.616 190.1 643.73 5.24 415.606 5.24 187.504 5.239 2.62 190.123 2.62 418.226c0 228.102 184.885 412.987 412.987 412.987 84.359 0 162.644-25.606 228.058-68.982 4.245 9.822 10.003 19.193 17.996 27.209l208.638 208.593a88.468 88.468 0 0 0 125.138 0 88.423 88.423 0 0 0 0-125.115zM415.606 713.21c-162.937 0-294.984-132.048-294.984-294.962 0-162.937 132.047-294.984 294.984-294.984 162.96 0 294.985 132.047 294.985 294.984 0 162.914-132.025 294.962-294.985 294.962z" />
   </symbol>
+
+  <symbol id="nav-imagejpw" viewBox="0 0 1024 1024">
+    <path
+      d="M0 51.2v921.6h1024V51.2zm921.6 819.2L358.4 409.6l-256 256v-512h819.2z"/>
+  </symbol>
+
 </svg>
 
 <!-- =========================
@@ -554,37 +568,29 @@
 
   /* 下拉菜单整体 */
   .navbar .dropdown-menu {
-    background: rgba(50, 48, 48, 0);
-    /* 半透明深色 */
-    backdrop-filter: blur(6px);
-    /* 毛玻璃效果 */
-    border: none;
-    border-radius: 8px;
-    padding: 0.4rem 0.3rem;
-    /* 紧凑内边距 */
+    background: #f4f4f4;            /* 实心浅灰背景 */
+    border: 1px solid #ddd;         /* 边框更清晰 */
+    border-radius: 8px;             /* 圆角 */
+    padding: 0.4rem 0.3rem;         /* 内边距 */
     min-width: 160px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);  /* 柔和阴影 */
   }
 
   /* 下拉项 */
   .navbar .dropdown-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    /* 图标和文字间距 */
+    gap: 6px;                        /* 图标和文字间距 */
     padding: 0.45rem 0.75rem;
-    color: #eee;
-    /* 默认浅灰 */
+    color: #333;                     /* 默认深灰文字 */
     font-size: 0.9rem;
     transition: all .25s ease;
-    border-radius: 6px;
-    /* 每项圆角 */
+    border-radius: 6px;              /* 每项圆角 */
   }
 
   /* 下拉 hover 效果 */
   .navbar .dropdown-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-    /* 淡亮背景 */
+    background: #e9e9e9;             /* hover 时变成更深一点的灰 */
   }
 
   .navbar .dropdown-item:hover .nav-text {
@@ -600,6 +606,7 @@
   .navbar .dropdown-item:hover .nav-icon .fill-grad {
     opacity: 1;
   }
+
 
   /* 普通菜单项之间保持紧凑 */
   .navbar .navbar-nav .nav-item+.nav-item {
@@ -664,6 +671,10 @@
   #color-toggle-btn .nav-link:hover #color-toggle-icon .fill-grad {
     opacity: 1;
   }
+
+
+
+
 </style>
 
 
@@ -756,85 +767,1030 @@
                               
 
 <article class="page-content">
-  <!-- 在线图片压缩 / 转换工具 -->
-<div style="text-align:center; padding:20px;">
+  <div id="toolBox" style="text-align:center;padding:20px; max-width:900px; margin:100px auto 0;">
 
-<h2>🖼 在线图片压缩 / 转换</h2>
+  <h2>批量图片压缩 / 转换</h2>
 
-<!-- 上传图片 -->
-<input type="file" id="upload" accept="image/*">
+  <p>支持拖拽 / 选择文件 / <b>Ctrl+V 粘贴</b></p>
 
-<!-- 选择输出格式 -->
-<p><label for="format">输出格式:</label><br><select id="format"><br>  <option value="image/jpeg">JPG</option><br>  <option value="image/png">PNG</option><br>  <option value="image/webp">WebP</option><br></select></p>
-<!-- 压缩质量 -->
-<p><label for="quality">压缩质量:</label><br><input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.8"><br><span id="qval">0.8</span></p>
-<br>
-<button onclick="convert()">开始压缩 / 转换</button>
+  <!-- 拖拽 + 点击上传区域 -->
+  <div id="dropZone">
+    拖拽图片到这里上传 或 点击选择
+    <input type="file" id="upload" accept="image/*" multiple>
+  </div>
 
-<!-- 预览和下载 -->
-<div id="result">
-  <h3>结果预览</h3>
-  <img id="preview" src="" srcset="/img/gif/loading.gif" lazyload alt="" style="max-width:90%; margin-top:20px;">
+  <!-- 选择输出格式 -->
+<p>  <label for="format">输出格式:</label><br>  <select id="format"><br>    <option value="image/jpeg">JPG</option><br>    <option value="image/png">PNG</option><br>    <option value="image/webp">WebP</option><br>  </select></p>
+  <!-- 压缩开关 -->
+  <label style="user-select:none;">
+    <input type="checkbox" id="enableCompress"> 启用压缩
+  </label>
+
   <br>
-  <a id="download" href="#" download="output.jpg" style="display:none;">⬇️ 下载图片</a>
+
+  <div id="qualityBox" style="display:none;">
+    <label for="quality">压缩质量:</label>
+    <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.8">
+    <span id="qval">0.8</span>
+  </div>
+
+  <br>
+  <button onclick="convertAll()">开始转换</button>
+  <button onclick="compressAll()">压缩图片</button>
+  <button onclick="convertToICO()">🪟 转换为 ICO</button>
+  <button id="downloadAll" style="display:none;">⬇️ 打包下载所有图片</button>
+  <button id="clearAll" style="display:none;">🗑️ 清空所有图片</button>
+
+  <!-- ICO 尺寸选择（默认全不选） -->
+  <div style="margin-top:15px;">
+    <h3>ICON 尺寸选择</h3>
+    <label><input type="checkbox" class="icoSize" value="16"> 16x16</label>
+    <label><input type="checkbox" class="icoSize" value="32"> 32x32</label>
+    <label><input type="checkbox" class="icoSize" value="48"> 48x48</label>
+    <label><input type="checkbox" class="icoSize" value="64"> 64x64</label>
+    <label><input type="checkbox" class="icoSize" value="128"> 128x128</label>
+    <label><input type="checkbox" class="icoSize" value="256"> 256x256</label>
+  </div>
+
+  <br>
+
+  <div id="result">
+    <h3>结果预览</h3>
+    <div id="previewList" class="grid"></div>
+    <div id="icoPreview" style="margin-top:20px;"></div>
+  </div>
+
+  <!-- 🔥 对比区 -->
+  <div id="compareSection" style="display:none; margin-top:20px;">
+    <h3>压缩/转换对比</h3>
+    <div id="compareList"></div>
+  </div>
 </div>
 
+<!-- 其余弹窗保持不变 -->
+<div id="lightbox" style="display:none;"> … </div>
+<div id="compareBox" style="display:none;"> … </div>
+
+<!-- JSZip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+
+<style>
+/* 结果预览区 */
+#previewList.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+/* 每个预览卡片 */
+.preview-item {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  text-align: center;
+  padding: 8px;
+}
+
+/* 限制预览区图片尺寸 */
+.preview-item img {
+  max-width: 100%;
+  max-height: 180px;   /* ✅ 这里控制高度 */
+  object-fit: contain; /* 保持比例，完整显示 */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.preview-item img:hover {
+  transform: scale(1.05); /* hover 时轻微放大 */
+}
+
+/* 文件名 */
+.preview-item p {
+  font-size: 12px;
+  margin: 5px 0 0;
+  word-break: break-all;
+  color: #555;
+}
+
+
+#editorOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* 确保浮在最上层 */
+}
+#editorOverlay canvas {
+  max-width: 90vw;
+  max-height: 80vh;
+  border: 2px solid #fff;
+  background: #fff;
+  cursor: crosshair;
+}
+#editorToolbar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  z-index: 10000;
+}
+#editorToolbar button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #3D85C6;
+  color: #fff;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+#editorToolbar button:hover {
+  background: #2d6aa0;
+  transform: translateY(-2px);
+}
+
+/* ========== 高级感卡片容器 ========== */
+/* 让整体居中，最大宽度限制 */
+#toolBox {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 720px;
+  text-align: center;
+}
+
+/* 标题 */
+#toolBox h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+html[data-user-color-scheme="dark"] #toolBox h2 {
+  color: #eee;
+}
+
+/* 上传区域 */
+#dropZone {
+  border: 2px dashed #bbb;
+  border-radius: 10px;
+  padding: 50px 20px;
+  margin: 20px auto;
+  max-width: 500px;
+  cursor: pointer;
+  background: transparent; /* 透明背景 */
+  transition: all .3s ease;
+  position: relative;
+  color: #666;
+  font-size: 15px;
+}
+#dropZone input[type=file] {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  opacity:0;
+  cursor:pointer;
+}
+#dropZone:hover {
+  border-color: #3D85C6;
+  background: rgba(61,133,198,0.05); /* hover 时轻微背景高亮 */
+  transform: scale(1.02);
+}
+html[data-user-color-scheme="dark"] #dropZone {
+  border-color: #555;
+  color: #aaa;
+}
+html[data-user-color-scheme="dark"] #dropZone:hover {
+  background: rgba(61,133,198,0.15);
+}
+
+/* 按钮 */
+button {
+  margin: 8px 5px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #3D85C6;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+button:hover {
+  background: #2d6aa0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+button:active {
+  transform: scale(0.96);
+}
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 下拉选择 */
+#format {
+  margin: 10px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border .25s ease, box-shadow .25s ease;
+}
+#format:focus {
+  border-color: #3D85C6;
+  box-shadow: 0 0 0 3px rgba(61,133,198,.2);
+  outline: none;
+}
+
+/* 压缩质量滑块 */
+#qualityBox {
+  margin: 12px 0;
+}
+#quality {
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+/* 对比区：改为横向布局 */
+.compare-block {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 20px auto;
+  flex-wrap: wrap; /* 窄屏自动换行 */
+}
+
+/* 每个图片块 */
+.compare-block .img-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 45%; /* 左右各占一半 */
+  text-align: center;
+}
+
+.compare-block img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.25s ease;
+}
+.compare-block img:hover {
+  transform: scale(1.05);
+}
+
+/* 下载按钮在右下角 */
+.download-btn {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.download-btn:hover {
+  background: rgba(0,0,0,0.85);
+  transform: scale(1.15);
+}
+
+
+  /* ========= 顶栏颜色 ========= */
+  .navbar {
+    background-color: #3D85C6 !important; /* 白天：亮蓝色 */
+    transition: background-color .3s ease;
+  }
+  html[data-user-color-scheme="dark"] .navbar {
+    background-color: #1f3144 !important; /* 夜晚：深蓝色 */
+  }
+
+</style>
+
+
+
+
+<!-- 裁剪/编辑弹窗 -->
+<div id="lightbox" style="display:none;">
+  <span id="lightboxClose" style="cursor:pointer;">×</span>
+  <canvas id="editCanvas"></canvas>
+  <div style="margin-top:10px;">
+    <button id="btnCrop" onclick="setMode('crop')">✂️ 裁剪</button>
+    <button id="btnDraw" onclick="setMode('draw')">🖌️ 画笔</button>
+    <button id="btnMosaic" onclick="setMode('mosaic')">🟦 马赛克</button>
+    <input type="color" id="penColor" value="#ff0000" title="画笔颜色">
+    <input type="range" id="penSize" min="2" max="30" value="5" title="画笔/马赛克粗细">
+    <button onclick="undoEdit()">↩️ 撤销</button>
+    <button onclick="redoEdit()">↪️ 重做</button>
+    <button id="applyEdit">✅ 应用修改</button>
+  </div>
 </div>
+
+<!-- 压缩对比弹窗 -->
+<div id="compareBox" style="display:none;">
+  <span id="compareClose" style="cursor:pointer;">×</span>
+  <div id="compareContainer" style="position:relative; overflow:hidden; max-width:90%; margin:auto;">
+    <img id="originalImg">
+    <div id="compareOverlay" style="position:absolute; top:0; left:0; width:50%; overflow:hidden;">
+      <img id="compressedImg">
+    </div>
+    <input type="range" id="slider" min="0" max="100" value="50"
+      style="width:100%; margin-top:10px;">
+  </div>
+</div>
+
+
 
 <script>
+/* ===== DOM 元素 ===== */
 const upload = document.getElementById('upload');
-const preview = document.getElementById('preview');
+const dropZone = document.getElementById('dropZone');
+const previewList = document.getElementById('previewList');
+const icoPreview = document.getElementById('icoPreview');
+const enableCompress = document.getElementById('enableCompress');
+const qualityBox = document.getElementById('qualityBox');
 const qualityInput = document.getElementById('quality');
 const qval = document.getElementById('qval');
-const formatSelect = document.getElementById('format');
-const download = document.getElementById('download');
-let fileData = null;
+const downloadAll = document.getElementById('downloadAll');
+const clearAll = document.getElementById('clearAll');
+const compareSection = document.getElementById('compareSection');
+const compareList = document.getElementById('compareList');
 
-// 监听上传
-upload.addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    fileData = ev.target.result;
-    preview.src = fileData;
-  };
-  reader.readAsDataURL(file);
-});
+/* ===== 状态 ===== */
+let filesData = [];
 
-// 实时显示压缩质量
-qualityInput.addEventListener('input', () => {
-  qval.textContent = qualityInput.value;
-});
+/* ===== 工具函数 ===== */
+function loadImage(src){ return new Promise(res=>{ const i=new Image(); i.onload=()=>res(i); i.src=src; }); }
+function dataUrlBytes(d){ const b64=(d.split(',')[1]||''); const pad=(b64.endsWith('==')?2:(b64.endsWith('=')?1:0)); return Math.floor(b64.length*3/4)-pad; }
+function fmtBytes(n){ if(!n&&n!==0) return '-'; const u=['B','KB','MB']; let i=0; while(n>=1024&&i<u.length-1){n/=1024;i++;} return (Math.round(n*10)/10)+' '+u[i]; }
+async function getDim(data){ const img=await loadImage(data); return {w:img.width,h:img.height}; }
+function toggleButtons(){ const has=filesData.length>0; clearAll.style.display=has?"inline-block":"none"; downloadAll.style.display=has?"inline-block":"none"; }
 
-// 转换函数
-function convert() {
-  if (!fileData) {
-    alert("请先上传一张图片！");
-    return;
+/* ===== 文件处理 & 预览 ===== */
+function handleFiles(files){
+  for (let file of files){
+    if(!file.type.startsWith('image/')) continue;
+    const reader=new FileReader();
+    reader.onload=async ev=>{
+      const data=ev.target.result;
+      const dim=await getDim(data);
+      const fileObj={ 
+        name:file.name, 
+        originalType:file.type, 
+        originalData:data, 
+        dataURL:data, 
+        convertedData:null, 
+        width:dim.w, 
+        height:dim.h 
+      };
+      filesData.push(fileObj);
+      showPreview(fileObj);
+      toggleButtons();
+    };
+    reader.readAsDataURL(file);
   }
-  const img = new Image();
-  img.src = fileData;
-  img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
+  upload.value = "";
+}
 
-    const format = formatSelect.value;
-    const quality = parseFloat(qualityInput.value);
-    const newData = canvas.toDataURL(format, quality);
+function showPreview(file){
+  const div=document.createElement('div');
+  div.className='preview-item loading';
+  div.innerHTML=`
+    <button class="remove-btn">×</button>
+    <img alt="preview">
+    <p>${file.name}</p>
+    <div class="meta">读取中...</div>
+  `;
+  previewList.appendChild(div);
+  file.element=div;
 
-    preview.src = newData;
+  const imgTag=div.querySelector('img');
+  imgTag.onload=()=>{ 
+    div.classList.remove('loading'); 
+    div.querySelector('.meta').textContent=`${file.width}×${file.height}, ${fmtBytes(dataUrlBytes(file.dataURL))}`; 
+  };
+  imgTag.src=file.dataURL;
 
-    // 设置下载按钮
-    download.href = newData;
-    let ext = format.split("/")[1];
-    download.download = `output.${ext}`;
-    download.style.display = "inline-block";
+  div.querySelector('.remove-btn').onclick=()=>{
+    previewList.removeChild(div);
+    filesData=filesData.filter(f=>f!==file);
+    toggleButtons();
   };
 }
+
+
+enableCompress.addEventListener('change',()=>{qualityBox.style.display=enableCompress.checked?"block":"none";});
+qualityInput.addEventListener('input',()=>qval.textContent=qualityInput.value);
+
+async function convertAll(){
+  if(filesData.length===0) return alert("请先上传至少一张图片！");
+  const zip=new JSZip(); compareList.innerHTML=""; if(compareSection) compareSection.style.display="block";
+
+  for (let file of filesData){
+    const before=file.dataURL;
+    const img=await loadImage(before);
+    const canvas=document.createElement('canvas');
+    canvas.width=img.width; canvas.height=img.height;
+    canvas.getContext('2d').drawImage(img,0,0);
+
+    // 使用选择的格式（不做压缩）
+    const mime=document.getElementById("format").value;
+    const newData=canvas.toDataURL(mime);
+
+    file.convertedData=newData; file.dataURL=newData;
+
+    // 对比预览
+    const block=document.createElement('div');
+    block.className="compare-block";
+
+    // 左边：原图
+    const left=document.createElement('div');
+    left.className="img-wrapper";
+    left.innerHTML="<p>原图</p>";
+    const img1=new Image();
+    img1.src=before;
+    const btn1=document.createElement("button");
+    btn1.className="download-btn";
+    btn1.innerHTML="⬇";
+    btn1.onclick=()=>{
+      const a=document.createElement("a");
+      a.href=img1.src;
+      const ext1 = (file.originalType.split('/')[1]==='jpeg' ? 'jpg' : file.originalType.split('/')[1]);
+      a.download=file.name.replace(/\.[^.]+$/, "") + "_original." + ext1;
+      a.click();
+    };
+
+    left.appendChild(img1);
+    left.appendChild(btn1);
+
+    // 右边：结果
+    const right=document.createElement('div');
+    right.className="img-wrapper";
+    right.innerHTML="<p>结果</p>";
+    const img2=new Image();
+    img2.src=newData;
+    const btn2=document.createElement("button");
+    btn2.className="download-btn";
+    btn2.innerHTML="⬇";
+    btn2.onclick=()=>{
+      const a=document.createElement("a");
+      a.href=img2.src;
+      const ext2 = (mime.split('/')[1]==='jpeg' ? 'jpg' : mime.split('/')[1]);
+      a.download=file.name.replace(/\.[^.]+$/, "") + "_converted." + ext2;
+      a.click();
+    };
+
+    right.appendChild(img2);
+    right.appendChild(btn2);
+
+    // 拼接
+    block.appendChild(left);
+    block.appendChild(right);
+    compareList.appendChild(block);
+
+
+    const ext=mime.split('/')[1]==='jpeg'?'jpg':mime.split('/')[1];
+    const fname=file.name.replace(/\.[^.]+$/,'')+"_converted."+ext;
+    zip.file(fname,newData.split(',')[1],{base64:true});
+  }
+
+  downloadAll.onclick=async()=>{
+    const content=await zip.generateAsync({type:'blob'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(content); a.download="converted_images.zip"; a.click();
+  };
+}
+
+async function compressAll(){
+
+  if(!enableCompress.checked){
+    alert("请先勾选【启用压缩】选项！");
+    return;
+  }
+
+  if(filesData.length===0) return alert("请先上传至少一张图片！");
+  const zip=new JSZip(); 
+  compareList.innerHTML=""; 
+  if(compareSection) compareSection.style.display="block";
+
+  for (let file of filesData){
+    const before=file.dataURL;
+    const img=await loadImage(before);
+    const canvas=document.createElement('canvas');
+    canvas.width=img.width; 
+    canvas.height=img.height;
+    canvas.getContext('2d').drawImage(img,0,0);
+
+    // 保持原始格式 + 压缩
+    const mime=file.originalType || 'image/png';
+    const ext=(mime.split('/')[1]==='jpeg' ? 'jpg' : mime.split('/')[1]);
+    const quality=parseFloat(document.getElementById("quality").value)||0.8;
+    const newData=canvas.toDataURL(mime,quality);
+
+    file.convertedData=newData; 
+    file.dataURL=newData;
+
+    // === 对比预览（左右布局） ===
+    const block=document.createElement('div');
+    block.className="compare-block";
+
+    // 左边：原图
+    const left=document.createElement('div');
+    left.className="img-wrapper";
+    left.innerHTML="<p>原图</p>";
+    const img1=new Image();
+    img1.src=before;
+    img1.style.maxWidth="100%";
+    img1.style.maxHeight="400px";
+
+    // 原图下载按钮
+    const btn1=document.createElement("button");
+    btn1.className="download-btn";
+    btn1.innerHTML="⬇";
+    btn1.title="下载原图";
+    btn1.onclick=()=>{
+      const a=document.createElement("a");
+      a.href=img1.src;
+      const ext1=(file.originalType.split('/')[1]==='jpeg' ? 'jpg' : file.originalType.split('/')[1]);
+      a.download=file.name.replace(/\.[^.]+$/,"")+"_original."+ext1;
+      a.click();
+    };
+    left.appendChild(img1);
+    left.appendChild(btn1);
+
+    // 右边：压缩后
+    const right=document.createElement('div');
+    right.className="img-wrapper";
+    right.innerHTML="<p>压缩后</p>";
+    const img2=new Image();
+    img2.src=newData;
+    img2.style.maxWidth="100%";
+    img2.style.maxHeight="400px";
+
+    // 压缩后下载按钮
+    const btn2=document.createElement("button");
+    btn2.className="download-btn";
+    btn2.innerHTML="⬇";
+    btn2.title="下载压缩后";
+    btn2.onclick=()=>{
+      const a=document.createElement("a");
+      a.href=img2.src;
+      a.download=file.name.replace(/\.[^.]+$/,"")+"_compressed."+ext;
+      a.click();
+    };
+    right.appendChild(img2);
+    right.appendChild(btn2);
+
+    // 拼接
+    block.appendChild(left);
+    block.appendChild(right);
+    compareList.appendChild(block);
+
+    // 压缩结果打包进 zip
+    const fname=file.name.replace(/\.[^.]+$/,'')+"_compressed."+ext;
+    zip.file(fname,newData.split(',')[1],{base64:true});
+  }
+
+  // 打包下载按钮
+  downloadAll.onclick=async()=>{
+    const content=await zip.generateAsync({type:'blob'});
+    const a=document.createElement('a'); 
+    a.href=URL.createObjectURL(content); 
+    a.download="compressed_images.zip"; 
+    a.click();
+  };
+}
+
+
+// async function convertToICO(){
+//   if(filesData.length===0) return alert("请先上传至少一张图片！");
+
+//   const sizes = [...document.querySelectorAll(".icoSize:checked")].map(cb => parseInt(cb.value));
+//   if(sizes.length === 0){
+//     return alert("请至少选择一个 ICO 尺寸！");
+//   }
+
+//   const zip = new JSZip();
+//   icoPreview.innerHTML = ""; // 清空预览
+
+//   for (let file of filesData){
+//     const img = await loadImage(file.dataURL);
+
+//     // ICO 文件实际上是多尺寸 PNG 打包
+//     // 这里用 zip 打包多张 PNG，避免复杂的 ICO 格式编码
+//     const icoContainer = document.createElement("div");
+//     icoContainer.style.marginBottom = "20px";
+//     icoContainer.innerHTML = `<h4>${file.name} 转换结果</h4>`;
+    
+//     for (let size of sizes){
+//       const canvas = document.createElement("canvas");
+//       canvas.width = size; canvas.height = size;
+//       const ctx = canvas.getContext("2d");
+//       ctx.drawImage(img, 0, 0, size, size);
+
+//       const pngData = canvas.toDataURL("image/png");
+//       const fname = file.name.replace(/\.[^.]+$/, "") + `_${size}x${size}.png`;
+
+//       // 保存到 zip
+//       zip.file(fname, pngData.split(",")[1], {base64:true});
+
+//       // 预览
+//       const previewImg = new Image();
+//       previewImg.src = pngData;
+//       previewImg.style.border = "1px solid #ccc";
+//       previewImg.style.margin = "5px";
+//       icoContainer.appendChild(previewImg);
+//     }
+
+//     icoPreview.appendChild(icoContainer);
+//   }
+
+//   // 打包下载
+//   downloadAll.onclick = async()=>{
+//     const content=await zip.generateAsync({type:'blob'});
+//     const a=document.createElement('a');
+//     a.href=URL.createObjectURL(content);
+//     a.download="ico_images.zip";
+//     a.click();
+//   };
+
+//   alert("已生成 ICO (zip 包含多尺寸 PNG，可以用在线工具合并成 .ico)");
+// }
+
+// 把 dataURL 转成 Uint8Array
+function dataURLtoUint8(dataURL){
+  const b64 = dataURL.split(',')[1] || '';
+  const bin = atob(b64);
+  const len = bin.length;
+  const u8  = new Uint8Array(len);
+  for (let i=0;i<len;i++) u8[i] = bin.charCodeAt(i);
+  return u8;
+}
+
+// 生成一个多尺寸 PNG 的 .ico Blob
+async function buildICOFromPNGDataURLs(pngItems){
+  // pngItems: [{size:number, data:Uint8Array}, ...]  按任意顺序
+  const count = pngItems.length;
+
+  // 计算每个图像的起始偏移：6字节头 + 16*count 目录
+  let offset = 6 + 16 * count;
+  const entries = [];
+
+  // 目录项（ICONDIRENTRY）16字节
+  for (const it of pngItems){
+    const widthByte  = (it.size >= 256) ? 0 : it.size; // 256 -> 0
+    const heightByte = (it.size >= 256) ? 0 : it.size;
+
+    entries.push({
+      widthByte,
+      heightByte,
+      colors: 0, // 0=无调色板
+      reserved: 0,
+      planes: 1,      // 常填1
+      bitCount: 32,   // 常填32；PNG 实际位深由数据决定，这里目录值习惯填32
+      bytesInRes: it.data.length,
+      imageOffset: offset
+    });
+    offset += it.data.length;
+  }
+
+  // 写 ICONDIR（6字节）
+  const header = new ArrayBuffer(6);
+  const dvh = new DataView(header);
+  dvh.setUint16(0, 0, true);    // reserved
+  dvh.setUint16(2, 1, true);    // type=1 (icon)
+  dvh.setUint16(4, count, true);// count
+
+  // 写 ICONDIRENTRY 表
+  const dirTable = new ArrayBuffer(16 * count);
+  const dvd = new DataView(dirTable);
+  for (let i=0;i<count;i++){
+    const e = entries[i];
+    const p = i * 16;
+    dvd.setUint8 (p+0, e.widthByte);
+    dvd.setUint8 (p+1, e.heightByte);
+    dvd.setUint8 (p+2, e.colors);
+    dvd.setUint8 (p+3, e.reserved);
+    dvd.setUint16(p+4, e.planes,   true);
+    dvd.setUint16(p+6, e.bitCount, true);
+    dvd.setUint32(p+8, e.bytesInRes,  true);
+    dvd.setUint32(p+12,e.imageOffset, true);
+  }
+
+  // 拼接：header + dirTable + 所有 PNG 数据
+  const parts = [new Uint8Array(header), new Uint8Array(dirTable)];
+  for (const it of pngItems) parts.push(it.data);
+
+  return new Blob(parts, {type: "image/x-icon"});
+}
+
+// 真正的“转换为 ICO”
+async function convertToICO(){
+  if(filesData.length===0) return alert("请先上传至少一张图片！");
+
+  // 勾选的尺寸
+  const sizes = [...document.querySelectorAll(".icoSize:checked")]
+    .map(cb => parseInt(cb.value))
+    .filter(n => !isNaN(n));
+
+  if(sizes.length === 0){
+    return alert("请至少选择一个 ICO 尺寸！");
+  }
+
+  // 预览清空
+  icoPreview.innerHTML = "";
+
+  // 多文件逐个生成 .ico
+  for (const file of filesData){
+    const srcImg = await loadImage(file.dataURL);
+
+    // 生成各尺寸 PNG 的 Uint8Array
+    const pngItems = [];
+    // 统一用从小到大，方便阅读（可选）
+    const sortedSizes = [...sizes].sort((a,b)=>a-b);
+
+    // 预览容器
+    const box = document.createElement("div");
+    box.style.margin = "14px 0";
+    box.innerHTML = `<div style="font-size:12px;color:#666;margin-bottom:6px;">${file.name} 预览：</div>`;
+    icoPreview.appendChild(box);
+
+    for (const size of sortedSizes){
+      const c = document.createElement("canvas");
+      c.width = size; c.height = size;
+      const ctx = c.getContext("2d");
+      // 高质量缩放
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(srcImg, 0, 0, size, size);
+
+      // 用 PNG 数据放进 ICO（现代 Windows 支持 PNG-in-ICO）
+      const dataURL = c.toDataURL("image/png");
+      const u8      = dataURLtoUint8(dataURL);
+      pngItems.push({size, data:u8});
+
+      // 预览图
+      const preview = new Image();
+      preview.src = dataURL;
+      preview.width = size; preview.height = size;
+      preview.style.border = "1px solid #ddd";
+      preview.style.marginRight = "6px";
+      preview.setAttribute("loading","eager");
+      preview.removeAttribute("lazyload");
+      box.appendChild(preview);
+    }
+
+    // 组装 .ico
+    const icoBlob = await buildICOFromPNGDataURLs(pngItems);
+
+    // 触发下载
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(icoBlob);
+    a.download = file.name.replace(/\.[^.]+$/, "") + ".ico";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  // 可选：把所有 .ico 打成 zip 再下；如果你要 zip，就把上面“单个下载”注释掉，改成在循环里 zip.file() 收集，最后 zip.generateAsync
+  // 这里先保留“逐个下载”的直观体验
+}
+
+
+/* ===== 点击放大/缩小 ===== */
+document.addEventListener('click', e=>{
+  if(e.target.tagName==="IMG" && e.target.closest('.compare-block')){
+    if(e.target.style.maxHeight==="none"){
+      e.target.style.maxHeight="400px";
+      e.target.style.cursor="zoom-in";
+    }else{
+      e.target.style.maxHeight="none";
+      e.target.style.cursor="zoom-out";
+    }
+  }
+});
+
+/* ===== 编辑器：坐标修正 ===== */
+function getCanvasPos(canvas, e){
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: (e.clientX - rect.left) * (canvas.width / rect.width),
+    y: (e.clientY - rect.top) * (canvas.height / rect.height)
+  };
+}
+
+/* ===== 图片编辑器 ===== */
+function openEditor(file){
+  // 先清理掉旧的编辑器
+  const old = document.getElementById("editorOverlay");
+  if(old) old.remove();
+
+  const overlay=document.createElement('div');
+  overlay.id="editorOverlay";
+
+  const canvas=document.createElement('canvas');
+  const ctx=canvas.getContext('2d');
+
+  let originalData=null;
+  let history=[], redoStack=[];
+
+  const img=new Image();
+  img.onload=()=>{
+    // 限制在屏幕大小内
+    const maxW = window.innerWidth * 0.9;
+    const maxH = window.innerHeight * 0.8;
+    let w = img.width, h = img.height;
+    const scale = Math.min(maxW / w, maxH / h, 1);
+
+    canvas.width = w * scale;
+    canvas.height = h * scale;
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    originalData = canvas.toDataURL();
+    saveState();
+  };
+  img.src=file.dataURL;
+  overlay.appendChild(canvas);
+
+  const toolbar=document.createElement('div');
+  toolbar.id="editorToolbar";
+  toolbar.innerHTML=`
+    <button id="closeEditor">取消</button>
+    <button id="applyEdit">应用修改</button>
+    <button id="penTool">画笔</button>
+    <button id="mosaicTool">马赛克</button>
+    <button id="cropTool">裁剪</button>
+    <input type="color" id="penColor" value="#ff0000" title="画笔颜色">
+    <input type="range" id="penSize" min="2" max="40" value="5" title="粗细">
+    <button id="undoBtn">撤销</button>
+    <button id="clearBtn">清空编辑</button>
+  `;
+  overlay.appendChild(toolbar);
+  document.body.appendChild(overlay);
+
+  /* ===== 编辑状态 ===== */
+  let drawing=false, tool=null, penColor="#ff0000", penSize=5;
+  let cropStart=null, cropRect=null;
+
+  // 历史记录
+  function saveState(){
+    redoStack=[];
+    history.push(canvas.toDataURL());
+    if(history.length>50) history.shift();
+  }
+  function undoEdit(){
+    if(history.length>1){
+      redoStack.push(canvas.toDataURL());
+      history.pop();
+      const img=new Image();
+      img.onload=()=>ctx.drawImage(img,0,0);
+      img.src=history[history.length-1];
+    }
+  }
+  function clearEdit(){
+    const img=new Image();
+    img.onload=()=>{
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(img,0,0);
+      history=[canvas.toDataURL()];
+      redoStack=[];
+    };
+    img.src=originalData;
+  }
+
+  /* ===== 鼠标事件 ===== */
+  canvas.onmousedown=(e)=>{
+    const pos=getCanvasPos(canvas,e);
+    if(tool==="crop"){
+      cropStart=pos;
+    }else if(tool){
+      drawing=true;
+      ctx.beginPath();
+      ctx.moveTo(pos.x,pos.y);
+      saveState();
+    }
+  };
+  canvas.onmousemove=(e)=>{
+    const pos=getCanvasPos(canvas,e);
+    if(tool==="pen" && drawing){
+      ctx.lineWidth=penSize; ctx.strokeStyle=penColor;
+      ctx.lineTo(pos.x,pos.y); ctx.stroke();
+    }else if(tool==="mosaic" && drawing){
+      ctx.fillStyle="#999";
+      ctx.fillRect(pos.x-penSize/2,pos.y-penSize/2,penSize,penSize);
+    }else if(tool==="crop" && cropStart){
+      const img=new Image();
+      img.onload=()=>{
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(img,0,0);
+        ctx.strokeStyle="red"; ctx.lineWidth=2;
+        ctx.strokeRect(cropStart.x,cropStart.y,pos.x-cropStart.x,pos.y-cropStart.y);
+      };
+      img.src=history[history.length-1];
+      cropRect={x:cropStart.x,y:cropStart.y,w:pos.x-cropStart.x,h:pos.y-cropStart.y};
+    }
+  };
+  canvas.onmouseup=(e)=>{
+    if(tool==="crop" && cropRect){
+      const temp=document.createElement("canvas");
+      temp.width=Math.abs(cropRect.w);
+      temp.height=Math.abs(cropRect.h);
+      const tctx=temp.getContext("2d");
+      tctx.drawImage(canvas,
+        cropRect.w<0?cropRect.x+cropRect.w:cropRect.x,
+        cropRect.h<0?cropRect.y+cropRect.h:cropRect.y,
+        Math.abs(cropRect.w),Math.abs(cropRect.h),
+        0,0,Math.abs(cropRect.w),Math.abs(cropRect.h)
+      );
+      canvas.width=temp.width; canvas.height=temp.height;
+      ctx.drawImage(temp,0,0);
+      saveState();
+    }
+    drawing=false;
+    cropStart=null;
+  };
+
+  /* ===== 按钮事件 ===== */
+  toolbar.querySelector('#closeEditor').onclick=()=>overlay.remove();
+  toolbar.querySelector('#applyEdit').onclick=()=>{
+    file.dataURL=canvas.toDataURL(file.originalType||'image/png');
+    file.convertedData=file.dataURL;
+    file.element.querySelector('img').src=file.dataURL;
+    overlay.remove();
+  };
+  toolbar.querySelector('#penTool').onclick=()=>selectTool("pen");
+  toolbar.querySelector('#mosaicTool').onclick=()=>selectTool("mosaic");
+  toolbar.querySelector('#cropTool').onclick=()=>selectTool("crop");
+  toolbar.querySelector('#undoBtn').onclick=()=>undoEdit();
+  toolbar.querySelector('#clearBtn').onclick=()=>clearEdit();
+
+  // 颜色 & 粗细
+  toolbar.querySelector('#penColor').oninput=(e)=>penColor=e.target.value;
+  toolbar.querySelector('#penSize').oninput=(e)=>penSize=parseInt(e.target.value);
+
+  function selectTool(name){
+    tool=name;
+    [...toolbar.querySelectorAll("button")].forEach(btn=>{
+      btn.classList.remove("activeTool");
+    });
+    if(name==="pen") toolbar.querySelector('#penTool').classList.add("activeTool");
+    if(name==="mosaic") toolbar.querySelector('#mosaicTool').classList.add("activeTool");
+    if(name==="crop") toolbar.querySelector('#cropTool').classList.add("activeTool");
+  }
+}
+
+
+/* ===== 预览图点击进入编辑器 ===== */
+document.addEventListener('click', e=>{
+  if(e.target.tagName==="IMG" && e.target.closest('.preview-item')){
+    const idx=[...previewList.children].indexOf(e.target.closest('.preview-item'));
+    if(idx>=0) openEditor(filesData[idx]);
+  }
+});
+
+/* ===== 上传 / 拖拽 / 粘贴监听 ===== */
+upload.addEventListener('change',e=>handleFiles(e.target.files));
+dropZone.addEventListener('dragover',e=>e.preventDefault());
+dropZone.addEventListener('drop',e=>{e.preventDefault();handleFiles(e.dataTransfer.files);});
+document.addEventListener('paste',e=>{
+  const items=e.clipboardData?.items||[];
+  for(let it of items){
+    if(it.type.startsWith("image/")){
+      const f=it.getAsFile();
+      if(f) handleFiles([f]);
+    }
+  }
+});
+
+/* ===== 清空 ===== */
+clearAll.onclick=()=>{ 
+  filesData=[]; 
+  previewList.innerHTML=""; 
+  icoPreview.innerHTML=""; 
+  compareList.innerHTML=""; 
+  if(compareSection) compareSection.style.display="none"; 
+  toggleButtons(); 
+  upload.value = "";
+};
 </script>
 
 
@@ -857,11 +1813,15 @@ function convert() {
                     </a>
                      -->
 
-                  
+                  <!-- 
                     <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
                       <i class="iconfont icon-arrowup" aria-hidden="true"></i>
                     </a>
+                   -->
+
+                  <!-- 隐藏导航箭头   source/imagejpw/index.md  source/md-editor/index.md -->
                   
+
 
 
                       
@@ -1006,34 +1966,36 @@ function convert() {
   </html>
 
 
-<!-- 全局黑夜和白昼设置 -->
-<!-- themes/myhui/layout/guestbook.ejs 留言页设置 -->
-<style>
-/* —— 全局默认（浅色） —— */
-html, body {
-  background: #ffffff;            /* 浅色模式两边的底色 */
-}
+  <!-- 全局黑夜和白昼设置 -->
+  <!-- themes/myhui/layout/guestbook.ejs 留言页设置 -->
+  <style>
+    /* —— 全局默认（浅色） —— */
+    html,
+    body {
+      background: #ffffff;
+      /* 浅色模式两边的底色 */
+    }
 
-/* —— 暗色：强制把两边背景变深 —— */
-html[data-user-color-scheme="dark"] body {
-  background: #0f172a !important; /* 自己喜欢的深色，如 #111827 / #0f172a / #1e293b */
-}
+    /* —— 暗色：强制把两边背景变深 —— */
+    html[data-user-color-scheme="dark"] body {
+      background: #0f172a !important;
+      /* 自己喜欢的深色，如 #111827 / #0f172a / #1e293b */
+    }
 
-/* 某些主题会用 #web_bg / .web_bg / .body-bg 之类的容器铺底，这里一起覆盖 */
-html[data-user-color-scheme="dark"] #web_bg,
-html[data-user-color-scheme="dark"] .web_bg,
-html[data-user-color-scheme="dark"] .body-bg,
-html[data-user-color-scheme="dark"] .site-bg {
-  background: #0f172a !important;
-}
+    /* 某些主题会用 #web_bg / .web_bg / .body-bg 之类的容器铺底，这里一起覆盖 */
+    html[data-user-color-scheme="dark"] #web_bg,
+    html[data-user-color-scheme="dark"] .web_bg,
+    html[data-user-color-scheme="dark"] .body-bg,
+    html[data-user-color-scheme="dark"] .site-bg {
+      background: #0f172a !important;
+    }
 
-/* 如果主题给这些容器加了半透明蒙层/渐变（:before），也去掉以免发灰 */
-html[data-user-color-scheme="dark"] #web_bg::before,
-html[data-user-color-scheme="dark"] .web_bg::before,
-html[data-user-color-scheme="dark"] .body-bg::before,
-html[data-user-color-scheme="dark"] .site-bg::before {
-  background: transparent !important;
-  opacity: 1 !important;
-}
-
-</style>
+    /* 如果主题给这些容器加了半透明蒙层/渐变（:before），也去掉以免发灰 */
+    html[data-user-color-scheme="dark"] #web_bg::before,
+    html[data-user-color-scheme="dark"] .web_bg::before,
+    html[data-user-color-scheme="dark"] .body-bg::before,
+    html[data-user-color-scheme="dark"] .site-bg::before {
+      background: transparent !important;
+      opacity: 1 !important;
+    }
+  </style>
