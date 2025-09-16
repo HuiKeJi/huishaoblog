@@ -35,7 +35,7 @@
 <meta property="og:description" content="一个简易的 PDF 工具箱   上传多个 PDF → 预览（删除、拆分、旋转&#x2F;排序&#x2F;合并）→ 配置水印 → 导出&#x2F;拆分。            拖拽 PDF 到这里上传 或 点击选择                           🗑 删除所选页       ✂️ 拆分所选页       📎 合并所选 PDF                 ↩️ 左转       ↪️ 右转">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-16T08:00:53.372Z">
+<meta property="article:modified_time" content="2025-09-16T08:01:39.995Z">
 <meta property="article:author" content="huishao">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -831,28 +831,27 @@
       </div>
     </div>
 
-<pre><code class="hljs">&lt;div class=&quot;row&quot;&gt;
-  &lt;input class=&quot;input&quot; type=&quot;text&quot; id=&quot;watermarkText&quot; placeholder=&quot;水印文字（留空 Huishao.net）&quot;&gt;
-  &lt;label class=&quot;lbl&quot;&gt;水印数量：&lt;/label&gt;
-  &lt;input class=&quot;input input-n&quot; type=&quot;number&quot; id=&quot;watermarkCount&quot; value=&quot;1&quot; min=&quot;1&quot;&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;row align&quot;&gt;
-  &lt;label class=&quot;lbl&quot;&gt;字体大小：&lt;/label&gt;
-  &lt;input class=&quot;input input-n&quot; type=&quot;number&quot; id=&quot;watermarkSize&quot; value=&quot;24&quot; min=&quot;8&quot; max=&quot;160&quot;&gt;
-  &lt;label class=&quot;lbl&quot;&gt;透明度：&lt;/label&gt;
-  &lt;input class=&quot;input input-n&quot; type=&quot;number&quot; id=&quot;watermarkOpacity&quot; value=&quot;0.5&quot; min=&quot;0.05&quot; max=&quot;1&quot; step=&quot;0.05&quot;&gt;
-  &lt;label class=&quot;lbl&quot;&gt;颜色：&lt;/label&gt;
-  &lt;input class=&quot;input input-color&quot; type=&quot;color&quot; id=&quot;watermarkColor&quot; value=&quot;#bfbfbf&quot;&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;row&quot;&gt;
-  &lt;button onclick=&quot;queueCustomWatermark()&quot;&gt;加入水印配置&lt;/button&gt;
-  &lt;button onclick=&quot;clearWatermarkQueue()&quot;&gt;清空水印队列&lt;/button&gt;
-&lt;/div&gt;
-&lt;div id=&quot;wmInfo&quot; class=&quot;wm-info&quot;&gt;当前待应用水印：0 组&lt;/div&gt;
-</code></pre>
+  <div class="row">
+    <input class="input" type="text" id="watermarkText" placeholder="水印文字（留空 Huishao.net）">
+    <label class="lbl">水印数量：</label>
+    <input class="input input-n" type="number" id="watermarkCount" value="1" min="1">
   </div>
+
+  <div class="row align">
+    <label class="lbl">字体大小：</label>
+    <input class="input input-n" type="number" id="watermarkSize" value="24" min="8" max="160">
+    <label class="lbl">透明度：</label>
+    <input class="input input-n" type="number" id="watermarkOpacity" value="0.5" min="0.05" max="1" step="0.05">
+    <label class="lbl">颜色：</label>
+    <input class="input input-color" type="color" id="watermarkColor" value="#bfbfbf">
+  </div>
+
+  <div class="row">
+    <button onclick="queueCustomWatermark()">加入水印配置</button>
+    <button onclick="clearWatermarkQueue()">清空水印队列</button>
+  </div>
+  <div id="wmInfo" class="wm-info">当前待应用水印：0 组</div>
+</div>
 
   <!-- ===== 预览 + 全选 ===== -->
   <div style="margin-top:24px;">
