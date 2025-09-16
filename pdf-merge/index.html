@@ -27,15 +27,15 @@
   <meta name="author" content="huishao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一个简易的 PDF 工具箱   上传 PDF → 预览 → 选择页面（删除、拆分、旋转&#x2F;排序）→ 配置水印 → 导出&#x2F;拆分。                             🗑 删除所选页       ✂️ 拆分所选页                 ↩️ 左传       ↪️ 右转       🔄 上下翻转                 ⬇️ 下载 PDF">
+    <meta name="description" content="一个简易的 PDF 工具箱   上传多个 PDF → 预览（删除、拆分、旋转&#x2F;排序&#x2F;合并）→ 配置水印 → 导出&#x2F;拆分。            拖拽 PDF 到这里上传 或 点击选择                           🗑 删除所选页       ✂️ 拆分所选页       📎 合并所选 PDF                 ↩️ 左转       ↪️ 右转">
 <meta property="og:type" content="website">
 <meta property="og:title" content="辉少PDF工具箱">
 <meta property="og:url" content="http://huishao.net/pdf-merge/index.html">
 <meta property="og:site_name" content="辉少笔记">
-<meta property="og:description" content="一个简易的 PDF 工具箱   上传 PDF → 预览 → 选择页面（删除、拆分、旋转&#x2F;排序）→ 配置水印 → 导出&#x2F;拆分。                             🗑 删除所选页       ✂️ 拆分所选页                 ↩️ 左传       ↪️ 右转       🔄 上下翻转                 ⬇️ 下载 PDF">
+<meta property="og:description" content="一个简易的 PDF 工具箱   上传多个 PDF → 预览（删除、拆分、旋转&#x2F;排序&#x2F;合并）→ 配置水印 → 导出&#x2F;拆分。            拖拽 PDF 到这里上传 或 点击选择                           🗑 删除所选页       ✂️ 拆分所选页       📎 合并所选 PDF                 ↩️ 左转       ↪️ 右转">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-16T06:38:29.406Z">
+<meta property="article:modified_time" content="2025-09-16T08:00:53.372Z">
 <meta property="article:author" content="huishao">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -796,20 +796,23 @@
   <div style="max-width:1100px; padding:20px; margin:100px auto 0; text-align:center; position:relative;">
 
   <h2>一个简易的 PDF 工具箱</h2>
-  <p>上传 PDF → 预览 → 选择页面（删除、拆分、旋转/排序）→ 配置水印 → 导出/拆分。</p>
+  <p>上传多个 PDF → 预览（删除、拆分、旋转/排序/合并）→ 配置水印 → 导出/拆分。</p>
 
-  <!-- 上传 -->
-  <input type="file" id="pdfUpload" accept="application/pdf">
-  <br><br>
+  <!-- ===== 单一上传区：支持多选 + 拖拽 ===== -->
+  <div id="uploadArea" class="upload-box">
+    拖拽 PDF 到这里上传 或 点击选择
+    <input type="file" id="pdfPicker" accept="application/pdf" multiple>
+  </div>
 
-  <!-- 操作按钮 -->
+  <!-- ===== 操作按钮 ===== -->
   <div class="tool-actions">
     <div class="row">
       <button onclick="deletePages()">🗑 删除所选页</button>
       <button onclick="splitPages()">✂️ 拆分所选页</button>
+      <button onclick="mergeSelected()">📎 合并所选 PDF</button>
     </div>
     <div class="row">
-      <button onclick="rotateSelected('left')">↩️ 左传</button>
+      <button onclick="rotateSelected('left')">↩️ 左转</button>
       <button onclick="rotateSelected('right')">↪️ 右转</button>
       <button onclick="rotateSelected('flip')">🔄 上下翻转</button>
     </div>
@@ -818,7 +821,7 @@
     </div>
   </div>
 
-  <!-- 水印配置 -->
+  <!-- ===== 水印配置 ===== -->
   <div class="wm-box">
     <div class="wm-title">
       <span class="wm-emoji">💧</span>
@@ -828,32 +831,33 @@
       </div>
     </div>
 
-  <div class="row">
-    <input class="input" type="text" id="watermarkText" placeholder="水印文字（留空 Huishao.net）">
-    <label class="lbl">水印数量：</label>
-    <input class="input input-n" type="number" id="watermarkCount" value="1" min="1">
+<pre><code class="hljs">&lt;div class=&quot;row&quot;&gt;
+  &lt;input class=&quot;input&quot; type=&quot;text&quot; id=&quot;watermarkText&quot; placeholder=&quot;水印文字（留空 Huishao.net）&quot;&gt;
+  &lt;label class=&quot;lbl&quot;&gt;水印数量：&lt;/label&gt;
+  &lt;input class=&quot;input input-n&quot; type=&quot;number&quot; id=&quot;watermarkCount&quot; value=&quot;1&quot; min=&quot;1&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row align&quot;&gt;
+  &lt;label class=&quot;lbl&quot;&gt;字体大小：&lt;/label&gt;
+  &lt;input class=&quot;input input-n&quot; type=&quot;number&quot; id=&quot;watermarkSize&quot; value=&quot;24&quot; min=&quot;8&quot; max=&quot;160&quot;&gt;
+  &lt;label class=&quot;lbl&quot;&gt;透明度：&lt;/label&gt;
+  &lt;input class=&quot;input input-n&quot; type=&quot;number&quot; id=&quot;watermarkOpacity&quot; value=&quot;0.5&quot; min=&quot;0.05&quot; max=&quot;1&quot; step=&quot;0.05&quot;&gt;
+  &lt;label class=&quot;lbl&quot;&gt;颜色：&lt;/label&gt;
+  &lt;input class=&quot;input input-color&quot; type=&quot;color&quot; id=&quot;watermarkColor&quot; value=&quot;#bfbfbf&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+  &lt;button onclick=&quot;queueCustomWatermark()&quot;&gt;加入水印配置&lt;/button&gt;
+  &lt;button onclick=&quot;clearWatermarkQueue()&quot;&gt;清空水印队列&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id=&quot;wmInfo&quot; class=&quot;wm-info&quot;&gt;当前待应用水印：0 组&lt;/div&gt;
+</code></pre>
   </div>
 
-  <div class="row align">
-    <label class="lbl">字体大小：</label>
-    <input class="input input-n" type="number" id="watermarkSize" value="24" min="8" max="160">
-    <label class="lbl">透明度：</label>
-    <input class="input input-n" type="number" id="watermarkOpacity" value="0.5" min="0.05" max="1" step="0.05">
-    <label class="lbl">颜色：</label>
-    <input class="input input-color" type="color" id="watermarkColor" value="#bfbfbf">
-  </div>
-
-  <div class="row">
-    <button onclick="queueCustomWatermark()">加入水印配置</button>
-    <button onclick="clearWatermarkQueue()">清空水印队列</button>
-  </div>
-  <div id="wmInfo" class="wm-info">当前待应用水印：0 组</div>
-</div>
-
-  <!-- 预览 + 全选 -->
+  <!-- ===== 预览 + 全选 ===== -->
   <div style="margin-top:24px;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-      <div style="font-size:14px;color:#555;">👉 可拖拽缩略图改变页面顺序</div>
+      <div style="font-size:14px;color:#555;">👉 可拖拽缩略图改变全局页面顺序（跨 PDF 也可拖）</div>
       <label style="display:flex;align-items:center;gap:6px;font-size:14px;cursor:pointer;">
         <input type="checkbox" id="selectAllToggle" style="transform:scale(1.2);cursor:pointer;">
         全选/取消全选
@@ -864,206 +868,79 @@
 </div>
 
 <style>
-
   /* ========= 顶栏颜色 ========= */
-  .navbar {
-    background-color: #3D85C6 !important; /* 白天：亮蓝色 */
-    transition: background-color .3s ease;
-  }
-  html[data-user-color-scheme="dark"] .navbar {
-    background-color: #1f3144 !important; /* 夜晚：深蓝色 */
-  }
+  .navbar { background-color:#3D85C6 !important; transition:background-color .3s ease; }
+  html[data-user-color-scheme="dark"] .navbar { background-color:#1f3144 !important; }
 
-  /* ===== 按钮统一样式 ===== */
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    background: linear-gradient(135deg,#f1f5f9,#e2e8f0);
-    color: #1f2937;
-    transition: all .25s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,.08);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  /* ===== 上传框 ===== */
+  .upload-box{
+    border:2px dashed #cbd5e1; border-radius:12px; padding:40px;
+    margin:20px auto; max-width:560px; color:#6b7280; cursor:pointer; position:relative; font-size:15px;
+    background:#fafafa; transition:.25s;
   }
+  .upload-box:hover{ background:#f3f4f6; }
+  .upload-box input{ position:absolute; inset:0; opacity:0; cursor:pointer; }
 
-  button:hover {
-    background: linear-gradient(135deg,#e2e8f0,#cbd5e1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  html[data-user-color-scheme="dark"] .upload-box{
+    background:#0f172a; border-color:#334155; color:#94a3b8;
   }
+  html[data-user-color-scheme="dark"] .upload-box:hover{ background:#111827; }
 
-  button:active { transform: scale(.96); }
+  /* ===== 工具按钮 ===== */
+  button{
+    padding:10px 20px; border:none; border-radius:8px; font-size:14px; cursor:pointer;
+    background:linear-gradient(135deg,#f1f5f9,#e2e8f0); color:#1f2937; transition:all .25s ease; box-shadow:0 2px 4px rgba(0,0,0,.08);
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  button:hover{ background:linear-gradient(135deg,#e2e8f0,#cbd5e1); transform:translateY(-2px); box-shadow:0 4px 10px rgba(0,0,0,.12);}
+  button:active{ transform:scale(.96); }
+  .download-btn{ font-weight:bold; color:#fff; background:linear-gradient(135deg,#22c55e,#16a34a); box-shadow:0 4px 12px rgba(34,197,94,.3); }
+  .download-btn:hover{ background:linear-gradient(135deg,#16a34a,#15803d); }
+  html[data-user-color-scheme="dark"] button{ background:linear-gradient(135deg,#334155,#1e293b); color:#f1f5f9; box-shadow:0 2px 6px rgba(0,0,0,.5); }
+  html[data-user-color-scheme="dark"] button:hover{ background:linear-gradient(135deg,#475569,#334155); }
+  html[data-user-color-scheme="dark"] button.download-btn{ background:linear-gradient(135deg,#16a34a,#15803d); color:#eafff0; box-shadow:0 4px 12px rgba(22,163,74,.5); }
+  html[data-user-color-scheme="dark"] button.download-btn:hover{ background:linear-gradient(135deg,#22c55e,#16a34a); }
 
-  /* 下载按钮：绿色高亮 */
-  button.download-btn {
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg,#22c55e,#16a34a);
-    box-shadow: 0 4px 12px rgba(34,197,94,.3);
-  }
-  button.download-btn:hover {
-    background: linear-gradient(135deg,#16a34a,#15803d);
-  }
-
-  /* 🌙 夜间模式下按钮 */
-  html[data-user-color-scheme="dark"] button {
-    background: linear-gradient(135deg,#334155,#1e293b);
-    color: #f1f5f9;
-    box-shadow: 0 2px 6px rgba(0,0,0,.5);
-  }
-  html[data-user-color-scheme="dark"] button:hover {
-    background: linear-gradient(135deg,#475569,#334155);
-  }
-  html[data-user-color-scheme="dark"] button.download-btn {
-    background: linear-gradient(135deg,#16a34a,#15803d);
-    color: #eafff0;
-    box-shadow: 0 4px 12px rgba(22,163,74,.5);
-  }
-  html[data-user-color-scheme="dark"] button.download-btn:hover {
-    background: linear-gradient(135deg,#22c55e,#16a34a);
-  }
-
-  /* ===== 工具按钮布局 ===== */
-  .tool-actions {
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: center;
-  }
-  .tool-actions .row {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-  }
+  .tool-actions{ margin:20px auto; display:flex; flex-direction:column; gap:14px; align-items:center; }
+  .tool-actions .row{ display:flex; gap:14px; justify-content:center; }
 
   /* ===== 水印卡片 ===== */
-  .wm-box {
-    margin-top: 20px;
-    text-align: center;
-    border: 1px solid #e5e7eb;
-    padding: 20px;
-    border-radius: 14px;
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-    background: #fdfdfd;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05);
-  }
-  html[data-user-color-scheme="dark"] .wm-box {
-    background: #1e293b;
-    border-color: #334155;
-    box-shadow: 0 2px 8px rgba(0,0,0,.6);
-  }
-  html[data-user-color-scheme="dark"] .wm-box h3 { color: #e2e8f0; }
+  .wm-box{ margin-top:20px; text-align:center; border:1px solid #e5e7eb; padding:20px; border-radius:14px; max-width:760px; margin-left:auto; margin-right:auto; background:#fdfdfd; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+  html[data-user-color-scheme="dark"] .wm-box{ background:#1e293b; border-color:#334155; box-shadow:0 2px 8px rgba(0,0,0,.6); }
+  html[data-user-color-scheme="dark"] .wm-box h3{ color:#e2e8f0; }
   html[data-user-color-scheme="dark"] .wm-box p,
   html[data-user-color-scheme="dark"] .wm-info,
-  html[data-user-color-scheme="dark"] .lbl { color: #cbd5e1; }
-  html[data-user-color-scheme="dark"] .input {
-    background: #0f172a;
-    border-color: #334155;
-    color: #f1f5f9;
-  }
+  html[data-user-color-scheme="dark"] .lbl{ color:#cbd5e1; }
+  html[data-user-color-scheme="dark"] .input{ background:#0f172a; border-color:#334155; color:#f1f5f9; }
 
-  .wm-title {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-  .wm-emoji { font-size: 28px; }
-  .wm-box h3 {
-    margin: 0;
-    color: #1f2937;
-    letter-spacing: .5px;
-  }
-  .wm-box p {
-    margin: 2px 0 0;
-    color: #6b7280;
-    font-size: 13px;
-  }
-  .wm-box .row {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 12px;
-  }
-  .wm-box .row.align { align-items: center; }
-
-  .lbl {
-    color: #374151;
-    font-size: 14px;
-    line-height: 40px;
-  }
-  .input {
-    height: 40px;
-    line-height: 40px;
-    padding: 0 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    background: #fff;
-    outline: none;
-  }
-  .input:focus {
-    border-color: #93c5fd;
-    box-shadow: 0 0 0 3px rgba(147,197,253,.35);
-  }
-  .input-n { width: 120px; text-align: center; }
-  .input-color { width: 56px; padding: 0; }
-  .wm-info {
-    font-size: 12px;
-    color: #6b7280;
-    margin-top: 6px;
-  }
+  .wm-title{ display:flex; gap:12px; align-items:center; justify-content:center; margin-bottom:10px; }
+  .wm-emoji{ font-size:28px; }
+  .wm-box h3{ margin:0; color:#1f2937; letter-spacing:.5px; }
+  .wm-box p{ margin:2px 0 0; color:#6b7280; font-size:13px; }
+  .wm-box .row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .wm-box .row.align{ align-items:center; }
+  .lbl{ color:#374151; font-size:14px; line-height:40px; }
+  .input{ height:40px; line-height:40px; padding:0 12px; border:1px solid #d1d5db; border-radius:8px; background:#fff; outline:none; }
+  .input:focus{ border-color:#93c5fd; box-shadow:0 0 0 3px rgba(147,197,253,.35); }
+  .input-n{ width:120px; text-align:center; }
+  .input-color{ width:56px; padding:0; }
+  .wm-info{ font-size:12px; color:#6b7280; margin-top:6px; }
 
   /* ===== 预览区 ===== */
-  .preview-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    justify-content: center;
-  }
-  #preview > .page-wrapper {
-    position: relative;
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    background: #fff;
-    padding: 6px;
-    cursor: move;
-    transition: all .25s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,.05);
-  }
-  #preview > .page-wrapper:hover { box-shadow: 0 6px 14px rgba(0,0,0,.12); }
-  #preview > .page-wrapper.selected { border: 2px solid #3b82f6; }
+  .preview-grid{ display:flex; flex-wrap:wrap; gap:24px; justify-content:center; }
+  .pdf-section-title{ flex:0 0 100%; text-align:left; font-weight:700; color:#374151; margin:8px 0 -8px; }
+  html[data-user-color-scheme="dark"] .pdf-section-title{ color:#e5e7eb; }
 
-  /* 页码角标 */
-  .page-number {
-    position: absolute;
-    top: 6px;
-    right: 8px;
-    background: #3b82f6;
-    color: #fff;
-    font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: .25s;
+  #preview>.page-wrapper{
+    position:relative; border:2px solid #e5e7eb; border-radius:12px; background:#fff; padding:6px;
+    cursor:move; transition:all .25s ease; box-shadow:0 2px 6px rgba(0,0,0,.05);
   }
-  .page-wrapper.selected .page-number { background: #ef4444; }
-
-  /* 拖拽时半透明 */
-  .drag-ghost { opacity: .6; }
-
+  #preview>.page-wrapper:hover{ box-shadow:0 6px 14px rgba(0,0,0,.12); }
+  #preview>.page-wrapper.selected{ border:2px solid #3b82f6; }
+  .page-number{ position:absolute; top:6px; right:8px; background:#3b82f6; color:#fff; font-size:12px; padding:2px 6px; border-radius:6px; font-weight:bold; transition:.25s; }
+  .page-wrapper.selected .page-number{ background:#ef4444; }
+  .drag-ghost{ opacity:.6; }
 </style>
-
-
-
 
 <!-- 依赖 -->
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
@@ -1071,248 +948,422 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 
 <script>
-  // ===== 状态 =====
-  let loadedPdf = null, pdfBytes = null;
-  let selectedPages = new Set();       // 存“原始索引”（data-index）
-  let rotationMap = {};                // { 原始索引: 角度 }
-  let allSelected = false;
-  let pageOrder = [];                  // 当前顺序：原始索引数组，如 [0,2,1,3,...]
+/* =========================
+ *  全局状态（支持多 PDF）
+ * ========================= */
+let docs = [];        // [{ name, doc(PDFLib.PDFDocument), bytes(Uint8Array) }]
+let pageOrder = [];   // 全局顺序：[{ f:文件索引, p:页索引 }]
+let selected = new Set(); // 选中集合："f-p"
+let rotationMap = {}; // 旋转角度映射：{ "f-p": angle }
+const MAX_UNIQUE_WM = 10, MAX_COUNT_PER_PAGE = 30;
+let pendingWatermarks = [];
 
-  const MAX_UNIQUE_WM = 10, MAX_COUNT_PER_PAGE = 30;
-  let pendingWatermarks = [];
+/* =========================
+ *  上传（多选 + 拖拽）
+ * ========================= */
+const uploadBox = document.getElementById('uploadArea');
+const picker    = document.getElementById('pdfPicker');
 
-  // ===== 工具：text → png =====
-  function createWatermarkImage(text, size, color, opacity) {
-    const measurer = document.createElement('canvas').getContext('2d');
-    measurer.font = `bold ${size}px system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif`;
-    const textW = Math.ceil(measurer.measureText(text).width);
-    const textH = Math.ceil(size * 1.2);
-    const pad = Math.ceil(size * 0.8); const theta = Math.PI / 6;
-    const w = textW + pad * 2, h = textH + pad * 2;
-    const rotW = Math.ceil(Math.abs(w * Math.cos(theta)) + Math.abs(h * Math.sin(theta)));
-    const rotH = Math.ceil(Math.abs(w * Math.sin(theta)) + Math.abs(h * Math.cos(theta)));
-    const cw = Math.max(220, rotW), ch = Math.max(120, rotH);
+// 点击选择
+picker.addEventListener('change', async (e) => {
+  const files = Array.from(e.target.files).filter(f => f.type === 'application/pdf');
+  if (!files.length) return;
+  await loadFiles(files);
+  await renderAll();
+  picker.value = ''; // 允许选择相同文件
+});
 
-    const canvas = document.createElement('canvas'); canvas.width = cw; canvas.height = ch;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, cw, ch); ctx.globalAlpha = opacity; ctx.fillStyle = color; ctx.font = measurer.font;
-    ctx.translate(cw / 2, ch / 2); ctx.rotate(-theta); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, 0);
-    return canvas.toDataURL('image/png');
+// 拖入/拖拽
+['dragenter','dragover'].forEach(evt => {
+  uploadBox.addEventListener(evt, (e) => { e.preventDefault(); uploadBox.style.opacity = .9; });
+});
+['dragleave','drop'].forEach(evt => {
+  uploadBox.addEventListener(evt, (e) => { e.preventDefault(); uploadBox.style.opacity = 1; });
+});
+uploadBox.addEventListener('drop', async (e) => {
+  const files = Array.from(e.dataTransfer.files).filter(f => f.type === 'application/pdf');
+  if (!files.length) return;
+  await loadFiles(files);
+  await renderAll();
+});
+
+// 实际加载文件
+async function loadFiles(files){
+  for (const file of files){
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const doc   = await PDFLib.PDFDocument.load(bytes);
+    docs.push({ name:file.name, doc, bytes });
+    // 初始化 rotationMap 键
+    for (let i=0; i<doc.getPageCount(); i++){
+      const key = `${docs.length-1}-${i}`;
+      if (!(key in rotationMap)) rotationMap[key] = 0;
+    }
   }
+}
 
-  // ===== 预览（带角标 + 拖拽） =====
-  async function previewPDF(fileBytes) {
-    const pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-    const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
+/* =========================
+ *  预览渲染（按文件标题分组）
+ *  支持跨 PDF 拖拽排序
+ * ========================= */
+async function renderAll(){
+  const preview = document.getElementById('preview');
+  preview.innerHTML = '';
+  pageOrder = [];
 
-    const preview = document.getElementById('preview'); preview.innerHTML = '';
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const viewport = page.getViewport({ scale: 0.4 });
-      const canvas = document.createElement('canvas'); canvas.width = viewport.width; canvas.height = viewport.height;
+  const pdfjsLib = window['pdfjs-dist/build/pdf'];
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+  for (let f=0; f<docs.length; f++){
+    // 分组标题（保持在同一容器，Sortable 忽略标题）
+    const title = document.createElement('div');
+    title.className = 'pdf-section-title';
+    title.textContent = `📄 ${docs[f].name}`;
+    preview.appendChild(title);
+
+    // 用 pdf.js 渲染每一页缩略图
+    const pdf = await pdfjsLib.getDocument({ data: docs[f].bytes }).promise;
+    for (let p=1; p<=pdf.numPages; p++){
+      const page = await pdf.getPage(p);
+      const viewport = page.getViewport({ scale: 0.32 }); // 缩略图倍率
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width; canvas.height = viewport.height;
       await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
 
       const wrap = document.createElement('div');
       wrap.className = 'page-wrapper';
-      wrap.dataset.index = i - 1;                 // 原始索引
+      wrap.dataset.fileIdx = f;
+      wrap.dataset.pageIdx = p-1;
       wrap.appendChild(canvas);
 
       const badge = document.createElement('div');
-      badge.className = 'page-number'; badge.innerText = i;
+      badge.className = 'page-number';
+      badge.textContent = p; // 角标显示其文档内页码
       wrap.appendChild(badge);
 
       wrap.onclick = () => toggleSelect(wrap);
       preview.appendChild(wrap);
 
-      rotationMap[i - 1] = rotationMap[i - 1] || 0;
+      // 记录全局顺序
+      pageOrder.push({ f, p: p-1 });
+
+      // 预览旋转态（页面曾被旋转过）
+      const key = `${f}-${p-1}`;
+      const ang = rotationMap[key] || 0;
+      if (ang) canvas.style.transform = `rotate(${ang}deg)`;
     }
-
-    // 初始顺序：0..n-1
-    pageOrder = Array.from({ length: pdf.numPages }, (_, i) => i);
-    selectedPages.clear(); allSelected = false;
-    document.getElementById('selectAllToggle').checked = false;
-
-    // 启用拖拽
-    if (window.previewSortable) window.previewSortable.destroy();
-    window.previewSortable = Sortable.create(preview, {
-      animation: 150,
-      ghostClass: 'drag-ghost',
-      onEnd: () => {
-        // 根据当前 DOM 顺序重建 pageOrder，并重置角标
-        pageOrder = Array.from(preview.querySelectorAll('.page-wrapper'))
-          .map(el => parseInt(el.dataset.index));
-        preview.querySelectorAll('.page-wrapper').forEach((el, idx) => {
-          el.querySelector('.page-number').innerText = idx + 1;
-        });
-      }
-    });
   }
 
-  function toggleSelect(wrap) {
-    const idx = parseInt(wrap.dataset.index);
-    if (selectedPages.has(idx)) { selectedPages.delete(idx); wrap.classList.remove('selected'); }
-    else { selectedPages.add(idx); wrap.classList.add('selected'); }
-  }
-
-  // 全选
-  document.getElementById('selectAllToggle').addEventListener('change', (e) => {
-    const checked = e.target.checked;
-    selectedPages.clear();
-    document.querySelectorAll('#preview .page-wrapper').forEach(el => {
-      const idx = parseInt(el.dataset.index);
-      if (checked) { selectedPages.add(idx); el.classList.add('selected'); }
-      else { el.classList.remove('selected'); }
-    });
-    allSelected = checked;
+  // 开启拖拽（仅拖 .page-wrapper，忽略标题）
+  if (window._sortable) window._sortable.destroy();
+  window._sortable = Sortable.create(preview, {
+    animation: 150,
+    draggable: '.page-wrapper',
+    ghostClass: 'drag-ghost',
+    onEnd: () => {
+      // 读 DOM 中所有 .page-wrapper 重新构造 pageOrder
+      const nodes = preview.querySelectorAll('.page-wrapper');
+      pageOrder = Array.from(nodes).map(el => ({
+        f: parseInt(el.dataset.fileIdx,10),
+        p: parseInt(el.dataset.pageIdx,10)
+      }));
+    }
   });
 
-  // 加载
-  document.getElementById('pdfUpload').addEventListener('change', async e => {
-    const file = e.target.files[0]; if (!file) return;
-    pdfBytes = await file.arrayBuffer();
-    loadedPdf = await PDFLib.PDFDocument.load(pdfBytes);
-    await previewPDF(pdfBytes);
+  // 清空选中
+  selected.clear();
+  document.getElementById('selectAllToggle').checked = false;
+}
+
+// 切换选中/取消
+function toggleSelect(el){
+  const key = `${el.dataset.fileIdx}-${el.dataset.pageIdx}`;
+  if (selected.has(key)){ selected.delete(key); el.classList.remove('selected'); }
+  else { selected.add(key); el.classList.add('selected'); }
+}
+
+// 全选/全不选
+document.getElementById('selectAllToggle').addEventListener('change', (e)=>{
+  const checked = e.target.checked;
+  const items = document.querySelectorAll('#preview .page-wrapper');
+  selected.clear();
+  items.forEach(el=>{
+    const key = `${el.dataset.fileIdx}-${el.dataset.pageIdx}`;
+    if (checked){ selected.add(key); el.classList.add('selected'); }
+    else { el.classList.remove('selected'); }
   });
+});
 
-  // ===== 删除（按当前顺序保留未选） =====
-  async function deletePages() {
-    if (!loadedPdf) return alert('请先上传 PDF！');
-    if (selectedPages.size === 0) return alert('请选择要删除的页面！');
+/* =========================
+ *  删除所选页（跨 PDF）
+ *  - 对每个文档分别构造保留页
+ *  - 更新 rotationMap & bytes
+ * ========================= */
+async function deletePages(){
+  if (!docs.length) return alert('请先上传 PDF！');
+  if (!selected.size) return alert('请选择要删除的页面！');
 
-    const keep = pageOrder.filter(i => !selectedPages.has(i));  // 保留原始索引
-    const newPdf = await PDFLib.PDFDocument.create();
-    const copied = await newPdf.copyPages(loadedPdf, keep);
-    copied.forEach(p => newPdf.addPage(p));
-    pdfBytes = await newPdf.save();
-    loadedPdf = await PDFLib.PDFDocument.load(pdfBytes);
+  const keepDocs = [];
 
-    // 重建 rotationMap（新索引 -> 旧索引角度）
-    const newMap = {}; keep.forEach((oldIdx, newIdx) => { newMap[newIdx] = rotationMap[oldIdx] || 0; });
-    rotationMap = newMap;
+  for (let f=0; f<docs.length; f++){
+    const oldDoc = docs[f].doc;
+    const indices = oldDoc.getPageIndices(); // [0..n-1]
+    const keep = indices.filter(i => !selected.has(`${f}-${i}`));
 
-    // 重新预览（pageOrder 会重置为 0..n-1）
-    await previewPDF(pdfBytes);
-  }
-
-  // ===== 拆分（按当前顺序 + 队列水印 + 旋转） =====
-  async function splitPages() {
-    if (!loadedPdf) return alert('请先上传 PDF！');
-    if (selectedPages.size === 0) return alert('请选择要拆分的页面！');
-
-    const order = pageOrder.filter(i => selectedPages.has(i)); // 选中且按现顺序
+    if (keep.length === 0){
+      // 全删掉：这个文件跳过（相当于移除这个 PDF）
+      continue;
+    }
     const out = await PDFLib.PDFDocument.create();
-    const copied = await out.copyPages(loadedPdf, order);
+    const copied = await out.copyPages(oldDoc, keep);
     copied.forEach(p => out.addPage(p));
-    applyRotations(out, order);
-    await applyQueuedWatermarks(out);
-    const bytes = await out.save();
-    downloadBlob(bytes, 'splitted.pdf');
-  }
 
-  // ===== 旋转（仅预览变换 + 记录角度，按原始索引） =====
-  function rotateSelected(direction) {
-    if (!loadedPdf) return alert('请先上传 PDF！');
-    if (selectedPages.size === 0) return alert('请选择要旋转的页面！');
+    // 更新 bytes/doc
+    const newBytes = await out.save();
+    keepDocs.push({ name: docs[f].name, doc: await PDFLib.PDFDocument.load(newBytes), bytes: newBytes });
 
-    selectedPages.forEach(i => {
-      let delta = direction === 'left' ? -90 : direction === 'right' ? 90 : 180;
-      rotationMap[i] = ((rotationMap[i] || 0) + delta) % 360;
-      const el = document.querySelector(`#preview .page-wrapper[data-index='${i}'] canvas`);
-      if (el) el.style.transform = `rotate(${rotationMap[i]}deg)`;
+    // 旋转映射重建（新页索引 -> 原 key）
+    const newRotation = {};
+    keep.forEach((oldIdx, newIdx)=>{
+      const oldKey = `${f}-${oldIdx}`;
+      const newKey = `${keepDocs.length-1}-${newIdx}`;
+      newRotation[newKey] = rotationMap[oldKey] || 0;
     });
+    // 临时带上，后面汇总
+    keepDocs[keepDocs.length-1]._rot = newRotation;
   }
 
-  // ===== 导出（按当前顺序 + 队列水印 + 旋转；不污染 loadedPdf） =====
-  async function downloadFinal() {
-    if (!loadedPdf) return alert('请先上传 PDF！');
-    const out = await PDFLib.PDFDocument.create();
-    const copied = await out.copyPages(loadedPdf, pageOrder);   // 按现顺序导出
-    copied.forEach(p => out.addPage(p));
-    applyRotations(out, pageOrder);
-    await applyQueuedWatermarks(out);
-    const bytes = await out.save();
-    downloadBlob(bytes, 'final.pdf');
-    pendingWatermarks = []; updateWmInfo();
+  // 汇总 docs & rotationMap
+  docs = keepDocs;
+  const rebuilt = {};
+  docs.forEach((d, nf)=>{
+    const rot = d._rot || {};
+    Object.keys(rot).forEach(k=>{
+      // k 是 "nf-newIdx"，nf 我们重新按当前循环生成即可，不需要改
+      const angle = rot[k] || 0;
+      rebuilt[k] = angle;
+    });
+    delete d._rot;
+  });
+  rotationMap = rebuilt;
+
+  selected.clear();
+  await renderAll();
+}
+
+/* =========================
+ *  拆分所选页为新 PDF（保留原文档）
+ *  - 按当前全局 pageOrder 的顺序过滤所选
+ *  - 应用旋转 + 水印
+ * ========================= */
+async function splitPages(){
+  if (!docs.length) return alert('请先上传 PDF！');
+  if (!selected.size) return alert('请选择要拆分的页面！');
+
+  const out = await PDFLib.PDFDocument.create();
+
+  // 按全局顺序过滤选中项
+  const orderSel = pageOrder.filter(item => selected.has(`${item.f}-${item.p}`));
+  for (const item of orderSel){
+    const copied = await out.copyPages(docs[item.f].doc, [item.p]);
+    const page = copied[0];
+    out.addPage(page);
+    // 应用旋转（根据原始 key 设置）
+    const ang = rotationMap[`${item.f}-${item.p}`] || 0;
+    if (ang) page.setRotation(PDFLib.degrees(ang));
   }
 
-  // ===== 水印队列 =====
-  function normalizeCfg(text, count, size, opacity, color) {
-    const t = (text || '').replace(/\r?\n|\r/g, '').trim() || 'Huishao.net';
-    const c = Math.min(MAX_COUNT_PER_PAGE, Math.max(1, parseInt(count) || 1));
-    const s = Math.min(160, Math.max(8, parseInt(size) || 24));
-    const o = Math.min(1, Math.max(0.05, parseFloat(opacity) || 0.5));
-    const col = color || '#bfbfbf';
-    return { text: t, count: c, size: s, opacity: o, color: col, key: JSON.stringify({ t: s ? t : t, s, o, col }) };
-  }
-  function queueCustomWatermark() {
-    if (pendingWatermarks.length >= MAX_UNIQUE_WM) return alert(`最多支持 ${MAX_UNIQUE_WM} 组水印`);
-    const cfg = normalizeCfg(
-      document.getElementById('watermarkText').value,
-      document.getElementById('watermarkCount').value,
-      document.getElementById('watermarkSize').value,
-      document.getElementById('watermarkOpacity').value,
-      document.getElementById('watermarkColor').value
-    );
-    const exist = pendingWatermarks.find(w => w.key === cfg.key);
-    if (exist) exist.count = Math.min(MAX_COUNT_PER_PAGE, exist.count + cfg.count);
-    else pendingWatermarks.push(cfg);
-    updateWmInfo();
-    alert(`✅ 已加入：${cfg.text}（${cfg.size}px, 透明度${cfg.opacity}, 每页${cfg.count} 个）`);
-  }
-  function clearWatermarkQueue() { pendingWatermarks = []; updateWmInfo(); alert('已清空水印队列。'); }
-  function updateWmInfo() {
-    const total = pendingWatermarks.length;
-    const per = pendingWatermarks.reduce((s, w) => s + w.count, 0);
-    document.getElementById('wmInfo').innerText = `当前待应用水印：${total} 组（合计每页 ${per} 个，最高 ${MAX_COUNT_PER_PAGE}）`;
+  // 应用水印
+  await applyQueuedWatermarks(out);
+
+  const bytes = await out.save();
+  downloadBlob(bytes, 'splitted.pdf');
+}
+
+/* =========================
+ *  合并所选（两种模式）
+ *  - 若选中页 > 0：仅合并“选中页”并导出
+ *  - 否则：合并“所有已上传 PDF 的全部页面”并导出
+ *  （不改变当前 docs，仅导出文件）
+ * ========================= */
+async function mergeSelected(){
+  if (!docs.length) return alert('请先上传 PDF！');
+  const out = await PDFLib.PDFDocument.create();
+
+  const hasSelection = selected.size > 0;
+  const items = hasSelection ? pageOrder.filter(it => selected.has(`${it.f}-${it.p}`))
+                             : pageOrder.slice(); // 所有页面
+
+  if (!items.length) return alert('没有可合并的页面！');
+
+  for (const it of items){
+    const copied = await out.copyPages(docs[it.f].doc, [it.p]);
+    const page = copied[0];
+    out.addPage(page);
+    const ang = rotationMap[`${it.f}-${it.p}`] || 0;
+    if (ang) page.setRotation(PDFLib.degrees(ang));
   }
 
-  // ===== 应用旋转 =====
-  function applyRotations(pdfDoc, indexMap = null) {
-    const pages = pdfDoc.getPages();
-    for (let i = 0; i < pages.length; i++) {
-      const old = indexMap ? indexMap[i] : i;   // 新索引 -> 原始索引
-      const angle = rotationMap[old] || 0;
-      if (angle) pages[i].setRotation(PDFLib.degrees(angle));
-    }
+  await applyQueuedWatermarks(out);
+  const bytes = await out.save();
+  downloadBlob(bytes, hasSelection ? 'merged-selected.pdf' : 'merged-all.pdf');
+}
+
+/* =========================
+ *  旋转（跨 PDF）
+ *  - 仅影响预览 + 记录 rotationMap
+ *  - 导出/拆分/合并时真正写入
+ * ========================= */
+function rotateSelected(direction){
+  if (!docs.length) return alert('请先上传 PDF！');
+  if (!selected.size) return alert('请选择要旋转的页面！');
+  const delta = direction==='left' ? -90 : direction==='right' ? 90 : 180;
+
+  selected.forEach(key=>{
+    rotationMap[key] = ((rotationMap[key]||0) + delta) % 360;
+    const [f,p] = key.split('-');
+    const canvas = document.querySelector(`.page-wrapper[data-file-idx="${f}"][data-page-idx="${p}"] canvas`);
+    if (canvas) canvas.style.transform = `rotate(${rotationMap[key]}deg)`;
+  });
+}
+
+/* =========================
+ *  下载最终 PDF
+ *  - 按当前全局拖拽顺序 pageOrder
+ *  - 为所有页应用旋转 + 水印
+ * ========================= */
+async function downloadFinal(){
+  if (!docs.length) return alert('请先上传 PDF！');
+
+  const out = await PDFLib.PDFDocument.create();
+  for (const item of pageOrder){
+    const copied = await out.copyPages(docs[item.f].doc, [item.p]);
+    const page = copied[0];
+    out.addPage(page);
+    const ang = rotationMap[`${item.f}-${item.p}`] || 0;
+    if (ang) page.setRotation(PDFLib.degrees(ang));
+  }
+  await applyQueuedWatermarks(out);
+  const bytes = await out.save();
+  pendingWatermarks = []; updateWmInfo();
+  downloadBlob(bytes, 'final.pdf');
+}
+
+/* =========================
+ *  水印：配置队列 & 应用
+ * ========================= */
+function normalizeCfg(text, count, size, opacity, color){
+  const t = (text||'').replace(/\r?\n|\r/g,'').trim() || 'Huishao.net';
+  const c = Math.min(MAX_COUNT_PER_PAGE, Math.max(1, parseInt(count)||1));
+  const s = Math.min(160, Math.max(8, parseInt(size)||24));
+  const o = Math.min(1, Math.max(0.05, parseFloat(opacity)||0.5));
+  const col = color || '#bfbfbf';
+  // key 不含 count，便于同款样式累加数量
+  return { text:t, count:c, size:s, opacity:o, color:col, key: JSON.stringify({t,s,o,col}) };
+}
+
+function queueCustomWatermark(){
+  if (pendingWatermarks.length >= MAX_UNIQUE_WM){
+    return alert(`最多支持 ${MAX_UNIQUE_WM} 组不同样式的水印`);
+  }
+  const cfg = normalizeCfg(
+    document.getElementById('watermarkText').value,
+    document.getElementById('watermarkCount').value,
+    document.getElementById('watermarkSize').value,
+    document.getElementById('watermarkOpacity').value,
+    document.getElementById('watermarkColor').value
+  );
+  const exist = pendingWatermarks.find(w => w.key === cfg.key);
+  if (exist) exist.count = Math.min(MAX_COUNT_PER_PAGE, exist.count + cfg.count);
+  else pendingWatermarks.push(cfg);
+  updateWmInfo();
+  alert(`✅ 已加入：${cfg.text}（${cfg.size}px, 透明度 ${cfg.opacity}, 每页 ${cfg.count} 个）`);
+}
+
+function clearWatermarkQueue(){
+  pendingWatermarks = [];
+  updateWmInfo();
+  alert('已清空水印队列。');
+}
+
+function updateWmInfo(){
+  const totalStyles = pendingWatermarks.length;
+  const totalPerPage = pendingWatermarks.reduce((s,w)=>s+w.count,0);
+  document.getElementById('wmInfo').innerText = `当前待应用水印：${totalStyles} 组（合计每页 ${totalPerPage} 个，最高 ${MAX_COUNT_PER_PAGE}）`;
+}
+
+// 文字转 PNG（带旋转 30° 的水印切片）
+function createWatermarkImage(text, size, color, opacity){
+  const measurer = document.createElement('canvas').getContext('2d');
+  measurer.font = `bold ${size}px system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif`;
+  const textW = Math.ceil(measurer.measureText(text).width);
+  const textH = Math.ceil(size * 1.2);
+  const pad = Math.ceil(size * 0.8);
+  const theta = Math.PI/6; // 30°
+  const w = textW + pad*2, h = textH + pad*2;
+  const rotW = Math.ceil(Math.abs(w*Math.cos(theta)) + Math.abs(h*Math.sin(theta)));
+  const rotH = Math.ceil(Math.abs(w*Math.sin(theta)) + Math.abs(h*Math.cos(theta)));
+  const cw = Math.max(220, rotW), ch = Math.max(120, rotH);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = cw; canvas.height = ch;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,cw,ch);
+  ctx.globalAlpha = opacity;
+  ctx.fillStyle = color;
+  ctx.font = measurer.font;
+  ctx.translate(cw/2, ch/2);
+  ctx.rotate(-theta);
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(text, 0, 0);
+  return canvas.toDataURL('image/png');
+}
+
+// 将当前队列水印真正绘制到 pdfDoc
+async function applyQueuedWatermarks(pdfDoc){
+  if (!pendingWatermarks.length) return;
+  // 先 embed 每种样式
+  const embedded = new Map();
+  for (const cfg of pendingWatermarks){
+    if (embedded.has(cfg.key)) continue;
+    const dataUrl = createWatermarkImage(cfg.text, cfg.size, cfg.color, cfg.opacity);
+    const img = await pdfDoc.embedPng(dataUrl);
+    embedded.set(cfg.key, img);
   }
 
-  // ===== 应用水印 =====
-  async function applyQueuedWatermarks(pdfDoc) {
-    if (!pendingWatermarks.length) return;
-    const embedded = new Map();
-    for (const cfg of pendingWatermarks) {
-      if (!embedded.has(cfg.key)) {
-        const dataUrl = createWatermarkImage(cfg.text, cfg.size, cfg.color, cfg.opacity);
-        embedded.set(cfg.key, await pdfDoc.embedPng(dataUrl));
+  // 每页绘制（合并数量上限保护）
+  const pages = pdfDoc.getPages();
+  for (const p of pages){
+    const { width, height } = p.getSize();
+    let left = MAX_COUNT_PER_PAGE;
+    for (const cfg of pendingWatermarks){
+      if (!embedded.has(cfg.key)) continue;
+      const img = embedded.get(cfg.key);
+      const times = Math.min(cfg.count, left);
+      left -= times;
+      const w = cfg.size * 9, h = cfg.size * 3.6;
+      for (let i=0;i<times;i++){
+        const x = Math.random() * (width - w - 20) + 10;
+        const y = Math.random() * (height - h - 20) + 10;
+        p.drawImage(img, { x, y, width:w, height:h });
       }
-    }
-    const pages = pdfDoc.getPages();
-    for (const p of pages) {
-      const { width, height } = p.getSize();
-      let left = MAX_COUNT_PER_PAGE;
-      for (const cfg of pendingWatermarks) {
-        const img = embedded.get(cfg.key); if (!img) continue;
-        const times = Math.min(cfg.count, left); left -= times;
-        const w = cfg.size * 9, h = cfg.size * 3.6;
-        for (let k = 0; k < times; k++) {
-          const x = Math.random() * (width - w - 20) + 10;
-          const y = Math.random() * (height - h - 20) + 10;
-          p.drawImage(img, { x, y, width: w, height: h });
-        }
-        if (left <= 0) break;
-      }
+      if (left <= 0) break;
     }
   }
+}
 
-  // ===== 下载工具 =====
-  function downloadBlob(bytes, filename) {
-    const blob = new Blob([bytes], { type: 'application/pdf' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob); a.download = filename; a.click();
-    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
-  }
+/* =========================
+ *  下载工具
+ * ========================= */
+function downloadBlob(bytes, filename){
+  const blob = new Blob([bytes], { type: 'application/pdf' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+}
 </script>
+
 
   
 
