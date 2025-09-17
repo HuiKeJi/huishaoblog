@@ -46,7 +46,7 @@
     padding: 10px;
 }
 
-/* 顶部工具栏 */
+/* 顶部工具栏（小图按钮） */
 .card-toolbar {
     position: absolute;
     top: 10px;
@@ -55,7 +55,7 @@
     display: flex;
     justify-content: space-between;
     z-index: 5;
-    pointer-events: none; /* 不挡住图片点击 */
+    pointer-events: none;
 }
 
 .card-toolbar .btn {
@@ -86,14 +86,14 @@
 }
 
 .card-toolbar .btn-download {
-    background: #10b981; /* 绿色 */
+    background: #10b981;
 }
 
 .card-toolbar .btn-remove {
-    background: #3D85C6; /* 蓝色 */
+    background: #3D85C6;
 }
 
-/* 顶部左侧下载按钮（单独定义时用） */
+/* 单独的下载按钮 */
 .download-btn-top {
     position: absolute;
     top: 8px;
@@ -107,11 +107,11 @@
     cursor: pointer;
     transition: background 0.2s ease;
 }
+
 .download-btn-top:hover {
     background: #059669;
 }
 
-/* 右下角下载按钮 */
 .download-btn {
     position: absolute;
     right: 8px;
@@ -129,6 +129,7 @@
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;
 }
+
 .download-btn:hover {
     background: rgba(0, 0, 0, 0.85);
     transform: scale(1.15);
@@ -161,6 +162,7 @@ html[data-user-color-scheme="dark"] #icoSizeGroup label {
     color: #e2e8f0;
     border-color: #475569;
 }
+
 html[data-user-color-scheme="dark"] #icoSizeGroup label:hover {
     background: linear-gradient(135deg, #2563eb, #9333ea);
     color: #fff;
@@ -172,7 +174,7 @@ html[data-user-color-scheme="dark"] #icoSizeGroup h3 {
 }
 
 html[data-user-color-scheme="dark"] .preview-item img {
-    background: #0f172a; /* 透明图更清晰 */
+    background: #0f172a;
 }
 
 html[data-user-color-scheme="dark"] #toolBox h2 {
@@ -183,6 +185,7 @@ html[data-user-color-scheme="dark"] #dropZone {
     border-color: #555;
     color: #aaa;
 }
+
 html[data-user-color-scheme="dark"] #dropZone:hover {
     background: rgba(61, 133, 198, 0.15);
 }
@@ -202,6 +205,7 @@ html[data-user-color-scheme="dark"] #editorCanvas {
     max-width: 720px;
     text-align: center;
 }
+
 #toolBox h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
@@ -221,25 +225,28 @@ html[data-user-color-scheme="dark"] #editorCanvas {
     color: #666;
     font-size: 15px;
 }
+
 #dropZone input[type=file] {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
     cursor: pointer;
 }
+
 #dropZone:hover {
     border-color: #3D85C6;
     background: rgba(61, 133, 198, 0.05);
     transform: scale(1.02);
 }
 
-
-/* 通用按钮 */
-/* ======= 按钮美化 ======= */
-button {
-    margin: 8px 5px;
-    padding: 10px 20px;
+/* ===== 通用按钮样式 ===== */
+button,
+#toolBox>button {
+    margin: 8px 6px;
+    padding: 10px 18px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(135deg, #3D85C6, #2563eb);
@@ -247,22 +254,24 @@ button {
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.5px;
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px; /* 图标与文字间距 */
+    gap: 6px;
+    cursor: pointer;
     transition: all 0.25s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:hover {
+button:hover,
+#toolBox>button:hover {
     background: linear-gradient(135deg, #2563eb, #3D85C6);
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
-button:active {
+button:active,
+#toolBox>button:active {
     transform: scale(0.96);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
@@ -273,13 +282,11 @@ button:disabled {
     box-shadow: none;
 }
 
-/* 按钮里的图标（如果有） */
 button i,
 button svg {
     font-size: 1.1em;
     vertical-align: middle;
 }
-
 
 /* 下拉框 */
 #format {
@@ -290,6 +297,7 @@ button svg {
     font-size: 14px;
     transition: border .25s ease, box-shadow .25s ease;
 }
+
 #format:focus {
     border-color: #3D85C6;
     box-shadow: 0 0 0 3px rgba(61, 133, 198, .2);
@@ -300,6 +308,7 @@ button svg {
 #qualityBox {
     margin: 12px 0;
 }
+
 #quality {
     vertical-align: middle;
     margin-left: 8px;
@@ -314,19 +323,22 @@ button svg {
     margin: 20px auto;
     flex-wrap: wrap;
 }
+
 .compare-block .img-wrapper {
     position: relative;
     max-width: 45%;
     text-align: center;
 }
+
 .compare-block img {
     max-width: 100%;
     max-height: 400px;
     object-fit: contain;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
     transition: transform 0.25s ease;
 }
+
 .compare-block img:hover {
     transform: scale(1.05);
 }
@@ -349,63 +361,188 @@ button svg {
     color: #334155;
     background: #fff;
 }
-#icoSizeGroup input { display: none; }
+
+#icoSizeGroup input {
+    display: none;
+}
+
 #icoSizeGroup label:hover {
     background: linear-gradient(135deg, #6a5af9, #00c6ff);
     color: #fff;
     border-color: transparent;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
 }
+
 #icoSizeGroup label:has(input:checked) {
     background: linear-gradient(135deg, #3887e7, #ff758c);
     border-color: transparent;
     color: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+/* 滑块文字样式 */
+.slider-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #fff;
+    min-width: 120px;
+}
+
+.slider-label input[type="range"] {
+    flex: 1;
+    cursor: pointer;
+    accent-color: #3D85C6;
+}
+
+/* 工具栏整体可滚动 */
+#editorToolbar {
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 6px;
+    box-sizing: border-box;
+}
+
+#editorToolbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+#editorToolbar::-webkit-scrollbar-thumb {
+    background: #3d85c6;
+    border-radius: 4px;
+}
+
+#editorToolbar::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 /* 编辑器覆盖层 */
 #editorOverlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,.85);
+    background: rgba(0, 0, 0, .85);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    padding: 10px;
+    box-sizing: border-box;
 }
-#editorOverlay canvas {
-    max-width: 90vw;
-    max-height: 80vh;
-    border: 2px solid #fff;
-    background: #fff;
-    cursor: crosshair;
-}
-#editorCanvas { background: transparent; }
 
-/* 编辑器工具栏按钮 */
-#editorToolbar .tool-btn {
-    position: relative;
-    transition: all 0.2s ease;
+/* 编辑器面板 */
+#editorPanel {
+    max-width: 95vw;
+    max-height: 90vh;
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
 }
-#editorToolbar .tool-btn.activeTool {
-    background: #3d85c6;
+
+/* 画布 */
+#editorCanvas {
+    max-width: 100%;
+    max-height: 65vh;
+    margin: 0 auto;
+    display: block;
+    border-radius: 8px;
+    background: #fff;
+}
+
+/* 工具栏行容器 */
+.toolbar-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+/* 工具栏里的控件 */
+.toolbar-row button,
+.toolbar-row input[type="range"],
+.toolbar-row input[type="color"],
+.toolbar-row select,
+.toolbar-row input[type="text"] {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+}
+
+.toolbar-row input[type="range"] {
+    cursor: pointer;
+    accent-color: #3D85C6;
+}
+
+.toolbar-row input[type="color"] {
+    height: 36px;
+    padding: 2px;
+}
+
+.toolbar-row input[type="text"] {
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+/* 工具栏按钮特效 */
+.toolbar-row button {
+    background: linear-gradient(135deg, #3D85C6, #2563eb);
     color: #fff;
-    box-shadow: 0 4px 12px rgba(61,133,198,0.5);
-    transform: scale(1.05);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
-#editorToolbar .tool-btn.activeTool::after {
-    content: '';
-    position: absolute;
-    left: 20%;
-    bottom: 0;
-    width: 60%;
-    height: 3px;
-    background: #ff5252;
-    border-radius: 2px;
-    animation: fadeInBar 0.3s ease;
+
+.toolbar-row button:hover {
+    background: linear-gradient(135deg, #2563eb, #3D85C6);
+    transform: translateY(-2px);
 }
-@keyframes fadeInBar {
-    from { opacity: 0; transform: scaleX(0); }
-    to { opacity: 1; transform: scaleX(1); }
+
+.toolbar-row button:active {
+    transform: scale(0.96);
+}
+
+/* 工具栏标签 */
+.toolbar-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* ===== 响应式优化 ===== */
+@media (max-width: 768px) {
+    .toolbar-row {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    #editorCanvas {
+        max-height: 50vh;
+    }
+
+    .toolbar-row button,
+    .toolbar-row input {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    #toolBox>button {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+    }
 }

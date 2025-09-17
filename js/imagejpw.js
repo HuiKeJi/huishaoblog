@@ -347,11 +347,6 @@ async function compressAll() {
 }
 
 
-
-
-
-
-
 // 把 dataURL 转成 Uint8Array
 function dataURLtoUint8(dataURL) {
     const b64 = dataURL.split(',')[1] || '';
@@ -505,8 +500,6 @@ async function convertToICO() {
     }
 }
 
-
-
 /* ===== 点击放大/缩小 ===== */
 document.addEventListener('click', e => {
     if (e.target.tagName === "IMG" && e.target.closest('.compare-block')) {
@@ -530,7 +523,374 @@ function getCanvasPos(canvas, e) {
 }
 
 
-/* ========= 图片编辑器 ========= */
+// 画笔有问题
+// function openEditor(file) {
+//     const overlay = document.createElement('div');
+//     overlay.id = "editorOverlay";
+
+//     const panel = document.createElement('div');
+//     panel.id = "editorPanel";
+//     overlay.appendChild(panel);
+
+//     // ====== 画布 ======
+//     const canvas = document.createElement('canvas');
+//     canvas.id = "editorCanvas";
+//     canvas.style.visibility = "hidden";
+//     const ctx = canvas.getContext('2d');
+//     panel.appendChild(canvas);
+
+//     const img = new Image();
+//     let originalData = null;
+//     img.onload = () => {
+//         canvas.width = img.width;
+//         canvas.height = img.height;
+//         ctx.drawImage(img, 0, 0);
+//         canvas.style.visibility = "visible";
+//         originalData = canvas.toDataURL();
+//         saveState();
+//     };
+//     img.src = file.dataURL;
+
+//     // ====== 工具栏 ======
+//     const toolbar = document.createElement('div');
+//     toolbar.id = "editorToolbar";
+//     toolbar.innerHTML = `
+//     <!-- 第一行 -->
+//     <div class="toolbar-row">
+//         <button id="applyEdit">应用修改</button>
+//         <button id="closeEditor">取消</button>
+//         <button id="cropTool">裁剪</button>
+//         <button id="mosaicTool">马赛克</button>
+//         <button id="penTool">画笔</button>
+//         <input type="color" id="penColor" value="#ff0000">
+//         <label class="slider-label">
+//         粗细
+//         <input type="range" id="penSize" min="2" max="40" value="5">
+//         </label>
+//     </div>
+
+//     <!-- 第二行 -->
+//     <div class="toolbar-row">
+//         <button id="roundTool">圆角</button>
+//         <label class="slider-label">
+//         半径
+//         <input type="range" id="roundRadius" min="0" max="200" value="30">
+//         </label>
+//         <label>
+//         背景
+//         <select id="roundBgMode">
+//             <option value="transparent">透明</option>
+//             <option value="color">颜色</option>
+//         </select>
+//         </label>
+//         <input type="color" id="roundBgColor" value="#ffffff" disabled>
+//         <button id="applyFilter">应用滤镜</button>
+//         <label class="slider-label">
+//         亮度
+//         <input type="range" id="filterBrightness" min="50" max="150" value="100">
+//         </label>
+//         <label class="slider-label">
+//         对比度
+//         <input type="range" id="filterContrast" min="50" max="150" value="100">
+//         </label>
+//         <label class="slider-label">
+//         模糊
+//         <input type="range" id="filterBlur" min="0" max="10" value="0">
+//         </label>
+//     </div>
+
+//     <!-- 第三行 -->
+//     <div class="toolbar-row">
+//         <input type="text" id="wmText" placeholder="输入水印文字" value="Huishao笔记">
+//         <label class="slider-label">
+//         字号
+//         <input type="range" id="wmSize" min="10" max="80" value="30">
+//         </label>
+//         <input type="color" id="wmColor" value="#ffffff">
+//         <label class="slider-label">
+//         X轴
+//         <input type="range" id="wmX" min="0" max="100" value="50">
+//         </label>
+//         <label class="slider-label">
+//         Y轴
+//         <input type="range" id="wmY" min="0" max="100" value="50">
+//         </label>
+//         <button id="applyWatermark">应用文字</button>
+//     </div>
+
+//     <!-- 通用 -->
+//     <div class="toolbar-row">
+//         <button id="undoBtn">撤销</button>
+//         <button id="clearBtn">清空</button>
+//     </div>
+// `;
+//     panel.appendChild(toolbar);
+//     document.body.appendChild(overlay);
+
+//     // ===== 状态变量 =====
+//     let tool = null, penColor = "#ff0000", penSize = 5, roundRadius = 30;
+//     let drawing = false, cropStart = null, cropRect = null;
+//     let history = [], redoStack = [];
+
+//     // 保存历史
+//     function saveState() {
+//         redoStack = [];
+//         history.push(canvas.toDataURL());
+//         if (history.length > 50) history.shift();
+//     }
+//     function latestSnapshot() {
+//         return history.length ? history[history.length - 1] : originalData;
+//     }
+
+//     // 撤销
+//     function undoEdit() {
+//         if (history.length > 1) {
+//             redoStack.push(canvas.toDataURL());
+//             history.pop();
+//             const im = new Image();
+//             im.onload = () => {
+//                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+//                 ctx.drawImage(im, 0, 0);
+//             };
+//             im.src = history[history.length - 1];
+//         }
+//     }
+
+//     // 清空
+//     function clearEdit() {
+//         if (!originalData) return;
+//         const im = new Image();
+//         im.onload = () => {
+//             ctx.clearRect(0, 0, canvas.width, canvas.height);
+//             ctx.drawImage(im, 0, 0);
+//             history = [canvas.toDataURL()];
+//             redoStack = [];
+//         };
+//         im.src = originalData;
+//     }
+
+//     // 圆角工具
+//     function roundedRectPath(ctx, x, y, w, h, r) {
+//         r = Math.max(0, Math.min(r, Math.min(w, h) / 2));
+//         ctx.beginPath();
+//         ctx.moveTo(x + r, y);
+//         ctx.lineTo(x + w - r, y);
+//         ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+//         ctx.lineTo(x + w, y + h - r);
+//         ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+//         ctx.lineTo(x + r, y + h);
+//         ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+//         ctx.lineTo(x, y + r);
+//         ctx.quadraticCurveTo(x, y, x + r, y);
+//         ctx.closePath();
+//     }
+//     function previewRound() {
+//         const snap = latestSnapshot();
+//         if (!snap) return;
+//         const src = new Image();
+//         src.onload = () => {
+//             ctx.clearRect(0, 0, canvas.width, canvas.height);
+//             const mode = toolbar.querySelector('#roundBgMode').value;
+//             if (mode === "color") {
+//                 ctx.fillStyle = toolbar.querySelector('#roundBgColor').value;
+//                 ctx.fillRect(0, 0, canvas.width, canvas.height);
+//             }
+//             ctx.save();
+//             roundedRectPath(ctx, 0, 0, canvas.width, canvas.height, roundRadius);
+//             ctx.clip();
+//             ctx.drawImage(src, 0, 0);
+//             ctx.restore();
+//         };
+//         src.src = snap;
+//     }
+
+//     // 滤镜
+//     function applyFilter(previewOnly = true) {
+//         const snap = latestSnapshot();
+//         if (!snap) return;
+//         const src = new Image();
+//         src.onload = () => {
+//             ctx.clearRect(0, 0, canvas.width, canvas.height);
+//             ctx.filter = `
+//         brightness(${toolbar.querySelector('#filterBrightness').value}%)
+//         contrast(${toolbar.querySelector('#filterContrast').value}%)
+//         blur(${toolbar.querySelector('#filterBlur').value}px)
+//       `;
+//             ctx.drawImage(src, 0, 0);
+//             ctx.filter = "none";
+//             if (!previewOnly) saveState();
+//         };
+//         src.src = snap;
+//     }
+
+//     // 文字水印
+//     function drawWatermark(previewOnly = true) {
+//         const snap = latestSnapshot();
+//         if (!snap) return;
+//         const src = new Image();
+//         src.onload = () => {
+//             ctx.clearRect(0, 0, canvas.width, canvas.height);
+//             ctx.drawImage(src, 0, 0);
+//             ctx.font = `${toolbar.querySelector('#wmSize').value}px sans-serif`;
+//             ctx.fillStyle = toolbar.querySelector('#wmColor').value;
+//             ctx.textAlign = "center";
+//             ctx.textBaseline = "middle";
+//             const x = (toolbar.querySelector('#wmX').value / 100) * canvas.width;
+//             const y = (toolbar.querySelector('#wmY').value / 100) * canvas.height;
+//             ctx.fillText(toolbar.querySelector('#wmText').value, x, y);
+//             if (!previewOnly) saveState();
+//         };
+//         src.src = snap;
+//     }
+
+//     // 裁剪预览
+//     function drawCropPreview() {
+//         const w = canvas.width, h = canvas.height;
+//         const snap = latestSnapshot();
+//         const src = new Image();
+//         src.onload = () => {
+//             ctx.clearRect(0, 0, w, h);
+//             ctx.drawImage(src, 0, 0);
+
+//             if (!cropRect) return;
+
+//             ctx.save();
+//             ctx.fillStyle = "rgba(0,0,0,0.35)";
+//             ctx.fillRect(0, 0, w, h);
+
+//             ctx.clearRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
+//             ctx.drawImage(src,
+//                 cropRect.x, cropRect.y, cropRect.w, cropRect.h,
+//                 cropRect.x, cropRect.y, cropRect.w, cropRect.h
+//             );
+
+//             ctx.strokeStyle = "#ff4444";
+//             ctx.lineWidth = 2;
+//             ctx.setLineDash([6, 4]);
+//             ctx.strokeRect(
+//                 Math.round(cropRect.x) + 0.5,
+//                 Math.round(cropRect.y) + 0.5,
+//                 Math.round(cropRect.w) - 1,
+//                 Math.round(cropRect.h) - 1
+//             );
+//             ctx.restore();
+//         };
+//         src.src = snap;
+//     }
+
+//     // === 鼠标事件（画笔、马赛克、裁剪） ===
+//     canvas.onmousedown = (e) => {
+//         const rect = canvas.getBoundingClientRect();
+//         const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+//         const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+//         if (tool === "pen") {
+//             drawing = true;
+//             ctx.beginPath();
+//             ctx.moveTo(x, y);
+//             ctx.lineWidth = penSize;
+//             ctx.strokeStyle = penColor;
+//             saveState();
+//         } else if (tool === "mosaic") {
+//             drawing = true;
+//             saveState();
+//             ctx.fillStyle = "#999";
+//             ctx.fillRect(x - penSize / 2, y - penSize / 2, penSize, penSize);
+//         } else if (tool === "crop") {
+//             cropStart = { x, y };
+//             cropRect = null;
+//         }
+//     };
+//     canvas.onmousemove = (e) => {
+//         const rect = canvas.getBoundingClientRect();
+//         const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+//         const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+//         if (tool === "pen" && drawing) {
+//             ctx.lineTo(x, y);
+//             ctx.stroke();
+//         } else if (tool === "mosaic" && drawing) {
+//             ctx.fillStyle = "#999";
+//             ctx.fillRect(x - penSize / 2, y - penSize / 2, penSize, penSize);
+//         } else if (tool === "crop" && cropStart) {
+//             cropRect = {
+//                 x: Math.min(cropStart.x, x),
+//                 y: Math.min(cropStart.y, y),
+//                 w: Math.abs(x - cropStart.x),
+//                 h: Math.abs(y - cropStart.y)
+//             };
+//             drawCropPreview();
+//         }
+//     };
+//     canvas.onmouseup = () => {
+//         if (tool === "pen" || tool === "mosaic") drawing = false;
+//         else if (tool === "crop" && cropRect) {
+//             // 执行裁剪
+//             const snap = latestSnapshot();
+//             const src = new Image();
+//             src.onload = () => {
+//                 const tmp = document.createElement("canvas");
+//                 tmp.width = cropRect.w;
+//                 tmp.height = cropRect.h;
+//                 tmp.getContext("2d").drawImage(src,
+//                     cropRect.x, cropRect.y, cropRect.w, cropRect.h,
+//                     0, 0, cropRect.w, cropRect.h
+//                 );
+//                 canvas.width = cropRect.w;
+//                 canvas.height = cropRect.h;
+//                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+//                 ctx.drawImage(tmp, 0, 0);
+//                 saveState();
+//                 tool = null; // 自动退出裁剪模式
+//                 cropStart = null;
+//                 cropRect = null;
+//             };
+//             src.src = snap;
+//         }
+//     };
+
+//     // === 🎯 事件委托 ===
+//     toolbar.addEventListener("click", (e) => {
+//         const id = e.target.id;
+//         switch (id) {
+//             case "applyEdit":
+//                 if (!history.length) return;
+//                 const src = history[history.length - 1];
+//                 file.dataURL = src;
+//                 file.convertedData = src;
+//                 if (file.element) {
+//                     const imgel = file.element.querySelector("img");
+//                     imgel.src = src;
+//                     updateMeta(file);
+//                 }
+//                 document.body.removeChild(overlay);
+//                 break;
+//             case "closeEditor": document.body.removeChild(overlay); break;
+//             case "penTool": tool = "pen"; break;
+//             case "mosaicTool": tool = "mosaic"; break;
+//             case "cropTool": tool = "crop"; break;
+//             case "roundTool": previewRound(); saveState(); break;
+//             case "applyFilter": applyFilter(false); break;
+//             case "applyWatermark": drawWatermark(false); break;
+//             case "undoBtn": undoEdit(); break;
+//             case "clearBtn": clearEdit(); break;
+//         }
+//     });
+
+//     // === 🎨 输入型控件 ===
+//     toolbar.querySelector('#penColor').oninput = (e) => penColor = e.target.value;
+//     toolbar.querySelector('#penSize').oninput = (e) => penSize = parseInt(e.target.value, 10) || 5;
+//     toolbar.querySelector('#roundRadius').oninput = (e) => { roundRadius = parseInt(e.target.value, 10) || 0; previewRound(); };
+//     toolbar.querySelector('#roundBgMode').onchange = () => { toolbar.querySelector('#roundBgColor').disabled = (toolbar.querySelector('#roundBgMode').value !== "color"); previewRound(); };
+//     toolbar.querySelector('#roundBgColor').oninput = () => previewRound();
+//     toolbar.querySelector('#filterBrightness').oninput = () => applyFilter(true);
+//     toolbar.querySelector('#filterContrast').oninput = () => applyFilter(true);
+//     toolbar.querySelector('#filterBlur').oninput = () => applyFilter(true);
+//     toolbar.querySelector('#wmText').oninput = () => drawWatermark(true);
+//     toolbar.querySelector('#wmSize').oninput = () => drawWatermark(true);
+//     toolbar.querySelector('#wmColor').oninput = () => drawWatermark(true);
+//     toolbar.querySelector('#wmX').oninput = () => drawWatermark(true);
+//     toolbar.querySelector('#wmY').oninput = () => drawWatermark(true);
+// }
+
 function openEditor(file) {
     const overlay = document.createElement('div');
     overlay.id = "editorOverlay";
@@ -539,221 +899,364 @@ function openEditor(file) {
     panel.id = "editorPanel";
     overlay.appendChild(panel);
 
-
-
-    // 画布
     const canvas = document.createElement('canvas');
     canvas.id = "editorCanvas";
-    canvas.style.visibility = "hidden";   // ✅ 初始隐藏
+    canvas.style.visibility = "hidden";
     const ctx = canvas.getContext('2d');
     panel.appendChild(canvas);
 
-    // 载图
     const img = new Image();
+    let originalData = null;
     img.onload = () => {
         canvas.width = img.width;
         canvas.height = img.height;
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0);
-
-        canvas.style.visibility = "visible";  // ✅ 绘制完成后显示
-
+        canvas.style.visibility = "visible";
         originalData = canvas.toDataURL();
         saveState();
     };
     img.src = file.dataURL;
 
-
-
-
-
     const toolbar = document.createElement('div');
     toolbar.id = "editorToolbar";
     toolbar.innerHTML = `
-    <button id="closeEditor">取消</button>
-    <button id="applyEdit">应用修改</button>
-    <button id="penTool" class="tool-btn">画笔</button>
-    <button id="mosaicTool" class="tool-btn">马赛克</button>
-    <button id="cropTool" class="tool-btn">裁剪</button>
-    <button id="roundTool" class="tool-btn">圆角</button>
-    <input type="range" id="roundRadius" min="0" max="200" value="30" title="圆角半径">
-    <button id="undoBtn">撤销</button>
-    <button id="clearBtn">清空编辑</button>
-    <input type="color" id="penColor" value="#ff0000" title="画笔颜色">
-    <input type="range" id="penSize" min="2" max="40" value="5" title="粗细">
+    <div class="toolbar-row">
+      <button id="applyEdit">应用修改</button>
+      <button id="closeEditor">取消</button>
+      <button id="cropTool">裁剪</button>
+      <button id="mosaicTool">马赛克</button>
+      <button id="penTool">画笔</button>
+      <input type="color" id="penColor" value="#ff0000">
+      <label class="slider-label">粗细
+        <input type="range" id="penSize" min="2" max="40" value="5">
+      </label>
+    </div>
+    <div class="toolbar-row">
+      <button id="roundTool">圆角</button>
+      <label class="slider-label">半径
+        <input type="range" id="roundRadius" min="0" max="200" value="30">
+      </label>
+      <label>背景
+        <select id="roundBgMode">
+          <option value="transparent">透明</option>
+          <option value="color">颜色</option>
+        </select>
+      </label>
+      <input type="color" id="roundBgColor" value="#ffffff" disabled>
+      <button id="applyFilter">应用滤镜</button>
+      <label class="slider-label">亮度
+        <input type="range" id="filterBrightness" min="50" max="150" value="100">
+      </label>
+      <label class="slider-label">对比度
+        <input type="range" id="filterContrast" min="50" max="150" value="100">
+      </label>
+      <label class="slider-label">模糊
+        <input type="range" id="filterBlur" min="0" max="10" value="0">
+      </label>
+    </div>
+    <div class="toolbar-row">
+      <input type="text" id="wmText" placeholder="输入水印文字" value="Huishao笔记">
+      <label class="slider-label">字号
+        <input type="range" id="wmSize" min="10" max="80" value="30">
+      </label>
+      <input type="color" id="wmColor" value="#ffffff">
+      <label class="slider-label">X轴
+        <input type="range" id="wmX" min="0" max="100" value="50">
+      </label>
+      <label class="slider-label">Y轴
+        <input type="range" id="wmY" min="0" max="100" value="50">
+      </label>
+      <button id="applyWatermark">应用文字</button>
+    </div>
+    <div class="toolbar-row">
+      <button id="undoBtn">撤销</button>
+      <button id="clearBtn">清空</button>
+    </div>
   `;
     panel.appendChild(toolbar);
     document.body.appendChild(overlay);
 
-    /* ===== 状态 ===== */
+    // ===== 状态 =====
     let tool = null, penColor = "#ff0000", penSize = 5, roundRadius = 30;
     let drawing = false, cropStart = null, cropRect = null;
-    let history = [], redoStack = [], originalData = null;
+    let history = [], redoStack = [];
 
     function saveState() {
         redoStack = [];
         history.push(canvas.toDataURL());
         if (history.length > 50) history.shift();
     }
+    function latestSnapshot() {
+        return history.length ? history[history.length - 1] : originalData;
+    }
 
     function undoEdit() {
         if (history.length > 1) {
             redoStack.push(canvas.toDataURL());
             history.pop();
-            const img = new Image();
-            img.onload = () => {
+            const im = new Image();
+            im.onload = () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0);
+                ctx.drawImage(im, 0, 0);
             };
-            img.src = history[history.length - 1];
+            im.src = history[history.length - 1];
         }
     }
 
     function clearEdit() {
-        const img = new Image();
-        img.onload = () => {
+        if (!originalData) return;
+        const im = new Image();
+        im.onload = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0);
+            ctx.drawImage(im, 0, 0);
             history = [canvas.toDataURL()];
             redoStack = [];
         };
-        img.src = originalData;
+        im.src = originalData;
     }
 
-    /* ===== 圆角处理 ===== */
-    function applyRoundCorners(radius) {
-        const img = new Image();
-        img.onload = () => {
+    // 圆角
+    function roundedRectPath(ctx, x, y, w, h, r) {
+        r = Math.max(0, Math.min(r, Math.min(w, h) / 2));
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+    }
+    function previewRound() {
+        const snap = latestSnapshot();
+        if (!snap) return;
+        const src = new Image();
+        src.onload = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const mode = toolbar.querySelector('#roundBgMode').value;
+            if (mode === "color") {
+                ctx.fillStyle = toolbar.querySelector('#roundBgColor').value;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
             ctx.save();
-            ctx.beginPath();
-            const r = Math.min(radius, canvas.width / 2, canvas.height / 2);
-            ctx.moveTo(r, 0);
-            ctx.arcTo(canvas.width, 0, canvas.width, canvas.height, r);
-            ctx.arcTo(canvas.width, canvas.height, 0, canvas.height, r);
-            ctx.arcTo(0, canvas.height, 0, 0, r);
-            ctx.arcTo(0, 0, canvas.width, 0, r);
-            ctx.closePath();
+            roundedRectPath(ctx, 0, 0, canvas.width, canvas.height, roundRadius);
             ctx.clip();
-            ctx.drawImage(img, 0, 0);
+            ctx.drawImage(src, 0, 0);
             ctx.restore();
-            saveState();
         };
-        img.src = history[history.length - 1];
+        src.src = snap;
     }
 
-    /* ===== 坐标换算 ===== */
-    function getCanvasPos(canvas, e) {
-        const rect = canvas.getBoundingClientRect();
-        return {
-            x: (e.clientX - rect.left) * (canvas.width / rect.width),
-            y: (e.clientY - rect.top) * (canvas.height / rect.height)
+    // 滤镜
+    function applyFilter(previewOnly = true) {
+        const snap = latestSnapshot();
+        if (!snap) return;
+        const src = new Image();
+        src.onload = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.filter = `
+        brightness(${toolbar.querySelector('#filterBrightness').value}%)
+        contrast(${toolbar.querySelector('#filterContrast').value}%)
+        blur(${toolbar.querySelector('#filterBlur').value}px)
+      `;
+            ctx.drawImage(src, 0, 0);
+            ctx.filter = "none";
+            if (!previewOnly) saveState();
         };
+        src.src = snap;
     }
 
-    /* ===== 鼠标事件 ===== */
+    // 水印
+    function drawWatermark(previewOnly = true) {
+        const snap = latestSnapshot();
+        if (!snap) return;
+        const src = new Image();
+        src.onload = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(src, 0, 0);
+            ctx.font = `${toolbar.querySelector('#wmSize').value}px sans-serif`;
+            ctx.fillStyle = toolbar.querySelector('#wmColor').value;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            const x = (toolbar.querySelector('#wmX').value / 100) * canvas.width;
+            const y = (toolbar.querySelector('#wmY').value / 100) * canvas.height;
+            ctx.fillText(toolbar.querySelector('#wmText').value, x, y);
+            if (!previewOnly) saveState();
+        };
+        src.src = snap;
+    }
+
+    // 裁剪预览
+    function drawCropPreview() {
+        const w = canvas.width, h = canvas.height;
+        const snap = latestSnapshot();
+        const src = new Image();
+        src.onload = () => {
+            ctx.clearRect(0, 0, w, h);
+            ctx.drawImage(src, 0, 0);
+
+            if (!cropRect) return;
+
+            ctx.save();
+            ctx.fillStyle = "rgba(0,0,0,0.35)";
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.clearRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
+            ctx.drawImage(
+                src,
+                cropRect.x, cropRect.y, cropRect.w, cropRect.h,
+                cropRect.x, cropRect.y, cropRect.w, cropRect.h
+            );
+
+            ctx.strokeStyle = "#ff4444";
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.strokeRect(
+                Math.round(cropRect.x) + 0.5,
+                Math.round(cropRect.y) + 0.5,
+                Math.round(cropRect.w) - 1,
+                Math.round(cropRect.h) - 1
+            );
+            ctx.restore();
+        };
+        src.src = snap;
+    }
+
+    // ===== 画布交互 =====
     canvas.onmousedown = (e) => {
-        const pos = getCanvasPos(canvas, e);
-        if (tool === "crop") {
-            cropStart = pos;
-        } else if (tool === "pen" || tool === "mosaic") {
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+        const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+
+        if (tool === "pen") {
             drawing = true;
             ctx.beginPath();
-            ctx.moveTo(pos.x, pos.y);
-            saveState();
+            ctx.moveTo(x, y);
+            ctx.lineWidth = penSize;
+            ctx.strokeStyle = penColor;
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+            saveState(); // 先存一帧，便于撤销
+        } else if (tool === "mosaic") {
+            drawing = true;
+            saveState(); // 同上
+            ctx.fillStyle = "#999";
+            ctx.fillRect(x - penSize / 2, y - penSize / 2, penSize, penSize);
+        } else if (tool === "crop") {
+            cropStart = { x, y };
+            cropRect = null;
         }
     };
 
     canvas.onmousemove = (e) => {
-        const pos = getCanvasPos(canvas, e);
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+        const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+
         if (tool === "pen" && drawing) {
-            ctx.lineWidth = penSize;
-            ctx.strokeStyle = penColor;
-            ctx.lineTo(pos.x, pos.y);
+            ctx.lineTo(x, y);
             ctx.stroke();
         } else if (tool === "mosaic" && drawing) {
             ctx.fillStyle = "#999";
-            ctx.fillRect(pos.x - penSize / 2, pos.y - penSize / 2, penSize, penSize);
+            ctx.fillRect(x - penSize / 2, y - penSize / 2, penSize, penSize);
         } else if (tool === "crop" && cropStart) {
-            const snap = new Image();
-            snap.onload = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(snap, 0, 0);
-                ctx.strokeStyle = "#ff4d4f";
-                ctx.lineWidth = 2;
-                ctx.strokeRect(cropStart.x, cropStart.y, pos.x - cropStart.x, pos.y - cropStart.y);
+            cropRect = {
+                x: Math.min(cropStart.x, x),
+                y: Math.min(cropStart.y, y),
+                w: Math.abs(x - cropStart.x),
+                h: Math.abs(y - cropStart.y)
             };
-            snap.src = history[history.length - 1];
-            cropRect = { x: cropStart.x, y: cropStart.y, w: pos.x - cropStart.x, h: pos.y - cropStart.y };
+            drawCropPreview();
+        }
+    };
+
+    const finishFreeDraw = () => {
+        if (drawing && (tool === "pen" || tool === "mosaic")) {
+            drawing = false;
+            saveState(); // ✅ 关键：把当前画面写入历史
         }
     };
 
     canvas.onmouseup = () => {
         if (tool === "crop" && cropRect) {
-            const temp = document.createElement("canvas");
-            temp.width = Math.abs(cropRect.w);
-            temp.height = Math.abs(cropRect.h);
-            const tctx = temp.getContext("2d");
-            tctx.drawImage(
-                canvas,
-                cropRect.w < 0 ? cropRect.x + cropRect.w : cropRect.x,
-                cropRect.h < 0 ? cropRect.y + cropRect.h : cropRect.y,
-                Math.abs(cropRect.w), Math.abs(cropRect.h),
-                0, 0, Math.abs(cropRect.w), Math.abs(cropRect.h)
-            );
-            canvas.width = temp.width;
-            canvas.height = temp.height;
-            ctx.drawImage(temp, 0, 0);
-            saveState();
+            const snap = latestSnapshot();
+            const src = new Image();
+            src.onload = () => {
+                const tmp = document.createElement("canvas");
+                tmp.width = cropRect.w;
+                tmp.height = cropRect.h;
+                tmp.getContext("2d").drawImage(
+                    src,
+                    cropRect.x, cropRect.y, cropRect.w, cropRect.h,
+                    0, 0, cropRect.w, cropRect.h
+                );
+                canvas.width = cropRect.w;
+                canvas.height = cropRect.h;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(tmp, 0, 0);
+                saveState();
+                tool = null;
+                cropStart = null;
+                cropRect = null;
+            };
+            src.src = snap;
+        } else {
+            finishFreeDraw();
         }
-        drawing = false;
-        cropStart = null;
     };
 
-    /* ===== 工具栏事件 ===== */
-    function selectTool(name) {
-        tool = name;
-        ["penTool", "mosaicTool", "cropTool", "roundTool"].forEach(id => {
-            const btn = toolbar.querySelector("#" + id);
-            if (btn) btn.classList.toggle("activeTool", id === name + "Tool");
-        });
-    }
+    // 鼠标移出也提交一次，避免丢笔画
+    canvas.onmouseleave = finishFreeDraw;
 
-    toolbar.querySelector('#closeEditor').onclick = () => document.body.removeChild(overlay);
-
-    toolbar.querySelector('#applyEdit').onclick = () => {
-        // 内部仍用 PNG 保存，确保圆角透明不丢失
-        file.dataURL = canvas.toDataURL("image/png");
-        file.convertedData = file.dataURL;
-
-        // 同步尺寸（裁剪后会变化）
-        file.width = canvas.width;
-        file.height = canvas.height;
-
-        // 更新卡片图与信息
-        if (file.element) {
-            const img = file.element.querySelector('img');
-            img.src = file.dataURL;
-            updateMeta(file);
+    // ===== 事件委托 =====
+    toolbar.addEventListener("click", (e) => {
+        const id = e.target.id;
+        switch (id) {
+            case "applyEdit": {
+                // ✅ 用当前画布内容，避免漏掉还未写入 history 的笔画
+                const src = canvas.toDataURL();
+                file.dataURL = src;
+                file.convertedData = src;
+                if (file.element) {
+                    const imgel = file.element.querySelector("img");
+                    imgel.src = src;
+                    updateMeta(file);
+                }
+                document.body.removeChild(overlay);
+                break;
+            }
+            case "closeEditor": document.body.removeChild(overlay); break;
+            case "penTool": tool = "pen"; break;
+            case "mosaicTool": tool = "mosaic"; break;
+            case "cropTool": tool = "crop"; break;
+            case "roundTool": previewRound(); saveState(); break;
+            case "applyFilter": applyFilter(false); break;
+            case "applyWatermark": drawWatermark(false); break;
+            case "undoBtn": undoEdit(); break;
+            case "clearBtn": clearEdit(); break;
         }
+    });
 
-        document.body.removeChild(overlay);
-    };
-
-    toolbar.querySelector('#penTool').onclick = () => selectTool("pen");
-    toolbar.querySelector('#mosaicTool').onclick = () => selectTool("mosaic");
-    toolbar.querySelector('#cropTool').onclick = () => selectTool("crop");
-    toolbar.querySelector('#roundTool').onclick = () => { selectTool("round"); applyRoundCorners(roundRadius); };
-    toolbar.querySelector('#undoBtn').onclick = () => undoEdit();
-    toolbar.querySelector('#clearBtn').onclick = () => clearEdit();
-
+    // 控件
     toolbar.querySelector('#penColor').oninput = (e) => penColor = e.target.value;
-    toolbar.querySelector('#penSize').oninput = (e) => penSize = parseInt(e.target.value, 10);
-    toolbar.querySelector('#roundRadius').oninput = (e) => {
-        roundRadius = parseInt(e.target.value, 10);
-        if (tool === "round") applyRoundCorners(roundRadius);
+    toolbar.querySelector('#penSize').oninput = (e) => penSize = parseInt(e.target.value, 10) || 5;
+    toolbar.querySelector('#roundRadius').oninput = (e) => { roundRadius = parseInt(e.target.value, 10) || 0; previewRound(); };
+    toolbar.querySelector('#roundBgMode').onchange = () => {
+        toolbar.querySelector('#roundBgColor').disabled = (toolbar.querySelector('#roundBgMode').value !== "color");
+        previewRound();
     };
+    toolbar.querySelector('#roundBgColor').oninput = () => previewRound();
+    toolbar.querySelector('#filterBrightness').oninput = () => applyFilter(true);
+    toolbar.querySelector('#filterContrast').oninput = () => applyFilter(true);
+    toolbar.querySelector('#filterBlur').oninput = () => applyFilter(true);
+    toolbar.querySelector('#wmText').oninput = () => drawWatermark(true);
+    toolbar.querySelector('#wmSize').oninput = () => drawWatermark(true);
+    toolbar.querySelector('#wmColor').oninput = () => drawWatermark(true);
+    toolbar.querySelector('#wmX').oninput = () => drawWatermark(true);
+    toolbar.querySelector('#wmY').oninput = () => drawWatermark(true);
 }
 
 
