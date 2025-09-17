@@ -1,0 +1,411 @@
+/* ========== 预览卡片结构 ========== */
+.preview-item {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.preview-item .thumb {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f5f7fb;
+}
+
+.preview-item .thumb img,
+.preview-item img {
+    display: block;
+    width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.preview-item img:hover {
+    transform: scale(1.05);
+}
+
+.preview-item p {
+    font-size: 12px;
+    margin: 5px 0 0;
+    word-break: break-all;
+    color: #555;
+}
+
+/* 结果预览区 */
+#previewList.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* 顶部工具栏 */
+.card-toolbar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 5;
+    pointer-events: none; /* 不挡住图片点击 */
+}
+
+.card-toolbar .btn {
+    pointer-events: auto;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 9999px;
+    color: #fff;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .15s ease, filter .15s ease, opacity .15s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
+    opacity: .96;
+}
+
+.card-toolbar .btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+.card-toolbar .btn:active {
+    transform: translateY(0);
+    filter: brightness(.95);
+}
+
+.card-toolbar .btn-download {
+    background: #10b981; /* 绿色 */
+}
+
+.card-toolbar .btn-remove {
+    background: #3D85C6; /* 蓝色 */
+}
+
+/* 顶部左侧下载按钮（单独定义时用） */
+.download-btn-top {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #10b981;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.download-btn-top:hover {
+    background: #059669;
+}
+
+/* 右下角下载按钮 */
+.download-btn {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.download-btn:hover {
+    background: rgba(0, 0, 0, 0.85);
+    transform: scale(1.15);
+}
+
+/* ========== 暗色模式覆盖 ========== */
+html[data-user-color-scheme="dark"] .preview-item {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+html[data-user-color-scheme="dark"] .preview-item .thumb {
+    background: #0b1220;
+}
+
+html[data-user-color-scheme="dark"] .preview-item p {
+    color: #cbd5e1;
+}
+
+html[data-user-color-scheme="dark"] .card-toolbar .btn-download {
+    background: #059669;
+}
+
+html[data-user-color-scheme="dark"] .card-toolbar .btn-remove {
+    background: #2563eb;
+}
+
+html[data-user-color-scheme="dark"] #icoSizeGroup label {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+html[data-user-color-scheme="dark"] #icoSizeGroup label:hover {
+    background: linear-gradient(135deg, #2563eb, #9333ea);
+    color: #fff;
+}
+
+html[data-user-color-scheme="dark"] #result h3,
+html[data-user-color-scheme="dark"] #icoSizeGroup h3 {
+    color: #e2e8f0;
+}
+
+html[data-user-color-scheme="dark"] .preview-item img {
+    background: #0f172a; /* 透明图更清晰 */
+}
+
+html[data-user-color-scheme="dark"] #toolBox h2 {
+    color: #eee;
+}
+
+html[data-user-color-scheme="dark"] #dropZone {
+    border-color: #555;
+    color: #aaa;
+}
+html[data-user-color-scheme="dark"] #dropZone:hover {
+    background: rgba(61, 133, 198, 0.15);
+}
+
+html[data-user-color-scheme="dark"] .navbar {
+    background-color: #1f3144 !important;
+}
+
+html[data-user-color-scheme="dark"] #editorCanvas {
+    background: #1e293b;
+}
+
+/* ========== 上传/工具区 ========== */
+#toolBox {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 720px;
+    text-align: center;
+}
+#toolBox h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#dropZone {
+    border: 2px dashed #bbb;
+    border-radius: 10px;
+    padding: 50px 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    cursor: pointer;
+    background: transparent;
+    transition: all .3s ease;
+    position: relative;
+    color: #666;
+    font-size: 15px;
+}
+#dropZone input[type=file] {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+#dropZone:hover {
+    border-color: #3D85C6;
+    background: rgba(61, 133, 198, 0.05);
+    transform: scale(1.02);
+}
+
+
+/* 通用按钮 */
+/* ======= 按钮美化 ======= */
+button {
+    margin: 8px 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3D85C6, #2563eb);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; /* 图标与文字间距 */
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #2563eb, #3D85C6);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+button:active {
+    transform: scale(0.96);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* 按钮里的图标（如果有） */
+button i,
+button svg {
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+
+
+/* 下拉框 */
+#format {
+    margin: 10px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border .25s ease, box-shadow .25s ease;
+}
+#format:focus {
+    border-color: #3D85C6;
+    box-shadow: 0 0 0 3px rgba(61, 133, 198, .2);
+    outline: none;
+}
+
+/* 压缩滑块 */
+#qualityBox {
+    margin: 12px 0;
+}
+#quality {
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+/* 对比区 */
+.compare-block {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 20px auto;
+    flex-wrap: wrap;
+}
+.compare-block .img-wrapper {
+    position: relative;
+    max-width: 45%;
+    text-align: center;
+}
+.compare-block img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    transition: transform 0.25s ease;
+}
+.compare-block img:hover {
+    transform: scale(1.05);
+}
+
+/* Navbar */
+.navbar {
+    background-color: #3D85C6 !important;
+    transition: background-color .3s ease;
+}
+
+/* ICON 尺寸选择 */
+#icoSizeGroup label {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 0 6px 6px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #334155;
+    background: #fff;
+}
+#icoSizeGroup input { display: none; }
+#icoSizeGroup label:hover {
+    background: linear-gradient(135deg, #6a5af9, #00c6ff);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+#icoSizeGroup label:has(input:checked) {
+    background: linear-gradient(135deg, #3887e7, #ff758c);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+}
+
+/* 编辑器覆盖层 */
+#editorOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+#editorOverlay canvas {
+    max-width: 90vw;
+    max-height: 80vh;
+    border: 2px solid #fff;
+    background: #fff;
+    cursor: crosshair;
+}
+#editorCanvas { background: transparent; }
+
+/* 编辑器工具栏按钮 */
+#editorToolbar .tool-btn {
+    position: relative;
+    transition: all 0.2s ease;
+}
+#editorToolbar .tool-btn.activeTool {
+    background: #3d85c6;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(61,133,198,0.5);
+    transform: scale(1.05);
+}
+#editorToolbar .tool-btn.activeTool::after {
+    content: '';
+    position: absolute;
+    left: 20%;
+    bottom: 0;
+    width: 60%;
+    height: 3px;
+    background: #ff5252;
+    border-radius: 2px;
+    animation: fadeInBar 0.3s ease;
+}
+@keyframes fadeInBar {
+    from { opacity: 0; transform: scaleX(0); }
+    to { opacity: 1; transform: scaleX(1); }
+}
