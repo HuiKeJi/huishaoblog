@@ -523,375 +523,11 @@ function getCanvasPos(canvas, e) {
 }
 
 
-// 画笔有问题
-// function openEditor(file) {
-//     const overlay = document.createElement('div');
-//     overlay.id = "editorOverlay";
 
-//     const panel = document.createElement('div');
-//     panel.id = "editorPanel";
-//     overlay.appendChild(panel);
 
-//     // ====== 画布 ======
-//     const canvas = document.createElement('canvas');
-//     canvas.id = "editorCanvas";
-//     canvas.style.visibility = "hidden";
-//     const ctx = canvas.getContext('2d');
-//     panel.appendChild(canvas);
-
-//     const img = new Image();
-//     let originalData = null;
-//     img.onload = () => {
-//         canvas.width = img.width;
-//         canvas.height = img.height;
-//         ctx.drawImage(img, 0, 0);
-//         canvas.style.visibility = "visible";
-//         originalData = canvas.toDataURL();
-//         saveState();
-//     };
-//     img.src = file.dataURL;
-
-//     // ====== 工具栏 ======
-//     const toolbar = document.createElement('div');
-//     toolbar.id = "editorToolbar";
-//     toolbar.innerHTML = `
-//     <!-- 第一行 -->
-//     <div class="toolbar-row">
-//         <button id="applyEdit">应用修改</button>
-//         <button id="closeEditor">取消</button>
-//         <button id="cropTool">裁剪</button>
-//         <button id="mosaicTool">马赛克</button>
-//         <button id="penTool">画笔</button>
-//         <input type="color" id="penColor" value="#ff0000">
-//         <label class="slider-label">
-//         粗细
-//         <input type="range" id="penSize" min="2" max="40" value="5">
-//         </label>
-//     </div>
-
-//     <!-- 第二行 -->
-//     <div class="toolbar-row">
-//         <button id="roundTool">圆角</button>
-//         <label class="slider-label">
-//         半径
-//         <input type="range" id="roundRadius" min="0" max="200" value="30">
-//         </label>
-//         <label>
-//         背景
-//         <select id="roundBgMode">
-//             <option value="transparent">透明</option>
-//             <option value="color">颜色</option>
-//         </select>
-//         </label>
-//         <input type="color" id="roundBgColor" value="#ffffff" disabled>
-//         <button id="applyFilter">应用滤镜</button>
-//         <label class="slider-label">
-//         亮度
-//         <input type="range" id="filterBrightness" min="50" max="150" value="100">
-//         </label>
-//         <label class="slider-label">
-//         对比度
-//         <input type="range" id="filterContrast" min="50" max="150" value="100">
-//         </label>
-//         <label class="slider-label">
-//         模糊
-//         <input type="range" id="filterBlur" min="0" max="10" value="0">
-//         </label>
-//     </div>
-
-//     <!-- 第三行 -->
-//     <div class="toolbar-row">
-//         <input type="text" id="wmText" placeholder="输入水印文字" value="Huishao笔记">
-//         <label class="slider-label">
-//         字号
-//         <input type="range" id="wmSize" min="10" max="80" value="30">
-//         </label>
-//         <input type="color" id="wmColor" value="#ffffff">
-//         <label class="slider-label">
-//         X轴
-//         <input type="range" id="wmX" min="0" max="100" value="50">
-//         </label>
-//         <label class="slider-label">
-//         Y轴
-//         <input type="range" id="wmY" min="0" max="100" value="50">
-//         </label>
-//         <button id="applyWatermark">应用文字</button>
-//     </div>
-
-//     <!-- 通用 -->
-//     <div class="toolbar-row">
-//         <button id="undoBtn">撤销</button>
-//         <button id="clearBtn">清空</button>
-//     </div>
-// `;
-//     panel.appendChild(toolbar);
-//     document.body.appendChild(overlay);
-
-//     // ===== 状态变量 =====
-//     let tool = null, penColor = "#ff0000", penSize = 5, roundRadius = 30;
-//     let drawing = false, cropStart = null, cropRect = null;
-//     let history = [], redoStack = [];
-
-//     // 保存历史
-//     function saveState() {
-//         redoStack = [];
-//         history.push(canvas.toDataURL());
-//         if (history.length > 50) history.shift();
-//     }
-//     function latestSnapshot() {
-//         return history.length ? history[history.length - 1] : originalData;
-//     }
-
-//     // 撤销
-//     function undoEdit() {
-//         if (history.length > 1) {
-//             redoStack.push(canvas.toDataURL());
-//             history.pop();
-//             const im = new Image();
-//             im.onload = () => {
-//                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-//                 ctx.drawImage(im, 0, 0);
-//             };
-//             im.src = history[history.length - 1];
-//         }
-//     }
-
-//     // 清空
-//     function clearEdit() {
-//         if (!originalData) return;
-//         const im = new Image();
-//         im.onload = () => {
-//             ctx.clearRect(0, 0, canvas.width, canvas.height);
-//             ctx.drawImage(im, 0, 0);
-//             history = [canvas.toDataURL()];
-//             redoStack = [];
-//         };
-//         im.src = originalData;
-//     }
-
-//     // 圆角工具
-//     function roundedRectPath(ctx, x, y, w, h, r) {
-//         r = Math.max(0, Math.min(r, Math.min(w, h) / 2));
-//         ctx.beginPath();
-//         ctx.moveTo(x + r, y);
-//         ctx.lineTo(x + w - r, y);
-//         ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-//         ctx.lineTo(x + w, y + h - r);
-//         ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-//         ctx.lineTo(x + r, y + h);
-//         ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-//         ctx.lineTo(x, y + r);
-//         ctx.quadraticCurveTo(x, y, x + r, y);
-//         ctx.closePath();
-//     }
-//     function previewRound() {
-//         const snap = latestSnapshot();
-//         if (!snap) return;
-//         const src = new Image();
-//         src.onload = () => {
-//             ctx.clearRect(0, 0, canvas.width, canvas.height);
-//             const mode = toolbar.querySelector('#roundBgMode').value;
-//             if (mode === "color") {
-//                 ctx.fillStyle = toolbar.querySelector('#roundBgColor').value;
-//                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-//             }
-//             ctx.save();
-//             roundedRectPath(ctx, 0, 0, canvas.width, canvas.height, roundRadius);
-//             ctx.clip();
-//             ctx.drawImage(src, 0, 0);
-//             ctx.restore();
-//         };
-//         src.src = snap;
-//     }
-
-//     // 滤镜
-//     function applyFilter(previewOnly = true) {
-//         const snap = latestSnapshot();
-//         if (!snap) return;
-//         const src = new Image();
-//         src.onload = () => {
-//             ctx.clearRect(0, 0, canvas.width, canvas.height);
-//             ctx.filter = `
-//         brightness(${toolbar.querySelector('#filterBrightness').value}%)
-//         contrast(${toolbar.querySelector('#filterContrast').value}%)
-//         blur(${toolbar.querySelector('#filterBlur').value}px)
-//       `;
-//             ctx.drawImage(src, 0, 0);
-//             ctx.filter = "none";
-//             if (!previewOnly) saveState();
-//         };
-//         src.src = snap;
-//     }
-
-//     // 文字水印
-//     function drawWatermark(previewOnly = true) {
-//         const snap = latestSnapshot();
-//         if (!snap) return;
-//         const src = new Image();
-//         src.onload = () => {
-//             ctx.clearRect(0, 0, canvas.width, canvas.height);
-//             ctx.drawImage(src, 0, 0);
-//             ctx.font = `${toolbar.querySelector('#wmSize').value}px sans-serif`;
-//             ctx.fillStyle = toolbar.querySelector('#wmColor').value;
-//             ctx.textAlign = "center";
-//             ctx.textBaseline = "middle";
-//             const x = (toolbar.querySelector('#wmX').value / 100) * canvas.width;
-//             const y = (toolbar.querySelector('#wmY').value / 100) * canvas.height;
-//             ctx.fillText(toolbar.querySelector('#wmText').value, x, y);
-//             if (!previewOnly) saveState();
-//         };
-//         src.src = snap;
-//     }
-
-//     // 裁剪预览
-//     function drawCropPreview() {
-//         const w = canvas.width, h = canvas.height;
-//         const snap = latestSnapshot();
-//         const src = new Image();
-//         src.onload = () => {
-//             ctx.clearRect(0, 0, w, h);
-//             ctx.drawImage(src, 0, 0);
-
-//             if (!cropRect) return;
-
-//             ctx.save();
-//             ctx.fillStyle = "rgba(0,0,0,0.35)";
-//             ctx.fillRect(0, 0, w, h);
-
-//             ctx.clearRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
-//             ctx.drawImage(src,
-//                 cropRect.x, cropRect.y, cropRect.w, cropRect.h,
-//                 cropRect.x, cropRect.y, cropRect.w, cropRect.h
-//             );
-
-//             ctx.strokeStyle = "#ff4444";
-//             ctx.lineWidth = 2;
-//             ctx.setLineDash([6, 4]);
-//             ctx.strokeRect(
-//                 Math.round(cropRect.x) + 0.5,
-//                 Math.round(cropRect.y) + 0.5,
-//                 Math.round(cropRect.w) - 1,
-//                 Math.round(cropRect.h) - 1
-//             );
-//             ctx.restore();
-//         };
-//         src.src = snap;
-//     }
-
-//     // === 鼠标事件（画笔、马赛克、裁剪） ===
-//     canvas.onmousedown = (e) => {
-//         const rect = canvas.getBoundingClientRect();
-//         const x = (e.clientX - rect.left) * (canvas.width / rect.width);
-//         const y = (e.clientY - rect.top) * (canvas.height / rect.height);
-//         if (tool === "pen") {
-//             drawing = true;
-//             ctx.beginPath();
-//             ctx.moveTo(x, y);
-//             ctx.lineWidth = penSize;
-//             ctx.strokeStyle = penColor;
-//             saveState();
-//         } else if (tool === "mosaic") {
-//             drawing = true;
-//             saveState();
-//             ctx.fillStyle = "#999";
-//             ctx.fillRect(x - penSize / 2, y - penSize / 2, penSize, penSize);
-//         } else if (tool === "crop") {
-//             cropStart = { x, y };
-//             cropRect = null;
-//         }
-//     };
-//     canvas.onmousemove = (e) => {
-//         const rect = canvas.getBoundingClientRect();
-//         const x = (e.clientX - rect.left) * (canvas.width / rect.width);
-//         const y = (e.clientY - rect.top) * (canvas.height / rect.height);
-//         if (tool === "pen" && drawing) {
-//             ctx.lineTo(x, y);
-//             ctx.stroke();
-//         } else if (tool === "mosaic" && drawing) {
-//             ctx.fillStyle = "#999";
-//             ctx.fillRect(x - penSize / 2, y - penSize / 2, penSize, penSize);
-//         } else if (tool === "crop" && cropStart) {
-//             cropRect = {
-//                 x: Math.min(cropStart.x, x),
-//                 y: Math.min(cropStart.y, y),
-//                 w: Math.abs(x - cropStart.x),
-//                 h: Math.abs(y - cropStart.y)
-//             };
-//             drawCropPreview();
-//         }
-//     };
-//     canvas.onmouseup = () => {
-//         if (tool === "pen" || tool === "mosaic") drawing = false;
-//         else if (tool === "crop" && cropRect) {
-//             // 执行裁剪
-//             const snap = latestSnapshot();
-//             const src = new Image();
-//             src.onload = () => {
-//                 const tmp = document.createElement("canvas");
-//                 tmp.width = cropRect.w;
-//                 tmp.height = cropRect.h;
-//                 tmp.getContext("2d").drawImage(src,
-//                     cropRect.x, cropRect.y, cropRect.w, cropRect.h,
-//                     0, 0, cropRect.w, cropRect.h
-//                 );
-//                 canvas.width = cropRect.w;
-//                 canvas.height = cropRect.h;
-//                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-//                 ctx.drawImage(tmp, 0, 0);
-//                 saveState();
-//                 tool = null; // 自动退出裁剪模式
-//                 cropStart = null;
-//                 cropRect = null;
-//             };
-//             src.src = snap;
-//         }
-//     };
-
-//     // === 🎯 事件委托 ===
-//     toolbar.addEventListener("click", (e) => {
-//         const id = e.target.id;
-//         switch (id) {
-//             case "applyEdit":
-//                 if (!history.length) return;
-//                 const src = history[history.length - 1];
-//                 file.dataURL = src;
-//                 file.convertedData = src;
-//                 if (file.element) {
-//                     const imgel = file.element.querySelector("img");
-//                     imgel.src = src;
-//                     updateMeta(file);
-//                 }
-//                 document.body.removeChild(overlay);
-//                 break;
-//             case "closeEditor": document.body.removeChild(overlay); break;
-//             case "penTool": tool = "pen"; break;
-//             case "mosaicTool": tool = "mosaic"; break;
-//             case "cropTool": tool = "crop"; break;
-//             case "roundTool": previewRound(); saveState(); break;
-//             case "applyFilter": applyFilter(false); break;
-//             case "applyWatermark": drawWatermark(false); break;
-//             case "undoBtn": undoEdit(); break;
-//             case "clearBtn": clearEdit(); break;
-//         }
-//     });
-
-//     // === 🎨 输入型控件 ===
-//     toolbar.querySelector('#penColor').oninput = (e) => penColor = e.target.value;
-//     toolbar.querySelector('#penSize').oninput = (e) => penSize = parseInt(e.target.value, 10) || 5;
-//     toolbar.querySelector('#roundRadius').oninput = (e) => { roundRadius = parseInt(e.target.value, 10) || 0; previewRound(); };
-//     toolbar.querySelector('#roundBgMode').onchange = () => { toolbar.querySelector('#roundBgColor').disabled = (toolbar.querySelector('#roundBgMode').value !== "color"); previewRound(); };
-//     toolbar.querySelector('#roundBgColor').oninput = () => previewRound();
-//     toolbar.querySelector('#filterBrightness').oninput = () => applyFilter(true);
-//     toolbar.querySelector('#filterContrast').oninput = () => applyFilter(true);
-//     toolbar.querySelector('#filterBlur').oninput = () => applyFilter(true);
-//     toolbar.querySelector('#wmText').oninput = () => drawWatermark(true);
-//     toolbar.querySelector('#wmSize').oninput = () => drawWatermark(true);
-//     toolbar.querySelector('#wmColor').oninput = () => drawWatermark(true);
-//     toolbar.querySelector('#wmX').oninput = () => drawWatermark(true);
-//     toolbar.querySelector('#wmY').oninput = () => drawWatermark(true);
-// }
-
+// 图片编辑
 function openEditor(file) {
+    // ===== 创建 overlay + panel 并加入 DOM =====
     const overlay = document.createElement('div');
     overlay.id = "editorOverlay";
 
@@ -899,14 +535,82 @@ function openEditor(file) {
     panel.id = "editorPanel";
     overlay.appendChild(panel);
 
+    // ===== 画布 =====
     const canvas = document.createElement('canvas');
     canvas.id = "editorCanvas";
-    canvas.style.visibility = "hidden";
+    canvas.style.visibility = "hidden"; // 初始隐藏，避免闪烁
     const ctx = canvas.getContext('2d');
     panel.appendChild(canvas);
 
+    // ===== 载入图片到画布 =====
     const img = new Image();
     let originalData = null;
+
+    // 圆角方案一
+    // img.onload = () => {
+    //     canvas.width = img.width;
+    //     canvas.height = img.height;
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //     ctx.drawImage(img, 0, 0);
+    //     canvas.style.visibility = "visible";
+    //     originalData = canvas.toDataURL();
+    //     saveState(); // 初始状态入历史
+    // };
+
+    // 圆角方案二
+    // img.onload = () => {
+    //     canvas.width = img.width;
+    //     canvas.height = img.height;
+    //     ctx.drawImage(img, 0, 0);
+    //     canvas.style.visibility = "visible";
+    //     originalData = canvas.toDataURL();
+    //     saveState();
+
+    //     // ✅ 自动设置最大圆角半径 = 最小边的一半
+    //     const roundSlider = toolbar.querySelector('#roundRadius');
+    //     roundSlider.max = Math.floor(Math.min(img.width, img.height) / 2);
+    // };
+
+    // 圆角方案三
+    // img.onload = () => {
+    //     // 1. 原始大小
+    //     canvas.width = img.width;
+    //     canvas.height = img.height;
+
+    //     // 2. 计算缩放比例：最长边不超过 800px（你可以改成 1000/1200）
+    //     const maxSide = 800;
+    //     let scale = 1;
+    //     if (img.width > maxSide || img.height > maxSide) {
+    //         scale = maxSide / Math.max(img.width, img.height);
+    //     }
+
+    //     // 3. 只缩放显示，不拉伸变形
+    //     canvas.style.width = (img.width * scale) + "px";
+    //     canvas.style.height = (img.height * scale) + "px";
+
+    //     // 4. 绘制图片
+    //     ctx.drawImage(img, 0, 0);
+
+    //     canvas.style.visibility = "visible";
+    //     originalData = canvas.toDataURL();
+    //     saveState();
+    // };
+
+    // 圆角方案四
+    // img.onload = () => {
+    //     canvas.width = img.width;
+    //     canvas.height = img.height;
+    //     ctx.drawImage(img, 0, 0);
+    //     canvas.style.visibility = "visible";
+    //     originalData = canvas.toDataURL();
+    //     saveState();
+
+    //     // ✅ 圆角滑块最大值 = 最短边的一半
+    //     const roundSlider = toolbar.querySelector('#roundRadius');
+    //     roundSlider.max = Math.min(canvas.width, canvas.height) / 2;
+    // };
+
+    // 圆角方案五
     img.onload = () => {
         canvas.width = img.width;
         canvas.height = img.height;
@@ -914,82 +618,106 @@ function openEditor(file) {
         canvas.style.visibility = "visible";
         originalData = canvas.toDataURL();
         saveState();
+
+        // ✅ 限制显示大小，不改原始分辨率
+        const maxSide = window.innerWidth < 768 ? 400 : 800; // 手机最大 400px，PC 最大 800px
+        let scale = 1;
+        if (img.width > maxSide || img.height > maxSide) {
+            scale = maxSide / Math.max(img.width, img.height);
+        }
+        canvas.style.width = (img.width * scale) + "px";
+        canvas.style.height = (img.height * scale) + "px";
+
+        // ✅ 设置圆角滑块最大值
+        const roundSlider = toolbar.querySelector('#roundRadius');
+        roundSlider.max = Math.min(canvas.width, canvas.height) / 2;
+
+        // ✅ 在这里再调用
+        enhanceSliders(toolbar);
     };
+
+
+
     img.src = file.dataURL;
 
+    // ===== 工具栏（HTML） =====
     const toolbar = document.createElement('div');
     toolbar.id = "editorToolbar";
     toolbar.innerHTML = `
-    <div class="toolbar-row">
-      <button id="applyEdit">应用修改</button>
-      <button id="closeEditor">取消</button>
-      <button id="cropTool">裁剪</button>
-      <button id="mosaicTool">马赛克</button>
-      <button id="penTool">画笔</button>
-      <input type="color" id="penColor" value="#ff0000">
-      <label class="slider-label">粗细
-        <input type="range" id="penSize" min="2" max="40" value="5">
-      </label>
-    </div>
-    <div class="toolbar-row">
-      <button id="roundTool">圆角</button>
-      <label class="slider-label">半径
-        <input type="range" id="roundRadius" min="0" max="200" value="30">
-      </label>
-      <label>背景
-        <select id="roundBgMode">
-          <option value="transparent">透明</option>
-          <option value="color">颜色</option>
-        </select>
-      </label>
-      <input type="color" id="roundBgColor" value="#ffffff" disabled>
-      <button id="applyFilter">应用滤镜</button>
-      <label class="slider-label">亮度
-        <input type="range" id="filterBrightness" min="50" max="150" value="100">
-      </label>
-      <label class="slider-label">对比度
-        <input type="range" id="filterContrast" min="50" max="150" value="100">
-      </label>
-      <label class="slider-label">模糊
-        <input type="range" id="filterBlur" min="0" max="10" value="0">
-      </label>
-    </div>
-    <div class="toolbar-row">
-      <input type="text" id="wmText" placeholder="输入水印文字" value="Huishao笔记">
-      <label class="slider-label">字号
-        <input type="range" id="wmSize" min="10" max="80" value="30">
-      </label>
-      <input type="color" id="wmColor" value="#ffffff">
-      <label class="slider-label">X轴
-        <input type="range" id="wmX" min="0" max="100" value="50">
-      </label>
-      <label class="slider-label">Y轴
-        <input type="range" id="wmY" min="0" max="100" value="50">
-      </label>
-      <button id="applyWatermark">应用文字</button>
-    </div>
-    <div class="toolbar-row">
-      <button id="undoBtn">撤销</button>
-      <button id="clearBtn">清空</button>
-    </div>
+        <!-- 基础操作 -->
+        <div class="toolbar-row">
+            <h4>✂️ 基础操作</h4>
+            <button id="cropTool">裁剪</button>
+            <button id="mosaicTool">马赛克</button>
+            <button id="penTool">画笔</button>
+            <input type="color" id="penColor" value="#ff0000">
+            <label class="slider-label">粗细 <input type="range" id="penSize" min="2" max="40" value="5"></label>
+        </div>
+
+        <!-- 滤镜 / 圆角 -->
+        <div class="toolbar-row">
+            <h4>🎨 滤镜 / 圆角</h4>
+            <button id="roundTool">圆角（确认）</button>
+            <label class="slider-label">半径 <input type="range" id="roundRadius" min="0" value="30"></label>
+            <label>背景
+            <select id="roundBgMode">
+                <option value="transparent">透明</option>
+                <option value="color">颜色</option>
+            </select>
+            </label>
+            <input type="color" id="roundBgColor" value="#ffffff" disabled>
+            <button id="applyFilter">应用滤镜（确认）</button>
+            <label class="slider-label">亮度 <input type="range" id="filterBrightness" min="50" max="150" value="100"></label>
+            <label class="slider-label">对比度 <input type="range" id="filterContrast" min="50" max="150" value="100"></label>
+            <label class="slider-label">模糊 <input type="range" id="filterBlur" min="0" max="10" value="0"></label>
+        </div>
+
+        <!-- 水印 -->
+        <div class="toolbar-row">
+            <h4>📝 水印</h4>
+            <input type="text" id="wmText" placeholder="输入水印文字" value="Huishao笔记" style="min-width:160px;">
+            <label class="slider-label">字号 <input type="range" id="wmSize" min="10" max="80" value="30"></label>
+            <input type="color" id="wmColor" value="#ffffff">
+            <label class="slider-label">X轴 <input type="range" id="wmX" min="0" max="100" value="50"></label>
+            <label class="slider-label">Y轴 <input type="range" id="wmY" min="0" max="100" value="50"></label>
+            <button id="applyWatermark">应用文字（确认）</button>
+        </div>
+
+        <!-- 控制操作 -->
+        <div class="toolbar-row">
+            <h4>⚙️ 控制</h4>
+            <button id="undoBtn">撤销</button>
+            <button id="clearBtn">清空</button>
+            <button id="closeEditor">取消</button>
+            <button id="applyEdit">（终极写入）应用修改</button>
+        </div>
   `;
     panel.appendChild(toolbar);
-    document.body.appendChild(overlay);
 
-    // ===== 状态 =====
-    let tool = null, penColor = "#ff0000", penSize = 5, roundRadius = 30;
+    // 把 overlay 插入 body，并锁定 body 滚动
+    document.body.appendChild(overlay);
+    document.body.classList.add('editor-modal-open');
+
+    // ===== 状态变量 =====
+    let tool = null;
+    let penColor = "#ff0000", penSize = 5;
     let drawing = false, cropStart = null, cropRect = null;
     let history = [], redoStack = [];
+    let roundRadius = 30;
+    // 以下两个用于圆角：滑块仅预览 -> 必须点 roundTool 才真正应用
+    let roundPreviewActive = false;
+    let roundCommitted = false;
 
+    // ===== 历史管理（撤销） =====
     function saveState() {
+        // 每次保存都清空 redo 栈
         redoStack = [];
         history.push(canvas.toDataURL());
-        if (history.length > 50) history.shift();
+        if (history.length > 60) history.shift();
     }
     function latestSnapshot() {
         return history.length ? history[history.length - 1] : originalData;
     }
-
     function undoEdit() {
         if (history.length > 1) {
             redoStack.push(canvas.toDataURL());
@@ -1002,7 +730,6 @@ function openEditor(file) {
             im.src = history[history.length - 1];
         }
     }
-
     function clearEdit() {
         if (!originalData) return;
         const im = new Image();
@@ -1015,7 +742,7 @@ function openEditor(file) {
         im.src = originalData;
     }
 
-    // 圆角
+    // ===== 圆角路径与应用函数 =====
     function roundedRectPath(ctx, x, y, w, h, r) {
         r = Math.max(0, Math.min(r, Math.min(w, h) / 2));
         ctx.beginPath();
@@ -1030,7 +757,42 @@ function openEditor(file) {
         ctx.quadraticCurveTo(x, y, x + r, y);
         ctx.closePath();
     }
+
+    // 仅预览（不保存历史），用于滑块移动时即时预览
     function previewRound() {
+        const snap = latestSnapshot();
+        if (!snap) return;
+        const src = new Image();
+        src.onload = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const mode = toolbar.querySelector('#roundBgMode').value;
+            if (mode === "color") {
+                ctx.fillStyle = toolbar.querySelector('#roundBgColor').value;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            ctx.save();
+
+
+            // ✅ 新增：拉满时强制用最大半径
+            let r = roundRadius;
+            const maxR = Math.min(canvas.width, canvas.height) / 2;
+            if (r >= parseInt(toolbar.querySelector('#roundRadius').max, 10)) {
+                r = maxR;
+            }
+
+
+            roundedRectPath(ctx, 0, 0, canvas.width, canvas.height, r);
+            ctx.clip();
+            ctx.drawImage(src, 0, 0);
+            ctx.restore();
+            // 此时标记为仅预览
+            roundPreviewActive = true;
+            roundCommitted = false;
+        };
+        src.src = snap;
+    }
+    // 真正应用圆角（保存历史），在用户点「圆角」按钮时调用
+    function applyRoundCornerCommit() {
         const snap = latestSnapshot();
         if (!snap) return;
         const src = new Image();
@@ -1046,22 +808,23 @@ function openEditor(file) {
             ctx.clip();
             ctx.drawImage(src, 0, 0);
             ctx.restore();
+            // 保存历史并标记已提交
+            saveState();
+            roundCommitted = true;
+            roundPreviewActive = false;
         };
         src.src = snap;
     }
 
-    // 滤镜
+    // ===== 滤镜（支持预览与应用） =====
     function applyFilter(previewOnly = true) {
         const snap = latestSnapshot();
         if (!snap) return;
         const src = new Image();
         src.onload = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.filter = `
-        brightness(${toolbar.querySelector('#filterBrightness').value}%)
-        contrast(${toolbar.querySelector('#filterContrast').value}%)
-        blur(${toolbar.querySelector('#filterBlur').value}px)
-      `;
+            // 构建 filter 字符串
+            ctx.filter = `brightness(${toolbar.querySelector('#filterBrightness').value}%) contrast(${toolbar.querySelector('#filterContrast').value}%) blur(${toolbar.querySelector('#filterBlur').value}px)`;
             ctx.drawImage(src, 0, 0);
             ctx.filter = "none";
             if (!previewOnly) saveState();
@@ -1069,7 +832,7 @@ function openEditor(file) {
         src.src = snap;
     }
 
-    // 水印
+    // ===== 水印（预览 / 应用） =====
     function drawWatermark(previewOnly = true) {
         const snap = latestSnapshot();
         if (!snap) return;
@@ -1077,97 +840,87 @@ function openEditor(file) {
         src.onload = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(src, 0, 0);
-            ctx.font = `${toolbar.querySelector('#wmSize').value}px sans-serif`;
+            const size = parseInt(toolbar.querySelector('#wmSize').value, 10) || 30;
+            ctx.font = `${size}px sans-serif`;
             ctx.fillStyle = toolbar.querySelector('#wmColor').value;
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            const x = (toolbar.querySelector('#wmX').value / 100) * canvas.width;
-            const y = (toolbar.querySelector('#wmY').value / 100) * canvas.height;
+            const x = (parseFloat(toolbar.querySelector('#wmX').value) / 100) * canvas.width;
+            const y = (parseFloat(toolbar.querySelector('#wmY').value) / 100) * canvas.height;
             ctx.fillText(toolbar.querySelector('#wmText').value, x, y);
             if (!previewOnly) saveState();
         };
         src.src = snap;
     }
 
-    // 裁剪预览
+    // ===== 裁剪（拖拽预览/应用） =====
     function drawCropPreview() {
         const w = canvas.width, h = canvas.height;
         const snap = latestSnapshot();
+        if (!snap) return;
         const src = new Image();
         src.onload = () => {
             ctx.clearRect(0, 0, w, h);
             ctx.drawImage(src, 0, 0);
-
             if (!cropRect) return;
-
             ctx.save();
             ctx.fillStyle = "rgba(0,0,0,0.35)";
             ctx.fillRect(0, 0, w, h);
-
             ctx.clearRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
-            ctx.drawImage(
-                src,
-                cropRect.x, cropRect.y, cropRect.w, cropRect.h,
-                cropRect.x, cropRect.y, cropRect.w, cropRect.h
-            );
-
+            ctx.drawImage(src, cropRect.x, cropRect.y, cropRect.w, cropRect.h, cropRect.x, cropRect.y, cropRect.w, cropRect.h);
             ctx.strokeStyle = "#ff4444";
             ctx.lineWidth = 2;
             ctx.setLineDash([6, 4]);
-            ctx.strokeRect(
-                Math.round(cropRect.x) + 0.5,
-                Math.round(cropRect.y) + 0.5,
-                Math.round(cropRect.w) - 1,
-                Math.round(cropRect.h) - 1
-            );
+            ctx.strokeRect(Math.round(cropRect.x) + 0.5, Math.round(cropRect.y) + 0.5, Math.round(cropRect.w) - 1, Math.round(cropRect.h) - 1);
             ctx.restore();
         };
         src.src = snap;
     }
 
-    // ===== 画布交互 =====
-    canvas.onmousedown = (e) => {
+    // ===== 画笔 / 马赛克 事件处理 =====
+    function getCanvasPos(e) {
         const rect = canvas.getBoundingClientRect();
-        const x = (e.clientX - rect.left) * (canvas.width / rect.width);
-        const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+        return {
+            x: (e.clientX - rect.left) * (canvas.width / rect.width),
+            y: (e.clientY - rect.top) * (canvas.height / rect.height)
+        };
+    }
 
+    canvas.onmousedown = (e) => {
+        const p = getCanvasPos(e);
         if (tool === "pen") {
             drawing = true;
             ctx.beginPath();
-            ctx.moveTo(x, y);
+            ctx.moveTo(p.x, p.y);
             ctx.lineWidth = penSize;
             ctx.strokeStyle = penColor;
             ctx.lineCap = "round";
             ctx.lineJoin = "round";
-            saveState(); // 先存一帧，便于撤销
+            saveState(); // 先记录，方便撤销
         } else if (tool === "mosaic") {
             drawing = true;
-            saveState(); // 同上
+            saveState();
             ctx.fillStyle = "#999";
-            ctx.fillRect(x - penSize / 2, y - penSize / 2, penSize, penSize);
+            ctx.fillRect(p.x - penSize / 2, p.y - penSize / 2, penSize, penSize);
         } else if (tool === "crop") {
-            cropStart = { x, y };
+            cropStart = { x: p.x, y: p.y };
             cropRect = null;
         }
     };
 
     canvas.onmousemove = (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const x = (e.clientX - rect.left) * (canvas.width / rect.width);
-        const y = (e.clientY - rect.top) * (canvas.height / rect.height);
-
+        const p = getCanvasPos(e);
         if (tool === "pen" && drawing) {
-            ctx.lineTo(x, y);
+            ctx.lineTo(p.x, p.y);
             ctx.stroke();
         } else if (tool === "mosaic" && drawing) {
-            ctx.fillStyle = "#999";
-            ctx.fillRect(x - penSize / 2, y - penSize / 2, penSize, penSize);
+            ctx.fillRect(p.x - penSize / 2, p.y - penSize / 2, penSize, penSize);
         } else if (tool === "crop" && cropStart) {
             cropRect = {
-                x: Math.min(cropStart.x, x),
-                y: Math.min(cropStart.y, y),
-                w: Math.abs(x - cropStart.x),
-                h: Math.abs(y - cropStart.y)
+                x: Math.min(cropStart.x, p.x),
+                y: Math.min(cropStart.y, p.y),
+                w: Math.abs(p.x - cropStart.x),
+                h: Math.abs(p.y - cropStart.y)
             };
             drawCropPreview();
         }
@@ -1176,7 +929,7 @@ function openEditor(file) {
     const finishFreeDraw = () => {
         if (drawing && (tool === "pen" || tool === "mosaic")) {
             drawing = false;
-            saveState(); // ✅ 关键：把当前画面写入历史
+            saveState(); // 写入历史
         }
     };
 
@@ -1185,16 +938,12 @@ function openEditor(file) {
             const snap = latestSnapshot();
             const src = new Image();
             src.onload = () => {
-                const tmp = document.createElement("canvas");
-                tmp.width = cropRect.w;
-                tmp.height = cropRect.h;
-                tmp.getContext("2d").drawImage(
-                    src,
-                    cropRect.x, cropRect.y, cropRect.w, cropRect.h,
-                    0, 0, cropRect.w, cropRect.h
-                );
-                canvas.width = cropRect.w;
-                canvas.height = cropRect.h;
+                const tmp = document.createElement('canvas');
+                tmp.width = Math.max(1, Math.round(cropRect.w));
+                tmp.height = Math.max(1, Math.round(cropRect.h));
+                tmp.getContext('2d').drawImage(src, cropRect.x, cropRect.y, cropRect.w, cropRect.h, 0, 0, cropRect.w, cropRect.h);
+                canvas.width = tmp.width;
+                canvas.height = tmp.height;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(tmp, 0, 0);
                 saveState();
@@ -1207,57 +956,146 @@ function openEditor(file) {
             finishFreeDraw();
         }
     };
-
-    // 鼠标移出也提交一次，避免丢笔画
     canvas.onmouseleave = finishFreeDraw;
 
-    // ===== 事件委托 =====
-    toolbar.addEventListener("click", (e) => {
+    // ===== 事件委托（toolbar 按钮统一处理） =====
+    toolbar.addEventListener('click', (e) => {
         const id = e.target.id;
         switch (id) {
-            case "applyEdit": {
-                // ✅ 用当前画布内容，避免漏掉还未写入 history 的笔画
+            case 'applyEdit': {
+                // 如果圆角处于“仅预览未确认”状态 -> 阻止保存（按你要求）
+                if (roundPreviewActive && !roundCommitted) {
+                    alert('当前处于圆角预览状态，请先点击「圆角（确认）」按钮以应用圆角，或将滑块移回再保存。');
+                    return;
+                }
+                // 把当前画布内容保存回 file 对象
                 const src = canvas.toDataURL();
                 file.dataURL = src;
                 file.convertedData = src;
+                file.width = canvas.width;
+                file.height = canvas.height;
                 if (file.element) {
-                    const imgel = file.element.querySelector("img");
+                    const imgel = file.element.querySelector('img');
                     imgel.src = src;
                     updateMeta(file);
                 }
-                document.body.removeChild(overlay);
+                // 关闭并恢复滚动
+                closeAndCleanup();
                 break;
             }
-            case "closeEditor": document.body.removeChild(overlay); break;
-            case "penTool": tool = "pen"; break;
-            case "mosaicTool": tool = "mosaic"; break;
-            case "cropTool": tool = "crop"; break;
-            case "roundTool": previewRound(); saveState(); break;
-            case "applyFilter": applyFilter(false); break;
-            case "applyWatermark": drawWatermark(false); break;
-            case "undoBtn": undoEdit(); break;
-            case "clearBtn": clearEdit(); break;
+            case 'closeEditor': {
+                // 取消并关闭 -> 不保存
+                closeAndCleanup();
+                break;
+            }
+            case 'penTool': tool = 'pen'; break;
+            case 'mosaicTool': tool = 'mosaic'; break;
+            case 'cropTool': tool = 'crop'; break;
+            case 'roundTool': {
+                // 点击「圆角（确认）」按钮 -> 把当前滑块预览真正提交到历史
+                applyRoundCornerCommit();
+                break;
+            }
+            case 'applyFilter': {
+                // 确认应用滤镜（会保存历史）
+                applyFilter(false);
+                break;
+            }
+            case 'applyWatermark': {
+                // 确认应用文字水印（会保存历史）
+                drawWatermark(false);
+                break;
+            }
+            case 'undoBtn': undoEdit(); break;
+            case 'clearBtn': clearEdit(); break;
         }
     });
 
-    // 控件
+    // ===== 表单控件联动（滑块 / 颜色 / 文字） =====
     toolbar.querySelector('#penColor').oninput = (e) => penColor = e.target.value;
     toolbar.querySelector('#penSize').oninput = (e) => penSize = parseInt(e.target.value, 10) || 5;
-    toolbar.querySelector('#roundRadius').oninput = (e) => { roundRadius = parseInt(e.target.value, 10) || 0; previewRound(); };
-    toolbar.querySelector('#roundBgMode').onchange = () => {
-        toolbar.querySelector('#roundBgColor').disabled = (toolbar.querySelector('#roundBgMode').value !== "color");
+
+    // 圆角滑块：滑动只实时预览（不保存），必须点击 roundTool 才保存
+    toolbar.querySelector('#roundRadius').oninput = (e) => {
+        roundRadius = parseInt(e.target.value, 10) || 0;
+        // 限制最大为宽高一半
+        const maxAllowed = Math.floor(Math.min(canvas.width, canvas.height) / 2);
+        if (roundRadius > maxAllowed) roundRadius = maxAllowed;
         previewRound();
     };
-    toolbar.querySelector('#roundBgColor').oninput = () => previewRound();
-    toolbar.querySelector('#filterBrightness').oninput = () => applyFilter(true);
-    toolbar.querySelector('#filterContrast').oninput = () => applyFilter(true);
-    toolbar.querySelector('#filterBlur').oninput = () => applyFilter(true);
-    toolbar.querySelector('#wmText').oninput = () => drawWatermark(true);
-    toolbar.querySelector('#wmSize').oninput = () => drawWatermark(true);
-    toolbar.querySelector('#wmColor').oninput = () => drawWatermark(true);
-    toolbar.querySelector('#wmX').oninput = () => drawWatermark(true);
-    toolbar.querySelector('#wmY').oninput = () => drawWatermark(true);
+
+    // 背景模式切换（透明或颜色）
+    toolbar.querySelector('#roundBgMode').onchange = (e) => {
+        toolbar.querySelector('#roundBgColor').disabled = (e.target.value !== 'color');
+        // 如果处于圆角预览，刷新预览
+        if (roundPreviewActive) previewRound();
+    };
+    toolbar.querySelector('#roundBgColor').oninput = () => { if (roundPreviewActive) previewRound(); };
+
+    // 滤镜滑块（只预览）
+    ['#filterBrightness', '#filterContrast', '#filterBlur'].forEach(id => {
+        const el = toolbar.querySelector(id);
+        if (el) el.oninput = () => applyFilter(true);
+    });
+
+    // 水印滑块/文字（只预览）
+    ['#wmText', '#wmSize', '#wmColor', '#wmX', '#wmY'].forEach(id => {
+        const el = toolbar.querySelector(id);
+        if (el) el.oninput = () => drawWatermark(true);
+    });
+
+    // ===== 滑块美化函数：动态设置渐变背景并绑定 input 事件 =====
+    function enhanceSliders(root) {
+        const sliders = root.querySelectorAll('input[type=range]');
+        function updateSliderBg(slider) {
+            const min = slider.hasAttribute('min') ? parseFloat(slider.min) : 0;
+            const max = slider.hasAttribute('max') ? parseFloat(slider.max) : 100;
+            const val = parseFloat(slider.value);
+            const pct = (max === min) ? 0 : Math.max(0, Math.min(100, ((val - min) / (max - min)) * 100));
+            // 渐变：蓝色到 pct，灰色到结尾
+            slider.style.background = `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${pct}%, #e5e7eb ${pct}%, #e5e7eb 100%)`;
+        }
+        sliders.forEach(s => {
+            updateSliderBg(s);
+            s.addEventListener('input', () => updateSliderBg(s), { passive: true });
+            s.addEventListener('change', () => updateSliderBg(s));
+            window.addEventListener('resize', () => updateSliderBg(s));
+        });
+    }
+
+    // 立即增强 toolbar 内滑块
+    enhanceSliders(toolbar);
+
+    // ===== 关闭并清理（恢复 body 滚动） =====
+    function closeAndCleanup() {
+        if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        document.body.classList.remove('editor-modal-open');
+        // 恢复原来滚动样式（如你项目还有特殊逻辑，这里可以更细）
+        // 清理可能的事件监听（若添加了更多全局 listener 可以在这里移除）
+    }
+
+    // ===== 打开时做些小优化：限制圆角滑块最大值为画布一半 =====
+    // 等 image 加载完成后再设置最大
+    img.onloadend = () => {
+        const rr = toolbar.querySelector('#roundRadius');
+        if (rr) {
+            rr.max = Math.floor(Math.min(canvas.width, canvas.height) / 2);
+        }
+    };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
