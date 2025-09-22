@@ -1,0 +1,403 @@
+/* 页面基础排版 */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+/* Editor.md 全屏模式，编辑器真正占满全屏 */
+.editormd-fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 9999 !important;
+    background: #fff;
+    /* 可选，防止透明露出 body */
+}
+
+/* 全屏时隐藏导航 */
+.editormd-fullscreen #huishao {
+    display: none !important;
+}
+
+
+
+/* ===== 顶部导航外层背景条 ===== */
+.navbar-wrapper {
+    background: #3D85C6;
+    height: 60px;
+    position: relative;
+    z-index: 1000;
+}
+
+/* ===== 顶部导航容器 ===== */
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    color: #fff;
+}
+
+/* 左侧：头像 + 标题 */
+.navbar-left a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    padding-left: 40px;
+}
+
+.nav-avatar {
+    width: 34px;
+    height: 34px;
+    margin-right: 8px;
+}
+
+.nav-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* 右侧：主菜单（桌面端可见） */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-right: 50px;
+}
+
+.navbar-right a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 5px;
+    line-height: 1;
+    transition: all .25s ease;
+}
+
+.nav-icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    transition: all .25s ease;
+}
+
+.navbar-right a:hover {
+    background: linear-gradient(90deg, #30a9de, #0066ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navbar-right a:hover .nav-icon {
+    fill: url(#grad);
+}
+
+/* 工具菜单下拉 */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown>a {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.dropdown-arrow {
+    width: 0.65em;
+    height: 0.65em;
+    margin-left: -1px;
+    margin-top: 1px;
+    fill: currentColor;
+    transition: transform .25s ease, fill .25s ease;
+}
+
+.nav-dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
+    fill: url(#grad);
+}
+
+/* .mobile-dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
+    fill: #ffd966;
+} */
+
+/* .dropdown-arrow {
+    width: 0.7em;
+    height: 0.7em;
+    margin-left: 1px;
+    transition: transform .25s ease, fill .25s ease;
+    fill: currentColor;
+} */
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 130%;
+    left: 0;
+    background: #eee;
+    color: #333;
+    min-width: 120px;
+    border-radius: 10px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .12), 0 2px 8px rgba(0, 0, 0, .08);
+    padding: 10px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s step-end;
+}
+
+.nav-dropdown-menu a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    margin: 3px 0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: color .18s ease;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.nav-dropdown.open .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity .2s ease, transform .2s ease, visibility 0s;
+}
+
+.nav-dropdown-menu a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, .06);
+    opacity: 0;
+    transform: scale(.98);
+    transition: opacity .14s ease, transform .14s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.nav-dropdown-menu a:hover {
+    color: #30a9de;
+}
+
+.nav-dropdown-menu a:hover .nav-icon {
+    fill: url(#grad);
+}
+
+.nav-dropdown-menu a:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 编辑器占满剩余空间 */
+#editor {
+    flex: 1;
+    width: 100%;
+}
+
+.editormd {
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* ========== 移动端汉堡菜单样式 ========== */
+.burger {
+    display: none;
+    /* 默认隐藏，移动端显示 */
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1100;
+}
+
+.burger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin: 6px 0;
+    background: #fff;
+    border-radius: 2px;
+    transition: all .3s ease;
+}
+
+.burger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* 移动端下拉抽屉菜单 */
+.mobile-menu {
+    position: fixed;
+    top: -55%;
+    left: 0;
+    width: 100%;
+    min-height: 55%;
+    background: #3D85C6;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+    /* transition: top .4s ease, opacity .4s ease; */
+    z-index: 999;
+    opacity: 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
+}
+
+.mobile-menu.open {
+    top: 0;
+    opacity: 1;
+}
+
+/* 普通菜单项（居中+图标稍大） */
+.mobile-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* ✅ 居中 */
+    gap: 10px;
+    font-size: 15px;
+    /* ✅ 字体大一点 */
+    padding: 12px 0;
+    color: #fff;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu svg {
+    width: 18px;
+    /* ✅ 比15再大点 */
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+/* 工具下拉 */
+.mobile-dropdown {
+    width: 100%;
+    text-align: center;
+}
+
+.mobile-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0;
+    font-size: 15px;
+    color: #fff;
+}
+
+/* 下拉卡片 */
+.mobile-dropdown-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    /* ✅ 居中 */
+    width: 400px;
+    /* ✅ 宽度自动，避免撑满 */
+    min-width: 300px;
+    /* ✅ 给个最小宽度，看起来对齐 */
+    margin: 10px auto;
+    /* ✅ 左右自动居中 */
+    background: #eee;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .15);
+    padding: 6px 0;
+}
+
+.mobile-dropdown-menu a {
+    width: 100%;
+    padding: 20px 16px;
+    /* 左右留点内边距 */
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* ✅ 内容靠左 */
+    gap: 8px;
+    color: #333;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.mobile-dropdown-menu svg {
+    width: 16px;
+    height: 16px;
+}
+
+.mobile-dropdown.open .mobile-dropdown-menu {
+    display: flex;
+}
+
+/* 移动端 工具菜单 */
+.mobile-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* ← 保证左对齐 */
+    gap: 6px;
+    /* ← 图标和文字的间距 */
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 箭头和文字的间距 */
+.mobile-dropdown-toggle .dropdown-arrow {
+    margin-left: -10px;
+    /* ← 调整文字和箭头间距 */
+    width: 0.8em;
+    height: 0.8em;
+    flex-shrink: 0;
+    /* 不被挤压 */
+}
+
+
+/* 响应式：小屏显示汉堡，隐藏右侧菜单 */
+@media (max-width: 768px) {
+    .navbar-right {
+        display: none;
+    }
+
+    .burger {
+        display: block;
+    }
+}

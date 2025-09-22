@@ -500,6 +500,7 @@ async function convertToICO() {
     }
 }
 
+
 /* ===== 点击放大/缩小 ===== */
 document.addEventListener('click', e => {
     if (e.target.tagName === "IMG" && e.target.closest('.compare-block')) {

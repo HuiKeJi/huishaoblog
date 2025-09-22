@@ -1,0 +1,206 @@
+.dt-section {
+    margin: 20px 0;
+}
+
+.dt-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+html[data-user-color-scheme="dark"] .dt-label {
+    color: #ddd;
+}
+
+/* 模式选择单选框 */
+.dt-radios {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.dt-radio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+}
+
+.dt-radio input {
+    width: 18px;
+    height: 18px;
+    accent-color: #3D85C6;
+}
+
+/* 输入/输出框 */
+.dt-textarea,
+.dt-output {
+    width: 100%;
+    min-height: 160px;
+    resize: vertical;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: monospace;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.dt-output {
+    background: #f9f9f9;
+}
+
+html[data-user-color-scheme="dark"] .dt-textarea,
+html[data-user-color-scheme="dark"] .dt-output {
+    background: #2a2d35;
+    color: #eee;
+    border: 1px solid #555;
+}
+
+/* 输出设置行：下拉框 + 勾选框 + 按钮 */
+.dt-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.dt-check {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 复制按钮 */
+.dt-copy {
+    background: #3D85C6;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dt-copy:hover {
+    background: #2a5f90;
+}
+
+/* 复制提示 */
+.dt-toast {
+    opacity: 0;
+    margin-left: 8px;
+    color: green;
+    font-size: 14px;
+    transition: opacity .3s;
+}
+
+.dt-toast.on {
+    opacity: 1;
+}
+
+/* 页面容器整体样式 */
+.dt-container {
+    max-width: 1100px;
+    margin: 100px auto 60px;
+    /* 上方留 100px，底部留 60px */
+    padding: 20px 16px;
+    /* background: #2b2f36; */
+    /* 深色背景（可选） */
+    /* border-radius: 12px; */
+    /* 圆角美化 */
+    /* box-shadow: 0 4px 16px rgba(0, 0, 0, .3); */
+    /* 投影效果 */
+}
+
+
+/* ===== 下拉框美化 ===== */
+.dt-select {
+    appearance: none;
+    /* 去掉系统默认样式 */
+    -webkit-appearance: none;
+    /* Safari 兼容 */
+    -moz-appearance: none;
+    /* Firefox 兼容 */
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background-color: #e0e0e0;
+    /* 灰色背景 */
+    cursor: pointer;
+}
+
+.dt-select:hover {
+    border-color: #3D85C6;
+}
+
+/* ===== 夜间模式下拉框 ===== */
+html[data-user-color-scheme="dark"] .dt-select {
+    background: #2a2d35;
+    border: 1px solid #555;
+    color: #eee;
+}
+
+
+/* ====== 导航栏颜色（白天蓝 / 夜间深色） ====== */
+.navbar {
+    background-color: #3D85C6 !important;
+    /* 白天：亮蓝色 */
+    transition: background-color .3s ease;
+    /* 切换时平滑过渡 */
+}
+
+html[data-user-color-scheme="dark"] .navbar {
+    background-color: #1f3144 !important;
+    /* 夜间：深色 */
+}
+
+
+/* ===== 返回按钮 ===== */
+.back-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #3D85C6, #60A5FA);
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.back-btn:hover {
+    background: linear-gradient(90deg, #2a5f90, #3D85C6);
+    transform: translateX(-2px);
+    /* 鼠标悬停轻微左移 */
+}
+
+
+/* ===== 手机适配 ===== */
+@media (max-width: 768px) {
+    .dt-select {
+        width: 100%;
+        /* 下拉框占满整行 */
+        font-size: 16px;
+        /* 手机可点击区域大一些 */
+        padding: 10px 14px;
+        /* 增大内边距，方便手指点击 */
+        margin-bottom: 10px;
+        /* 与下方内容拉开距离 */
+    }
+
+    .dt-row {
+        flex-direction: column;
+        /* 手机上改成竖排，避免挤成一堆 */
+        align-items: flex-start;
+    }
+
+    .dt-copy {
+        width: 100%;
+        /* 复制按钮独占一行 */
+        margin-top: 10px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,1621 @@
+
+
+  <!DOCTYPE html>
+  <html lang="zh-CN" data-default-color-scheme=auto>
+
+  
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="/css/giscus.css">
+
+  <!-- PDF工具箱 -->
+  
+
+  <!-- 图片工具箱 -->
+  
+
+  <!-- Markdown 编辑器 -->
+  <!--  -->
+
+  <!-- 更多功能 -->
+  
+
+  <!-- 文本差异对比 -->
+  
+
+  <!-- 目录树 -->
+  
+
+
+
+  <!-- 文章分享css文件 -->
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/huishao.png">
+  <link rel="icon" href="/img/icons/huishao.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#3D85C6">
+  <meta name="author" content="huishao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Python去水印，生成mask图，训练模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Python去水印">
+<meta property="og:url" content="http://huishao.net/2025/08/28/%E5%8E%BB%E6%B0%B4%E5%8D%B0/index.html">
+<meta property="og:site_name" content="辉少笔记">
+<meta property="og:description" content="Python去水印，生成mask图，训练模型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huishao.net/img/articleslist/wallhaven-9o55qd.jpg">
+<meta property="article:published_time" content="2025-08-28T10:30:00.000Z">
+<meta property="article:modified_time" content="2025-09-21T07:50:24.340Z">
+<meta property="article:author" content="huishao">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://huishao.net/img/articleslist/wallhaven-9o55qd.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>基于Python去水印 - 辉少笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"huishao.net","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/gif/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"kt19AZrmvIvdNeQbR6Ze9CMi-gzGzoHsz","app_key":"SFr2nBzqGwf5yONfSLXsgQXE","server_url":"https://kt19azrm.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    <body>
+      
+
+        <header>
+          
+
+<!-- 只有在显示 banner 时，才给 header-inner 设高度；否则不设高度，让导航正常显示 -->
+<div class="header-inner" style="height: 70vh;">
+  <!-- 导航始终渲染 -->
+  <!-- =========================
+     响应式导航（含：LOGO/标题、菜单循环、下拉菜单、搜索、夜间模式）
+     ========================= -->
+<nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+
+    <!-- ======================
+         左侧：网站标题 / LOGO
+         ====================== -->
+    <a class="navbar-brand" href="/">
+      
+        <!-- 如果主题配置了头像，则显示在标题前 -->
+        <img src="/img/icons/huishao64.png" srcset="/img/gif/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35" height="35" />
+        
+          <!-- 标题优先取 theme.navbar.blog_title，否则回退为站点标题 -->
+          <strong>&nbsp;&nbsp;辉少笔记</strong>
+    </a>
+
+    <!-- ======================
+         移动端：折叠按钮（汉堡菜单）
+         ====================== -->
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- ======================
+         右侧：可折叠导航内容
+         ====================== -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+
+        <!-- ==========================================
+             工具：图标渲染函数
+             ========================================== -->
+        
+
+                    <!-- ==========================================
+             菜单循环
+             ========================================== -->
+                    
+                      
+                        
+                          
+
+                            <!-- 有子菜单：下拉 -->
+                            
+                                <!-- 无子菜单：普通项 -->
+                                <li class="nav-item">
+                                  <a class="nav-link" href="/">
+                                    
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-home"></use>
+                  <use class="fill-grad" href="#nav-home"></use>
+                </svg>
+                
+                  <span class="nav-text">首页</span>
+                                  </a>
+                                </li>
+                                
+                                  
+                      
+                        
+                          
+
+                            <!-- 有子菜单：下拉 -->
+                            
+                                <!-- 无子菜单：普通项 -->
+                                <li class="nav-item">
+                                  <a class="nav-link" href="/archives/">
+                                    
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-archive"></use>
+                  <use class="fill-grad" href="#nav-archive"></use>
+                </svg>
+                
+                  <span class="nav-text">归档</span>
+                                  </a>
+                                </li>
+                                
+                                  
+                      
+                        
+                          
+
+                            <!-- 有子菜单：下拉 -->
+                            
+                                <!-- 无子菜单：普通项 -->
+                                <li class="nav-item">
+                                  <a class="nav-link" href="/categories/">
+                                    
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-category"></use>
+                  <use class="fill-grad" href="#nav-category"></use>
+                </svg>
+                
+                  <span class="nav-text">分类</span>
+                                  </a>
+                                </li>
+                                
+                                  
+                      
+                        
+                          
+
+                            <!-- 有子菜单：下拉 -->
+                            
+                                <!-- 无子菜单：普通项 -->
+                                <li class="nav-item">
+                                  <a class="nav-link" href="/tags/">
+                                    
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-tag"></use>
+                  <use class="fill-grad" href="#nav-tag"></use>
+                </svg>
+                
+                  <span class="nav-text">标签</span>
+                                  </a>
+                                </li>
+                                
+                                  
+                      
+                        
+                          
+
+                            <!-- 有子菜单：下拉 -->
+                            
+                                <!-- 无子菜单：普通项 -->
+                                <li class="nav-item">
+                                  <a class="nav-link" href="/about/">
+                                    
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-about"></use>
+                  <use class="fill-grad" href="#nav-about"></use>
+                </svg>
+                
+                  <span class="nav-text">关于</span>
+                                  </a>
+                                </li>
+                                
+                                  
+                      
+                        
+                          
+
+                            <!-- 有子菜单：下拉 -->
+                            
+                                <!-- 无子菜单：普通项 -->
+                                <li class="nav-item">
+                                  <a class="nav-link" href="/guestbook/">
+                                    
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-guestbook"></use>
+                  <use class="fill-grad" href="#nav-guestbook"></use>
+                </svg>
+                
+                  <span class="nav-text">留言页</span>
+                                  </a>
+                                </li>
+                                
+                                  
+                      
+                        
+                          
+
+                            <!-- 有子菜单：下拉 -->
+                            
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+                                  
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-tools"></use>
+                  <use class="fill-grad" href="#nav-tools"></use>
+                </svg>
+                
+                  <span class="nav-text">工具</span>
+                                </a>
+                                <div class="dropdown-menu">
+                                  
+                                    
+                                      
+                                        
+                                          <a class="dropdown-item" href="/md-editor/">
+                                            
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-md"></use>
+                  <use class="fill-grad" href="#nav-md"></use>
+                </svg>
+                
+                  <span class="nav-text">Markdown编辑器</span>
+                                          </a>
+                                          
+                                    
+                                      
+                                        
+                                          <a class="dropdown-item" href="/imagejpw/">
+                                            
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-imagejpw"></use>
+                  <use class="fill-grad" href="#nav-imagejpw"></use>
+                </svg>
+                
+                  <span class="nav-text">图片转换/压缩</span>
+                                          </a>
+                                          
+                                    
+                                      
+                                        
+                                          <a class="dropdown-item" href="/pdf-merge/">
+                                            
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-pdf-merge"></use>
+                  <use class="fill-grad" href="#nav-pdf-merge"></use>
+                </svg>
+                
+                  <span class="nav-text">PDF工具</span>
+                                          </a>
+                                          
+                                    
+                                      
+                                        
+                                          <a class="dropdown-item" href="/more-features/">
+                                            
+          
+            
+                <!-- 情况 B：sprite 符号 -->
+                <svg class="nav-icon" aria-hidden="true">
+                  <use class="fill-base" href="#nav-more-features"></use>
+                  <use class="fill-grad" href="#nav-more-features"></use>
+                </svg>
+                
+                  <span class="nav-text">更多功能</span>
+                                          </a>
+                                          
+                                </div>
+                              </li>
+                              
+                                  
+
+                                    <!-- 搜索按钮 -->
+                                    
+                                      <li class="nav-item" id="search-btn">
+                                        <a class="nav-link" href="javascript:;" data-toggle="modal"
+                                          data-target="#modalSearch">
+                                          <svg class="nav-icon">
+                                            <use class="fill-base" href="#nav-search"></use>
+                                            <use class="fill-grad" href="#nav-search"></use>
+                                          </svg>
+                                          <span class="sr-only">Search</span>
+                                        </a>
+                                      </li>
+                                      
+                                        
+
+                                          <!-- 夜间模式按钮 -->
+                                          
+                                            <!-- <li class="nav-item" id="color-toggle-btn">
+                                              <a class="nav-link" href="javascript:;" aria-label="Color Toggle">
+                                                <svg class="nav-icon" id="color-toggle-icon">
+                                                  <use class="fill-base" href="#nav-dark"></use>
+                                                  <use class="fill-grad" href="#nav-dark"></use>
+                                                </svg>
+                                                <span class="sr-only">Color Toggle</span>
+                                              </a>
+                                            </li> -->
+
+                                            <!-- <li class="nav-item" id="color-toggle-btn">
+                                              <a class="nav-link" href="javascript:;" aria-label="Color Toggle">
+                                                <svg class="nav-icon" id="color-toggle-icon" aria-hidden="true" focusable="false">
+                                                  <use href="#nav-sun"></use>
+                                                </svg>
+
+                                                <svg class="nav-icon" id="color-toggle-icon" aria-hidden="true"
+                                                  focusable="false">
+                                                  <use class="fill-base" href="#nav-sun"></use>
+                                                  <use class="fill-grad" href="#nav-sun"></use>
+                                                </svg>
+
+                                                <span class="sr-only">Color Toggle</span>
+                                              </a>
+                                            </li> -->
+
+                                            <li class="nav-item" id="color-toggle-btn">
+                                              <a class="nav-link" href="javascript:;" aria-label="Color Toggle">
+                                                <svg class="nav-icon" id="color-toggle-icon" aria-hidden="true"
+                                                  focusable="false">
+                                                  <!-- 白天：太阳 -->
+                                                  <g class="icon-sun">
+                                                    <use class="fill-base" href="#nav-sun"></use>
+                                                    <use class="fill-grad" href="#nav-sun"></use>
+                                                  </g>
+                                                  <!-- 夜间：灯泡 -->
+                                                  <g class="icon-dark">
+                                                    <use class="fill-base" href="#nav-dark"></use>
+                                                    <use class="fill-grad" href="#nav-dark"></use>
+                                                  </g>
+                                                </svg>
+                                                <span class="sr-only">Color Toggle</span>
+                                              </a>
+                                            </li>
+
+
+                                            
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================================================
+     内联 Sprite（必须内联，否则无法 hover 渐变）
+     命名规范：nav-xxx
+     ====================================================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- hover 渐变 -->
+    <linearGradient id="nav-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#30a9de" />
+      <stop offset="100%" stop-color="#0066ff" />
+    </linearGradient>
+  </defs>
+
+  <!-- 关于 -->
+  <symbol id="nav-about" viewBox="0 0 1027 1024">
+    <path
+      d="M1016.12 168.947a18.277 18.277 0 0 0-20.815 3.565l-82.021 72.811c-41.306 41.302-108.513 41.302-149.814 0l-82.023-88.16a19.452 19.452 0 0 0-1.082-.978L614.007 96.99c-26.918-26.922-62.704-33.56-100.771-33.56-38.068 0-73.854 14.825-100.771 41.742l-66.882 60.748c-.17.154-.345.295-.504.453l-82.021 83.045c-41.3 41.306-108.516 41.301-149.816 0L31.22 172.512a18.28 18.28 0 0 0-20.843-3.555A18.282 18.282 0 0 0 .11 187.441l134.866 755.331c1.023 9.271 8.85 16.291 18.18 16.291h486.127c.225.002.447.017.672.017 35.348 0 64.003-27.632 64.003-62.98s-28.655-62.98-64.003-62.98c-.358 0-.71.021-1.068.026H253.423l-86.98-443.738c49.055 15.388 88.375 7.863 122.479-14.64l66.881-66.888c.165-.154.34-.296.506-.455l82.02-82.02c20.007-20.011 46.61-31.031 74.908-31.031 28.292 0 54.895 11.02 74.905 31.03l82.02 82.02c.346.346.709.66 1.08.975l66.362 59.2c41.674 41.673 86.825 46.368 129.804 22.832L755.436 959.06h110.748c9.346 0 17.189-7.05 18.182-16.346l142.055-755.331a18.282 18.282 0 0 0-10.3-18.435z" />
+  </symbol>
+
+  <!-- 归档 -->
+  <symbol id="nav-archive" viewBox="0 0 1024 1024">
+    <path
+      d="M298.667 550.4h426.666v-42.667H298.667V550.4zm0-132.267h426.666v-42.666H298.667v42.666zm0-136.533h426.666v-42.667H298.667V281.6zm576 388.267v183.466c0 34.134-29.867 64-64 64H213.333c-34.133 0-64-29.866-64-64V669.867H243.2c4.267 0 8.533 0 12.8 4.266L384 768c12.8 8.533 25.6 12.8 38.4 12.8h183.467c12.8 0 25.6-4.267 38.4-12.8l128-93.867c4.266-4.266 8.533-4.266 12.8-4.266h89.6zm0-42.667h-89.6c-12.8 0-25.6 4.267-38.4 12.8l-128 93.867c-4.267 4.266-8.534 4.266-12.8 4.266H418.133c-4.266 0-8.533 0-12.8-4.266l-128-93.867c-12.8-8.533-25.6-12.8-38.4-12.8h-89.6V170.667c0-34.134 29.867-64 64-64h597.334c34.133 0 64 29.866 64 64V627.2z" />
+  </symbol>
+
+  <!-- 分类 -->
+  <symbol id="nav-category" viewBox="0 0 1024 1024">
+    <path
+      d="M906.199 116.388H115.927c-34.314 0-62.147 27.837-62.147 62.172v.297c0 34.34 27.833 62.172 62.147 62.172h790.272c34.31 0 62.152-27.837 62.152-62.172v-.297c0-34.335-27.843-62.172-62.152-62.172zm-.317 331.054H116.25c-34.51 0-62.47 27.986-62.47 62.474v.492c0 34.488 27.956 62.469 62.47 62.469h789.632c34.508 0 62.469-27.981 62.469-62.47v-.49c0-34.49-27.96-62.475-62.47-62.475zm.317 331.848H115.927c-34.314 0-62.147 27.842-62.147 62.177v.297c0 34.34 27.833 62.177 62.147 62.177h790.272c34.31 0 62.152-27.837 62.152-62.177v-.297c0-34.335-27.843-62.177-62.152-62.177z" />
+  </symbol>
+
+  <!-- 白天：太阳 -->
+  <symbol id="nav-sun" viewBox="0 0 1024 1024">
+    <path
+      d="M183.488 512c0-176.736 143.264-320 320-320s320 143.264 320 320-143.264 320-320 320-320-143.264-320-320zM416 864h192a32 32 0 0 1 0 64H416a32 32 0 0 1 0-64zm64 96h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm1.76-960a32 32 0 0 1 32 32v64a32 32 0 1 1-64 0V32a32 32 0 0 1 32-32zm332.48 104.384a32 32 0 0 1 7.04 44.672l-37.6 51.776a32 32 0 0 1-51.776-37.6l37.6-51.776a32 32 0 0 1 44.704-7.072zM1007.456 340a32 32 0 0 1-20.544 40.32l-60.864 19.776a32 32 0 1 1-19.776-60.864l60.864-19.776a32 32 0 0 1 40.32 20.544zm0 316.416a32 32 0 0 1-40.32 20.544l-60.864-19.776a32 32 0 0 1 19.776-60.864l60.864 19.776a32 32 0 0 1 20.544 40.32zm-973.888 0a32 32 0 0 1 20.544-40.32l60.864-19.776a32 32 0 1 1 19.776 60.864L73.888 676.96a32 32 0 0 1-40.32-20.544zm0-316.416a32 32 0 0 1 40.32-20.544l60.864 19.776a32 32 0 1 1-19.776 60.864L54.112 380.32A32 32 0 0 1 33.568 340zM212.32 104.384a32 32 0 0 1 44.704 7.04l37.6 51.808a32 32 0 0 1-51.744 37.6l-37.632-51.776a32 32 0 0 1 7.072-44.672zM247.488 512a256 256 0 1 0 512 0 256 256 0 0 0-256-256 256 256 0 0 0-256 256z" />
+  </symbol>
+
+  <!-- 夜晚：灯泡 -->
+  <symbol id="nav-dark" viewBox="0 0 1024 1024">
+    <path
+      d="M618.667 896H405.333c-12.8 0-21.333 8.533-21.333 21.333s8.533 21.334 21.333 21.334h213.334c12.8 0 21.333-8.534 21.333-21.334S631.467 896 618.667 896zm42.666-85.333H362.667c-12.8 0-21.334 8.533-21.334 21.333s8.534 21.333 21.334 21.333h298.666c12.8 0 21.334-8.533 21.334-21.333s-8.534-21.333-21.334-21.333zM512 0C311.467 0 149.333 157.867 149.333 349.867c0 102.4 46.934 198.4 125.867 264.533 17.067 12.8 25.6 34.133 25.6 55.467v29.866c0 38.4 32 70.4 68.267 70.4H652.8c38.4 0 68.267-32 68.267-70.4v-29.866c0-21.334 8.533-40.534 25.6-55.467 78.933-66.133 125.866-162.133 125.866-264.533C874.667 157.867 712.533 0 512 0zm232.533 392.533a19.12 19.12 0 0 1-19.2-19.2c-2.133-55.466-25.6-113.066-64-155.733-25.6-27.733-70.4-61.867-134.4-61.867-10.666 0-21.333-8.533-21.333-21.333s8.533-21.333 21.333-21.333c61.867 0 119.467 25.6 164.267 74.666C736 236.8 763.733 305.067 765.867 371.2c2.133 10.667-8.534 21.333-21.334 21.333zM576 981.333H448c-12.8 0-21.333 8.534-21.333 21.334S435.2 1024 448 1024h128c12.8 0 21.333-8.533 21.333-21.333S588.8 981.333 576 981.333z" />
+  </symbol>
+
+  <!-- 留言 -->
+  <symbol id="nav-guestbook" viewBox="0 0 1107 1024">
+    <path
+      d="M987.198 0H119.872A120.05 120.05 0 0 0 0 119.873v505.39a120.05 120.05 0 0 0 119.872 119.871h93.074V968.62a54.666 54.666 0 0 0 90.752 41.624L592.39 753.708a30.548 30.548 0 0 1 20.366-7.681h375.157a120.05 120.05 0 0 0 119.693-120.765v-505.39A120.05 120.05 0 0 0 987.198.001zM798.37 463.41a41.446 41.446 0 0 1-41.445 41.445H350.325a41.446 41.446 0 0 1-41.446-41.445 41.446 41.446 0 0 1 41.446-41.446h406.599a41.446 41.446 0 0 1 41.445 41.446zm-41.445-145.24H350.325a41.446 41.446 0 1 1 0-82.892h406.599a41.446 41.446 0 0 1 0 82.892z" />
+  </symbol>
+
+  <!-- 首页 -->
+  <symbol id="nav-home" viewBox="0 0 1024 1024">
+    <path
+      d="M586.424 0C557.44 0 531.952 11.792 512 34.248 492.048 11.792 466.56 0 437.576 0c-58.552 0-104.424 48.664-104.424 110.792 0 65.208 50.704 108 120.88 167.232 12.24 10.328 24.904 21.016 38.32 32.64A29.89 29.89 0 0 0 512 318c7.008 0 14.008-2.44 19.648-7.328 13.416-11.632 26.08-22.32 38.32-32.656 65.072-54.92 120.88-99.624 120.88-167.224C690.848 48.664 644.976 0 586.424 0zm-55.152 232.16c-6.296 5.32-12.696 10.72-19.28 16.32a6454.4 6454.4 0 0 0-19.264-16.304c-67.248-56.76-99.576-85.632-99.576-121.384 0-25.24 15.264-50.792 44.424-50.792 32.216 0 44.672 39.704 45.536 42.592A29.872 29.872 0 0 0 512 124.896a29.872 29.872 0 0 0 28.888-22.304C541.752 99.704 554.208 60 586.424 60c29.16 0 44.424 25.552 44.424 50.792 0 37.248-37.832 69.264-99.576 121.376zM994 844a30 30 0 0 1 30 30v120a30 30 0 0 1-60 0v-30h-60v30a30 30 0 0 1-60 0v-30h-62v30a30 30 0 0 1-30 30H272a30 30 0 0 1-30-30v-30h-62v30a30 30 0 0 1-60 0v-30H60v30a30 30 0 0 1-60 0V874a30 30 0 0 1 60 0v30h60v-30a30 30 0 0 1 60 0v30h62V776.904c-34.096 12.08-75.064 2.824-100.272-28.696a89.896 89.896 0 0 1 14.08-126.496l299.888-241.904c33.192-26.544 79.416-26.544 112.512-.08l300.096 242.08c38.664 30.872 45.112 87.512 13.96 126.408A89.76 89.76 0 0 1 782 776.824V904h62v-30a30 30 0 0 1 60 0v30h60v-30a30 30 0 0 1 30-30zM542 964V844h-60v120h60zm180 0V735.248L512 567.264 302 735.248V964h120V814a30 30 0 0 1 30-30h120a30 30 0 0 1 30 30v150h120zM530.736 505.424l262.536 210a29.944 29.944 0 0 0 42.128-4.672 29.928 29.928 0 0 0-4.648-42.16l-300.12-242.088a29.808 29.808 0 0 0-37.368.08L193.36 668.504a29.936 29.936 0 0 0-4.8 42.216 29.944 29.944 0 0 0 42.144 4.72l262.552-210.016a30 30 0 0 1 37.472 0z" />
+  </symbol>
+
+  <!-- Markdown 编辑器 -->
+  <symbol id="nav-md" viewBox="0 0 1024 1024">
+    <path d="M0 686.081a332.799 332.799 0 1 0 665.598 0 332.799 332.799 0 1 0-665.598 0Z" />
+    <path d="M883.197 1024H243.2a141.056 141.056 0 0 1-140.8-140.8V140.803A141.056 141.056 0 0 1 243.2.003h516.35a89.088 89.088 0 0 1 63.233 25.6l189.695 189.695a38.4 38.4 0 0 1 11.52 27.904V883.2a141.056 141.056 0 0 1-140.8 140.8zM243.2 76.803a64 64 0 0 0-64 64V883.2a64 64 0 0 0 64 64h639.998a64 64 0 0 0 64-64V259.074l-179.2-179.2a12.8 12.8 0 0 0-8.447-3.071z" />
+  </symbol>
+
+
+  <!-- 标签 -->
+  <symbol id="nav-tag" viewBox="0 0 1024 1024">
+    <path
+      d="M931.48 1023.727a44.608 44.608 0 0 1-26.474-8.472L511.61 730.931l-393.395 284.192a44.74 44.74 0 0 1-46.858 4.103 45.137 45.137 0 0 1-24.223-39.71V45.005A45.005 45.005 0 0 1 92.14 0h839.472a45.005 45.005 0 0 1 45.004 45.005v933.717a45.27 45.27 0 0 1-45.137 45.005z" />
+  </symbol>
+
+  <!-- 工具 -->
+  <symbol id="nav-tools" viewBox="0 0 1024 1024">
+    <path
+      d="M631 602.1c0 32.8-26.6 59.4-59.5 59.4h-119c-32.9 0-59.5-26.6-59.5-59.4V545H128v356.6c0 32.3 26.4 58.4 59.1 58.4h649.8c32.7 0 59.1-26.1 59.1-58.4V545H631v57.1zm181.8-327.4V142c0-43-41.1-78-91.7-78H302.9c-50.6 0-91.7 35-91.7 78v132.6H64V514h329v-90c0-32.8 26.6-59.4 59.5-59.4h119c32.9 0 59.5 26.6 59.5 59.4v90h329V274.7H812.8zm-64 0H275.2V142c0-13 12.4-23.6 27.7-23.6H721c15.3 0 27.7 10.6 27.7 23.6v132.7z" />
+  </symbol>
+
+  <!-- 搜索 -->
+  <symbol id="nav-search" viewBox="0 0 1024 1024">
+    <path
+      d="M995.436 872.918 786.888 664.302a89.417 89.417 0 0 0-27.254-18.087 410.955 410.955 0 0 0 68.982-227.99C828.616 190.1 643.73 5.24 415.606 5.24 187.504 5.239 2.62 190.123 2.62 418.226c0 228.102 184.885 412.987 412.987 412.987 84.359 0 162.644-25.606 228.058-68.982 4.245 9.822 10.003 19.193 17.996 27.209l208.638 208.593a88.468 88.468 0 0 0 125.138 0 88.423 88.423 0 0 0 0-125.115zM415.606 713.21c-162.937 0-294.984-132.048-294.984-294.962 0-162.937 132.047-294.984 294.984-294.984 162.96 0 294.985 132.047 294.985 294.984 0 162.914-132.025 294.962-294.985 294.962z" />
+  </symbol>
+
+  <!-- 图片工具 -->
+  <symbol id="nav-imagejpw" viewBox="0 0 1024 1024">
+    <path
+      d="M0 51.2v921.6h1024V51.2zm921.6 819.2L358.4 409.6l-256 256v-512h819.2z"/>
+  </symbol>
+
+  <!-- PDF工具 -->
+  <symbol id="nav-pdf-merge" viewBox="0 0 1024 1024">
+    <path d="M352.725 626.347c-7.85 0-13.141.768-15.872 1.536v50.261c3.243.768 7.296.981 12.886.981 20.437 0 33.024-10.325 33.024-27.776 0-15.616-10.838-25.002-30.038-25.002zm148.779.512c-8.533 0-14.08.768-17.365 1.536v111.36c3.285.768 8.576.768 13.354.768 34.859.256 57.558-18.944 57.558-59.563.256-35.413-20.438-54.101-53.547-54.101z"/>
+    <path d="M597.333 85.333H256a85.333 85.333 0 0 0-85.333 85.334v682.666A85.333 85.333 0 0 0 256 938.667h512a85.333 85.333 0 0 0 85.333-85.334v-512l-256-256zm-192.085 605.44c-13.184 12.374-32.64 17.92-55.296 17.92a95.147 95.147 0 0 1-13.141-.768v60.843h-38.144V600.832a322.475 322.475 0 0 1 52.01-3.499c23.766 0 40.662 4.523 52.054 13.611 10.837 8.619 18.176 22.741 18.176 39.381-.043 16.726-5.59 30.848-15.659 40.448zm162.432 57.814c-17.92 14.89-45.184 21.973-78.507 21.973-19.968 0-34.09-1.28-43.69-2.56V600.875a339.072 339.072 0 0 1 52.01-3.542c32.299 0 53.291 5.803 69.675 18.176 17.707 13.142 28.8 34.091 28.8 64.171 0 32.555-11.904 55.04-28.288 68.907zm157.653-118.4h-65.365v38.869h61.099v31.317h-61.099v68.438h-38.656V598.613h104.021v31.574zM597.333 384h-42.666V170.667L768 384H597.333z"/>
+  </symbol>
+
+  <!-- 更多功能 -->
+  <symbol id="nav-more-features" viewBox="0 0 1024 1024">
+    <path d="M172 95h232q77 0 77 77v232q0 77-77 77H172q-77 0-77-77V172q0-77 77-77ZM172 544h232q77 0 77 77v232q0 77-77 77H172q-77 0-77-77V621q0-77 77-77ZM621 544h232q77 0 77 77v232q0 77-77 77H621q-77 0-77-77V621q0-77 77-77ZM737 95q193 0 193 193T737 481q-193 0-193-193T737 95Z"/>
+  </symbol>
+
+</svg>
+
+<!-- =========================
+     样式
+     ========================= -->
+<style>
+  /* 统一：导航内的图标基类 */
+  .navbar .nav-icon {
+    width: 1.05em;
+    /* 图标稍微比文字大一点 */
+    height: 1.05em;
+    margin-right: 3px;
+    /* 图标与文字间距 */
+    vertical-align: -0.12em;
+    /* 微调基线，图标和文字自然对齐 */
+    line-height: 1;
+    display: inline-block;
+  }
+
+  /* SVG 双 use 的颜色层 */
+  .navbar .nav-icon .fill-base {
+    fill: currentColor;
+    opacity: 1;
+    transition: opacity .25s ease;
+  }
+
+  .navbar .nav-icon .fill-grad {
+    fill: url(#nav-gradient);
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+
+  /* 导航项 */
+  .navbar .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    /* 图标与文字间距更小 */
+    font-size: 0.9rem;
+    /* 字体微调 */
+    padding: 0.35rem 0.55rem;
+    /* 紧凑内边距 */
+    color: #fff;
+    transition: color .25s ease;
+  }
+
+  /* hover：文字渐变 + 图标渐变 */
+  .navbar .nav-link:hover .nav-text {
+    background: linear-gradient(90deg, #30a9de, #0066ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .navbar .nav-link:hover .nav-icon .fill-base {
+    opacity: 0;
+  }
+
+  .navbar .nav-link:hover .nav-icon .fill-grad {
+    opacity: 1;
+  }
+
+  /* 下拉菜单整体 */
+  .navbar .dropdown-menu {
+    background: #f4f4f4;            /* 实心浅灰背景 */
+    border: 1px solid #ddd;         /* 边框更清晰 */
+    border-radius: 8px;             /* 圆角 */
+    padding: 0.4rem 0.3rem;         /* 内边距 */
+    min-width: 160px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);  /* 柔和阴影 */
+  }
+
+  /* 下拉项 */
+  .navbar .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;                        /* 图标和文字间距 */
+    padding: 0.45rem 0.75rem;
+    color: #333;                     /* 默认深灰文字 */
+    font-size: 0.9rem;
+    transition: all .25s ease;
+    border-radius: 6px;              /* 每项圆角 */
+  }
+
+  /* 下拉 hover 效果 */
+  .navbar .dropdown-item:hover {
+    background: #e9e9e9;             /* hover 时变成更深一点的灰 */
+  }
+
+  .navbar .dropdown-item:hover .nav-text {
+    background: linear-gradient(90deg, #30a9de, #0066ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .navbar .dropdown-item:hover .nav-icon .fill-base {
+    opacity: 0;
+  }
+
+  .navbar .dropdown-item:hover .nav-icon .fill-grad {
+    opacity: 1;
+  }
+
+
+  /* 普通菜单项之间保持紧凑 */
+  .navbar .navbar-nav .nav-item+.nav-item {
+    margin-left: 2px;
+  }
+
+  /* 工具区（搜索、夜间模式）与前面菜单“拉开一段距离” */
+  .navbar .navbar-nav #search-btn,
+  .navbar .navbar-nav #color-toggle-btn {
+    margin-left: 20px;
+    /* 保证与“工具”分组明显拉开 */
+  }
+
+  /* 搜索和夜间按钮之间保持较小间距 */
+  .navbar .navbar-nav #search-btn+#color-toggle-btn {
+    margin-left: 8px;
+  }
+
+  /* 移动端（折叠时）去掉额外间距，避免竖排时空隙 */
+  @media (max-width: 991.98px) {
+
+    .navbar .navbar-nav #search-btn,
+    .navbar .navbar-nav #color-toggle-btn,
+    .navbar .navbar-nav #search-btn+#color-toggle-btn {
+      margin-left: 0;
+    }
+  }
+
+
+  /* 夜间模式按钮图标（支持双 use，渐变层有效） */
+  #color-toggle-icon {
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: -0.15em;
+    /* 微调位置，让图标居中 */
+    line-height: 1;
+    display: inline-block;
+    fill: currentColor;
+    /* 跟随当前字体颜色 */
+  }
+
+
+  #color-toggle-icon .fill-base {
+    fill: currentColor;
+    /* 默认跟随文字颜色 */
+    opacity: 1;
+    transition: opacity .25s ease;
+  }
+
+  #color-toggle-icon .fill-grad {
+    fill: url(#nav-gradient);
+    /* 渐变色层 */
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+
+  /* hover 时：切换到渐变色 */
+  #color-toggle-btn .nav-link:hover #color-toggle-icon .fill-base {
+    opacity: 0;
+  }
+
+  #color-toggle-btn .nav-link:hover #color-toggle-icon .fill-grad {
+    opacity: 1;
+  }
+
+
+
+
+</style>
+
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("color-toggle-btn");
+
+    // 判断初始状态
+    let dark = document.body.classList.contains("dark-mode");
+
+    function updateIcon() {
+      const base = document.querySelector("#color-toggle-icon use.fill-base");
+      const grad = document.querySelector("#color-toggle-icon use.fill-grad");
+      if (!base || !grad) return;
+
+      if (dark) {
+        base.setAttribute("href", "#nav-dark"); // 夜间 -> 灯泡
+        grad.setAttribute("href", "#nav-dark");
+      } else {
+        base.setAttribute("href", "#nav-sun");  // 白天 -> 太阳
+        grad.setAttribute("href", "#nav-sun");
+      }
+    }
+
+    // 初始化
+    updateIcon();
+
+    // 点击切换
+    toggleBtn.addEventListener("click", () => {
+      dark = !dark;
+      document.body.classList.toggle("dark-mode", dark);
+      updateIcon();
+    });
+  });
+
+</script>
+
+  <!-- 仅在允许时渲染横幅 -->
+  
+    
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/random/a4.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="基于Python去水印"></span>
+          
+        </div>
+
+        
+          <!-- 文章封面图正中标题下方居中显示：作者、发布时间、字数、阅读时间、阅读数  -->
+
+  <div class="post-meta-typewriter-wrapper">
+    <div class="post-meta-typewriter" id="post-meta-typewriter">
+      <div class="post-meta-center">
+        
+          <span class="post-meta-item">
+            <i class="iconfont icon-author" aria-hidden="true"></i>
+            huishao
+          </span>
+          
+
+            
+              <span class="post-meta-item">
+                <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                <time datetime="2025-08-28 18:30" pubdate>
+                  2025年8月28日 晚上
+                </time>
+              </span>
+              
+
+                
+                  <span class="post-meta-item">
+                    <i class="iconfont icon-chart"></i>
+                    3.1k 字
+                  </span>
+                  
+
+                    
+                      <span class="post-meta-item">
+                        <i class="iconfont icon-clock-fill"></i>
+                        5 分钟
+                      </span>
+                      
+
+      </div>
+    </div>
+  </div>
+  
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+  
+</div>
+
+
+
+
+
+
+      <!-- https://picui.cn/  图床软件
+      'https://youke1.picui.cn/s1/2025/09/02/68b6a9bd3ed1c.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac4bb352.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac617901.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac775779.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac834313.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aac8da8ee.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aa42c3f8d.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aa42025fd.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad16e95a.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad2bae98.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad52a3ac.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aad53300d.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aada05b6b.jpg',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aadc8928b.png',
+      'https://youke1.picui.cn/s1/2025/09/02/68b6aadba1be4.png' -->
+
+
+
+
+      <!-- 'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/1234.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131612409_p0%20(1).png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/132.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/13396645512884975.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/564564.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/6464.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/a23.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/a4.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/a9.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b4.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b7%20(1).png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b8.png',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/wallhaven-mldy7y.jpg',
+      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/wenzhang.png' -->
+        </header>
+
+
+        <main>
+          
+            
+
+<!-- 页面主要布局结构 -->
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+
+    <!-- 左侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <!-- 主体内容区域 -->
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+
+            <!-- SEO 标题显示 -->
+            <h1 id="seo-header">
+              基于Python去水印
+            </h1>
+
+            <!-- 更新时间显示模块 -->
+            
+
+            <!-- 如果文章加密，则加载加密内容 -->
+            
+              <!-- 正常文章内容 -->
+              <div class="markdown-body">
+                
+                <h3 id="一、整体流程概览"><a href="#一、整体流程概览" class="headerlink" title="一、整体流程概览"></a>一、整体流程概览</h3><ol>
+<li><p>用YOLOv8自动检测图片里的水印区域，得到水印的“掩码图”mask（即黑白图，白色是水印）</p>
+</li>
+<li><p>用 lama-cleaner 命令行（支持自定义mask）对原图+掩码批量自动修复，得到无水印图</p>
+</li>
+<li><p>全程批量自动，不用人工一张张画框</p>
+</li>
+<li><p><strong>路径是：&#x2F;src&#x2F;weibo&#x2F;rmwatermarks：</strong></p>
+<p><strong>mask.py、lama-cleaner.py、venv、models</strong></p>
+</li>
+</ol>
+<h3 id="二、详细分步教程"><a href="#二、详细分步教程" class="headerlink" title="二、详细分步教程"></a>二、详细分步教程</h3><h4 id="Step-1-环境准备"><a href="#Step-1-环境准备" class="headerlink" title="Step 1. 环境准备"></a>Step 1. 环境准备</h4><p>使用Python 3.10创建一个venv环境（推荐，避免torch等AI包兼容性问题）</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">python3</span>.<span class="hljs-number">10</span> -m venv venv<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> venv/bin/activate<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-2-安装去水印工具以及依赖"><a href="#Step-2-安装去水印工具以及依赖" class="headerlink" title="Step 2. 安装去水印工具以及依赖"></a>Step 2. 安装去水印工具以及依赖</h4><blockquote>
+<p>[!IMPORTANT]</p>
+<p>安装ultralytics， 是一个专注于人工智能视觉检测，尤其是目标检测（Object Detection）领域的开源项目和公司。它最著名的产品是 YOLO（You Only Look Once）系列模型的官方实现</p>
+<p>huggingface_hub，是huggingface&#x2F;diffusers&#x2F;transformers 系列模型托管和下载的基础包，很多 AI 项目都会自动带上</p>
+<p>lama-cleaner，由 SOTA AI 模型提供支持的免费开源修复工具</p>
+</blockquote>
+<p>编辑requirements.txt文件</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">torch</span>==<span class="hljs-number">2</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>                # PyTorch，深度学习核心库，模型推理和训练用<br><span class="hljs-attribute">torchvision</span>==<span class="hljs-number">0</span>.<span class="hljs-number">15</span>.<span class="hljs-number">1</span>         # PyTorch 图像工具库，常用于数据处理和模型<br><span class="hljs-attribute">diffusers</span>==<span class="hljs-number">0</span>.<span class="hljs-number">16</span>.<span class="hljs-number">1</span>           # Huggingface Diffusers，主要用于扩散模型（如Lama等图像修复/生成）<br><span class="hljs-attribute">huggingface_hub</span>==<span class="hljs-number">0</span>.<span class="hljs-number">15</span>.<span class="hljs-number">1</span>     # Huggingface Hub客户端，下载模型/权重/上传数据<br><span class="hljs-attribute">lama</span>-cleaner==<span class="hljs-number">1</span>.<span class="hljs-number">2</span>.<span class="hljs-number">5</span>         # lama-cleaner 图像去水印/修复工具（可用mask批量修复）<br><span class="hljs-attribute">ultralytics</span>                  # YOLOv8官方库，目标检测模型推理用<br><span class="hljs-attribute">PySocks</span>                      # socks5代理支持（如某些pip需代理）<br><span class="hljs-attribute">PyQt5</span>                        # Qt5 GUI库，labelImg等图形界面依赖<br><span class="hljs-attribute">lxml</span>                         # 读写XML文件，labelImg等依赖VOC格式时必备<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pip3</span>.<span class="hljs-number">10</span> install -r requirements.txt<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-3-下载-准备YOLOv8水印检测模型"><a href="#Step-3-下载-准备YOLOv8水印检测模型" class="headerlink" title="Step 3. 下载&#x2F;准备YOLOv8水印检测模型"></a>Step 3. 下载&#x2F;准备YOLOv8水印检测模型</h4><blockquote>
+<p>[!IMPORTANT]</p>
+<p>可以直接用开源训练好的通用水印检测模型，比如这个yolov5-watermark（适配微博&#x2F;公众号&#x2F;小红书等）</p>
+<p><strong>将后缀为pt的模型放在以下文件夹中，这是我的模型：best.pt</strong></p>
+<p><strong>下载地址：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1xRzBTlBlDk0vM980rgB79g">https://pan.baidu.com/s/1xRzBTlBlDk0vM980rgB79g</a> 提取码: hui9</strong></p>
+<p><strong>放在：src&#x2F;weibo&#x2F;rmwatermarks&#x2F;models&#x2F;</strong></p>
+<p><strong>lama-cleaner 是基于“大LAMA模型（big-lama）”的 inpainting 修复工具，这个也是必须，省的lama-cleaner报错</strong></p>
+<p><strong>下载地址：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/10Q6cls-XbgH-ggF9LCetWQ">https://pan.baidu.com/s/10Q6cls-XbgH-ggF9LCetWQ</a> 提取码: hui9</strong></p>
+<p><strong>放在：~&#x2F;.cache&#x2F;torch&#x2F;hub&#x2F;checkpoints&#x2F;big-lama.pt</strong></p>
+</blockquote>
+<p>big-lama.pt 就是 Lama 模型的核心“权重文件”（model checkpoint），是神经网络的所有参数，本地没这个文件，模型根本没法运行</p>
+<h5 id="工作流程："><a href="#工作流程：" class="headerlink" title="工作流程："></a>工作流程：</h5><p>首次启动 lama-cleaner（无 big-lama.pt），程序会自动联网下载官方权重包到你的缓存目录（默认 PyTorch 习惯是 ~&#x2F;.cache&#x2F;torch&#x2F;hub&#x2F;checkpoints&#x2F;）。</p>
+<p>下好后永久复用。你之后每次启动 lama-cleaner、调用 inpaint，都会直接加载这个 big-lama.pt</p>
+<p>如果你删除 big-lama.pt，lama-cleaner 会再次自动下载（只要本地没找到权重文件）</p>
+<h4 id="Step-4-批量检测所有图片，导出mask"><a href="#Step-4-批量检测所有图片，导出mask" class="headerlink" title="Step 4. 批量检测所有图片，导出mask"></a>Step 4. 批量检测所有图片，导出mask</h4><p><strong>新建检测脚本（这是我的路径你们可以选择自己的）</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">src</span>/weibo/rmwatermarks/<span class="hljs-attribute">mask</span><span class="hljs-selector-class">.py</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> ultralytics <span class="hljs-keyword">import</span> YOLO<br><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br>model = YOLO(<span class="hljs-string">&#x27;/src/weibo/rmwatermarks/models/best.pt&#x27;</span>)<br><br>img_dir = <span class="hljs-string">&#x27;/src/weibo/rmwatermarks/image&#x27;</span>	<span class="hljs-comment"># 去水印的图片路径</span><br>mask_dir = <span class="hljs-string">&#x27;/src/weibo/rmwatermarks/mask/&#x27;</span>	<span class="hljs-comment"># 生成的mask文件路径，后面需要</span><br>os.makedirs(mask_dir, exist_ok=<span class="hljs-literal">True</span>)<br><br><span class="hljs-keyword">for</span> fname <span class="hljs-keyword">in</span> os.listdir(img_dir):<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> fname.lower().endswith((<span class="hljs-string">&#x27;.jpg&#x27;</span>, <span class="hljs-string">&#x27;.png&#x27;</span>, <span class="hljs-string">&#x27;.jpeg&#x27;</span>)):<br>        <span class="hljs-keyword">continue</span><br>    img_path = os.path.join(img_dir, fname)<br>    im = Image.<span class="hljs-built_in">open</span>(img_path)<br>    w, h = im.size<br>    mask = np.zeros((h, w), dtype=np.uint8)<br><br>    results = model(img_path)<br>    boxes = results[<span class="hljs-number">0</span>].boxes.xyxy.cpu().numpy()  <span class="hljs-comment"># [x1, y1, x2, y2]</span><br>    <span class="hljs-comment"># 自动截断，避免溢出边界</span><br>    <span class="hljs-keyword">for</span> box <span class="hljs-keyword">in</span> boxes:<br>        x1, y1, x2, y2 = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, box)<br>        x1 = <span class="hljs-built_in">max</span>(x1, <span class="hljs-number">0</span>)<br>        y1 = <span class="hljs-built_in">max</span>(y1, <span class="hljs-number">0</span>)<br>        x2 = <span class="hljs-built_in">min</span>(x2, w)<br>        y2 = <span class="hljs-built_in">min</span>(y2, h)<br>        mask[y1:y2, x1:x2] = <span class="hljs-number">255</span><br><br>    mask_img = Image.fromarray(mask)<br>    <span class="hljs-comment"># 统一保存为 png 格式</span><br>    mask_name = fname.rsplit(<span class="hljs-string">&#x27;.&#x27;</span>,<span class="hljs-number">1</span>)[<span class="hljs-number">0</span>] + <span class="hljs-string">&#x27;_mask.png&#x27;</span><br>    mask_img.save(os.path.join(mask_dir, mask_name), <span class="hljs-built_in">format</span>=<span class="hljs-string">&quot;PNG&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;生成mask：<span class="hljs-subst">&#123;mask_name&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<p>运行：<strong>python3.10 mask.py</strong></p>
+<p>验证mask图和去水印图片是否一致（可跳过）</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">python3</span>.<span class="hljs-number">10</span> check_and_fix_mask.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-comment"># 配置目录pip install pillow numpy</span><br>img_dir = <span class="hljs-string">&#x27;/src/weibo/rmwatermarks/image&#x27;</span><br>mask_dir = <span class="hljs-string">&#x27;/src/weibo/rmwatermarks/mask&#x27;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fix_mask</span>(<span class="hljs-params">img_path, mask_path</span>):<br>    <span class="hljs-keyword">try</span>:<br>        img = Image.<span class="hljs-built_in">open</span>(img_path)<br>        mask = Image.<span class="hljs-built_in">open</span>(mask_path)<br><br>        <span class="hljs-comment"># 1. 检查并自动修正尺寸</span><br>        <span class="hljs-keyword">if</span> mask.size != img.size:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[尺寸不一致] <span class="hljs-subst">&#123;os.path.basename(mask_path)&#125;</span>: <span class="hljs-subst">&#123;mask.size&#125;</span> -&gt; <span class="hljs-subst">&#123;img.size&#125;</span>&quot;</span>)<br>            mask = mask.resize(img.size, Image.NEAREST)<br><br>        <span class="hljs-comment"># 2. 强制灰度L模式</span><br>        <span class="hljs-keyword">if</span> mask.mode != <span class="hljs-string">&quot;L&quot;</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[模式不一致] <span class="hljs-subst">&#123;os.path.basename(mask_path)&#125;</span>: <span class="hljs-subst">&#123;mask.mode&#125;</span> -&gt; L&quot;</span>)<br>            mask = mask.convert(<span class="hljs-string">&quot;L&quot;</span>)<br><br>        <span class="hljs-comment"># 3. 二值化（只含0/255）</span><br>        mask_bin = mask.point(<span class="hljs-keyword">lambda</span> x: <span class="hljs-number">255</span> <span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">127</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>, mode=<span class="hljs-string">&#x27;1&#x27;</span>).convert(<span class="hljs-string">&quot;L&quot;</span>)<br>        uniq = np.unique(np.array(mask_bin))<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (np.array_equal(uniq, [<span class="hljs-number">0</span>]) <span class="hljs-keyword">or</span> np.array_equal(uniq, [<span class="hljs-number">255</span>]) <span class="hljs-keyword">or</span> np.array_equal(uniq, [<span class="hljs-number">0</span>, <span class="hljs-number">255</span>])):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[二值化修正] <span class="hljs-subst">&#123;os.path.basename(mask_path)&#125;</span> 唯一值: <span class="hljs-subst">&#123;uniq&#125;</span> -&gt; [0,255]&quot;</span>)<br>        mask = mask_bin<br><br>        <span class="hljs-comment"># 4. 保存修正后的mask</span><br>        mask.save(mask_path)<br><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[OK] <span class="hljs-subst">&#123;os.path.basename(img_path)&#125;</span> &lt;-&gt; <span class="hljs-subst">&#123;os.path.basename(mask_path)&#125;</span>  size: <span class="hljs-subst">&#123;img.size&#125;</span> mode: <span class="hljs-subst">&#123;mask.mode&#125;</span> 唯一值: <span class="hljs-subst">&#123;np.unique(np.array(mask))&#125;</span>&quot;</span>)<br><br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[ERROR] <span class="hljs-subst">&#123;os.path.basename(mask_path)&#125;</span>: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    <span class="hljs-keyword">for</span> fname <span class="hljs-keyword">in</span> os.listdir(img_dir):<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> fname.lower().endswith((<span class="hljs-string">&#x27;.jpg&#x27;</span>, <span class="hljs-string">&#x27;.jpeg&#x27;</span>, <span class="hljs-string">&#x27;.png&#x27;</span>)):<br>            <span class="hljs-keyword">continue</span><br>        img_base = fname.rsplit(<span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">0</span>]<br>        mask_name = img_base + <span class="hljs-string">&#x27;_mask.png&#x27;</span><br>        img_path = os.path.join(img_dir, fname)<br>        mask_path = os.path.join(mask_dir, mask_name)<br>        <span class="hljs-keyword">if</span> os.path.exists(mask_path):<br>            fix_mask(img_path, mask_path)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[缺少mask] <span class="hljs-subst">&#123;mask_path&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    main()<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-5-用-lama-cleaner-批量修复去水印（自动读取mask）"><a href="#Step-5-用-lama-cleaner-批量修复去水印（自动读取mask）" class="headerlink" title="Step 5. 用 lama-cleaner 批量修复去水印（自动读取mask）"></a>Step 5. 用 lama-cleaner 批量修复去水印（自动读取mask）</h4><p><strong>编写批处理脚本</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">src<span class="hljs-regexp">/weibo/</span>rmwatermarks/lama-cleaner.py<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>每张图片都会用同名mask修复水印区域，输出到 image_nowm&#x2F;</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">from</span> io <span class="hljs-keyword">import</span> BytesIO<br><br><span class="hljs-comment"># 1. 配置路径</span><br>img_dir = <span class="hljs-string">&#x27;/home/zjh/src/weibo/rmwatermarks/image&#x27;</span>       <span class="hljs-comment"># 原始图片目录</span><br>mask_dir = <span class="hljs-string">&#x27;/home/zjh/src/weibo/rmwatermarks/mask&#x27;</span>       <span class="hljs-comment"># mask目录</span><br>out_dir = <span class="hljs-string">&#x27;/home/zjh/src/weibo/rmwatermarks/image_nowm/&#x27;</span> <span class="hljs-comment"># 输出目录</span><br>os.makedirs(out_dir, exist_ok=<span class="hljs-literal">True</span>)                      <span class="hljs-comment"># 创建输出目录（如果不存在）</span><br><br>MAX_SIZE = <span class="hljs-number">4096</span>  <span class="hljs-comment"># 图片最大边长，过大就自动缩放</span><br><br><span class="hljs-comment"># 2. 遍历图片文件夹</span><br><span class="hljs-keyword">for</span> fname <span class="hljs-keyword">in</span> os.listdir(img_dir):<br>    <span class="hljs-comment"># 只处理图片文件</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> fname.lower().endswith((<span class="hljs-string">&#x27;.jpg&#x27;</span>, <span class="hljs-string">&#x27;.jpeg&#x27;</span>, <span class="hljs-string">&#x27;.png&#x27;</span>)):<br>        <span class="hljs-keyword">continue</span><br><br>    img_base = fname.rsplit(<span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">0</span>]<br>    mask_name = img_base + <span class="hljs-string">&#x27;_mask.png&#x27;</span><br>    mask_path = os.path.join(mask_dir, mask_name)<br>    in_path = os.path.join(img_dir, fname)<br>    out_path = os.path.join(out_dir, fname)<br><br>    <span class="hljs-comment"># mask 必须存在</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(mask_path):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;未找到mask：<span class="hljs-subst">&#123;mask_path&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">continue</span><br><br>    <span class="hljs-comment"># 3. 打开图片和mask，确保尺寸匹配</span><br>    <span class="hljs-keyword">try</span>:<br>        img = Image.<span class="hljs-built_in">open</span>(in_path)<br>        mask = Image.<span class="hljs-built_in">open</span>(mask_path)<br><br>        <span class="hljs-comment"># 缩放图片和mask到最大边长 MAX_SIZE，且保证两者同尺寸</span><br>        scale = <span class="hljs-built_in">min</span>(MAX_SIZE / img.size[<span class="hljs-number">0</span>], MAX_SIZE / img.size[<span class="hljs-number">1</span>], <span class="hljs-number">1.0</span>)<br>        new_size = (<span class="hljs-built_in">int</span>(img.size[<span class="hljs-number">0</span>] * scale), <span class="hljs-built_in">int</span>(img.size[<span class="hljs-number">1</span>] * scale))<br>        <span class="hljs-keyword">if</span> img.size != new_size:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;fname&#125;</span> 图片过大(<span class="hljs-subst">&#123;img.size&#125;</span>), 自动resize -&gt; <span class="hljs-subst">&#123;new_size&#125;</span>&quot;</span>)<br>            img = img.resize(new_size, Image.LANCZOS)<br>        <span class="hljs-keyword">if</span> mask.size != new_size:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;fname&#125;</span> mask尺寸不一致，自动resize: <span class="hljs-subst">&#123;mask.size&#125;</span> -&gt; <span class="hljs-subst">&#123;new_size&#125;</span>&quot;</span>)<br>            mask = mask.resize(new_size, Image.NEAREST)<br><br>        <span class="hljs-comment"># mask 灰度化、二值化，保证只有0/255</span><br>        <span class="hljs-keyword">if</span> mask.mode != <span class="hljs-string">&quot;L&quot;</span>:<br>            mask = mask.convert(<span class="hljs-string">&quot;L&quot;</span>)<br>        mask = mask.point(<span class="hljs-keyword">lambda</span> x: <span class="hljs-number">255</span> <span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">127</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>, mode=<span class="hljs-string">&#x27;1&#x27;</span>).convert(<span class="hljs-string">&quot;L&quot;</span>)<br>        mask_array = np.array(mask)<br>        <span class="hljs-keyword">if</span> mask_array.<span class="hljs-built_in">max</span>() == <span class="hljs-number">0</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;fname&#125;</span> mask全黑，跳过（没有检测到水印区域）&quot;</span>)<br>            <span class="hljs-keyword">continue</span><br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;图片或mask无法打开：<span class="hljs-subst">&#123;fname&#125;</span>, <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">continue</span><br><br>    <span class="hljs-comment"># 4. 构造 BytesIO，防止IO冲突</span><br>    img_bytes = BytesIO()<br>    img.save(img_bytes, <span class="hljs-built_in">format</span>=<span class="hljs-string">&#x27;PNG&#x27;</span>)<br>    img_bytes.seek(<span class="hljs-number">0</span>)<br>    mask_bytes = BytesIO()<br>    mask.save(mask_bytes, <span class="hljs-built_in">format</span>=<span class="hljs-string">&#x27;PNG&#x27;</span>)<br>    mask_bytes.seek(<span class="hljs-number">0</span>)<br><br>    <span class="hljs-comment"># 5. 构造 POST 数据</span><br>    files = &#123;<br>        <span class="hljs-string">&#x27;image&#x27;</span>: (<span class="hljs-string">&#x27;image.png&#x27;</span>, img_bytes, <span class="hljs-string">&#x27;image/png&#x27;</span>),<br>        <span class="hljs-string">&#x27;mask&#x27;</span>: (<span class="hljs-string">&#x27;mask.png&#x27;</span>, mask_bytes, <span class="hljs-string">&#x27;image/png&#x27;</span>)<br>    &#125;<br><br>    <span class="hljs-comment"># ======= 你所有的 lama-cleaner 参数都写这里 =======</span><br>    <span class="hljs-comment"># 如果要不同图片用不同参数，这里也可以灵活调整</span><br>    data = &#123;<br>        <span class="hljs-string">&quot;ldmSteps&quot;</span>: <span class="hljs-number">8</span>,<br>        <span class="hljs-string">&quot;ldmSampler&quot;</span>: <span class="hljs-string">&quot;plms&quot;</span>,<br>        <span class="hljs-string">&quot;hdStrategy&quot;</span>: <span class="hljs-string">&quot;Original&quot;</span>,<br>        <span class="hljs-string">&quot;zitsWireframe&quot;</span>: <span class="hljs-string">&quot;false&quot;</span>,<br>        <span class="hljs-string">&quot;hdStrategyCropMargin&quot;</span>: <span class="hljs-number">128</span>,<br>        <span class="hljs-string">&quot;hdStrategyCropTrigerSize&quot;</span>: <span class="hljs-number">2000</span>,<br>        <span class="hljs-string">&quot;hdStrategyResizeLimit&quot;</span>: <span class="hljs-number">2000</span>,<br>        <span class="hljs-string">&quot;prompt&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;negativePrompt&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;useCroper&quot;</span>: <span class="hljs-string">&quot;false&quot;</span>,<br>        <span class="hljs-string">&quot;croperX&quot;</span>: <span class="hljs-number">0</span>,<br>        <span class="hljs-string">&quot;croperY&quot;</span>: <span class="hljs-number">0</span>,<br>        <span class="hljs-string">&quot;croperHeight&quot;</span>: <span class="hljs-number">0</span>,<br>        <span class="hljs-string">&quot;croperWidth&quot;</span>: <span class="hljs-number">0</span>,<br>        <span class="hljs-string">&quot;sdScale&quot;</span>: <span class="hljs-number">1.0</span>,<br>        <span class="hljs-string">&quot;sdMaskBlur&quot;</span>: <span class="hljs-number">3</span>,<br>        <span class="hljs-string">&quot;sdStrength&quot;</span>: <span class="hljs-number">0.75</span>,<br>        <span class="hljs-string">&quot;sdSteps&quot;</span>: <span class="hljs-number">50</span>,<br>        <span class="hljs-string">&quot;sdGuidanceScale&quot;</span>: <span class="hljs-number">7.5</span>,<br>        <span class="hljs-string">&quot;sdSampler&quot;</span>: <span class="hljs-string">&quot;plms&quot;</span>,<br>        <span class="hljs-string">&quot;sdSeed&quot;</span>: -<span class="hljs-number">1</span>,<br>        <span class="hljs-string">&quot;sdMatchHistograms&quot;</span>: <span class="hljs-string">&quot;false&quot;</span>,<br>        <span class="hljs-string">&quot;cv2Flag&quot;</span>: <span class="hljs-string">&quot;INPAINT_NS&quot;</span>,<br>        <span class="hljs-string">&quot;cv2Radius&quot;</span>: <span class="hljs-number">3</span>,<br>        <span class="hljs-string">&quot;paintByExampleSteps&quot;</span>: <span class="hljs-number">50</span>,<br>        <span class="hljs-string">&quot;paintByExampleGuidanceScale&quot;</span>: <span class="hljs-number">7.5</span>,<br>        <span class="hljs-string">&quot;paintByExampleMaskBlur&quot;</span>: <span class="hljs-number">3</span>,<br>        <span class="hljs-string">&quot;paintByExampleSeed&quot;</span>: -<span class="hljs-number">1</span>,<br>        <span class="hljs-string">&quot;paintByExampleMatchHistograms&quot;</span>: <span class="hljs-string">&quot;false&quot;</span>,<br>        <span class="hljs-string">&quot;paintByExampleExampleImage&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;p2pSteps&quot;</span>: <span class="hljs-number">50</span>,<br>        <span class="hljs-string">&quot;p2pImageGuidanceScale&quot;</span>: <span class="hljs-number">1.5</span>,<br>        <span class="hljs-string">&quot;p2pGuidanceScale&quot;</span>: <span class="hljs-number">7.5</span>,<br>        <span class="hljs-string">&quot;controlnet_conditioning_scale&quot;</span>: <span class="hljs-number">1.0</span>,<br>        <span class="hljs-string">&quot;controlnet_method&quot;</span>: <span class="hljs-string">&quot;none&quot;</span>,<br>    &#125;<br><br>    <span class="hljs-comment"># 6. 发送 POST 请求，获得结果</span><br>    <span class="hljs-keyword">try</span>:<br>        response = requests.post(<br>            <span class="hljs-string">&#x27;http://127.0.0.1:8188/inpaint&#x27;</span>,<br>            files=files,<br>            data=data,<br>            timeout=<span class="hljs-number">120</span>      <span class="hljs-comment"># lama-cleaner 慢可适当调大</span><br>        )<br>        <span class="hljs-keyword">if</span> response.status_code == <span class="hljs-number">200</span>:<br>            <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(out_path, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f_out:<br>                f_out.write(response.content)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;处理完成: <span class="hljs-subst">&#123;fname&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;处理失败: <span class="hljs-subst">&#123;fname&#125;</span>, 状态码: <span class="hljs-subst">&#123;response.status_code&#125;</span>, 响应: <span class="hljs-subst">&#123;response.text[:<span class="hljs-number">100</span>]&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;处理异常: <span class="hljs-subst">&#123;fname&#125;</span>, 错误: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p><strong>首先运行</strong></p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">lama</span><span class="hljs-literal">-</span><span class="hljs-comment">cleaner</span> <span class="hljs-literal">--</span><span class="hljs-comment">model lama</span> <span class="hljs-literal">--</span><span class="hljs-comment">host 127</span><span class="hljs-string">.</span><span class="hljs-comment">0</span><span class="hljs-string">.</span><span class="hljs-comment">0</span><span class="hljs-string">.</span><span class="hljs-comment">1</span> <span class="hljs-literal">--</span><span class="hljs-comment">port 8188</span> <span class="hljs-literal">--</span><span class="hljs-comment">debug</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>提示如下信息就代表成功</strong></p>
+</blockquote>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs delphi">Running <span class="hljs-keyword">on</span> http:<span class="hljs-comment">//127.0.0.1:8188</span><br>Press CTRL+C <span class="hljs-keyword">to</span> quit<br></code></pre></td></tr></table></figure>
+
+<p>然后运行：<strong>python3.10 lama-cleaner.py</strong></p>
+<p><strong>所有去掉水印的图片都保存在：&#x2F;src&#x2F;weibo&#x2F;rmwatermarks&#x2F;image_nowm&#x2F;</strong></p>
+<hr>
+<h3 id="以上是已有模型进行的去水印，下面是训练自己的去水印模型⬇️"><a href="#以上是已有模型进行的去水印，下面是训练自己的去水印模型⬇️" class="headerlink" title="以上是已有模型进行的去水印，下面是训练自己的去水印模型⬇️"></a>以上是已有模型进行的去水印，下面是训练自己的去水印模型⬇️</h3><h3 id="请注意自己的路径，以下是全新的路径，唯独共用一个venv"><a href="#请注意自己的路径，以下是全新的路径，唯独共用一个venv" class="headerlink" title="请注意自己的路径，以下是全新的路径，唯独共用一个venv"></a>请注意自己的路径，以下是全新的路径，唯独共用一个venv</h3><h3 id="三、训练去水印模型"><a href="#三、训练去水印模型" class="headerlink" title="三、训练去水印模型"></a>三、训练去水印模型</h3><h4 id="Step-1-前提训练模型前，需要大量手动给有水印的图片加矩形选区，这里我推荐以下两款工具"><a href="#Step-1-前提训练模型前，需要大量手动给有水印的图片加矩形选区，这里我推荐以下两款工具" class="headerlink" title="Step 1.前提训练模型前，需要大量手动给有水印的图片加矩形选区，这里我推荐以下两款工具"></a>Step 1.前提训练模型前，需要大量手动给有水印的图片加矩形选区，这里我推荐以下两款工具</h4><blockquote>
+<p>[!IMPORTANT]</p>
+<p><strong>labelImg本地</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://roboflow.com/%E5%9C%A8%E7%BA%BF">https://roboflow.com/在线</a></strong></p>
+</blockquote>
+<p>这里我选择<strong>labelImg本地</strong>进行绘制，目前文件路径为：</p>
+<h5 id="src-weibo-rmwatermarks："><a href="#src-weibo-rmwatermarks：" class="headerlink" title="src&#x2F;weibo&#x2F;rmwatermarks："></a>src&#x2F;weibo&#x2F;rmwatermarks：</h5><ul>
+<li>labelImg   下载地址： <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/19WwEaa2PM_M_GTnMUsSZSA">https://pan.baidu.com/s/19WwEaa2PM_M_GTnMUsSZSA</a> 提取码: hui9 </li>
+<li>trainingmodel   自行创建，我这里觉得分类好方便</li>
+</ul>
+<h5 id="src-weibo-rmwatermarks-trainingmodel："><a href="#src-weibo-rmwatermarks-trainingmodel：" class="headerlink" title="src&#x2F;weibo&#x2F;rmwatermarks&#x2F;trainingmodel："></a>src&#x2F;weibo&#x2F;rmwatermarks&#x2F;trainingmodel：</h5><ul>
+<li><p>dataset   自行创建（必须）</p>
+</li>
+<li><p><strong>train_val.py   自行创建（代码如下）这是为了划分train和val图片，先不要运行！！！</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> shutil<br><br><span class="hljs-comment"># 1. 原始数据目录，图片和txt一一对应、都在里面</span><br>src_dir = <span class="hljs-string">&#x27;/home/zjh/src/weibo/rmwatermarks/trainingmodel/dataset/datasource&#x27;</span>  <span class="hljs-comment"># 修改为你的原始数据目录</span><br>dst_dir = <span class="hljs-string">&#x27;/home/zjh/src/weibo/rmwatermarks/trainingmodel/dataset&#x27;</span><br><br><span class="hljs-comment"># 2. 输出目录结构</span><br>images_train = os.path.join(dst_dir, <span class="hljs-string">&#x27;images&#x27;</span>, <span class="hljs-string">&#x27;train&#x27;</span>)<br>images_val = os.path.join(dst_dir, <span class="hljs-string">&#x27;images&#x27;</span>, <span class="hljs-string">&#x27;val&#x27;</span>)<br>labels_train = os.path.join(dst_dir, <span class="hljs-string">&#x27;labels&#x27;</span>, <span class="hljs-string">&#x27;train&#x27;</span>)<br>labels_val = os.path.join(dst_dir, <span class="hljs-string">&#x27;labels&#x27;</span>, <span class="hljs-string">&#x27;val&#x27;</span>)<br><span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> [images_train, images_val, labels_train, labels_val]:<br>    os.makedirs(d, exist_ok=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 3. 获取所有图片（支持jpg、jpeg、png）</span><br>img_exts = (<span class="hljs-string">&#x27;.jpg&#x27;</span>, <span class="hljs-string">&#x27;.jpeg&#x27;</span>, <span class="hljs-string">&#x27;.png&#x27;</span>)<br>imgs = [f <span class="hljs-keyword">for</span> f <span class="hljs-keyword">in</span> os.listdir(src_dir) <span class="hljs-keyword">if</span> f.lower().endswith(img_exts)]<br><br>random.shuffle(imgs)   <span class="hljs-comment"># 打乱顺序</span><br>val_ratio = <span class="hljs-number">0.2</span>        <span class="hljs-comment"># 验证集比例</span><br>num_val = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">len</span>(imgs) * val_ratio)<br>val_imgs = imgs[:num_val]<br>train_imgs = imgs[num_val:]<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">copy_pair</span>(<span class="hljs-params">imgs, img_dst, label_dst</span>):<br>    <span class="hljs-keyword">for</span> img <span class="hljs-keyword">in</span> imgs:<br>        base = os.path.splitext(img)[<span class="hljs-number">0</span>]<br>        img_path = os.path.join(src_dir, img)<br>        label_path = os.path.join(src_dir, base + <span class="hljs-string">&#x27;.txt&#x27;</span>)<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(label_path):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;标签文件缺失: <span class="hljs-subst">&#123;label_path&#125;</span>，跳过。&#x27;</span>)<br>            <span class="hljs-keyword">continue</span><br>        shutil.copy(img_path, os.path.join(img_dst, img))<br>        shutil.copy(label_path, os.path.join(label_dst, base + <span class="hljs-string">&#x27;.txt&#x27;</span>))<br><br>copy_pair(train_imgs, images_train, labels_train)<br>copy_pair(val_imgs, images_val, labels_val)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;划分完成，train: <span class="hljs-subst">&#123;<span class="hljs-built_in">len</span>(train_imgs)&#125;</span>，val: <span class="hljs-subst">&#123;<span class="hljs-built_in">len</span>(val_imgs)&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>watermark.yaml    自行创建（代码如下）</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-params">path:</span> src<span class="hljs-operator">/</span>weibo<span class="hljs-operator">/</span>rmwatermarks<span class="hljs-operator">/</span>trainingmodel<span class="hljs-operator">/</span>dataset<span class="hljs-symbol">/</span><br><span class="hljs-params">train:</span> images<span class="hljs-symbol">/train</span><br><span class="hljs-params">val:</span> images<span class="hljs-symbol">/val</span><br><br><span class="hljs-params">names:</span><br>  <span class="hljs-number">0</span>: watermark<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="src-weibo-rmwatermarks-trainingmodel-dataset："><a href="#src-weibo-rmwatermarks-trainingmodel-dataset：" class="headerlink" title="src&#x2F;weibo&#x2F;rmwatermarks&#x2F;trainingmodel&#x2F;dataset："></a>src&#x2F;weibo&#x2F;rmwatermarks&#x2F;trainingmodel&#x2F;dataset：</h5><ul>
+<li><strong>datasource   自行创建（必须）在这里面放入要画矩形的水印图片</strong></li>
+<li>images  自动生成</li>
+<li>labels    自动生成</li>
+<li>classes.txt  自动生成</li>
+</ul>
+<h4 id="Step-2-运行labelImg工具（可选venv环境）"><a href="#Step-2-运行labelImg工具（可选venv环境）" class="headerlink" title="Step 2.运行labelImg工具（可选venv环境）"></a>Step 2.运行labelImg工具（可选venv环境）</h4><p>安装所需依赖</p>
+<blockquote>
+<p>[!TIP]</p>
+<p><strong>根据自己的系统来安装（如果不用venv环境，就在系统中安装以下命令）（venv默认已经安装PyQt5的）</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install pyqt5-dev-tools<br><span class="hljs-built_in">sudo</span> pacman -S python-pyqt5<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p><strong>上面我已经放了labelImg的下载地址，解压出来cd labelImg</strong>，运行以下命令</p>
+</blockquote>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim">pip3.<span class="hljs-number">10</span> install -r requirements/requirements-linux-<span class="hljs-keyword">python3</span>.txt<br><span class="hljs-keyword">python3</span>.<span class="hljs-number">10</span> labelImg.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>打开目录：src&#x2F;weibo&#x2F;rmwatermarks&#x2F;trainingmodel&#x2F;dataset&#x2F;images&#x2F;这里我们前面已经交代了，通过如下图片进行选区保存等</strong></p>
+<p><img src="/img/essay/rmwatermarks/image-20250722151213314.png" srcset="/img/gif/loading.gif" lazyload alt="image-20250722151213314"></p>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>选区完成之后可以看到我们datasource下有很多图片以及txt文件</p>
+<p>运行train_val.py将txt和图片分类开</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">python3</span>.<span class="hljs-number">10</span> train_val.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure>
+
+<p>以下两种文件就生成了</p>
+</blockquote>
+<ul>
+<li>labels  里面装着txt文件</li>
+<li>images  里面就是画好选区的图片</li>
+<li>datasource  这个数据源就可以删除了，也可以不删除</li>
+</ul>
+<h4 id="Step-3-正式编写模型（需要venv环境）"><a href="#Step-3-正式编写模型（需要venv环境）" class="headerlink" title="Step 3.正式编写模型（需要venv环境）"></a>Step 3.正式编写模型（需要venv环境）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> venv/bin/activate<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p><strong>data&#x3D;trainingmodel&#x2F;watermark.yaml根据自己的路径改</strong></p>
+<p>**这里需要一个yolov8n.pt官方的模型，下载链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1fyq6qhjnkglEj4cflSDvjg">https://pan.baidu.com/s/1fyq6qhjnkglEj4cflSDvjg</a> 提取码: hui9 **</p>
+<p><strong>把他放在和venv同目录下，也就是我们目前的src&#x2F;weibo&#x2F;rmwatermarks&#x2F;目录下</strong></p>
+<p>运行以下命令：</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">yolo detect train <span class="hljs-attribute">data</span>=trainingmodel/watermark.yaml <span class="hljs-attribute">model</span>=yolov8n.pt <span class="hljs-attribute">epochs</span>=100 <span class="hljs-attribute">imgsz</span>=640 <span class="hljs-attribute">batch</span>=8<br></code></pre></td></tr></table></figure>
+
+<p>出现以下等等信息代表成功，模型放在<strong>src&#x2F;weibo&#x2F;rmwatermarks&#x2F;runs&#x2F;detect&#x2F;train&#x2F;weights&#x2F;best.pt</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs apache"><br>      <span class="hljs-attribute">Epoch</span>    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size<br>    <span class="hljs-attribute">100</span>/<span class="hljs-number">100</span>      <span class="hljs-number">1</span>.<span class="hljs-number">19</span>G     <span class="hljs-number">0</span>.<span class="hljs-number">5884</span>     <span class="hljs-number">0</span>.<span class="hljs-number">7077</span>     <span class="hljs-number">0</span>.<span class="hljs-number">8859</span>          <span class="hljs-number">6</span>        <span class="hljs-number">640</span>: <span class="hljs-number">100</span>%|██████████| <span class="hljs-number">10</span>/<span class="hljs-number">10</span><span class="hljs-meta"> [00:00&lt;00:00, 12.34it/s]</span><br>                 <span class="hljs-attribute">Class</span>     Images  Instances      Box(P          R      mAP50  mAP50-<span class="hljs-number">95</span>): <span class="hljs-number">100</span>%|██████████| <span class="hljs-number">2</span>/<span class="hljs-number">2</span><span class="hljs-meta"> [00:00&lt;00:00, 26.77it</span><br><span class="hljs-meta">                   all         19         19      0.995          1      0.995      0.597</span><br><span class="hljs-meta"></span><br><span class="hljs-meta">100 epochs completed in 0.028 hours.</span><br><span class="hljs-meta">Optimizer stripped from runs/detect/train/weights/last.pt, 6.2MB</span><br><span class="hljs-meta">Optimizer stripped from runs/detect/train/weights/best.pt, 6.2MB</span><br><span class="hljs-meta"></span><br><span class="hljs-meta">Validating runs/detect/train/weights/best.pt...</span><br><span class="hljs-meta">Ultralytics 8.3.169 🚀 Python-3.10.0 torch-2.0.0+cu117 CUDA:0 (NVIDIA GeForce RTX 4070 Laptop GPU, 7781MiB)</span><br><span class="hljs-meta">Model summary (fused): 72 layers, 3,005,843 parameters, 0 gradients, 8.1 GFLOPs</span><br><span class="hljs-meta">                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 2/2 [00:00&lt;00:00, 22.66it</span><br><span class="hljs-meta">                   all         19         19      0.991          1      0.995      0.634</span><br><span class="hljs-meta">Speed: 0.1ms preprocess, 2.8ms inference, 0.0ms loss, 0.4ms postprocess per image</span><br><span class="hljs-meta">Results saved to runs/detect/train</span><br><span class="hljs-meta">💡 Learn more at https://docs.ultralytics.com/modes/train</span><br><span class="hljs-meta"></span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+
+            <hr />
+
+            <div>
+              <!-- 元信息与版权注入点 -->
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Arch-Linux/" class="category-chain-item">Arch Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+    </div>
+  
+</div>
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>基于Python去水印</div>
+      <div>http://huishao.net/2025/08/28/去水印/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>huishao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              <!-- 🚀 社交分享按钮（图标版） -->
+              <div class="social-share mt-4">
+                <span>分享到：</span>
+
+                <!-- 微博分享链接 -->
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F28%2F%25E5%258E%25BB%25E6%25B0%25B4%25E5%258D%25B0%2F&title=%E5%9F%BA%E4%BA%8EPython%E5%8E%BB%E6%B0%B4%E5%8D%B0" target="_blank" rel="noopener">
+                  <i class="fab fa-weibo"></i> 微博
+                </a>
+
+                <!-- 微信分享跳转链接（长按识别二维码页） -->
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F28%2F%25E5%258E%25BB%25E6%25B0%25B4%25E5%258D%25B0%2F&size=300x300" target="_blank" rel="noopener">
+                  <i class="fab fa-weixin"></i> 微信
+                </a>
+
+                <!-- QQ 好友分享链接 -->
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F28%2F%25E5%258E%25BB%25E6%25B0%25B4%25E5%258D%25B0%2F&title=%E5%9F%BA%E4%BA%8EPython%E5%8E%BB%E6%B0%B4%E5%8D%B0" target="_blank" rel="noopener">
+                  <i class="fab fa-qq"></i> QQ好友
+                </a>
+
+                <!-- Twitter 分享链接 -->
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F28%2F%25E5%258E%25BB%25E6%25B0%25B4%25E5%258D%25B0%2F&text=%E5%9F%BA%E4%BA%8EPython%E5%8E%BB%E6%B0%B4%E5%8D%B0" target="_blank" rel="noopener">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+
+                <!-- Telegram 分享链接 -->
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F28%2F%25E5%258E%25BB%25E6%25B0%25B4%25E5%258D%25B0%2F&text=%E5%9F%BA%E4%BA%8EPython%E5%8E%BB%E6%B0%B4%E5%8D%B0" target="_blank" rel="noopener">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+
+                <!-- 复制当前页面链接 -->
+                <a class="share-btn" href="javascript:void(0);" onclick="copyLink()">
+                  <i class="fas fa-link"></i> 复制链接
+                </a>
+              </div>
+
+              <!-- 上一篇/下一篇导航 -->
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/28/arch%E5%AE%89%E8%A3%85KVM%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="Arch Linux安装KVM">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Arch Linux安装KVM</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/27/%E8%AE%BE%E7%BD%AEWindows11%E5%AD%97%E4%BD%93/" title="配置Windows11 Fonts">
+                        <span class="hidden-mobile">配置Windows11 Fonts</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            <!-- 评论模块注入点 -->
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"kt19AZrmvIvdNeQbR6Ze9CMi-gzGzoHsz","appKey":"SFr2nBzqGwf5yONfSLXsgQXE","path":"window.location.pathname","placeholder":"留言仅限讨论，请勿相信第三方广告！","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧边栏注入区（PC 端可见） -->
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- markdown 插件注入 -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+<!-- 自定义后注入内容 -->
+
+
+<script>
+// 复制当前链接到剪贴板
+function copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => alert("链接已复制！"));
+}
+</script>
+
+              
+
+                  <!-- 
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                     -->
+
+                  <!-- 
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                   -->
+
+                  <!-- 隐藏导航箭头   source/imagejpw/index.md  source/md-editor/index.md -->
+                  
+                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+                    </a>
+                    
+
+
+
+                      
+                        <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                          
+
+                            
+        </main>
+
+        <footer>
+          <div class="footer-inner">
+  <!-- PDF工具箱 -->
+  
+
+  <!-- 图片工具箱 -->
+  
+
+  <!-- Markdown 编辑器 -->
+  <!--  -->
+
+  <!-- 文本差异对比 -->
+  
+
+  <!-- 目录树 -->
+  
+
+
+
+  
+    <div class="footer-content">
+       <a href="https://huishao.net" target="_blank" rel="nofollow noopener"><span>辉少笔记</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HuiKeJi" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+
+  
+</div>
+
+        </footer>
+
+        <!-- Scripts -->
+        
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+
+
+          
+
+            <noscript>
+              <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+            </noscript>
+
+    </body>
+
+  </html>
+
+
+  <!-- 全局黑夜和白昼设置 -->
+  <!-- themes/myhui/layout/guestbook.ejs 留言页设置 -->
+  <style>
+    /* —— 全局默认（浅色） —— */
+    html,
+    body {
+      background: #ffffff;
+      /* 浅色模式两边的底色 */
+    }
+
+    /* —— 暗色：强制把两边背景变深 —— */
+    html[data-user-color-scheme="dark"] body {
+      background: #0f172a !important;
+      /* 自己喜欢的深色，如 #111827 / #0f172a / #1e293b */
+    }
+
+    /* 某些主题会用 #web_bg / .web_bg / .body-bg 之类的容器铺底，这里一起覆盖 */
+    html[data-user-color-scheme="dark"] #web_bg,
+    html[data-user-color-scheme="dark"] .web_bg,
+    html[data-user-color-scheme="dark"] .body-bg,
+    html[data-user-color-scheme="dark"] .site-bg {
+      background: #0f172a !important;
+    }
+
+    /* 如果主题给这些容器加了半透明蒙层/渐变（:before），也去掉以免发灰 */
+    html[data-user-color-scheme="dark"] #web_bg::before,
+    html[data-user-color-scheme="dark"] .web_bg::before,
+    html[data-user-color-scheme="dark"] .body-bg::before,
+    html[data-user-color-scheme="dark"] .site-bg::before {
+      background: transparent !important;
+      opacity: 1 !important;
+    }
+  </style>

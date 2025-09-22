@@ -1,0 +1,424 @@
+/* ===== 导航栏颜色（白天/夜间） ===== */
+.navbar {
+    background-color: #3D85C6 !important;
+    transition: background-color .3s ease;
+}
+
+html[data-user-color-scheme="dark"] .navbar {
+    background-color: #1f3144 !important;
+}
+
+/* ===== 页面容器 ===== */
+.diff-container {
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 20px;
+}
+
+/* ===== 小节标题 ===== */
+.section-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 15px 0 8px;
+    color: #333;
+}
+
+html[data-user-color-scheme="dark"] .section-title {
+    color: #ddd;
+}
+
+/* ===== 设置区 ===== */
+.diff-settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 10px 0 20px;
+}
+
+.diff-settings select,
+.diff-settings label {
+    font-size: 14px;
+}
+
+.diff-settings select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+html[data-user-color-scheme="dark"] .diff-settings select {
+    background: #2a2d35;
+    color: #ddd;
+    border: 1px solid #555;
+}
+
+/* ===== 输入区布局 ===== */
+.diff-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.diff-input-block {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.diff-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+html[data-user-color-scheme="dark"] .diff-label {
+    color: #ddd;
+}
+
+/* ===== 文本框样式（默认 350px，可横竖拉伸） ===== */
+.diff-input-block textarea {
+    box-sizing: border-box;
+    width: 100%;
+    height: 350px;
+    min-height: 150px;
+    max-height: 80vh;
+    min-width: 220px;
+    max-width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    resize: both;
+    /* ✅ 桌面：横竖都能拖拽 */
+    overflow: auto;
+    transition: border-color .2s, box-shadow .2s;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+.diff-input-block textarea:focus {
+    border-color: #3D85C6;
+    box-shadow: 0 0 6px rgba(61, 133, 198, 0.3);
+    outline: none;
+}
+
+html[data-user-color-scheme="dark"] .diff-input-block textarea {
+    background: #2a2d35;
+    color: #ddd;
+    border: 1px solid #555;
+}
+
+html[data-user-color-scheme="dark"] .diff-input-block textarea:focus {
+    border-color: #3D85C6;
+    box-shadow: 0 0 6px rgba(61, 133, 198, 0.4);
+}
+
+/* ===== 按钮组 ===== */
+.btn-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.diff-btn {
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #3D85C6, #60A5FA);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all .25s ease;
+}
+
+.diff-btn:hover {
+    background: linear-gradient(90deg, #2a5f90, #3D85C6);
+    transform: translateY(-2px);
+}
+
+.diff-btn.secondary {
+    background: #64748b;
+}
+
+.diff-btn.secondary:hover {
+    background: #475569;
+}
+
+html[data-user-color-scheme="dark"] .diff-btn {
+    background: linear-gradient(90deg, #1f3144, #3D85C6);
+}
+
+html[data-user-color-scheme="dark"] .diff-btn:hover {
+    background: linear-gradient(90deg, #26476a, #1f3144);
+}
+
+html[data-user-color-scheme="dark"] .diff-btn.secondary {
+    background: #444c56;
+}
+
+html[data-user-color-scheme="dark"] .diff-btn.secondary:hover {
+    background: #333a41;
+}
+
+/* ===== 相似度统计 ===== */
+.diff-stats {
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 8px 12px;
+    background: #f5f5f5;
+    border-radius: 6px;
+}
+
+html[data-user-color-scheme="dark"] .diff-stats {
+    background: #2a2d35;
+    color: #ddd;
+}
+
+/* ===== 内联结果盒子 ===== */
+.diff-box {
+    margin-top: 6px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    min-height: 50px;
+}
+
+html[data-user-color-scheme="dark"] .diff-box {
+    background: #2a2d35;
+    border: 1px solid #555;
+    color: #ddd;
+}
+
+/* ===== 分栏结果 ===== */
+.diff-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 16px;
+}
+
+.summary-card {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-content {
+    font-size: 14px;
+    line-height: 1.6;
+    word-break: break-all;
+}
+
+.count {
+    font-size: 13px;
+    color: #666;
+}
+
+html[data-user-color-scheme="dark"] .summary-card {
+    background: #2a2d35;
+    border: 1px solid #555;
+    color: #ddd;
+}
+
+html[data-user-color-scheme="dark"] .count {
+    color: #aaa;
+}
+
+/* ===== 返回按钮 ===== */
+.back-link {
+    margin: 10px 0 20px;
+}
+
+.back-link a {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(90deg, #3D85C6, #60A5FA);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all .25s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-link a:hover {
+    background: linear-gradient(90deg, #2a5f90, #3D85C6);
+    transform: translateX(-3px);
+}
+
+html[data-user-color-scheme="dark"] .back-link a {
+    background: linear-gradient(90deg, #1f3144, #3D85C6);
+    color: #eee;
+}
+
+html[data-user-color-scheme="dark"] .back-link a:hover {
+    background: linear-gradient(90deg, #26476a, #1f3144);
+}
+
+/* ===== 手机优化 ===== */
+@media (max-width: 768px) {
+
+    .diff-inputs,
+    .btn-group,
+    .diff-summary {
+        flex-direction: column;
+    }
+
+    /* 移动端：只允许竖向 resize，避免横向破版；双框宽度由 JS 强制 100% 同步 */
+    .diff-input-block textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        resize: vertical !important;
+        max-height: 60vh;
+    }
+}
+
+
+/* ===== 设置区：让“对比模式 + 勾选项”在一条线上垂直居中 ===== */
+.diff-settings {
+    display: flex;
+    align-items: center;
+    /* ⭐ 关键：整行垂直居中 */
+    gap: 20px;
+    /* select 与勾选项之间的水平间距 */
+    flex-wrap: wrap;
+}
+
+/* 每一组内部（左边 select 组、右边勾选项组）也做居中与间距 */
+.diff-settings>div {
+    display: flex;
+    align-items: center;
+    /* ⭐ 关键：组内元素垂直居中 */
+    gap: 12px;
+    /* 组内控件之间的水平间距 */
+}
+
+/* 让 select 的视觉高度一致，并避免不同浏览器默认样式差异 */
+.diff-settings select {
+    height: 36px;
+    /* 与复选项的行高相匹配 */
+    line-height: 36px;
+    padding: 0 12px;
+    border-radius: 8px;
+}
+
+/* 勾选项文字与复选框在同一基线上，避免“漂” */
+.diff-settings label {
+    display: inline-flex;
+    /* ⭐ 关键：label 内部也做居中 */
+    align-items: center;
+    gap: 6px;
+    /* 复选框与文字间距 */
+    margin: 0;
+    line-height: 36px;
+    /* 与 select 保持一致的行高 */
+}
+
+/* 复选框高度统一，个别浏览器会略微偏上，微调 0.5px 让它看齐 */
+.diff-settings input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    position: relative;
+    top: -.5px;
+    /* 细微矫正，可按需调整/删除 */
+}
+
+/* 深色模式：保留你原有的配色，不动，仅示例保留一条 */
+html[data-user-color-scheme="dark"] .diff-settings select {
+    background: #2a2d35;
+    color: #ddd;
+    border: 1px solid #555;
+}
+
+/* 手机端：换行后也保持良好对齐与间距 */
+@media (max-width: 768px) {
+    .diff-settings {
+        align-items: flex-start;
+        /* 多行时更自然 */
+        gap: 14px;
+    }
+
+    .diff-settings>div {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .diff-settings label {
+        line-height: 1.4;
+        /* 移动端文字行高更紧凑 */
+    }
+}
+
+
+/* ===== 下拉框美化 ===== */
+.diff-settings select {
+    appearance: none;
+    /* 去掉系统默认箭头 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background: #fff url("data:image/svg+xml;utf8,<svg fill='black' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 10px center;
+    background-size: 12px;
+    padding: 6px 36px 6px 12px;
+    /* 右侧留空间给箭头 */
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .25s ease;
+    height: 36px;
+    line-height: 24px;
+}
+
+/* hover / focus 状态 */
+.diff-settings select:hover {
+    border-color: #3D85C6;
+    box-shadow: 0 0 6px rgba(61, 133, 198, .3);
+}
+
+.diff-settings select:focus {
+    outline: none;
+    border-color: #3D85C6;
+    box-shadow: 0 0 8px rgba(61, 133, 198, .4);
+}
+
+/* option 美化 */
+.diff-settings select option {
+    padding: 8px 12px;
+    font-size: 14px;
+    background: #fff;
+    color: #111;
+}
+
+/* 深色模式下拉框 */
+html[data-user-color-scheme="dark"] .diff-settings select {
+    background: #2a2d35 url("data:image/svg+xml;utf8,<svg fill='white' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 10px center;
+    background-size: 12px;
+    color: #ddd;
+    border: 1px solid #555;
+}
+
+html[data-user-color-scheme="dark"] .diff-settings select option {
+    background: #2a2d35;
+    color: #ddd;
+}

@@ -1,0 +1,191 @@
+/* ========= 编辑器整体布局 ========= */
+.editor-container {
+    max-width: 900px;
+    /* 限制正文区最大宽度 */
+    margin: 100px auto 0;
+    /* 顶部留 100px，避免紧贴导航栏 */
+}
+
+/* ========= 让 Markdown 编辑器页的整体内容下移 ========= */
+.page-md-editor #board {
+    margin-top: 120px;  /* ✅ 这里才是控制内容和导航栏的间距 */
+}
+
+
+/* 下载按钮优化 */
+.editor-container button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.editor-container button:hover {
+    background: #3b82f6;
+    color: #fff;
+    border-color: #3b82f6;
+}
+
+
+/* ========= 顶栏颜色 ========= */
+.navbar {
+    background-color: #3D85C6 !important;
+    /* 白天：亮蓝色 */
+    transition: background-color .3s ease;
+}
+
+html[data-user-color-scheme="dark"] .navbar {
+    background-color: #1f3144 !important;
+    /* 夜晚：深蓝色 */
+}
+
+/* ========= CodeMirror 编辑器正文区 ========= */
+.CodeMirror {
+    background: #ffffff;
+    color: #000000;
+}
+
+html[data-user-color-scheme="dark"] .CodeMirror {
+    background: #252d38 !important;
+    /* 夜晚正文区 */
+    color: #e5e7eb !important;
+}
+
+html[data-user-color-scheme="dark"] .CodeMirror-cursor {
+    border-left: 1px solid #e5e7eb !important;
+}
+
+html[data-user-color-scheme="dark"] .CodeMirror-selected {
+    background: #374151 !important;
+}
+
+html[data-user-color-scheme="dark"] .CodeMirror-gutters {
+    background: #252d38 !important;
+    color: #9ca3af !important;
+    border-right: 1px solid #374151 !important;
+}
+
+/* ========= 工具栏样式 ========= */
+/* 移除 SimpleMDE 自带的左右渐变 */
+.editor-toolbar:before,
+.editor-toolbar:after {
+    display: none !important;
+    content: none !important;
+}
+
+.editor-toolbar {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    box-sizing: border-box;
+}
+
+/* 夜间：工具栏背景 */
+html[data-user-color-scheme="dark"] .editor-toolbar {
+    background: #252d38 !important;
+    border-top: 1px solid #374151 !important;
+    border-bottom: 1px solid #374151 !important;
+}
+
+/* 夜间：工具栏按钮（覆盖 a 和 button） */
+html[data-user-color-scheme="dark"] .editor-toolbar a,
+html[data-user-color-scheme="dark"] .editor-toolbar button {
+    background: #252d38 !important;
+    /* 背景统一 */
+    color: #f1f5f9 !important;
+    /* 亮灰图标 */
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* Hover */
+html[data-user-color-scheme="dark"] .editor-toolbar a:hover,
+html[data-user-color-scheme="dark"] .editor-toolbar button:hover {
+    background: #374151 !important;
+    color: #ffffff !important;
+}
+
+/* Active (被点下去的按钮，比如“眼睛”预览) */
+html[data-user-color-scheme="dark"] .editor-toolbar a.active,
+html[data-user-color-scheme="dark"] .editor-toolbar button.active {
+    background: #374151 !important;
+    color: #ffffff !important;
+}
+
+/* Disabled (不可用的按钮，不要亮起来) */
+html[data-user-color-scheme="dark"] .editor-toolbar a.disabled,
+html[data-user-color-scheme="dark"] .editor-toolbar button.disabled {
+    background: #252d38 !important;
+    color: #6b7280 !important;
+    opacity: 0.6 !important;
+    pointer-events: none !important;
+    filter: grayscale(100%) !important;
+}
+
+/* 分隔符 */
+html[data-user-color-scheme="dark"] .editor-toolbar .separator {
+    border-color: #374151 !important;
+    background: #374151 !important;
+}
+
+/* ========= 分屏预览区 ========= */
+.editor-preview-side {
+    background: #ffffff;
+    color: #000000;
+}
+
+html[data-user-color-scheme="dark"] .editor-preview,
+html[data-user-color-scheme="dark"] .editor-preview-side {
+    background: #252d38 !important;
+    color: #e5e7eb !important;
+}
+
+html[data-user-color-scheme="dark"] .editor-preview h1,
+html[data-user-color-scheme="dark"] .editor-preview h2,
+html[data-user-color-scheme="dark"] .editor-preview h3,
+html[data-user-color-scheme="dark"] .editor-preview h4,
+html[data-user-color-scheme="dark"] .editor-preview h5,
+html[data-user-color-scheme="dark"] .editor-preview h6 {
+    color: #ffffff !important;
+}
+
+html[data-user-color-scheme="dark"] .editor-preview a {
+    color: #60a5fa !important;
+}
+
+html[data-user-color-scheme="dark"] .editor-preview code {
+    background: #1f3144 !important;
+    color: #f9fafb !important;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+html[data-user-color-scheme="dark"] .editor-preview pre code {
+    background: #111827 !important;
+    color: #f3f4f6 !important;
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+/* ========= 下载按钮 ========= */
+html[data-user-color-scheme="dark"] button {
+    background-color: #1f3144;
+    color: #e5e7eb;
+    border: 1px solid #374151;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+html[data-user-color-scheme="dark"] button:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
