@@ -112,6 +112,14 @@
   gap: 10px;
 }
 
+.wallpaper-navbar select {
+  min-width: 140px;
+  max-width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .wallpaper-navbar select,
 .wallpaper-navbar input,
 .wallpaper-navbar button {
@@ -301,4 +309,24 @@
 
 #resolutionInput {
   min-width: 140px;
+}
+
+/* 统一隐藏逻辑：彻底不占位 */
+.hidden {
+  display: none !important;
+}
+
+/* Lightbox 视频样式（和图片对齐） */
+.lightbox video {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.wallpaper-card img,
+.wallpaper-card video {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
 }
