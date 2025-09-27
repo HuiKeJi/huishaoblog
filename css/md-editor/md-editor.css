@@ -1,0 +1,237 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ================== 默认主题（白天） ================== */
+:root {
+  --bg: #f5f6f8;
+  --text: #111;
+  --topbar-bg: #3d85c6;
+  --btn-bg: rgba(255, 255, 255, 0.15);
+  --btn-hover: rgba(255, 255, 255, 0.25);
+  --editor-bg: #ffffff;
+  --editor-text: #111;
+  --preview-bg: #ffffff;
+  --preview-text: #111;
+}
+
+/* 夜间主题 */
+body.theme-dark {
+  --bg: #1f2937;
+  --text: #e5e7eb;
+  --topbar-bg: #111827;
+  --btn-bg: rgba(255, 255, 255, 0.1);
+  --btn-hover: rgba(255, 255, 255, 0.2);
+  --editor-bg: #111827;
+  --editor-text: #e5e7eb;
+  --preview-bg: #111827;
+  --preview-text: #e5e7eb;
+}
+
+/* 护眼绿主题 */
+body.theme-green {
+  --bg: #e8f5e9;
+  --text: #1b5e20;
+  --topbar-bg: #388e3c;
+  --btn-bg: rgba(255, 255, 255, 0.2);
+  --btn-hover: rgba(255, 255, 255, 0.3);
+  --editor-bg: #f1f8e9;
+  --editor-text: #1b5e20;
+  --preview-bg: #f1f8e9;
+  --preview-text: #1b5e20;
+}
+
+/* 深蓝主题 */
+body.theme-blue {
+  --bg: #0d1b2a;
+  --text: #e0e1dd;
+  --topbar-bg: #1b263b;
+  --btn-bg: rgba(255, 255, 255, 0.15);
+  --btn-hover: rgba(255, 255, 255, 0.25);
+  --editor-bg: #1b263b;
+  --editor-text: #e0e1dd;
+  --preview-bg: #1b263b;
+  --preview-text: #e0e1dd;
+}
+
+/* ================== 顶栏 ================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  background: var(--topbar-bg);
+  color: #fff;
+  overflow-x: auto;
+  /* 移动端可横向滚动 */
+  white-space: nowrap;
+}
+
+.topbar button,
+.topbar select {
+  flex: 0 0 auto;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--btn-bg);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.topbar button:hover,
+.topbar select:hover {
+  background: var(--btn-hover);
+}
+
+/* 下拉框美化（统一箭头） */
+.topbar select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px;
+  padding-right: 28px;
+}
+
+.topbar select option {
+  background: var(--editor-bg);
+  color: var(--editor-text);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.status {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+#editor-wrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+#editor {
+  height: 100%;
+}
+
+.fullscreen .topbar {
+  display: none;
+}
+
+/* ================== 编辑区（CodeMirror） ================== */
+.editormd .CodeMirror {
+  background: var(--editor-bg) !important;
+  color: var(--editor-text) !important;
+}
+
+.editormd .CodeMirror-cursor {
+  border-left: 1px solid var(--editor-text) !important;
+}
+
+.editormd .CodeMirror-gutters {
+  background: var(--editor-bg) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--editor-text) !important;
+}
+
+.editormd .CodeMirror-activeline-background {
+  background: rgba(255, 255, 255, 0.05) !important;
+  /* 当前行高亮 */
+}
+
+/* ================== 工具栏（Editor.md 内置） ================== */
+.editormd .editormd-toolbar {
+  background: var(--topbar-bg) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.editormd .editormd-toolbar .fa {
+  color: #fff !important;
+}
+
+.editormd .editormd-toolbar .fa:hover {
+  background: var(--btn-hover) !important;
+  border-radius: 4px;
+}
+
+/* ================== 预览区 ================== */
+.editormd-preview,
+.editormd-preview-container {
+  background: var(--preview-bg) !important;
+  color: var(--preview-text) !important;
+}
+
+/* ================== 代码块：按主题独立样式 ================== */
+body.theme-default .editormd-preview-container pre {
+  background: #f5f5f5 !important;
+  color: #111 !important;
+}
+
+body.theme-dark .editormd-preview-container pre {
+  background: #1e1e1e !important;
+  color: #dcdcdc !important;
+}
+
+body.theme-green .editormd-preview-container pre {
+  background: #e8f5e9 !important;
+  color: #1b5e20 !important;
+}
+
+body.theme-blue .editormd-preview-container pre {
+  background: #0d1b2a !important;
+  color: #e0e1dd !important;
+}
+
+.editormd-preview-container pre {
+  border-radius: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+}
+
+.editormd-preview-container blockquote {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #888;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.home-link {
+  display: flex;
+  align-items: center;
+  /* 垂直居中图标和文字 */
+  gap: 4px;
+  /* 图标和文字间距 */
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--btn-bg);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.home-link:hover {
+  background: var(--btn-hover);
+}
+
+.home-link .icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  position: relative;
+  top: -1px;
+  /* 图标整体上移 1px，和文字对齐 */
+}
