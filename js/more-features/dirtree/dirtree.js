@@ -1,3 +1,4 @@
+
 /* ========== 树节点类 ========== */
 class DTNode {
     constructor(name, isFile = false) {
@@ -92,7 +93,7 @@ function buildTreeFromPrettyText(text, includeFiles, sortItems) {
     return root;
 }
 
-/* ========== 树 → 列表/JSON ========== */
+/* ========== 树 → 列表/JSON/Array ========== */
 function treeToPathList(root) {
     const lines = [];
     function dfs(node, segs) {
@@ -104,7 +105,7 @@ function treeToPathList(root) {
         }
     }
     dfs(root, []);
-    return lines.join("\n");
+    return lines;
 }
 function treeToJSON(root) {
     function toObj(node) {
@@ -175,7 +176,8 @@ const $sort = document.getElementById("dt-sort");
 function fillFormatOptions(mode) {
     $format.innerHTML = "";
     if (mode === "tree2list") {
-        [["path", "路径列表"], ["json", "JSON 格式"]].forEach(([v, t]) => {
+        // ✅ 增加一个 array 格式
+        [["path", "路径列表"], ["json", "JSON 格式"], ["array", "JavaScript 数组"]].forEach(([v, t]) => {
             const o = document.createElement("option");
             o.value = v; o.textContent = t;
             $format.appendChild(o);
@@ -205,7 +207,15 @@ function convert() {
         let root, out = "";
         if (mode === "tree2list") {
             root = buildTreeFromPrettyText(txt, includeFiles, sortItems);
-            out = fmt === "path" ? treeToPathList(root) : treeToJSON(root);
+            const lines = treeToPathList(root);
+            if (fmt === "path") {
+                out = lines.join("\n");
+            } else if (fmt === "json") {
+                out = JSON.stringify(lines, null, 2);
+            } else if (fmt === "array") {
+                // ✅ 新增：JavaScript 数组格式，带引号 + 逗号
+                out = "[\n" + lines.map(l => `  '${l}'`).join(",\n") + "\n]";
+            }
         } else {
             root = buildTreeFromPathList(txt, includeFiles, sortItems);
             if (fmt === "ascii") out = printAsciiTree(root);
@@ -227,7 +237,6 @@ $format.addEventListener("change", convert);
 $includeFiles.addEventListener("change", convert);
 $sort.addEventListener("change", convert);
 $modeRadios.forEach(r => r.addEventListener("change", () => { fillFormatOptions(r.value); convert(); }));
-
 
 /* ========== 切换模式时重置 ========== */
 $modeRadios.forEach(r => {

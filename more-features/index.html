@@ -1,9 +1,9 @@
 
 
-  <!DOCTYPE html>
-  <html lang="zh-CN" data-default-color-scheme=auto>
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-  
+
 
 <head>
   <meta charset="UTF-8">
@@ -30,7 +30,17 @@
   <!-- 目录树 -->
   
 
+  <!-- ocr -->
+  
 
+  <!-- 二维码和条码 -->
+  
+
+  <!-- 颜色实验室 -->
+  
+
+  <!-- 壁纸库 -->
+  
 
   <!-- 文章分享css文件 -->
   <link rel="stylesheet" href="/css/share.css">
@@ -48,15 +58,15 @@
   <meta name="author" content="huishao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="🛠 在线工具箱   在这里使用各种实用的小工具                📄     文本差异对比     快速比较两段文本的不同               📝     文本识别     上传图片进行 OCR 文字识别               📂     目录树生成     将路径列表转换为树状结构               📦     条形码生成     输入内容即">
+    <meta name="description" content="🛠 在线工具箱   在这里使用各种实用的小工具                📄     文本差异对比     快速比较两段文本的不同               📝     文本识别     上传图片进行 OCR 文字识别               📂     目录树生成     将路径列表转换为树状结构               📦     二维码条形码生成     输入">
 <meta property="og:type" content="website">
 <meta property="og:title" content="在线工具箱">
 <meta property="og:url" content="http://huishao.net/more-features/index.html">
 <meta property="og:site_name" content="辉少笔记">
-<meta property="og:description" content="🛠 在线工具箱   在这里使用各种实用的小工具                📄     文本差异对比     快速比较两段文本的不同               📝     文本识别     上传图片进行 OCR 文字识别               📂     目录树生成     将路径列表转换为树状结构               📦     条形码生成     输入内容即">
+<meta property="og:description" content="🛠 在线工具箱   在这里使用各种实用的小工具                📄     文本差异对比     快速比较两段文本的不同               📝     文本识别     上传图片进行 OCR 文字识别               📂     目录树生成     将路径列表转换为树状结构               📦     二维码条形码生成     输入">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-09-22T07:54:17.206Z">
-<meta property="article:modified_time" content="2025-09-22T07:54:17.206Z">
+<meta property="article:published_time" content="2025-09-27T06:32:24.619Z">
+<meta property="article:modified_time" content="2025-09-25T15:33:24.671Z">
 <meta property="article:author" content="huishao">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -125,16 +135,18 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 
-    <body>
-      
+<body>
+  
 
-        <header>
-          
+  <header>
+    
 
-<!-- 只有在显示 banner 时，才给 header-inner 设高度；否则不设高度，让导航正常显示 -->
+<!-- ================= Header 渲染 ================= -->
 <div class="header-inner">
-  <!-- 导航始终渲染 -->
-  <!-- =========================
+   
+  <!-- 顶部导航条 -->
+  
+    <!-- =========================
      响应式导航（含：LOGO/标题、菜单循环、下拉菜单、搜索、夜间模式）
      ========================= -->
 <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -145,11 +157,11 @@
          ====================== -->
     <a class="navbar-brand" href="/">
       
-        <!-- 如果主题配置了头像，则显示在标题前 -->
-        <img src="/img/icons/huishao64.png" srcset="/img/gif/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35" height="35" />
-        
-          <!-- 标题优先取 theme.navbar.blog_title，否则回退为站点标题 -->
-          <strong>&nbsp;&nbsp;辉少笔记</strong>
+      <!-- 如果主题配置了头像，则显示在标题前 -->
+      <img src="/img/icons/huishao64.png" srcset="/img/gif/loading.gif" lazyload alt="avatar" class="navbar-avatar" width="35" height="35" />
+      
+      <!-- 标题优先取 theme.navbar.blog_title，否则回退为站点标题 -->
+      <strong>&nbsp;&nbsp;辉少笔记</strong>
     </a>
 
     <!-- ======================
@@ -172,256 +184,278 @@
              ========================================== -->
         
 
-                    <!-- ==========================================
+        <!-- ==========================================
              菜单循环
              ========================================== -->
-                    
-                      
-                        
-                          
+        
+        
+        
+        
 
-                            <!-- 有子菜单：下拉 -->
-                            
-                                <!-- 无子菜单：普通项 -->
-                                <li class="nav-item">
-                                  <a class="nav-link" href="/">
-                                    
-          
+        <!-- 有子菜单：下拉 -->
+        
+        <!-- 无子菜单：普通项 -->
+        <li class="nav-item">
+          <a class="nav-link" href="/">
             
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-home"></use>
-                  <use class="fill-grad" href="#nav-home"></use>
-                </svg>
-                
-                  <span class="nav-text">首页</span>
-                                  </a>
-                                </li>
-                                
-                                  
-                      
-                        
-                          
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-home"></use>
+          <use class="fill-grad" href="#nav-home"></use>
+        </svg>
+        
+        <span class="nav-text">首页</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
 
-                            <!-- 有子菜单：下拉 -->
-                            
-                                <!-- 无子菜单：普通项 -->
-                                <li class="nav-item">
-                                  <a class="nav-link" href="/archives/">
-                                    
-          
+        <!-- 有子菜单：下拉 -->
+        
+        <!-- 无子菜单：普通项 -->
+        <li class="nav-item">
+          <a class="nav-link" href="/archives/">
             
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-archive"></use>
-                  <use class="fill-grad" href="#nav-archive"></use>
-                </svg>
-                
-                  <span class="nav-text">归档</span>
-                                  </a>
-                                </li>
-                                
-                                  
-                      
-                        
-                          
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-archive"></use>
+          <use class="fill-grad" href="#nav-archive"></use>
+        </svg>
+        
+        <span class="nav-text">归档</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
 
-                            <!-- 有子菜单：下拉 -->
-                            
-                                <!-- 无子菜单：普通项 -->
-                                <li class="nav-item">
-                                  <a class="nav-link" href="/categories/">
-                                    
-          
+        <!-- 有子菜单：下拉 -->
+        
+        <!-- 无子菜单：普通项 -->
+        <li class="nav-item">
+          <a class="nav-link" href="/categories/">
             
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-category"></use>
-                  <use class="fill-grad" href="#nav-category"></use>
-                </svg>
-                
-                  <span class="nav-text">分类</span>
-                                  </a>
-                                </li>
-                                
-                                  
-                      
-                        
-                          
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-category"></use>
+          <use class="fill-grad" href="#nav-category"></use>
+        </svg>
+        
+        <span class="nav-text">分类</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
 
-                            <!-- 有子菜单：下拉 -->
-                            
-                                <!-- 无子菜单：普通项 -->
-                                <li class="nav-item">
-                                  <a class="nav-link" href="/tags/">
-                                    
-          
+        <!-- 有子菜单：下拉 -->
+        
+        <!-- 无子菜单：普通项 -->
+        <li class="nav-item">
+          <a class="nav-link" href="/tags/">
             
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-tag"></use>
-                  <use class="fill-grad" href="#nav-tag"></use>
-                </svg>
-                
-                  <span class="nav-text">标签</span>
-                                  </a>
-                                </li>
-                                
-                                  
-                      
-                        
-                          
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-tag"></use>
+          <use class="fill-grad" href="#nav-tag"></use>
+        </svg>
+        
+        <span class="nav-text">标签</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
 
-                            <!-- 有子菜单：下拉 -->
-                            
-                                <!-- 无子菜单：普通项 -->
-                                <li class="nav-item">
-                                  <a class="nav-link" href="/about/">
-                                    
-          
+        <!-- 有子菜单：下拉 -->
+        
+        <!-- 无子菜单：普通项 -->
+        <li class="nav-item">
+          <a class="nav-link" href="/about/">
             
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-about"></use>
-                  <use class="fill-grad" href="#nav-about"></use>
-                </svg>
-                
-                  <span class="nav-text">关于</span>
-                                  </a>
-                                </li>
-                                
-                                  
-                      
-                        
-                          
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-about"></use>
+          <use class="fill-grad" href="#nav-about"></use>
+        </svg>
+        
+        <span class="nav-text">关于</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
 
-                            <!-- 有子菜单：下拉 -->
-                            
-                                <!-- 无子菜单：普通项 -->
-                                <li class="nav-item">
-                                  <a class="nav-link" href="/guestbook/">
-                                    
-          
+        <!-- 有子菜单：下拉 -->
+        
+        <!-- 无子菜单：普通项 -->
+        <li class="nav-item">
+          <a class="nav-link" href="/guestbook/">
             
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-guestbook"></use>
-                  <use class="fill-grad" href="#nav-guestbook"></use>
-                </svg>
-                
-                  <span class="nav-text">留言页</span>
-                                  </a>
-                                </li>
-                                
-                                  
-                      
-                        
-                          
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-guestbook"></use>
+          <use class="fill-grad" href="#nav-guestbook"></use>
+        </svg>
+        
+        <span class="nav-text">留言页</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
 
-                            <!-- 有子菜单：下拉 -->
-                            
-                              <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="javascript:;" data-toggle="dropdown">
-                                  
-          
+        <!-- 有子菜单：下拉 -->
+        
+        <!-- 无子菜单：普通项 -->
+        <li class="nav-item">
+          <a class="nav-link" href="/wallpapers/">
             
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-tools"></use>
-                  <use class="fill-grad" href="#nav-tools"></use>
-                </svg>
-                
-                  <span class="nav-text">工具</span>
-                                </a>
-                                <div class="dropdown-menu">
-                                  
-                                    
-                                      
-                                        
-                                          <a class="dropdown-item" href="/md-editor/">
-                                            
-          
-            
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-md"></use>
-                  <use class="fill-grad" href="#nav-md"></use>
-                </svg>
-                
-                  <span class="nav-text">Markdown编辑器</span>
-                                          </a>
-                                          
-                                    
-                                      
-                                        
-                                          <a class="dropdown-item" href="/imagejpw/">
-                                            
-          
-            
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-imagejpw"></use>
-                  <use class="fill-grad" href="#nav-imagejpw"></use>
-                </svg>
-                
-                  <span class="nav-text">图片转换/压缩</span>
-                                          </a>
-                                          
-                                    
-                                      
-                                        
-                                          <a class="dropdown-item" href="/pdf-merge/">
-                                            
-          
-            
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-pdf-merge"></use>
-                  <use class="fill-grad" href="#nav-pdf-merge"></use>
-                </svg>
-                
-                  <span class="nav-text">PDF工具</span>
-                                          </a>
-                                          
-                                    
-                                      
-                                        
-                                          <a class="dropdown-item" href="/more-features/">
-                                            
-          
-            
-                <!-- 情况 B：sprite 符号 -->
-                <svg class="nav-icon" aria-hidden="true">
-                  <use class="fill-base" href="#nav-more-features"></use>
-                  <use class="fill-grad" href="#nav-more-features"></use>
-                </svg>
-                
-                  <span class="nav-text">更多功能</span>
-                                          </a>
-                                          
-                                </div>
-                              </li>
-                              
-                                  
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-imagedesktop"></use>
+          <use class="fill-grad" href="#nav-imagedesktop"></use>
+        </svg>
+        
+        <span class="nav-text">壁纸</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
 
-                                    <!-- 搜索按钮 -->
-                                    
-                                      <li class="nav-item" id="search-btn">
-                                        <a class="nav-link" href="javascript:;" data-toggle="modal"
-                                          data-target="#modalSearch">
-                                          <svg class="nav-icon">
-                                            <use class="fill-base" href="#nav-search"></use>
-                                            <use class="fill-grad" href="#nav-search"></use>
-                                          </svg>
-                                          <span class="sr-only">Search</span>
-                                        </a>
-                                      </li>
-                                      
-                                        
+        <!-- 有子菜单：下拉 -->
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+            
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-tools"></use>
+          <use class="fill-grad" href="#nav-tools"></use>
+        </svg>
+        
+        <span class="nav-text">工具</span>
+          </a>
+          <div class="dropdown-menu">
+            
+            
+            
+            
+            <a class="dropdown-item" href="/md-editor/">
+              
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-md"></use>
+          <use class="fill-grad" href="#nav-md"></use>
+        </svg>
+        
+        <span class="nav-text">Markdown编辑器</span>
+            </a>
+            
+            
+            
+            
+            <a class="dropdown-item" href="/imagejpw/">
+              
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-imagejpw"></use>
+          <use class="fill-grad" href="#nav-imagejpw"></use>
+        </svg>
+        
+        <span class="nav-text">图片转换/压缩</span>
+            </a>
+            
+            
+            
+            
+            <a class="dropdown-item" href="/pdf-merge/">
+              
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-pdf-merge"></use>
+          <use class="fill-grad" href="#nav-pdf-merge"></use>
+        </svg>
+        
+        <span class="nav-text">PDF工具</span>
+            </a>
+            
+            
+            
+            
+            <a class="dropdown-item" href="/more-features/">
+              
+        
+        
+        <!-- 情况 B：sprite 符号 -->
+        <svg class="nav-icon" aria-hidden="true">
+          <use class="fill-base" href="#nav-more-features"></use>
+          <use class="fill-grad" href="#nav-more-features"></use>
+        </svg>
+        
+        <span class="nav-text">更多功能</span>
+            </a>
+            
+          </div>
+        </li>
+        
+        
 
-                                          <!-- 夜间模式按钮 -->
-                                          
-                                            <!-- <li class="nav-item" id="color-toggle-btn">
+        <!-- 搜索按钮 -->
+        
+        <li class="nav-item" id="search-btn">
+          <a class="nav-link" href="javascript:;" data-toggle="modal" data-target="#modalSearch">
+            <svg class="nav-icon">
+              <use class="fill-base" href="#nav-search"></use>
+              <use class="fill-grad" href="#nav-search"></use>
+            </svg>
+            <span class="sr-only">Search</span>
+          </a>
+        </li>
+        
+        
+
+        <!-- 夜间模式按钮 -->
+        
+        <!-- <li class="nav-item" id="color-toggle-btn">
                                               <a class="nav-link" href="javascript:;" aria-label="Color Toggle">
                                                 <svg class="nav-icon" id="color-toggle-icon">
                                                   <use class="fill-base" href="#nav-dark"></use>
@@ -431,7 +465,7 @@
                                               </a>
                                             </li> -->
 
-                                            <!-- <li class="nav-item" id="color-toggle-btn">
+        <!-- <li class="nav-item" id="color-toggle-btn">
                                               <a class="nav-link" href="javascript:;" aria-label="Color Toggle">
                                                 <svg class="nav-icon" id="color-toggle-icon" aria-hidden="true" focusable="false">
                                                   <use href="#nav-sun"></use>
@@ -447,27 +481,26 @@
                                               </a>
                                             </li> -->
 
-                                            <li class="nav-item" id="color-toggle-btn">
-                                              <a class="nav-link" href="javascript:;" aria-label="Color Toggle">
-                                                <svg class="nav-icon" id="color-toggle-icon" aria-hidden="true"
-                                                  focusable="false">
-                                                  <!-- 白天：太阳 -->
-                                                  <g class="icon-sun">
-                                                    <use class="fill-base" href="#nav-sun"></use>
-                                                    <use class="fill-grad" href="#nav-sun"></use>
-                                                  </g>
-                                                  <!-- 夜间：灯泡 -->
-                                                  <g class="icon-dark">
-                                                    <use class="fill-base" href="#nav-dark"></use>
-                                                    <use class="fill-grad" href="#nav-dark"></use>
-                                                  </g>
-                                                </svg>
-                                                <span class="sr-only">Color Toggle</span>
-                                              </a>
-                                            </li>
+        <li class="nav-item" id="color-toggle-btn">
+          <a class="nav-link" href="javascript:;" aria-label="Color Toggle">
+            <svg class="nav-icon" id="color-toggle-icon" aria-hidden="true" focusable="false">
+              <!-- 白天：太阳 -->
+              <g class="icon-sun">
+                <use class="fill-base" href="#nav-sun"></use>
+                <use class="fill-grad" href="#nav-sun"></use>
+              </g>
+              <!-- 夜间：灯泡 -->
+              <g class="icon-dark">
+                <use class="fill-base" href="#nav-dark"></use>
+                <use class="fill-grad" href="#nav-dark"></use>
+              </g>
+            </svg>
+            <span class="sr-only">Color Toggle</span>
+          </a>
+        </li>
 
 
-                                            
+        
 
       </ul>
     </div>
@@ -532,7 +565,8 @@
   <!-- Markdown 编辑器 -->
   <symbol id="nav-md" viewBox="0 0 1024 1024">
     <path d="M0 686.081a332.799 332.799 0 1 0 665.598 0 332.799 332.799 0 1 0-665.598 0Z" />
-    <path d="M883.197 1024H243.2a141.056 141.056 0 0 1-140.8-140.8V140.803A141.056 141.056 0 0 1 243.2.003h516.35a89.088 89.088 0 0 1 63.233 25.6l189.695 189.695a38.4 38.4 0 0 1 11.52 27.904V883.2a141.056 141.056 0 0 1-140.8 140.8zM243.2 76.803a64 64 0 0 0-64 64V883.2a64 64 0 0 0 64 64h639.998a64 64 0 0 0 64-64V259.074l-179.2-179.2a12.8 12.8 0 0 0-8.447-3.071z" />
+    <path
+      d="M883.197 1024H243.2a141.056 141.056 0 0 1-140.8-140.8V140.803A141.056 141.056 0 0 1 243.2.003h516.35a89.088 89.088 0 0 1 63.233 25.6l189.695 189.695a38.4 38.4 0 0 1 11.52 27.904V883.2a141.056 141.056 0 0 1-140.8 140.8zM243.2 76.803a64 64 0 0 0-64 64V883.2a64 64 0 0 0 64 64h639.998a64 64 0 0 0 64-64V259.074l-179.2-179.2a12.8 12.8 0 0 0-8.447-3.071z" />
   </symbol>
 
 
@@ -556,21 +590,28 @@
 
   <!-- 图片工具 -->
   <symbol id="nav-imagejpw" viewBox="0 0 1024 1024">
-    <path
-      d="M0 51.2v921.6h1024V51.2zm921.6 819.2L358.4 409.6l-256 256v-512h819.2z"/>
+    <path d="M0 51.2v921.6h1024V51.2zm921.6 819.2L358.4 409.6l-256 256v-512h819.2z" />
   </symbol>
 
   <!-- PDF工具 -->
   <symbol id="nav-pdf-merge" viewBox="0 0 1024 1024">
-    <path d="M352.725 626.347c-7.85 0-13.141.768-15.872 1.536v50.261c3.243.768 7.296.981 12.886.981 20.437 0 33.024-10.325 33.024-27.776 0-15.616-10.838-25.002-30.038-25.002zm148.779.512c-8.533 0-14.08.768-17.365 1.536v111.36c3.285.768 8.576.768 13.354.768 34.859.256 57.558-18.944 57.558-59.563.256-35.413-20.438-54.101-53.547-54.101z"/>
-    <path d="M597.333 85.333H256a85.333 85.333 0 0 0-85.333 85.334v682.666A85.333 85.333 0 0 0 256 938.667h512a85.333 85.333 0 0 0 85.333-85.334v-512l-256-256zm-192.085 605.44c-13.184 12.374-32.64 17.92-55.296 17.92a95.147 95.147 0 0 1-13.141-.768v60.843h-38.144V600.832a322.475 322.475 0 0 1 52.01-3.499c23.766 0 40.662 4.523 52.054 13.611 10.837 8.619 18.176 22.741 18.176 39.381-.043 16.726-5.59 30.848-15.659 40.448zm162.432 57.814c-17.92 14.89-45.184 21.973-78.507 21.973-19.968 0-34.09-1.28-43.69-2.56V600.875a339.072 339.072 0 0 1 52.01-3.542c32.299 0 53.291 5.803 69.675 18.176 17.707 13.142 28.8 34.091 28.8 64.171 0 32.555-11.904 55.04-28.288 68.907zm157.653-118.4h-65.365v38.869h61.099v31.317h-61.099v68.438h-38.656V598.613h104.021v31.574zM597.333 384h-42.666V170.667L768 384H597.333z"/>
+    <path
+      d="M352.725 626.347c-7.85 0-13.141.768-15.872 1.536v50.261c3.243.768 7.296.981 12.886.981 20.437 0 33.024-10.325 33.024-27.776 0-15.616-10.838-25.002-30.038-25.002zm148.779.512c-8.533 0-14.08.768-17.365 1.536v111.36c3.285.768 8.576.768 13.354.768 34.859.256 57.558-18.944 57.558-59.563.256-35.413-20.438-54.101-53.547-54.101z" />
+    <path
+      d="M597.333 85.333H256a85.333 85.333 0 0 0-85.333 85.334v682.666A85.333 85.333 0 0 0 256 938.667h512a85.333 85.333 0 0 0 85.333-85.334v-512l-256-256zm-192.085 605.44c-13.184 12.374-32.64 17.92-55.296 17.92a95.147 95.147 0 0 1-13.141-.768v60.843h-38.144V600.832a322.475 322.475 0 0 1 52.01-3.499c23.766 0 40.662 4.523 52.054 13.611 10.837 8.619 18.176 22.741 18.176 39.381-.043 16.726-5.59 30.848-15.659 40.448zm162.432 57.814c-17.92 14.89-45.184 21.973-78.507 21.973-19.968 0-34.09-1.28-43.69-2.56V600.875a339.072 339.072 0 0 1 52.01-3.542c32.299 0 53.291 5.803 69.675 18.176 17.707 13.142 28.8 34.091 28.8 64.171 0 32.555-11.904 55.04-28.288 68.907zm157.653-118.4h-65.365v38.869h61.099v31.317h-61.099v68.438h-38.656V598.613h104.021v31.574zM597.333 384h-42.666V170.667L768 384H597.333z" />
   </symbol>
 
   <!-- 更多功能 -->
   <symbol id="nav-more-features" viewBox="0 0 1024 1024">
-    <path d="M172 95h232q77 0 77 77v232q0 77-77 77H172q-77 0-77-77V172q0-77 77-77ZM172 544h232q77 0 77 77v232q0 77-77 77H172q-77 0-77-77V621q0-77 77-77ZM621 544h232q77 0 77 77v232q0 77-77 77H621q-77 0-77-77V621q0-77 77-77ZM737 95q193 0 193 193T737 481q-193 0-193-193T737 95Z"/>
+    <path
+      d="M172 95h232q77 0 77 77v232q0 77-77 77H172q-77 0-77-77V172q0-77 77-77ZM172 544h232q77 0 77 77v232q0 77-77 77H172q-77 0-77-77V621q0-77 77-77ZM621 544h232q77 0 77 77v232q0 77-77 77H621q-77 0-77-77V621q0-77 77-77ZM737 95q193 0 193 193T737 481q-193 0-193-193T737 95Z" />
   </symbol>
 
+  <!-- 壁纸库 -->
+  <symbol id="nav-imagedesktop" viewBox="0 0 1024 1024">
+    <path
+      d="M88 733.6V210.4q0-16.544 11.712-28.256Q111.424 170.4 128 170.4h768q16.576 0 28.288 11.744Q936 193.856 936 210.4v523.2q0 16.544-11.712 28.256Q912.576 773.6 896 773.6H128q-16.576 0-28.288-11.744Q88 750.144 88 733.6zm96-68.416-32 16.576V234.4h720v406.016l-32-51.2L731.136 415.04a32 32 0 0 0-41.824-11.456L184 665.184zM416 384q0 39.776-28.128 67.872Q359.776 480 320 480q-39.776 0-67.872-28.128Q224 423.776 224 384q0-39.776 28.128-67.872Q280.224 288 320 288q39.776 0 67.872 28.128Q416 344.224 416 384zm-64 0q0-13.248-9.376-22.624T320 352q-13.248 0-22.624 9.376T288 384q0 13.248 9.376 22.624T320 416q13.248 0 22.624-9.376T352 384zm484.864 320.96 2.88 4.64H237.44l61.824-32 393.248-203.616L819.776 677.6l17.088 27.36zM758.848 904H233.152v-64h557.696v64h-32z" />
+  </symbol>
 </svg>
 
 <!-- =========================
@@ -634,29 +675,38 @@
 
   /* 下拉菜单整体 */
   .navbar .dropdown-menu {
-    background: #f4f4f4;            /* 实心浅灰背景 */
-    border: 1px solid #ddd;         /* 边框更清晰 */
-    border-radius: 8px;             /* 圆角 */
-    padding: 0.4rem 0.3rem;         /* 内边距 */
+    background: #f4f4f4;
+    /* 实心浅灰背景 */
+    border: 1px solid #ddd;
+    /* 边框更清晰 */
+    border-radius: 8px;
+    /* 圆角 */
+    padding: 0.4rem 0.3rem;
+    /* 内边距 */
     min-width: 160px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);  /* 柔和阴影 */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+    /* 柔和阴影 */
   }
 
   /* 下拉项 */
   .navbar .dropdown-item {
     display: flex;
     align-items: center;
-    gap: 6px;                        /* 图标和文字间距 */
+    gap: 6px;
+    /* 图标和文字间距 */
     padding: 0.45rem 0.75rem;
-    color: #333;                     /* 默认深灰文字 */
+    color: #333;
+    /* 默认深灰文字 */
     font-size: 0.9rem;
     transition: all .25s ease;
-    border-radius: 6px;              /* 每项圆角 */
+    border-radius: 6px;
+    /* 每项圆角 */
   }
 
   /* 下拉 hover 效果 */
   .navbar .dropdown-item:hover {
-    background: #e9e9e9;             /* hover 时变成更深一点的灰 */
+    background: #e9e9e9;
+    /* hover 时变成更深一点的灰 */
   }
 
   .navbar .dropdown-item:hover .nav-text {
@@ -737,15 +787,10 @@
   #color-toggle-btn .nav-link:hover #color-toggle-icon .fill-grad {
     opacity: 1;
   }
-
-
-
-
 </style>
 
 
 <script>
-
   document.addEventListener("DOMContentLoaded", function () {
     const toggleBtn = document.getElementById("color-toggle-btn");
 
@@ -761,7 +806,7 @@
         base.setAttribute("href", "#nav-dark"); // 夜间 -> 灯泡
         grad.setAttribute("href", "#nav-dark");
       } else {
-        base.setAttribute("href", "#nav-sun");  // 白天 -> 太阳
+        base.setAttribute("href", "#nav-sun"); // 白天 -> 太阳
         grad.setAttribute("href", "#nav-sun");
       }
     }
@@ -776,65 +821,32 @@
       updateIcon();
     });
   });
-
 </script>
+  
 
-  <!-- 仅在允许时渲染横幅 -->
+
+  <!-- Banner 横幅 -->
   
 </div>
 
+<!-- ================= 首页 Banner 定时换图 ================= -->
 
 
+<!-- ================= 文章页 Banner 固定随机 ================= -->
 
 
+  </header>
 
-      <!-- https://picui.cn/  图床软件
-      'https://youke1.picui.cn/s1/2025/09/02/68b6a9bd3ed1c.jpg',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aac4bb352.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aac617901.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aac775779.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aac834313.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aac8da8ee.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aa42c3f8d.jpg',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aa42025fd.jpg',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aad16e95a.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aad2bae98.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aad52a3ac.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aad53300d.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aada05b6b.jpg',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aadc8928b.png',
-      'https://youke1.picui.cn/s1/2025/09/02/68b6aadba1be4.png' -->
-
-
-
-
-      <!-- 'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/1234.jpg',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131.png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/131612409_p0%20(1).png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/132.png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/13396645512884975.jpg',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/564564.png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/6464.png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/a23.png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/a4.jpg',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/a9.png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b4.png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b7%20(1).png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/b8.png',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/wallhaven-mldy7y.jpg',
-      'https://cdn.jsdelivr.net/gh/huishaowangluo/picture-bed@main/huishaoblog-img/random/wenzhang.png' -->
-        </header>
-
-
-        <main>
-          
-                <div class="container nopadding-x-md">
-                  <div id="board" >
-                    
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-12 col-md-10 m-auto">
-                              
+  <main>
+    
+    <!-- 默认页面：包裹在 board 容器里 -->
+    <div class="container nopadding-x-md">
+      <div id="board" >
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-10 m-auto">
+              
 
 <article class="page-content">
   <div class="tools-container">
@@ -852,7 +864,7 @@
   </a>
 
   <!-- 文本识别 -->
-  <a href="/tools/ocr/" class="tool-card">
+  <a href="/more-features/ocr/" class="tool-card">
     <div class="tool-icon">📝</div>
     <h3>文本识别</h3>
     <p>上传图片进行 OCR 文字识别</p>
@@ -865,25 +877,18 @@
     <p>将路径列表转换为树状结构</p>
   </a>
 
-  <!-- 条形码生成 -->
-  <a href="/tools/barcode/" class="tool-card">
+  <!-- 二维码条形码生成 -->
+  <a href="/more-features/qrcode/" class="tool-card">
     <div class="tool-icon">📦</div>
-    <h3>条形码生成</h3>
-    <p>输入内容即可生成条形码</p>
+    <h3>二维码条形码生成</h3>
+    <p>输入内容即可生成二维码条形码</p>
   </a>
 
-  <!-- 二维码生成 -->
-  <a href="/tools/qrcode/" class="tool-card">
-    <div class="tool-icon">🔳</div>
-    <h3>二维码生成</h3>
-    <p>快速生成二维码图片</p>
-  </a>
-
-  <!-- 二维码扫描 -->
-  <a href="/tools/qrscan/" class="tool-card">
-    <div class="tool-icon">📷</div>
-    <h3>二维码扫描</h3>
-    <p>用摄像头或图片识别二维码</p>
+  <!-- 颜色实验室 -->
+  <a href="/more-features/color-lab/" class="tool-card">
+    <div class="tool-icon">🎨</div>
+    <h3>颜色实验室</h3>
+    <p>纯色图片生成，图片颜色识别，色板参考</p>
   </a>
 
   <!-- 🔧 未来扩展 -->
@@ -904,36 +909,22 @@
 
 
 
-                            </div>
-                          </div>
-                        </div>
-                  </div>
-                </div>
-                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
-                  <!-- 
-                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-                    </a>
-                     -->
+    <!-- 返回顶部按钮逻辑 -->
+    
+    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+    
 
-                  <!-- 
-                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-                    </a>
-                   -->
-
-                  <!-- 隐藏导航箭头   source/imagejpw/index.md  source/md-editor/index.md -->
-                  
-                    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-                      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-                    </a>
-                    
-
-
-
-                      
-                        <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -954,13 +945,16 @@
   </div>
 </div>
 
-                          
+    
 
-                            
-        </main>
+    
+  </main>
 
-        <footer>
-          <div class="footer-inner">
+  <footer>
+    <div class="footer-inner">
+  <!-- 点击爱心特效 -->
+  <script src="/js/click.js"></script>
+
   <!-- PDF工具箱 -->
   
 
@@ -976,16 +970,27 @@
   <!-- 目录树 -->
   
 
-
-
-  
-    <div class="footer-content">
-       <a href="https://huishao.net" target="_blank" rel="nofollow noopener"><span>辉少笔记</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HuiKeJi" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
-    </div>
+  <!-- OCR -->
+  <!-- 引入 Tesseract.js v5 -->
   
 
+  <!-- 二维码和条码 -->
   
-    <div class="statistics">
+
+  <!-- 颜色实验室 -->
+  
+
+  <!-- 壁纸库 -->
+  
+
+  
+  <div class="footer-content">
+     <a href="https://huishao.net" target="_blank" rel="nofollow noopener"><span>辉少笔记</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HuiKeJi" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+
+  
+  <div class="statistics">
   
   
 
@@ -1014,11 +1019,10 @@
 
   
 </div>
+  </footer>
 
-        </footer>
-
-        <!-- Scripts -->
-        
+  <!-- Scripts -->
+  
   <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
@@ -1077,47 +1081,41 @@
 
 
 
-          
+  
 
-            <noscript>
-              <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-            </noscript>
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 
-    </body>
+</body>
 
-  </html>
+</html>
 
+<!-- 全局黑夜和白昼设置 -->
+<style>
+  /* —— 全局默认（浅色） —— */
+  html,
+  body {
+    background: #ffffff;
+  }
 
-  <!-- 全局黑夜和白昼设置 -->
-  <!-- themes/myhui/layout/guestbook.ejs 留言页设置 -->
-  <style>
-    /* —— 全局默认（浅色） —— */
-    html,
-    body {
-      background: #ffffff;
-      /* 浅色模式两边的底色 */
-    }
+  /* —— 暗色：强制把两边背景变深 —— */
+  html[data-user-color-scheme="dark"] body {
+    background: #0f172a !important;
+  }
 
-    /* —— 暗色：强制把两边背景变深 —— */
-    html[data-user-color-scheme="dark"] body {
-      background: #0f172a !important;
-      /* 自己喜欢的深色，如 #111827 / #0f172a / #1e293b */
-    }
+  html[data-user-color-scheme="dark"] #web_bg,
+  html[data-user-color-scheme="dark"] .web_bg,
+  html[data-user-color-scheme="dark"] .body-bg,
+  html[data-user-color-scheme="dark"] .site-bg {
+    background: #0f172a !important;
+  }
 
-    /* 某些主题会用 #web_bg / .web_bg / .body-bg 之类的容器铺底，这里一起覆盖 */
-    html[data-user-color-scheme="dark"] #web_bg,
-    html[data-user-color-scheme="dark"] .web_bg,
-    html[data-user-color-scheme="dark"] .body-bg,
-    html[data-user-color-scheme="dark"] .site-bg {
-      background: #0f172a !important;
-    }
-
-    /* 如果主题给这些容器加了半透明蒙层/渐变（:before），也去掉以免发灰 */
-    html[data-user-color-scheme="dark"] #web_bg::before,
-    html[data-user-color-scheme="dark"] .web_bg::before,
-    html[data-user-color-scheme="dark"] .body-bg::before,
-    html[data-user-color-scheme="dark"] .site-bg::before {
-      background: transparent !important;
-      opacity: 1 !important;
-    }
-  </style>
+  html[data-user-color-scheme="dark"] #web_bg::before,
+  html[data-user-color-scheme="dark"] .web_bg::before,
+  html[data-user-color-scheme="dark"] .body-bg::before,
+  html[data-user-color-scheme="dark"] .site-bg::before {
+    background: transparent !important;
+    opacity: 1 !important;
+  }
+</style>

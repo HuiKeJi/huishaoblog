@@ -35,15 +35,34 @@ html[data-user-color-scheme="dark"] .dt-label {
 /* 输入/输出框 */
 .dt-textarea,
 .dt-output {
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    /* 圆润自然的字体 */
+    font-size: 15px;
+    /* 稍微大一点，阅读更舒服 */
+    line-height: 1.6;
+    /* 增加行距，文字不拥挤 */
+    border-radius: 8px;
+    /* 边角圆润 */
+    border: 1px solid #ccc;
+    /* 柔和的边框 */
+    padding: 10px 12px;
+    /* 内边距，文字不贴边 */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    /* 内阴影，增加立体感 */
+    transition: border-color 0.2s, box-shadow 0.2s;
     width: 100%;
     min-height: 160px;
     resize: vertical;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: monospace;
-    line-height: 1.5;
     box-sizing: border-box;
+}
+
+/* 聚焦时高亮，用户体验更好 */
+.dt-textarea:focus,
+.dt-output:focus {
+    border-color: #3b82f6;
+    /* 蓝色高亮 */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    outline: none;
 }
 
 .dt-output {

@@ -1,0 +1,304 @@
+/* 统一顶部项目高度，保证完美对齐 */
+:root {
+  --nav-item-h: 32px;
+}
+
+/* ===== 页面整体 ===== */
+.wallpaper-page {
+  background: #f5f7fa;
+  min-height: 100vh;
+  /* padding-top: 70px; */
+  font-family: 'Segoe UI', 'PingFang SC', sans-serif;
+}
+
+/* 顶部导航栏 */
+.wallpaper-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #3498db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  z-index: 1000;
+}
+
+/* 左侧：壁纸库 + 头像笔记 + 首页（全部同高对齐） */
+.wallpaper-navbar .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wallpaper-navbar .nav-left > * {
+  height: var(--nav-item-h);
+  display: flex;
+  align-items: center;
+  /* 垂直居中容器内容 */
+}
+
+.wallpaper-navbar .logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  line-height: var(--nav-item-h);
+  /* 文本基线对齐 */
+}
+
+.wallpaper-navbar .site-info {
+  gap: 8px;
+}
+
+.wallpaper-navbar .site-info img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: block;
+  /* 去除内联基线 */
+}
+
+.wallpaper-navbar .site-info span {
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  line-height: var(--nav-item-h);
+}
+
+/* 首页链接（默认白色；hover 渐变） */
+.wallpaper-navbar .home-link {
+  gap: 6px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  line-height: var(--nav-item-h);
+  transition: all 0.3s ease;
+  margin-left: 15px;
+  /* 👈 这里就是控制它整体往右偏移 */
+}
+
+.wallpaper-navbar .home-link .icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: #fff;
+  transform: translateY(-1px);
+  /* 微调 1px，彻底对齐视觉中心 */
+  transition: fill 0.3s ease;
+}
+
+.wallpaper-navbar .home-link span {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.wallpaper-navbar .home-link:hover .icon {
+  fill: url(#nav-gradient);
+}
+
+.wallpaper-navbar .home-link:hover span {
+  background: linear-gradient(90deg, #30a9de, #0066ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 控件区 */
+.wallpaper-navbar .controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wallpaper-navbar select,
+.wallpaper-navbar input,
+.wallpaper-navbar button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.wallpaper-navbar button {
+  background: #2980b9;
+  color: #fff;
+  cursor: pointer;
+}
+
+.wallpaper-navbar button:hover {
+  background: #1f6699;
+}
+
+/* 图片网格：固定 5 列，居中留白 */
+.wallpaper-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.wallpaper-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.wallpaper-card:hover {
+  transform: translateY(-6px);
+}
+
+.wallpaper-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+/* hover 信息 */
+.wallpaper-info {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  font-size: 13px;
+  transition: opacity 0.3s;
+  text-align: center;
+}
+
+.wallpaper-card:hover .wallpaper-info {
+  opacity: 1;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2000;
+}
+
+.lightbox.hidden {
+  display: none;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.lightbox-actions {
+  margin-top: 15px;
+}
+
+.lightbox-actions a {
+  margin: 0 10px;
+  padding: 8px 16px;
+  background: #3498db;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* ===== 中屏：顶栏上面，控件自动换行 ===== */
+@media (max-width: 900px) {
+  .wallpaper-navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .wallpaper-navbar .nav-left {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .wallpaper-navbar .controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .wallpaper-navbar select,
+  .wallpaper-navbar input,
+  .wallpaper-navbar button {
+    flex: 1 1 45%;
+    min-width: 120px;
+  }
+
+  .wallpaper-navbar input {
+    flex: 1 1 100%;
+  }
+
+  .wallpaper-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== 小屏：控件区域换成两列网格 ===== */
+@media (max-width: 600px) {
+  .wallpaper-navbar .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .wallpaper-navbar #searchInput {
+    grid-column: span 2;
+    width: 100%;
+  }
+
+  .wallpaper-navbar #searchBtn {
+    grid-column: span 2;
+    width: 100%;
+  }
+
+  .wallpaper-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== 超小屏：隐藏“辉少笔记”，只留头像 ===== */
+@media (max-width: 400px) {
+  .wallpaper-navbar .site-info span {
+    display: none;
+  }
+
+  .wallpaper-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+#resolutionInput {
+  min-width: 140px;
+}

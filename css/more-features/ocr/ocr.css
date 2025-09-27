@@ -1,0 +1,247 @@
+/* ===== 页面整体布局 ===== */
+.ocr-wrap {
+  max-width: 960px;
+  margin: 90px auto 60px;
+  padding: 0 16px;
+}
+
+/* ===== 导航栏白天/夜间颜色 ===== */
+.navbar {
+  background-color: #3d85c6 !important;
+  margin-bottom: 14px;
+}
+
+html[data-user-color-scheme='dark'] .navbar {
+  background-color: #1f3144 !important;
+}
+
+/* ===== 返回按钮 ===== */
+.back-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #3d85c6, #60a5fa);
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(61, 133, 198, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(61, 133, 198, 0.45);
+}
+
+/* ===== 标题与说明 ===== */
+.ocr-title {
+  font-size: 26px;
+  margin: 22px 0 6px;
+}
+
+.ocr-subtitle {
+  color: #666;
+  margin-bottom: 18px;
+}
+
+html[data-user-color-scheme='dark'] .ocr-subtitle {
+  color: #aeb6c2;
+}
+
+/* ===== 工具行 ===== */
+.ocr-toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.ocr-label {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ocr-select {
+  padding: 8px 12px;
+  border: 1px solid #cfd7e3;
+  border-radius: 8px;
+  background: #f3f6fb;
+}
+
+html[data-user-color-scheme='dark'] .ocr-select {
+  background: #2a2f3a;
+  color: #eaeef6;
+  border-color: #4a4f5a;
+}
+
+/* ===== 主按钮 ===== */
+.primary-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #3d85c6;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(61, 133, 198, 0.3);
+}
+
+.primary-btn:hover {
+  background: #2a6eac;
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== 上传区域 ===== */
+.ocr-dropzone {
+  border: 2px dashed #3d85c6;
+  border-radius: 12px;
+  padding: 28px 14px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.ocr-dropzone:hover {
+  background: #f2f8ff;
+}
+
+html[data-user-color-scheme='dark'] .ocr-dropzone {
+  border-color: #60a5fa;
+}
+
+html[data-user-color-scheme='dark'] .ocr-dropzone:hover {
+  background: #1f2937;
+}
+
+.dz-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dz-icon {
+  font-size: 22px;
+}
+
+.file-name {
+  margin: 8px 2px 12px;
+  color: #5b677a;
+  font-size: 14px;
+}
+
+html[data-user-color-scheme='dark'] .file-name {
+  color: #9aa3b2;
+}
+
+/* ===== 进度条 ===== */
+.progress {
+  height: 8px;
+  border-radius: 6px;
+  background: #eaeef6;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #3d85c6, #60a5fa);
+  transition: width 0.15s ease;
+}
+
+.progress-text {
+  margin: 8px 0 10px;
+  font-weight: 600;
+  color: #3d85c6;
+}
+
+html[data-user-color-scheme='dark'] .progress {
+  background: #2e3440;
+}
+
+html[data-user-color-scheme='dark'] .progress-text {
+  color: #60a5fa;
+}
+
+/* ===== 结果框 ===== */
+.result-box {
+  width: 100%;
+  min-height: 400px;
+  max-height: none;
+  resize: vertical;
+  overflow: auto;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #cfd7e3;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.result-box:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(61, 133, 198, 0.2);
+}
+
+html[data-user-color-scheme='dark'] .result-box {
+  background: #131822;
+  color: #eaeef6;
+  border-color: #444b57;
+}
+
+/* ===== 底部按钮 ===== */
+.actions {
+  margin-top: 10px;
+}
+
+.ghost-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #eef2f8;
+  color: #2b3a4d;
+  border: 1px solid #cfd7e3;
+}
+
+.ghost-btn:hover {
+  background: #e5ecf7;
+}
+
+html[data-user-color-scheme='dark'] .ghost-btn {
+  background: #232a36;
+  color: #eaeef6;
+  border-color: #434b58;
+}
+
+/* ===== 手机适配 ===== */
+@media (max-width: 600px) {
+  .ocr-title {
+    font-size: 22px;
+  }
+
+  .ocr-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .primary-btn {
+    flex: 1;
+  }
+
+  .ocr-select {
+    flex: 1;
+  }
+
+  .ocr-dropzone {
+    padding: 22px 10px;
+  }
+}
