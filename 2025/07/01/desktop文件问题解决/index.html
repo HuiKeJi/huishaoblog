@@ -53,16 +53,16 @@
   <meta name="author" content="huishao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这个问题通常是由于 .desktop 文件的 StartupWMClass 不匹配导致的">
+    <meta name="description" content="教你如何修改 .desktop 文件，解决 AppImage 图标重复、菜单分类、代理参数等常见问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="appimage创建desktop问题解决">
-<meta property="og:url" content="http://huishao.net/2025/07/01/appimage%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
+<meta property="og:title" content="Linux下.desktop 与 AppImage 问题解决指南">
+<meta property="og:url" content="http://huishao.net/2025/07/01/desktop%E6%96%87%E4%BB%B6%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
 <meta property="og:site_name" content="辉少笔记">
-<meta property="og:description" content="这个问题通常是由于 .desktop 文件的 StartupWMClass 不匹配导致的">
+<meta property="og:description" content="教你如何修改 .desktop 文件，解决 AppImage 图标重复、菜单分类、代理参数等常见问题">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://huishao.net/img/articleslist/wallhaven-e8omk8.jpg">
 <meta property="article:published_time" content="2025-07-01T10:30:00.000Z">
-<meta property="article:modified_time" content="2025-09-21T07:48:12.413Z">
+<meta property="article:modified_time" content="2025-09-28T07:04:51.509Z">
 <meta property="article:author" content="huishao">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -72,7 +72,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>appimage创建desktop问题解决 - 辉少笔记</title>
+  <title>Linux下.desktop 与 AppImage 问题解决指南 - 辉少笔记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -835,7 +835,7 @@
     
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/random/1234.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/random/131612409_p0%20(1).png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -870,14 +870,14 @@
                 
                   <span class="post-meta-item">
                     <i class="iconfont icon-chart"></i>
-                    839 字
+                    505 字
                   </span>
                   
 
                     
                       <span class="post-meta-item">
                         <i class="iconfont icon-clock-fill"></i>
-                        2 分钟
+                        1 分钟
                       </span>
                       
 
@@ -948,7 +948,7 @@
 
             <!-- SEO 标题显示 -->
             <h1 id="seo-header">
-              appimage创建desktop问题解决
+              Linux下.desktop 与 AppImage 问题解决指南
             </h1>
 
             <!-- 更新时间显示模块 -->
@@ -959,66 +959,129 @@
               <!-- 正常文章内容 -->
               <div class="markdown-body">
                 
-                <h2 id="appimage问题解决"><a href="#appimage问题解决" class="headerlink" title="appimage问题解决"></a>appimage问题解决</h2><h2 id="1-确定软件的-WM-CLASS-值"><a href="#1-确定软件的-WM-CLASS-值" class="headerlink" title="1. 确定软件的 WM_CLASS 值"></a>1. 确定软件的 WM_CLASS 值</h2><p>AppImage 在运行时可能使用了不同的窗口类名称（WM_CLASS），而 .desktop 文件中的 StartupWMClass 需要与其匹配，否则系统会认为它们是两个不同的应用。</p>
-<h3 id="方法-1：使用-xprop-获取-WM-CLASS"><a href="#方法-1：使用-xprop-获取-WM-CLASS" class="headerlink" title="方法 1：使用 xprop 获取 WM_CLASS"></a>方法 1：使用 xprop 获取 WM_CLASS</h3><ol>
-<li>打开终端</li>
-<li>运行以下命令：<br><code>xprop | grep WM_CLASS</code></li>
-<li>鼠标点击 AppImage 运行的窗口，终端会返回类似以下的输出：<br><code>WM_CLASS(STRING) = &quot;real_app_name&quot;, &quot;RealAppClass&quot;</code><br>其中，”RealAppClass” 是你需要的值。</li>
-</ol>
-<h3 id="方法-2：使用-wmctrl（如果-xprop-无效）"><a href="#方法-2：使用-wmctrl（如果-xprop-无效）" class="headerlink" title="方法 2：使用 wmctrl（如果 xprop 无效）"></a>方法 2：使用 wmctrl（如果 xprop 无效）</h3><p>如果 xprop 无法获取正确的 WM_CLASS，可以尝试：</p>
-<p><code>wmctrl -lx</code></p>
-<p>然后找到你的 AppImage 运行窗口的对应行，类似：</p>
-<p><code>0x04200007  0 real_app_name.RealAppClass  AppImage 软件标题</code></p>
-<p>这里 real_app_name.RealAppClass 的最后一部分就是 StartupWMClass 需要的值。</p>
-<h2 id="2-修改-desktop-文件"><a href="#2-修改-desktop-文件" class="headerlink" title="2. 修改 .desktop 文件"></a>2. 修改 .desktop 文件</h2><ol>
-<li>编辑你的 .desktop 文件（通常在 ~&#x2F;usr&#x2F;share&#x2F;applications&#x2F; 目录下）：<br><code>sudo vim /usr/share/applications/your_app.desktop</code></li>
-<li>添加或修改 StartupWMClass，确保它匹配刚刚获取的值：<br><code>[Desktop Entry]</code><br><code>Version=1.0</code><br><code>Type=Application</code><br><code>Name=Your App</code><br><code>Exec=/path/to/your.appimage</code><br><code>Icon=/path/to/icon.png</code><br><code>StartupWMClass=RealAppClass  # 这里填写正确的 WM_CLASS 值</code></li>
-</ol>
-<p>这样，AppImage 运行时就不会再出现两个图标，而是正确地重叠到已固定的图标上。</p>
-<p>要让通过 AppImage 启动的 .desktop 文件出现在 开始菜单（Start Menu）并分类别，你可以按照以下步骤来操作（适用于基于 freedesktop.org 的桌面环境，比如 GNOME、KDE、XFCE、LXQt 等）：</p>
-<hr>
-<p>✅ 一、放置 .desktop 文件到系统或用户目录</p>
-<p>你可以将 .desktop 文件放到以下路径之一：</p>
-<p>系统范围（所有用户）：</p>
-<p>&#x2F;usr&#x2F;share&#x2F;applications&#x2F;</p>
-<p>当前用户（推荐）：</p>
-<p>~&#x2F;.local&#x2F;share&#x2F;applications&#x2F;</p>
-<p>如果你是用 AppImage 启动器（比如 AppImageLauncher）生成的，它一般会自动放到 ~&#x2F;.local&#x2F;share&#x2F;applications&#x2F;。</p>
-<hr>
-<p>✅ 二、编辑 .desktop 文件，设置分类</p>
-<p>.desktop 文件本质是一个文本文件，你可以用任意编辑器打开，例如：</p>
-<p>nano ~&#x2F;.local&#x2F;share&#x2F;applications&#x2F;yourapp.desktop</p>
-<p>关键字段是：</p>
-<p>Categories&#x3D;Utility;</p>
-<p>将 Categories&#x3D; 改成你想要归类到的分类。常用分类有：</p>
-<p>分类名	对应开始菜单位置</p>
-<p>Utility	实用工具<br>AudioVideo	多媒体<br>Development	开发工具<br>Education	教育类<br>Game	游戏<br>Graphics	图形绘制、图像处理等<br>Network	网络工具<br>Office	办公软件<br>Settings	设置（系统配置）<br>System	系统工具</p>
-<p>例如一个图像查看工具可以这样写：</p>
-<p>[Desktop Entry]<br>Type&#x3D;Application<br>Name&#x3D;MyApp<br>Exec&#x3D;&#x2F;home&#x2F;user&#x2F;Applications&#x2F;MyApp.AppImage<br>Icon&#x3D;myapp<br>Categories&#x3D;Graphics;</p>
+                <h1 id="Linux-下-desktop-与-AppImage-常见问题解决指南"><a href="#Linux-下-desktop-与-AppImage-常见问题解决指南" class="headerlink" title="Linux 下 .desktop 与 AppImage 常见问题解决指南"></a>Linux 下 .desktop 与 AppImage 常见问题解决指南</h1><h2 id="1-修改-desktop-文件的常见用途"><a href="#1-修改-desktop-文件的常见用途" class="headerlink" title="1. 修改 .desktop 文件的常见用途"></a>1. 修改 .desktop 文件的常见用途</h2><p><code>.desktop</code> 文件是 Linux 桌面环境的 <strong>应用快捷方式配置文件</strong>。编辑它可以：</p>
+<ul>
+<li><p><strong>修改启动参数</strong>  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">Exec</span>=/usr/bin/microsoft-edge-stable --disable-gpu %U<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>启用 Wayland 支持</strong>  </p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">--ozone-platform=wayland --enable-features=WaylandWindowDecorations<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p>注意 Categories&#x3D; 必须以分号 ; 结尾。</p>
+<p>注意：某些应用开启后可能导致输入法无法输入中文。</p>
 </blockquote>
+</li>
+<li><p><strong>配置代理</strong>  </p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">--proxy-server=&quot;socks5://127.0.0.1:9900&quot;<br></code></pre></td></tr></table></figure>
+<p>（适用于 Chrome &#x2F; Brave，部分应用不支持）</p>
+</li>
+<li><p><strong>禁用沙盒（不推荐）</strong>  </p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">--no-sandbox %U<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>自定义协议支持</strong>  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">MimeType</span>=x-scheme-handler/termius<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>实际示例：</strong>  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">Exec</span>=/opt/hsprogram/binary/huiishaochrome/google-chrome     --proxy-server=<span class="hljs-string">&quot;socks5://127.0.0.1:1089&quot;</span>     --ozone-platform=x11 --disable-gpu %U<br></code></pre></td></tr></table></figure></li>
+</ul>
 <hr>
-<p>✅ 三、刷新桌面数据库（部分桌面环境需要）</p>
-<p>执行以下命令刷新图标&#x2F;菜单缓存：</p>
-<p>update-desktop-database ~&#x2F;.local&#x2F;share&#x2F;applications&#x2F;</p>
+<h2 id="2-AppImage-的特殊问题"><a href="#2-AppImage-的特殊问题" class="headerlink" title="2. AppImage 的特殊问题"></a>2. AppImage 的特殊问题</h2><h3 id="2-1-解决“两个图标”问题"><a href="#2-1-解决“两个图标”问题" class="headerlink" title="2.1 解决“两个图标”问题"></a>2.1 解决“两个图标”问题</h3><p>AppImage 有时会在任务栏显示两个图标，原因是 <code>.desktop</code> 文件中的 <strong>StartupWMClass</strong> 与实际窗口类不一致。</p>
+<h4 id="获取-WM-CLASS"><a href="#获取-WM-CLASS" class="headerlink" title="获取 WM_CLASS"></a>获取 WM_CLASS</h4><p><strong>方法 1：xprop</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">xprop | grep WM_CLASS<br></code></pre></td></tr></table></figure>
+<p>点击 AppImage 窗口，输出示例：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">WM_CLASS</span><span class="hljs-params">(STRING)</span></span> = <span class="hljs-string">&quot;real_app_name&quot;</span>, <span class="hljs-string">&quot;RealAppClass&quot;</span><br></code></pre></td></tr></table></figure>
+<p>👉 使用 <code>RealAppClass</code>。</p>
+<p><strong>方法 2：wmctrl</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wmctrl -lx<br></code></pre></td></tr></table></figure>
+<p>输出示例：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">0x04200007</span>  <span class="hljs-number">0</span> real_app_name.RealAppClass  AppImage 软件标题<br></code></pre></td></tr></table></figure>
+<p>👉 最后一段即为需要的值。</p>
+<h4 id="修改-desktop-文件"><a href="#修改-desktop-文件" class="headerlink" title="修改 .desktop 文件"></a>修改 .desktop 文件</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Desktop Entry]</span><br><span class="hljs-attr">Version</span>=<span class="hljs-number">1.0</span><br><span class="hljs-attr">Type</span>=Application<br><span class="hljs-attr">Name</span>=Your App<br><span class="hljs-attr">Exec</span>=/path/to/your.AppImage<br><span class="hljs-attr">Icon</span>=/path/to/icon.png<br><span class="hljs-attr">StartupWMClass</span>=RealAppClass<br></code></pre></td></tr></table></figure>
+
 <hr>
-<p>✅ 四、图标显示问题（可选）</p>
-<p>Icon&#x3D;myapp 应该是图标名（不带扩展名），系统会在 &#x2F;usr&#x2F;share&#x2F;icons 或 ~&#x2F;.icons 中查找对应的 PNG 或 SVG 文件。</p>
-<p>或者你可以用绝对路径：</p>
-<p>Icon&#x3D;&#x2F;home&#x2F;user&#x2F;.icons&#x2F;myapp.png</p>
+<h3 id="2-2-让-AppImage-出现在开始菜单"><a href="#2-2-让-AppImage-出现在开始菜单" class="headerlink" title="2.2 让 AppImage 出现在开始菜单"></a>2.2 让 AppImage 出现在开始菜单</h3><ol>
+<li><p><strong>放置位置</strong>  </p>
+<ul>
+<li>系统范围：<code>/usr/share/applications/</code>  </li>
+<li>单用户（推荐）：<code>~/.local/share/applications/</code></li>
+</ul>
+</li>
+<li><p><strong>设置分类</strong>  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">Categories</span>=Graphics<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<p>常见分类：</p>
+<table>
+<thead>
+<tr>
+<th>分类名</th>
+<th>菜单位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Utility</td>
+<td>实用工具</td>
+</tr>
+<tr>
+<td>AudioVideo</td>
+<td>多媒体</td>
+</tr>
+<tr>
+<td>Development</td>
+<td>开发工具</td>
+</tr>
+<tr>
+<td>Education</td>
+<td>教育类</td>
+</tr>
+<tr>
+<td>Game</td>
+<td>游戏</td>
+</tr>
+<tr>
+<td>Graphics</td>
+<td>图形工具</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>网络工具</td>
+</tr>
+<tr>
+<td>Office</td>
+<td>办公软件</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>系统设置</td>
+</tr>
+<tr>
+<td>System</td>
+<td>系统工具</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：必须以分号 <code>;</code> 结尾。</p>
+</blockquote>
+</li>
+<li><p><strong>刷新桌面数据库</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">update-desktop-database ~/.local/share/applications/<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>图标设置</strong>  </p>
+<ul>
+<li>如果图标在系统图标主题中：  <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">Icon</span>=myapp<br></code></pre></td></tr></table></figure></li>
+<li>使用绝对路径：  <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">Icon</span>=/home/user/.icons/myapp.png<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>重新登录或重启</strong><br>KDE Plasma 等环境可能需要重启才能生效。</p>
+</li>
+</ol>
 <hr>
-<p>✅ 五、重新登录或重启桌面环境</p>
-<p>有时你需要注销再登录，或重启系统，才能在开始菜单看到效果（特别是 KDE Plasma）。</p>
+<h2 id="3-推荐工具"><a href="#3-推荐工具" class="headerlink" title="3. 推荐工具"></a>3. 推荐工具</h2><ul>
+<li><p><strong>AppImageLauncher</strong><br>自动管理 AppImage，生成 <code>.desktop</code> 文件。</p>
+</li>
+<li><p><strong>Menulibre</strong><br>图形化菜单编辑器（适合 GNOME &#x2F; XFCE 等）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S menulibre<br></code></pre></td></tr></table></figure></li>
+</ul>
 <hr>
-<p>🧩 补充工具推荐</p>
-<p>如果你觉得手动编辑繁琐，可以用这些图形化工具：</p>
-<p>AppImageLauncher – 自动管理 AppImage、创建 .desktop 文件。</p>
-<p>Menulibre – 图形化菜单编辑器，适合 XFCE、GNOME 等。</p>
-<p>安装：</p>
-<p>sudo pacman -S menulibre</p>
-<hr>
-<p>如你提供 .desktop 文件内容或你使用的桌面环境（KDE&#x2F;GNOME&#x2F;XFCE…），我可以更具体地帮你分类。</p>
+<h2 id="4-完整示例"><a href="#4-完整示例" class="headerlink" title="4. 完整示例"></a>4. 完整示例</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Desktop Entry]</span><br><span class="hljs-attr">Version</span>=<span class="hljs-number">1.0</span><br><span class="hljs-attr">Type</span>=Application<br><span class="hljs-attr">Name</span>=MyApp<br><span class="hljs-attr">Comment</span>=一个示例 AppImage 程序<br><span class="hljs-attr">Exec</span>=/home/user/Applications/MyApp.AppImage<br><span class="hljs-attr">Icon</span>=/home/user/.icons/myapp.png<br><span class="hljs-attr">Terminal</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">Categories</span>=Graphics<span class="hljs-comment">;</span><br><span class="hljs-attr">StartupWMClass</span>=MyAppClass<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -1066,8 +1129,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>appimage创建desktop问题解决</div>
-      <div>http://huishao.net/2025/07/01/appimage问题解决/</div>
+      <div>Linux下.desktop 与 AppImage 问题解决指南</div>
+      <div>http://huishao.net/2025/07/01/desktop文件问题解决/</div>
     </div>
     <div class="license-meta">
       
@@ -1111,27 +1174,27 @@
                 <span>分享到：</span>
 
                 <!-- 微博分享链接 -->
-                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&title=appimage%E5%88%9B%E5%BB%BAdesktop%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3" target="_blank" rel="noopener">
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fdesktop%25E6%2596%2587%25E4%25BB%25B6%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&title=Linux%E4%B8%8B.desktop%20%E4%B8%8E%20AppImage%20%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%8C%87%E5%8D%97" target="_blank" rel="noopener">
                   <i class="fab fa-weibo"></i> 微博
                 </a>
 
                 <!-- 微信分享跳转链接（长按识别二维码页） -->
-                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&size=300x300" target="_blank" rel="noopener">
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fdesktop%25E6%2596%2587%25E4%25BB%25B6%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&size=300x300" target="_blank" rel="noopener">
                   <i class="fab fa-weixin"></i> 微信
                 </a>
 
                 <!-- QQ 好友分享链接 -->
-                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&title=appimage%E5%88%9B%E5%BB%BAdesktop%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3" target="_blank" rel="noopener">
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fdesktop%25E6%2596%2587%25E4%25BB%25B6%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&title=Linux%E4%B8%8B.desktop%20%E4%B8%8E%20AppImage%20%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%8C%87%E5%8D%97" target="_blank" rel="noopener">
                   <i class="fab fa-qq"></i> QQ好友
                 </a>
 
                 <!-- Twitter 分享链接 -->
-                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&text=appimage%E5%88%9B%E5%BB%BAdesktop%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3" target="_blank" rel="noopener">
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fdesktop%25E6%2596%2587%25E4%25BB%25B6%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&text=Linux%E4%B8%8B.desktop%20%E4%B8%8E%20AppImage%20%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%8C%87%E5%8D%97" target="_blank" rel="noopener">
                   <i class="fab fa-twitter"></i> Twitter
                 </a>
 
                 <!-- Telegram 分享链接 -->
-                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fappimage%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&text=appimage%E5%88%9B%E5%BB%BAdesktop%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3" target="_blank" rel="noopener">
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F07%2F01%2Fdesktop%25E6%2596%2587%25E4%25BB%25B6%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&text=Linux%E4%B8%8B.desktop%20%E4%B8%8E%20AppImage%20%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%8C%87%E5%8D%97" target="_blank" rel="noopener">
                   <i class="fab fa-telegram"></i> Telegram
                 </a>
 
@@ -1147,9 +1210,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/05/Wayland%E6%9B%B4%E5%A4%9A%E8%AE%BE%E7%BD%AE/" title="Wayland更多设置">
+                      <a href="/2025/08/07/%E5%AE%89%E8%A3%85%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6/" title="Arch Linux必备软件">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Wayland更多设置</span>
+                        <span class="hidden-mobile">Arch Linux必备软件</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

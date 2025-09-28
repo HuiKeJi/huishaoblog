@@ -53,16 +53,16 @@
   <meta name="author" content="huishao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一些PATH建议及报错解决">
+    <meta name="description" content="关于主力机archlinux中平时遇到的小问题更新">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Arch Linux配置PATH的几种例子">
-<meta property="og:url" content="http://huishao.net/2025/08/10/arch%E7%9A%84PATH%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:title" content="Arch Linux小问题解决（更新版）">
+<meta property="og:url" content="http://huishao.net/2025/08/10/archlinux%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
 <meta property="og:site_name" content="辉少笔记">
-<meta property="og:description" content="一些PATH建议及报错解决">
+<meta property="og:description" content="关于主力机archlinux中平时遇到的小问题更新">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://huishao.net/img/articleslist/wallhaven-9o51l8.jpg">
 <meta property="article:published_time" content="2025-08-10T10:30:00.000Z">
-<meta property="article:modified_time" content="2025-09-23T08:49:46.992Z">
+<meta property="article:modified_time" content="2025-09-28T06:51:32.852Z">
 <meta property="article:author" content="huishao">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -72,7 +72,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Arch Linux配置PATH的几种例子 - 辉少笔记</title>
+  <title>Arch Linux小问题解决（更新版） - 辉少笔记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -835,7 +835,7 @@
     
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/random/a23.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/random/132.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -870,14 +870,14 @@
                 
                   <span class="post-meta-item">
                     <i class="iconfont icon-chart"></i>
-                    454 字
+                    1.7k 字
                   </span>
                   
 
                     
                       <span class="post-meta-item">
                         <i class="iconfont icon-clock-fill"></i>
-                        1 分钟
+                        3 分钟
                       </span>
                       
 
@@ -948,7 +948,7 @@
 
             <!-- SEO 标题显示 -->
             <h1 id="seo-header">
-              Arch Linux配置PATH的几种例子
+              Arch Linux小问题解决（更新版）
             </h1>
 
             <!-- 更新时间显示模块 -->
@@ -959,15 +959,61 @@
               <!-- 正常文章内容 -->
               <div class="markdown-body">
                 
-                <p>首先需要有代理的条件，例如trojan、v2ray、shadowsocks、WireGuard等等</p>
-<p>其次是进行shell代理，其实可以使用shell专用代理工具，例如：proxychains、tsocks、redsocks等等，这里我们就讲述shell方式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.bashrc<br></code></pre></td></tr></table></figure>
+                <hr>
+<h3 id="关于终端代理问题"><a href="#关于终端代理问题" class="headerlink" title="关于终端代理问题"></a>关于终端代理问题</h3><p>首先需要有代理的条件，例如trojan、v2ray、shadowsocks、WireGuard等等</p>
+<p>其次是进行终端代理，其实可以使用shell专用代理工具，例如：proxychains、tsocks、redsocks等等，举例不依赖第三方工具~&#x2F;.bashrc进行代理</p>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>127.0.0.1:7890（本地IP+端口）</p>
+</blockquote>
+<h5 id="1-HTTP-代理"><a href="#1-HTTP-代理" class="headerlink" title="1. HTTP 代理"></a>1. HTTP 代理</h5><p>最常见、兼容性最好（wget、curl、git、npm 都支持）</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">http_proxy</span>=<span class="hljs-string">&quot;http://127.0.0.1:7890&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">https_proxy</span>=<span class="hljs-string">&quot;http://127.0.0.1:7890&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">all_proxy</span>=<span class="hljs-string">&quot;http://127.0.0.1:7890&quot;</span><br><br><span class="hljs-comment"># 建议也加上大写（部分程序只认大写）</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">HTTP_PROXY</span>=<span class="hljs-variable">$http_proxy</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">HTTPS_PROXY</span>=<span class="hljs-variable">$https_proxy</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">ALL_PROXY</span>=<span class="hljs-variable">$all_proxy</span><br></code></pre></td></tr></table></figure>
 
+<blockquote>
+<p>用在 HTTP&#x2F;HTTPS 请求，但对纯 TCP 流量（SSH、数据库连接）没法代理</p>
+</blockquote>
+<h5 id="2-HTTPS-代理"><a href="#2-HTTPS-代理" class="headerlink" title="2. HTTPS 代理"></a>2. HTTPS 代理</h5><p>其实和 HTTP 代理写法一样，区别在于协议头写 https:&#x2F;&#x2F;，表示 代理本身和客户端之间是 TLS 加密的</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">http_proxy</span>=<span class="hljs-string">&quot;https://127.0.0.1:8443&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">https_proxy</span>=<span class="hljs-string">&quot;https://127.0.0.1:8443&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">all_proxy</span>=<span class="hljs-string">&quot;https://127.0.0.1:8443&quot;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用得比较少，通常是企业环境或公司网关需要安全代理时</p>
+</blockquote>
+<h5 id="3-SOCKS-代理"><a href="#3-SOCKS-代理" class="headerlink" title="3. SOCKS 代理"></a>3. SOCKS 代理</h5><p>支持更多协议（HTTP&#x2F;HTTPS、SMTP、SSH 等 TCP 都能走），但是部分软件原生不支持</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">http_proxy</span>=<span class="hljs-string">&quot;socks5://127.0.0.1:1089&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">https_proxy</span>=<span class="hljs-string">&quot;socks5://127.0.0.1:1089&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">all_proxy</span>=<span class="hljs-string">&quot;socks5://127.0.0.1:1089&quot;</span><br></code></pre></td></tr></table></figure>
 
+<ul>
+<li><p>socks5h:&#x2F;&#x2F;：和 socks5:&#x2F;&#x2F; 的区别在于 是否由代理端解析域名</p>
+<ul>
+<li>socks5:&#x2F;&#x2F; → 本地先解析 DNS，再发 IP 给代理</li>
+<li>socks5h:&#x2F;&#x2F; → 让代理解析域名，更隐私，避免 DNS 泄露</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">all_proxy</span>=<span class="hljs-string">&quot;socks5h://127.0.0.1:1089&quot;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>最后让终端 <strong>重新加载你刚刚修改过的 <code>~/.bashrc</code></strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.bashrc<br></code></pre></td></tr></table></figure>
 
-<p>shell代理就生效了，不管是yay、pacman、apt、yum等都是走127.0.0.1:1089网络数据</p>
+<p>代理就生效了，不管是yay、pacman、apt、yum等都是走127.0.0.1:1089网络数据</p>
+<h3 id="用-Proxychains-方式（命令前缀拦截）"><a href="#用-Proxychains-方式（命令前缀拦截）" class="headerlink" title="用 Proxychains 方式（命令前缀拦截）"></a>用 Proxychains 方式（命令前缀拦截）</h3><p>arch安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S proxychains-ng<br></code></pre></td></tr></table></figure>
+
+<p>ubuntu安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install -y proxychains<br></code></pre></td></tr></table></figure>
+
+<p>编辑 &#x2F;etc&#x2F;proxychains.conf配置文件，在文件最底部修改，代理类型及端口</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">socks5</span> <span class="hljs-number">127.0.0.1</span> <span class="hljs-number">1089</span><br></code></pre></td></tr></table></figure>
+
+<p>用法：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">proxychains curl ip<span class="hljs-literal">inf</span>o.io<br>proxychains git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/xx/xx.git<br></code></pre></td></tr></table></figure>
+
+<p>优点：不用全局改环境变量；缺点：对 GUI 程序不一定好使</p>
+<p>透明代理（iptables &#x2F; tun2socks）把系统所有流量透明转发到 SOCKS5 代理</p>
+<ul>
+<li>用 clash &#x2F; v2ray &#x2F; sing-box 提供 tun 模式</li>
+<li>或者用 redsocks + iptables</li>
+<li>或者 tun2socks</li>
+</ul>
+<p>这种方式不需要在 ~&#x2F;.bashrc 写 export，因为所有 TCP 流量已经被劫持</p>
+<hr>
 <h3 id="pip报错"><a href="#pip报错" class="headerlink" title="pip报错"></a>pip报错</h3><p>在使用<strong>pip</strong>过程中，会提示以下提示，说明<strong>pip</strong>不支持<strong>~&#x2F;.bashrc</strong>这种代理</p>
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs subunit">$ pip install pipenv <br><span class="hljs-keyword">ERROR: </span>Could not install packages due to an OSError: Missing dependencies for SOCKS support. <br><br>**[**notice**]** A new release of pip available: 22.3 -&gt; 25.1.1 <br>**[**notice**]** To update, run: pip3 install --upgrade pip<br></code></pre></td></tr></table></figure>
 
@@ -976,8 +1022,9 @@
 
 <blockquote>
 <p><strong>PySocks</strong>解决缺少 <strong>SOCKS</strong> 支持的问题</p>
-<p>现在可以恢复<strong>~&#x2F;.bashrc</strong>中设置的代理信息，正常<strong>pip install PySocks</strong>即可</p>
+<p>现在可以恢复<strong>~&#x2F;.bashrc</strong>中设置的代理信息，正常<strong>pip install pipenv</strong>即可</p>
 </blockquote>
+<hr>
 <h3 id="PATH设置"><a href="#PATH设置" class="headerlink" title="PATH设置"></a>PATH设置</h3><p>添加如下命令，即可全局使用<strong>hexo clean、hexo server、hexo generate</strong>等等命令</p>
 <blockquote>
 <p>[!IMPORTANT]</p>
@@ -998,8 +1045,7 @@
 
 
 
-
-
+<hr>
 <h3 id="visual-studio-code设置JSON配置文件"><a href="#visual-studio-code设置JSON配置文件" class="headerlink" title="visual-studio-code设置JSON配置文件"></a>visual-studio-code设置JSON配置文件</h3><h5 id="在-VS-Code-内部设置代理："><a href="#在-VS-Code-内部设置代理：" class="headerlink" title="在 VS Code 内部设置代理："></a>在 VS Code 内部设置代理：</h5><p>按 Ctrl + Shift + P → 输入 <strong>Preferences: Open Settings (JSON)</strong> → 加上：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;http.proxy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;socks5h://127.0.0.1:1089&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;https.proxy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;socks5h://127.0.0.1:1089&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;http.proxyStrictSSL&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
@@ -1015,6 +1061,61 @@
 <p>导入：VS Code → <strong>扩展</strong> → <code>...</code> → <strong>安装 VSIX</strong></p>
 <p><img src="/img/essay/PATH/image-20250923164259797.png" srcset="/img/gif/loading.gif" lazyload></p>
 <p><img src="/img/essay/PATH/image-20250923164332086.png" srcset="/img/gif/loading.gif" lazyload></p>
+<hr>
+<h3 id="在-Arch-Wayland（尤其-KDE-Plasma-6）的环境里，fcitx5-偶尔会出现“预编辑（拼音串-候选框）跑到左上角、按空格也进不到输入框”的现象，根因通常是："><a href="#在-Arch-Wayland（尤其-KDE-Plasma-6）的环境里，fcitx5-偶尔会出现“预编辑（拼音串-候选框）跑到左上角、按空格也进不到输入框”的现象，根因通常是：" class="headerlink" title="在 Arch + Wayland（尤其 KDE&#x2F;Plasma 6）的环境里，fcitx5 偶尔会出现“预编辑（拼音串&#x2F;候选框）跑到左上角、按空格也进不到输入框”的现象，根因通常是："></a>在 Arch + Wayland（尤其 KDE&#x2F;Plasma 6）的环境里，fcitx5 偶尔会出现“预编辑（拼音串&#x2F;候选框）跑到左上角、按空格也进不到输入框”的现象，根因通常是：</h3><ol>
+<li>应用或合成器和输入法之间的 Wayland “text-input” 协议&#x2F;光标位置上报不一致；</li>
+<li>某些应用（Chromium&#x2F;Electron 系）没正确启用 Wayland IME 支持；</li>
+<li>XWayland 程序与 Wayland IM 桥接有 bug。这些都会导致预编辑位置回退到 (0,0)，也就是左上角。</li>
+</ol>
+<p>下面给你一套<strong>定位与修复清单（按优先级）</strong>，全部在 Wayland 会话下操作：</p>
+<hr>
+<h5 id="一、基础配置"><a href="#一、基础配置" class="headerlink" title="一、基础配置"></a>一、基础配置</h5><ul>
+<li><p>使用fcitx5必备的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S fcitx5-im fcitx5-chinese-addons fcitx5-configtool<br></code></pre></td></tr></table></figure>
+
+<p>并确保环境变量已设置（建议放到 ~&#x2F;.config&#x2F;environment.d&#x2F;fcitx5.conf）（最干净）</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">GTK_IM_MODULE</span>=fcitx<br><span class="hljs-attr">QT_IM_MODULE</span>=fcitx<br><span class="hljs-attr">XMODIFIERS</span>=@im=fcitx<br><span class="hljs-attr">SDL_IM_MODULE</span>=fcitx<br><span class="hljs-attr">GLFW_IM_MODULE</span>=ibus<br></code></pre></td></tr></table></figure>
+
+<p>放在（&#x2F;etc&#x2F;environment ）中也是可以的（全局生效）</p>
+<p><code>fcitx5</code> 和 <code>fcitx</code> 在 Arch 环境里效果一样，因为 fcitx5 的模块名就是 <code>fcitx</code>，但最好保持一致（推荐都用 <code>fcitx</code>，官方 Wiki 也是这么写的），避免有些程序只认旧值。</p>
+<p>上面三项（GTK&#x2F;QT&#x2F;XMODIFIERS）是最关键的。官方与 ArchWiki 都明确要求。做完<strong>重登 Wayland 会话</strong>。</p>
+</li>
+<li><p>在 KDE「系统设置」→「键盘」→「虚拟键盘」里把<strong>输入法启动器</strong>设为 <em>Fcitx 5 Wayland launcher</em>（有些系统默认没选对）。</p>
+<p><img src="/img/essay/PATH/image-20250928113103918.png" srcset="/img/gif/loading.gif" lazyload></p>
+</li>
+</ul>
+<h5 id="二、专治“左上角乱跳”的常见场景"><a href="#二、专治“左上角乱跳”的常见场景" class="headerlink" title="二、专治“左上角乱跳”的常见场景"></a>二、专治“左上角乱跳”的常见场景</h5><p><strong>A. Chromium &#x2F; Electron 家族（Chrome&#x2F;Brave&#x2F;Edge、VS Code、Obsidian、Discord 等）</strong><br>这些程序经常是罪魁祸首：默认没完全打开 Wayland 的 IME 支持，导致预编辑位置错乱或根本进不去输入框</p>
+<ul>
+<li><p>启动参数加上：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">--enable-features</span>=UseOzonePlatform <span class="hljs-attribute">--ozone-platform</span>=wayland --enable-wayland-ime<br></code></pre></td></tr></table></figure>
+
+<p>你可以在对应的 .desktop覆盖里写入（放 <code>~/.local/share/applications/*.desktop</code>），比如 VS Code 的 <code>Exec=</code> 行末尾追加上面的参数；或直接用命令行启动测试</p>
+</li>
+<li><p>这类问题在 Chromium 的 issue tracker 里也有记录：在非 GNOME 合成器下，<strong>text-input-v3</strong> 下候选框<strong>首次</strong>可能会在左上角显示（典型复现）。更新版本或加上面的 flags 往往能改善</p>
+</li>
+<li><p>Electron 生态对 Wayland IME 的支持是逐步补齐的，很多应用需要上面的 –enable-wayland-ime</p>
+</li>
+</ul>
+<p><strong>B. Firefox &#x2F; GTK4 应用</strong><br>一般“开箱即用”，少见左上角问题；若你切换了 Ozone&#x2F;Wayland 与 GTK4 模块混用，可能会影响候选框定位，官方建议<strong>不要同时</strong>用 <code>--enable-wayland-ime</code> 和 <code>--gtk-version=4</code> 两套路径混搭</p>
+<p><strong>C. 原生 Wayland 应用但不正确上报光标位置</strong><br>一些应用没把光标位置（cursor location）传给 IME，导致候选&#x2F;预编辑窗口固定到左上角；这是应用端的 bug，需要等应用修（例如 Rnote 曾有这个问题）</p>
+<p><strong>D. XWayland 程序（X11 应用跑在 Wayland 下）</strong><br>KDE 有已知报告：长时间使用&#x2F;频繁切换输入法后，<strong>输入法不跟随光标或提交不到目标控件</strong>。如果你主要受影响的是 X11 程序，尽量换用该程序的原生 Wayland 版或更新 Plasma&#x2F;kwin</p>
+<hr>
+<h3 id="Wayland在混合显卡下sddm无法正常启动（先看Archwiki早启动）"><a href="#Wayland在混合显卡下sddm无法正常启动（先看Archwiki早启动）" class="headerlink" title="Wayland在混合显卡下sddm无法正常启动（先看Archwiki早启动）"></a>Wayland在混合显卡下sddm无法正常启动（先看Archwiki早启动）</h3><blockquote>
+<p>[!IMPORTANT]</p>
+<p>没有问题时可跳过（建议设置早启动看看效果）</p>
+</blockquote>
+<blockquote>
+<p>补齐依赖（默认layer-shell-qt存在）</p>
+</blockquote>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">sudo pacman -S  layer-<span class="hljs-built_in">shell</span>-qt layer-<span class="hljs-built_in">shell</span>-qt5 <br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编辑如下</p>
+</blockquote>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">sudo <span class="hljs-keyword">vim</span> /etc/sddm.<span class="hljs-keyword">conf</span>.d/<span class="hljs-number">10</span>-wayland.<span class="hljs-keyword">conf</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[General]</span><br><span class="hljs-attr">DisplayServer</span>=wayland<br><span class="hljs-attr">GreeterEnvironment</span>=QT_WAYLAND_SHELL_INTEGRATION=layer-shell<br><span class="hljs-section">[Wayland]</span><br><span class="hljs-attr">CompositorCommand</span>=kwin_wayland --drm --<span class="hljs-literal">no</span>-lockscreen --<span class="hljs-literal">no</span>-global-shortcuts --locale1 --inputmethod maliit-keyboard<br><br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -1062,8 +1163,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Arch Linux配置PATH的几种例子</div>
-      <div>http://huishao.net/2025/08/10/arch的PATH设置/</div>
+      <div>Arch Linux小问题解决（更新版）</div>
+      <div>http://huishao.net/2025/08/10/archlinux小问题解决/</div>
     </div>
     <div class="license-meta">
       
@@ -1107,27 +1208,27 @@
                 <span>分享到：</span>
 
                 <!-- 微博分享链接 -->
-                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farch%25E7%259A%2584PATH%25E8%25AE%25BE%25E7%25BD%25AE%2F&title=Arch%20Linux%E9%85%8D%E7%BD%AEPATH%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BE%8B%E5%AD%90" target="_blank" rel="noopener">
+                <a class="share-btn" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farchlinux%25E5%25B0%258F%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&title=Arch%20Linux%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%EF%BC%88%E6%9B%B4%E6%96%B0%E7%89%88%EF%BC%89" target="_blank" rel="noopener">
                   <i class="fab fa-weibo"></i> 微博
                 </a>
 
                 <!-- 微信分享跳转链接（长按识别二维码页） -->
-                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farch%25E7%259A%2584PATH%25E8%25AE%25BE%25E7%25BD%25AE%2F&size=300x300" target="_blank" rel="noopener">
+                <a class="share-btn" href="https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farchlinux%25E5%25B0%258F%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&size=300x300" target="_blank" rel="noopener">
                   <i class="fab fa-weixin"></i> 微信
                 </a>
 
                 <!-- QQ 好友分享链接 -->
-                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farch%25E7%259A%2584PATH%25E8%25AE%25BE%25E7%25BD%25AE%2F&title=Arch%20Linux%E9%85%8D%E7%BD%AEPATH%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BE%8B%E5%AD%90" target="_blank" rel="noopener">
+                <a class="share-btn" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farchlinux%25E5%25B0%258F%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&title=Arch%20Linux%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%EF%BC%88%E6%9B%B4%E6%96%B0%E7%89%88%EF%BC%89" target="_blank" rel="noopener">
                   <i class="fab fa-qq"></i> QQ好友
                 </a>
 
                 <!-- Twitter 分享链接 -->
-                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farch%25E7%259A%2584PATH%25E8%25AE%25BE%25E7%25BD%25AE%2F&text=Arch%20Linux%E9%85%8D%E7%BD%AEPATH%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BE%8B%E5%AD%90" target="_blank" rel="noopener">
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farchlinux%25E5%25B0%258F%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&text=Arch%20Linux%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%EF%BC%88%E6%9B%B4%E6%96%B0%E7%89%88%EF%BC%89" target="_blank" rel="noopener">
                   <i class="fab fa-twitter"></i> Twitter
                 </a>
 
                 <!-- Telegram 分享链接 -->
-                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farch%25E7%259A%2584PATH%25E8%25AE%25BE%25E7%25BD%25AE%2F&text=Arch%20Linux%E9%85%8D%E7%BD%AEPATH%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BE%8B%E5%AD%90" target="_blank" rel="noopener">
+                <a class="share-btn" href="https://t.me/share/url?url=http%3A%2F%2Fhuishao.net%2F2025%2F08%2F10%2Farchlinux%25E5%25B0%258F%25E9%2597%25AE%25E9%25A2%2598%25E8%25A7%25A3%25E5%2586%25B3%2F&text=Arch%20Linux%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%EF%BC%88%E6%9B%B4%E6%96%B0%E7%89%88%EF%BC%89" target="_blank" rel="noopener">
                   <i class="fab fa-telegram"></i> Telegram
                 </a>
 
